@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="budgeting" nsURI="http://www.Budgeting.budgeting" nsPrefix="budgeting">
+  <eClassifiers xsi:type="ecore:EClass" name="BudgetingFile"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Library" eSuperTypes="#//BudgetingFile">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="categories" upperBound="-1"
+        eType="#//Category" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Category">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="income" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Year" eSuperTypes="#//BudgetingFile">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="library" eType="#//Library"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="months" upperBound="-1"
+        eType="#//Month" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Month">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//MonthEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="budgetEntries" upperBound="-1"
+        eType="#//Entry" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actualEntries" upperBound="-1"
+        eType="#//Entry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MonthEnum">
+    <eLiterals name="JANUARY" literal="january"/>
+    <eLiterals name="FEBRUARY" value="1" literal="february"/>
+    <eLiterals name="MARCH" value="2" literal="march"/>
+    <eLiterals name="APRIL" value="3" literal="april"/>
+    <eLiterals name="MAY" value="4" literal="may"/>
+    <eLiterals name="JUNE" value="5" literal="june"/>
+    <eLiterals name="JULY" value="6" literal="july"/>
+    <eLiterals name="AUGUST" value="7" literal="august"/>
+    <eLiterals name="SEPTEMBER" value="8" literal="september"/>
+    <eLiterals name="OCTOBER" value="9" literal="october"/>
+    <eLiterals name="NOVEMBER" value="10" literal="november"/>
+    <eLiterals name="DECEMBER" value="11" literal="december"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="category" eType="#//Category"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </eClassifiers>
+</ecore:EPackage>

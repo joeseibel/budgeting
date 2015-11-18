@@ -1,0 +1,56 @@
+grammar budgeting.Budgeting with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate budgeting "http://www.Budgeting.budgeting"
+
+BudgetingFile:
+	Library | Year
+;
+
+Library:
+	'library' name=ID '{'
+		categories+=Category*
+	'}'
+;
+
+Category:
+	(income?='income' | 'expense') name=ID
+;
+
+Year:
+	name=INT 'uses' library=[Library] '{'
+		months+=Month*
+	'}'
+;
+
+Month:
+	name=MonthEnum 'budget' '{'
+		budgetEntries+=Entry*
+	'}' 'actual' '{'
+		actualEntries+=Entry*
+	'}'
+;
+
+enum MonthEnum:
+	JANUARY='january' |
+	FEBRUARY='february' |
+	MARCH='march' |
+	APRIL='april' |
+	MAY='may' |
+	JUNE='june' |
+	JULY='july' |
+	AUGUST='august' |
+	SEPTEMBER='september' |
+	OCTOBER='october' |
+	NOVEMBER='november' |
+	DECEMBER='december'
+;
+
+Entry:
+	category=[Category] ':' amount=DOLLAR
+;
+
+terminal DOLLAR returns ecore::ELong:
+	INT '.' '0'..'9' '0'..'9'
+;
