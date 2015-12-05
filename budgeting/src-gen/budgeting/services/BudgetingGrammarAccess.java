@@ -80,38 +80,92 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class CategoryElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Category");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
-		private final Assignment cIncomeAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
-		private final Keyword cIncomeIncomeKeyword_0_0_0 = (Keyword)cIncomeAssignment_0_0.eContents().get(0);
-		private final Keyword cExpenseKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cIncomeCategoryAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Keyword cIncomeKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Assignment cNameAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_0_2_0 = (RuleCall)cNameAssignment_0_2.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cExpenseCategoryAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cExpenseKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cNameAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_1_2_0 = (RuleCall)cNameAssignment_1_2.eContents().get(0);
+		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_1_3_0 = (Keyword)cGroup_1_3.eContents().get(0);
+		private final Assignment cPatternsAssignment_1_3_1 = (Assignment)cGroup_1_3.eContents().get(1);
+		private final RuleCall cPatternsSTRINGTerminalRuleCall_1_3_1_0 = (RuleCall)cPatternsAssignment_1_3_1.eContents().get(0);
+		private final Group cGroup_1_3_2 = (Group)cGroup_1_3.eContents().get(2);
+		private final Keyword cCommaKeyword_1_3_2_0 = (Keyword)cGroup_1_3_2.eContents().get(0);
+		private final Assignment cPatternsAssignment_1_3_2_1 = (Assignment)cGroup_1_3_2.eContents().get(1);
+		private final RuleCall cPatternsSTRINGTerminalRuleCall_1_3_2_1_0 = (RuleCall)cPatternsAssignment_1_3_2_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_1_3_3 = (Keyword)cGroup_1_3.eContents().get(3);
 		
 		//Category:
-		//	(income?="income" | "expense") name=ID;
+		//	{IncomeCategory} "income" name=ID | {ExpenseCategory} "expense" name=ID ("[" patterns+=STRING ("," patterns+=STRING)*
+		//	"]")?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//(income?="income" | "expense") name=ID
-		public Group getGroup() { return cGroup; }
+		//{IncomeCategory} "income" name=ID | {ExpenseCategory} "expense" name=ID ("[" patterns+=STRING ("," patterns+=STRING)*
+		//"]")?
+		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//income?="income" | "expense"
-		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+		//{IncomeCategory} "income" name=ID
+		public Group getGroup_0() { return cGroup_0; }
 
-		//income?="income"
-		public Assignment getIncomeAssignment_0_0() { return cIncomeAssignment_0_0; }
+		//{IncomeCategory}
+		public Action getIncomeCategoryAction_0_0() { return cIncomeCategoryAction_0_0; }
 
 		//"income"
-		public Keyword getIncomeIncomeKeyword_0_0_0() { return cIncomeIncomeKeyword_0_0_0; }
-
-		//"expense"
-		public Keyword getExpenseKeyword_0_1() { return cExpenseKeyword_0_1; }
+		public Keyword getIncomeKeyword_0_1() { return cIncomeKeyword_0_1; }
 
 		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_0_2() { return cNameAssignment_0_2; }
 
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_0_2_0() { return cNameIDTerminalRuleCall_0_2_0; }
+
+		//{ExpenseCategory} "expense" name=ID ("[" patterns+=STRING ("," patterns+=STRING)* "]")?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//{ExpenseCategory}
+		public Action getExpenseCategoryAction_1_0() { return cExpenseCategoryAction_1_0; }
+
+		//"expense"
+		public Keyword getExpenseKeyword_1_1() { return cExpenseKeyword_1_1; }
+
+		//name=ID
+		public Assignment getNameAssignment_1_2() { return cNameAssignment_1_2; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_2_0() { return cNameIDTerminalRuleCall_1_2_0; }
+
+		//("[" patterns+=STRING ("," patterns+=STRING)* "]")?
+		public Group getGroup_1_3() { return cGroup_1_3; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_1_3_0() { return cLeftSquareBracketKeyword_1_3_0; }
+
+		//patterns+=STRING
+		public Assignment getPatternsAssignment_1_3_1() { return cPatternsAssignment_1_3_1; }
+
+		//STRING
+		public RuleCall getPatternsSTRINGTerminalRuleCall_1_3_1_0() { return cPatternsSTRINGTerminalRuleCall_1_3_1_0; }
+
+		//("," patterns+=STRING)*
+		public Group getGroup_1_3_2() { return cGroup_1_3_2; }
+
+		//","
+		public Keyword getCommaKeyword_1_3_2_0() { return cCommaKeyword_1_3_2_0; }
+
+		//patterns+=STRING
+		public Assignment getPatternsAssignment_1_3_2_1() { return cPatternsAssignment_1_3_2_1; }
+
+		//STRING
+		public RuleCall getPatternsSTRINGTerminalRuleCall_1_3_2_1_0() { return cPatternsSTRINGTerminalRuleCall_1_3_2_1_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_1_3_3() { return cRightSquareBracketKeyword_1_3_3; }
 	}
 
 	public class YearElements extends AbstractParserRuleElementFinder {
@@ -761,7 +815,8 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Category:
-	//	(income?="income" | "expense") name=ID;
+	//	{IncomeCategory} "income" name=ID | {ExpenseCategory} "expense" name=ID ("[" patterns+=STRING ("," patterns+=STRING)*
+	//	"]")?;
 	public CategoryElements getCategoryAccess() {
 		return pCategory;
 	}

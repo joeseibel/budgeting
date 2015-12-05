@@ -120,6 +120,16 @@ public class BudgetingAdapterFactory extends AdapterFactoryImpl
         return createEntryAdapter();
       }
       @Override
+      public Adapter caseIncomeCategory(IncomeCategory object)
+      {
+        return createIncomeCategoryAdapter();
+      }
+      @Override
+      public Adapter caseExpenseCategory(ExpenseCategory object)
+      {
+        return createExpenseCategoryAdapter();
+      }
+      @Override
       public Adapter caseBudgetAmountEntry(BudgetAmountEntry object)
       {
         return createBudgetAmountEntryAdapter();
@@ -302,6 +312,36 @@ public class BudgetingAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEntryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.IncomeCategory <em>Income Category</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.IncomeCategory
+   * @generated
+   */
+  public Adapter createIncomeCategoryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.ExpenseCategory <em>Expense Category</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.ExpenseCategory
+   * @generated
+   */
+  public Adapter createExpenseCategoryAdapter()
   {
     return null;
   }

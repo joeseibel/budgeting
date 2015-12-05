@@ -124,22 +124,13 @@ public interface BudgetingPackage extends EPackage
   int CATEGORY = 2;
 
   /**
-   * The feature id for the '<em><b>Income</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CATEGORY__INCOME = 0;
-
-  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CATEGORY__NAME = 1;
+  int CATEGORY__NAME = 0;
 
   /**
    * The number of structural features of the '<em>Category</em>' class.
@@ -148,7 +139,7 @@ public interface BudgetingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CATEGORY_FEATURE_COUNT = 2;
+  int CATEGORY_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link budgeting.budgeting.impl.YearImpl <em>Year</em>}' class.
@@ -373,6 +364,71 @@ public interface BudgetingPackage extends EPackage
   int ENTRY_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.IncomeCategoryImpl <em>Income Category</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.IncomeCategoryImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getIncomeCategory()
+   * @generated
+   */
+  int INCOME_CATEGORY = 9;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCOME_CATEGORY__NAME = CATEGORY__NAME;
+
+  /**
+   * The number of structural features of the '<em>Income Category</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCOME_CATEGORY_FEATURE_COUNT = CATEGORY_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.ExpenseCategoryImpl <em>Expense Category</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.ExpenseCategoryImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getExpenseCategory()
+   * @generated
+   */
+  int EXPENSE_CATEGORY = 10;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPENSE_CATEGORY__NAME = CATEGORY__NAME;
+
+  /**
+   * The feature id for the '<em><b>Patterns</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPENSE_CATEGORY__PATTERNS = CATEGORY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Expense Category</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPENSE_CATEGORY_FEATURE_COUNT = CATEGORY_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link budgeting.budgeting.impl.BudgetAmountEntryImpl <em>Budget Amount Entry</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -380,7 +436,7 @@ public interface BudgetingPackage extends EPackage
    * @see budgeting.budgeting.impl.BudgetingPackageImpl#getBudgetAmountEntry()
    * @generated
    */
-  int BUDGET_AMOUNT_ENTRY = 9;
+  int BUDGET_AMOUNT_ENTRY = 11;
 
   /**
    * The feature id for the '<em><b>Category</b></em>' reference.
@@ -417,7 +473,7 @@ public interface BudgetingPackage extends EPackage
    * @see budgeting.budgeting.impl.BudgetingPackageImpl#getBudgetFactorEntry()
    * @generated
    */
-  int BUDGET_FACTOR_ENTRY = 10;
+  int BUDGET_FACTOR_ENTRY = 12;
 
   /**
    * The feature id for the '<em><b>Category</b></em>' reference.
@@ -463,7 +519,7 @@ public interface BudgetingPackage extends EPackage
    * @see budgeting.budgeting.impl.BudgetingPackageImpl#getActualAmountEntry()
    * @generated
    */
-  int ACTUAL_AMOUNT_ENTRY = 11;
+  int ACTUAL_AMOUNT_ENTRY = 13;
 
   /**
    * The feature id for the '<em><b>Category</b></em>' reference.
@@ -500,7 +556,7 @@ public interface BudgetingPackage extends EPackage
    * @see budgeting.budgeting.impl.BudgetingPackageImpl#getActualTransactionEntry()
    * @generated
    */
-  int ACTUAL_TRANSACTION_ENTRY = 12;
+  int ACTUAL_TRANSACTION_ENTRY = 14;
 
   /**
    * The feature id for the '<em><b>Category</b></em>' reference.
@@ -537,7 +593,7 @@ public interface BudgetingPackage extends EPackage
    * @see budgeting.budgeting.impl.BudgetingPackageImpl#getCashTransaction()
    * @generated
    */
-  int CASH_TRANSACTION = 13;
+  int CASH_TRANSACTION = 15;
 
   /**
    * The feature id for the '<em><b>Amount</b></em>' attribute.
@@ -574,7 +630,7 @@ public interface BudgetingPackage extends EPackage
    * @see budgeting.budgeting.impl.BudgetingPackageImpl#getCardTransaction()
    * @generated
    */
-  int CARD_TRANSACTION = 14;
+  int CARD_TRANSACTION = 16;
 
   /**
    * The feature id for the '<em><b>Amount</b></em>' attribute.
@@ -620,7 +676,7 @@ public interface BudgetingPackage extends EPackage
    * @see budgeting.budgeting.impl.BudgetingPackageImpl#getMonthEnum()
    * @generated
    */
-  int MONTH_ENUM = 15;
+  int MONTH_ENUM = 17;
 
 
   /**
@@ -674,17 +730,6 @@ public interface BudgetingPackage extends EPackage
    * @generated
    */
   EClass getCategory();
-
-  /**
-   * Returns the meta object for the attribute '{@link budgeting.budgeting.Category#isIncome <em>Income</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Income</em>'.
-   * @see budgeting.budgeting.Category#isIncome()
-   * @see #getCategory()
-   * @generated
-   */
-  EAttribute getCategory_Income();
 
   /**
    * Returns the meta object for the attribute '{@link budgeting.budgeting.Category#getName <em>Name</em>}'.
@@ -888,6 +933,37 @@ public interface BudgetingPackage extends EPackage
    * @generated
    */
   EAttribute getEntry_Amount();
+
+  /**
+   * Returns the meta object for class '{@link budgeting.budgeting.IncomeCategory <em>Income Category</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Income Category</em>'.
+   * @see budgeting.budgeting.IncomeCategory
+   * @generated
+   */
+  EClass getIncomeCategory();
+
+  /**
+   * Returns the meta object for class '{@link budgeting.budgeting.ExpenseCategory <em>Expense Category</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expense Category</em>'.
+   * @see budgeting.budgeting.ExpenseCategory
+   * @generated
+   */
+  EClass getExpenseCategory();
+
+  /**
+   * Returns the meta object for the attribute list '{@link budgeting.budgeting.ExpenseCategory#getPatterns <em>Patterns</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Patterns</em>'.
+   * @see budgeting.budgeting.ExpenseCategory#getPatterns()
+   * @see #getExpenseCategory()
+   * @generated
+   */
+  EAttribute getExpenseCategory_Patterns();
 
   /**
    * Returns the meta object for class '{@link budgeting.budgeting.BudgetAmountEntry <em>Budget Amount Entry</em>}'.
@@ -1095,14 +1171,6 @@ public interface BudgetingPackage extends EPackage
     EClass CATEGORY = eINSTANCE.getCategory();
 
     /**
-     * The meta object literal for the '<em><b>Income</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CATEGORY__INCOME = eINSTANCE.getCategory_Income();
-
-    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1265,6 +1333,34 @@ public interface BudgetingPackage extends EPackage
      * @generated
      */
     EAttribute ENTRY__AMOUNT = eINSTANCE.getEntry_Amount();
+
+    /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.IncomeCategoryImpl <em>Income Category</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.IncomeCategoryImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getIncomeCategory()
+     * @generated
+     */
+    EClass INCOME_CATEGORY = eINSTANCE.getIncomeCategory();
+
+    /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.ExpenseCategoryImpl <em>Expense Category</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.ExpenseCategoryImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getExpenseCategory()
+     * @generated
+     */
+    EClass EXPENSE_CATEGORY = eINSTANCE.getExpenseCategory();
+
+    /**
+     * The meta object literal for the '<em><b>Patterns</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXPENSE_CATEGORY__PATTERNS = eINSTANCE.getExpenseCategory_Patterns();
 
     /**
      * The meta object literal for the '{@link budgeting.budgeting.impl.BudgetAmountEntryImpl <em>Budget Amount Entry</em>}' class.

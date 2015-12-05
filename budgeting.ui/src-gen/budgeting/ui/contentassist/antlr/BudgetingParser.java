@@ -38,14 +38,17 @@ public class BudgetingParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getBudgetingFileAccess().getAlternatives(), "rule__BudgetingFile__Alternatives");
-					put(grammarAccess.getCategoryAccess().getAlternatives_0(), "rule__Category__Alternatives_0");
+					put(grammarAccess.getCategoryAccess().getAlternatives(), "rule__Category__Alternatives");
 					put(grammarAccess.getBudgetEntryAccess().getAlternatives(), "rule__BudgetEntry__Alternatives");
 					put(grammarAccess.getActualEntryAccess().getAlternatives(), "rule__ActualEntry__Alternatives");
 					put(grammarAccess.getTransactionAccess().getAlternatives(), "rule__Transaction__Alternatives");
 					put(grammarAccess.getDoubleAccess().getAlternatives(), "rule__Double__Alternatives");
 					put(grammarAccess.getMonthEnumAccess().getAlternatives(), "rule__MonthEnum__Alternatives");
 					put(grammarAccess.getLibraryAccess().getGroup(), "rule__Library__Group__0");
-					put(grammarAccess.getCategoryAccess().getGroup(), "rule__Category__Group__0");
+					put(grammarAccess.getCategoryAccess().getGroup_0(), "rule__Category__Group_0__0");
+					put(grammarAccess.getCategoryAccess().getGroup_1(), "rule__Category__Group_1__0");
+					put(grammarAccess.getCategoryAccess().getGroup_1_3(), "rule__Category__Group_1_3__0");
+					put(grammarAccess.getCategoryAccess().getGroup_1_3_2(), "rule__Category__Group_1_3_2__0");
 					put(grammarAccess.getYearAccess().getGroup(), "rule__Year__Group__0");
 					put(grammarAccess.getMonthAccess().getGroup(), "rule__Month__Group__0");
 					put(grammarAccess.getBudgetEntryAccess().getGroup_0(), "rule__BudgetEntry__Group_0__0");
@@ -58,8 +61,10 @@ public class BudgetingParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEntryAccess().getGroup(), "rule__Entry__Group__0");
 					put(grammarAccess.getLibraryAccess().getNameAssignment_1(), "rule__Library__NameAssignment_1");
 					put(grammarAccess.getLibraryAccess().getCategoriesAssignment_3(), "rule__Library__CategoriesAssignment_3");
-					put(grammarAccess.getCategoryAccess().getIncomeAssignment_0_0(), "rule__Category__IncomeAssignment_0_0");
-					put(grammarAccess.getCategoryAccess().getNameAssignment_1(), "rule__Category__NameAssignment_1");
+					put(grammarAccess.getCategoryAccess().getNameAssignment_0_2(), "rule__Category__NameAssignment_0_2");
+					put(grammarAccess.getCategoryAccess().getNameAssignment_1_2(), "rule__Category__NameAssignment_1_2");
+					put(grammarAccess.getCategoryAccess().getPatternsAssignment_1_3_1(), "rule__Category__PatternsAssignment_1_3_1");
+					put(grammarAccess.getCategoryAccess().getPatternsAssignment_1_3_2_1(), "rule__Category__PatternsAssignment_1_3_2_1");
 					put(grammarAccess.getYearAccess().getNameAssignment_0(), "rule__Year__NameAssignment_0");
 					put(grammarAccess.getYearAccess().getLibraryAssignment_2(), "rule__Year__LibraryAssignment_2");
 					put(grammarAccess.getYearAccess().getMonthsAssignment_4(), "rule__Year__MonthsAssignment_4");

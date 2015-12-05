@@ -15,7 +15,8 @@ Library:
 ;
 
 Category:
-	(income?='income' | 'expense') name=ID
+	{IncomeCategory} 'income' name=ID |
+	{ExpenseCategory} 'expense' name=ID ('[' patterns+=STRING (',' patterns+=STRING)* ']')?
 ;
 
 Year:

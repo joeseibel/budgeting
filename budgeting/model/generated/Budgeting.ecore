@@ -8,7 +8,6 @@
         eType="#//Category" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Category">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="income" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Year" eSuperTypes="#//BudgetingFile">
@@ -51,6 +50,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="category" eType="#//Category"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IncomeCategory" eSuperTypes="#//Category"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpenseCategory" eSuperTypes="#//Category">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="patterns" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BudgetAmountEntry" eSuperTypes="#//BudgetEntry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>

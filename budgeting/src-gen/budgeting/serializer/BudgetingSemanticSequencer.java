@@ -10,8 +10,9 @@ import budgeting.budgeting.BudgetFactorEntry;
 import budgeting.budgeting.BudgetingPackage;
 import budgeting.budgeting.CardTransaction;
 import budgeting.budgeting.CashTransaction;
-import budgeting.budgeting.Category;
 import budgeting.budgeting.Entry;
+import budgeting.budgeting.ExpenseCategory;
+import budgeting.budgeting.IncomeCategory;
 import budgeting.budgeting.Library;
 import budgeting.budgeting.Month;
 import budgeting.budgeting.Year;
@@ -57,11 +58,14 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case BudgetingPackage.CASH_TRANSACTION:
 				sequence_Transaction(context, (CashTransaction) semanticObject); 
 				return; 
-			case BudgetingPackage.CATEGORY:
-				sequence_Category(context, (Category) semanticObject); 
-				return; 
 			case BudgetingPackage.ENTRY:
 				sequence_Entry(context, (Entry) semanticObject); 
+				return; 
+			case BudgetingPackage.EXPENSE_CATEGORY:
+				sequence_Category(context, (ExpenseCategory) semanticObject); 
+				return; 
+			case BudgetingPackage.INCOME_CATEGORY:
+				sequence_Category(context, (IncomeCategory) semanticObject); 
 				return; 
 			case BudgetingPackage.LIBRARY:
 				sequence_Library(context, (Library) semanticObject); 
@@ -147,10 +151,26 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (income?='income'? name=ID)
+	 *     (name=ID (patterns+=STRING patterns+=STRING*)?)
 	 */
-	protected void sequence_Category(EObject context, Category semanticObject) {
+	protected void sequence_Category(EObject context, ExpenseCategory semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_Category(EObject context, IncomeCategory semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.CATEGORY__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.CATEGORY__NAME));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getCategoryAccess().getNameIDTerminalRuleCall_0_2_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	

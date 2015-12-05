@@ -15,6 +15,8 @@ import budgeting.budgeting.CardTransaction;
 import budgeting.budgeting.CashTransaction;
 import budgeting.budgeting.Category;
 import budgeting.budgeting.Entry;
+import budgeting.budgeting.ExpenseCategory;
+import budgeting.budgeting.IncomeCategory;
 import budgeting.budgeting.Library;
 import budgeting.budgeting.Month;
 import budgeting.budgeting.MonthEnum;
@@ -99,6 +101,20 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
    * @generated
    */
   private EClass entryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass incomeCategoryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass expenseCategoryEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -267,19 +283,9 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getCategory_Income()
-  {
-    return (EAttribute)categoryEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getCategory_Name()
   {
-    return (EAttribute)categoryEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)categoryEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -467,6 +473,36 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getIncomeCategory()
+  {
+    return incomeCategoryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExpenseCategory()
+  {
+    return expenseCategoryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExpenseCategory_Patterns()
+  {
+    return (EAttribute)expenseCategoryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBudgetAmountEntry()
   {
     return budgetAmountEntryEClass;
@@ -629,7 +665,6 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     createEReference(libraryEClass, LIBRARY__CATEGORIES);
 
     categoryEClass = createEClass(CATEGORY);
-    createEAttribute(categoryEClass, CATEGORY__INCOME);
     createEAttribute(categoryEClass, CATEGORY__NAME);
 
     yearEClass = createEClass(YEAR);
@@ -655,6 +690,11 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     entryEClass = createEClass(ENTRY);
     createEReference(entryEClass, ENTRY__CATEGORY);
     createEAttribute(entryEClass, ENTRY__AMOUNT);
+
+    incomeCategoryEClass = createEClass(INCOME_CATEGORY);
+
+    expenseCategoryEClass = createEClass(EXPENSE_CATEGORY);
+    createEAttribute(expenseCategoryEClass, EXPENSE_CATEGORY__PATTERNS);
 
     budgetAmountEntryEClass = createEClass(BUDGET_AMOUNT_ENTRY);
     createEAttribute(budgetAmountEntryEClass, BUDGET_AMOUNT_ENTRY__AMOUNT);
@@ -709,6 +749,8 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     // Add supertypes to classes
     libraryEClass.getESuperTypes().add(this.getBudgetingFile());
     yearEClass.getESuperTypes().add(this.getBudgetingFile());
+    incomeCategoryEClass.getESuperTypes().add(this.getCategory());
+    expenseCategoryEClass.getESuperTypes().add(this.getCategory());
     budgetAmountEntryEClass.getESuperTypes().add(this.getBudgetEntry());
     budgetFactorEntryEClass.getESuperTypes().add(this.getBudgetEntry());
     actualAmountEntryEClass.getESuperTypes().add(this.getActualEntry());
@@ -724,7 +766,6 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     initEReference(getLibrary_Categories(), this.getCategory(), null, "categories", null, 0, -1, Library.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(categoryEClass, Category.class, "Category", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCategory_Income(), ecorePackage.getEBoolean(), "income", null, 0, 1, Category.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCategory_Name(), ecorePackage.getEString(), "name", null, 0, 1, Category.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(yearEClass, Year.class, "Year", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -750,6 +791,11 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     initEClass(entryEClass, Entry.class, "Entry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEntry_Category(), this.getCategory(), null, "category", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEntry_Amount(), ecorePackage.getELong(), "amount", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(incomeCategoryEClass, IncomeCategory.class, "IncomeCategory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(expenseCategoryEClass, ExpenseCategory.class, "ExpenseCategory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExpenseCategory_Patterns(), ecorePackage.getEString(), "patterns", null, 0, -1, ExpenseCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(budgetAmountEntryEClass, BudgetAmountEntry.class, "BudgetAmountEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBudgetAmountEntry_Amount(), ecorePackage.getELong(), "amount", null, 0, 1, BudgetAmountEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

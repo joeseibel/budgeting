@@ -104,6 +104,24 @@ public interface BudgetingFactory extends EFactory
   Entry createEntry();
 
   /**
+   * Returns a new object of class '<em>Income Category</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Income Category</em>'.
+   * @generated
+   */
+  IncomeCategory createIncomeCategory();
+
+  /**
+   * Returns a new object of class '<em>Expense Category</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expense Category</em>'.
+   * @generated
+   */
+  ExpenseCategory createExpenseCategory();
+
+  /**
    * Returns a new object of class '<em>Budget Amount Entry</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

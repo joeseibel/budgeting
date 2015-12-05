@@ -3,56 +3,47 @@
 package budgeting.budgeting.impl;
 
 import budgeting.budgeting.BudgetingPackage;
-import budgeting.budgeting.Category;
+import budgeting.budgeting.ExpenseCategory;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Category</b></em>'.
+ * An implementation of the model object '<em><b>Expense Category</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link budgeting.budgeting.impl.CategoryImpl#getName <em>Name</em>}</li>
+ *   <li>{@link budgeting.budgeting.impl.ExpenseCategoryImpl#getPatterns <em>Patterns</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class CategoryImpl extends MinimalEObjectImpl.Container implements Category
+public class ExpenseCategoryImpl extends CategoryImpl implements ExpenseCategory
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getPatterns() <em>Patterns</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getPatterns()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected EList<String> patterns;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected CategoryImpl()
+  protected ExpenseCategoryImpl()
   {
     super();
   }
@@ -65,7 +56,7 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
   @Override
   protected EClass eStaticClass()
   {
-    return BudgetingPackage.Literals.CATEGORY;
+    return BudgetingPackage.Literals.EXPENSE_CATEGORY;
   }
 
   /**
@@ -73,22 +64,13 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public EList<String> getPatterns()
   {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BudgetingPackage.CATEGORY__NAME, oldName, name));
+    if (patterns == null)
+    {
+      patterns = new EDataTypeEList<String>(String.class, this, BudgetingPackage.EXPENSE_CATEGORY__PATTERNS);
+    }
+    return patterns;
   }
 
   /**
@@ -101,8 +83,8 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
   {
     switch (featureID)
     {
-      case BudgetingPackage.CATEGORY__NAME:
-        return getName();
+      case BudgetingPackage.EXPENSE_CATEGORY__PATTERNS:
+        return getPatterns();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -112,13 +94,15 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case BudgetingPackage.CATEGORY__NAME:
-        setName((String)newValue);
+      case BudgetingPackage.EXPENSE_CATEGORY__PATTERNS:
+        getPatterns().clear();
+        getPatterns().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +118,8 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
   {
     switch (featureID)
     {
-      case BudgetingPackage.CATEGORY__NAME:
-        setName(NAME_EDEFAULT);
+      case BudgetingPackage.EXPENSE_CATEGORY__PATTERNS:
+        getPatterns().clear();
         return;
     }
     super.eUnset(featureID);
@@ -151,8 +135,8 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
   {
     switch (featureID)
     {
-      case BudgetingPackage.CATEGORY__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case BudgetingPackage.EXPENSE_CATEGORY__PATTERNS:
+        return patterns != null && !patterns.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -168,10 +152,10 @@ public class CategoryImpl extends MinimalEObjectImpl.Container implements Catego
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (patterns: ");
+    result.append(patterns);
     result.append(')');
     return result.toString();
   }
 
-} //CategoryImpl
+} //ExpenseCategoryImpl

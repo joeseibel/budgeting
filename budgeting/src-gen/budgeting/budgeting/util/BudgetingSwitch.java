@@ -137,6 +137,22 @@ public class BudgetingSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BudgetingPackage.INCOME_CATEGORY:
+      {
+        IncomeCategory incomeCategory = (IncomeCategory)theEObject;
+        T result = caseIncomeCategory(incomeCategory);
+        if (result == null) result = caseCategory(incomeCategory);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BudgetingPackage.EXPENSE_CATEGORY:
+      {
+        ExpenseCategory expenseCategory = (ExpenseCategory)theEObject;
+        T result = caseExpenseCategory(expenseCategory);
+        if (result == null) result = caseCategory(expenseCategory);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BudgetingPackage.BUDGET_AMOUNT_ENTRY:
       {
         BudgetAmountEntry budgetAmountEntry = (BudgetAmountEntry)theEObject;
@@ -329,6 +345,38 @@ public class BudgetingSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEntry(Entry object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Income Category</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Income Category</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIncomeCategory(IncomeCategory object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expense Category</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expense Category</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpenseCategory(ExpenseCategory object)
   {
     return null;
   }

@@ -188,30 +188,20 @@ ruleCategory returns [EObject current=null]
     }
     @after { leaveRule(); }:
 (((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getCategoryAccess().getIncomeCategoryAction_0_0(),
+            $current);
+    }
+)	otherlv_1='income' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getCategoryAccess().getIncomeKeyword_0_1());
+    }
 (
-		lv_income_0_0=	'income' 
-    {
-        newLeafNode(lv_income_0_0, grammarAccess.getCategoryAccess().getIncomeIncomeKeyword_0_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getCategoryRule());
-	        }
-       		setWithLastConsumed($current, "income", true, "income");
-	    }
-
-)
-)
-    |	otherlv_1='expense' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getCategoryAccess().getExpenseKeyword_0_1());
-    }
-)(
 (
 		lv_name_2_0=RULE_ID
 		{
-			newLeafNode(lv_name_2_0, grammarAccess.getCategoryAccess().getNameIDTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_2_0, grammarAccess.getCategoryAccess().getNameIDTerminalRuleCall_0_2_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -226,6 +216,83 @@ ruleCategory returns [EObject current=null]
 
 )
 ))
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getCategoryAccess().getExpenseCategoryAction_1_0(),
+            $current);
+    }
+)	otherlv_4='expense' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getCategoryAccess().getExpenseKeyword_1_1());
+    }
+(
+(
+		lv_name_5_0=RULE_ID
+		{
+			newLeafNode(lv_name_5_0, grammarAccess.getCategoryAccess().getNameIDTerminalRuleCall_1_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCategoryRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_5_0, 
+        		"ID");
+	    }
+
+)
+)(	otherlv_6='[' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getCategoryAccess().getLeftSquareBracketKeyword_1_3_0());
+    }
+(
+(
+		lv_patterns_7_0=RULE_STRING
+		{
+			newLeafNode(lv_patterns_7_0, grammarAccess.getCategoryAccess().getPatternsSTRINGTerminalRuleCall_1_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCategoryRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"patterns",
+        		lv_patterns_7_0, 
+        		"STRING");
+	    }
+
+)
+)(	otherlv_8=',' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getCategoryAccess().getCommaKeyword_1_3_2_0());
+    }
+(
+(
+		lv_patterns_9_0=RULE_STRING
+		{
+			newLeafNode(lv_patterns_9_0, grammarAccess.getCategoryAccess().getPatternsSTRINGTerminalRuleCall_1_3_2_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCategoryRule());
+	        }
+       		addWithLastConsumed(
+       			$current, 
+       			"patterns",
+        		lv_patterns_9_0, 
+        		"STRING");
+	    }
+
+)
+))*	otherlv_10=']' 
+    {
+    	newLeafNode(otherlv_10, grammarAccess.getCategoryAccess().getRightSquareBracketKeyword_1_3_3());
+    }
+)?))
 ;
 
 
