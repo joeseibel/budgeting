@@ -1,14 +1,21 @@
 package budgeting.conversion
 
+import java.text.NumberFormat
 import org.eclipse.xtext.common.services.DefaultTerminalConverters
 import org.eclipse.xtext.conversion.IValueConverter
 import org.eclipse.xtext.conversion.ValueConverter
-import org.eclipse.xtext.nodemodel.INode
 import org.eclipse.xtext.conversion.ValueConverterException
+import org.eclipse.xtext.nodemodel.INode
+
+import static budgeting.conversion.BudgetingValueConverterService.*
 
 class BudgetingValueConverterService extends DefaultTerminalConverters {
 	//This was done because char literals do not exist in Xtend
 	val static char DOT = '.'
+	val static FORMAT = NumberFormat.instance => [
+		minimumIntegerDigits = 2
+		maximumIntegerDigits = 2
+	]
 	
 	@ValueConverter(rule = "Dollar")
 	def IValueConverter<Long> Dollar() {
@@ -27,7 +34,7 @@ class BudgetingValueConverterService extends DefaultTerminalConverters {
 			}
 			
 			override toString(Long value) throws ValueConverterException {
-				value / 100 + "." + value % 100
+				value / 100 + "." + FORMAT.format(value % 100)
 			}
 		}
 	}
