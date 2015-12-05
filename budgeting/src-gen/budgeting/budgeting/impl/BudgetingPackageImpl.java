@@ -2,14 +2,23 @@
  */
 package budgeting.budgeting.impl;
 
+import budgeting.budgeting.ActualAmountEntry;
+import budgeting.budgeting.ActualEntry;
+import budgeting.budgeting.ActualTransactionEntry;
+import budgeting.budgeting.BudgetAmountEntry;
+import budgeting.budgeting.BudgetEntry;
+import budgeting.budgeting.BudgetFactorEntry;
 import budgeting.budgeting.BudgetingFactory;
 import budgeting.budgeting.BudgetingFile;
 import budgeting.budgeting.BudgetingPackage;
+import budgeting.budgeting.CardTransaction;
+import budgeting.budgeting.CashTransaction;
 import budgeting.budgeting.Category;
 import budgeting.budgeting.Entry;
 import budgeting.budgeting.Library;
 import budgeting.budgeting.Month;
 import budgeting.budgeting.MonthEnum;
+import budgeting.budgeting.Transaction;
 import budgeting.budgeting.Year;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -68,7 +77,70 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass budgetEntryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass actualEntryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass transactionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass entryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass budgetAmountEntryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass budgetFactorEntryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass actualAmountEntryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass actualTransactionEntryEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass cashTransactionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass cardTransactionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -295,6 +367,76 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getBudgetEntry()
+  {
+    return budgetEntryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBudgetEntry_Category()
+  {
+    return (EReference)budgetEntryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getActualEntry()
+  {
+    return actualEntryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getActualEntry_Category()
+  {
+    return (EReference)actualEntryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTransaction()
+  {
+    return transactionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTransaction_Amount()
+  {
+    return (EAttribute)transactionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTransaction_Day()
+  {
+    return (EAttribute)transactionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getEntry()
   {
     return entryEClass;
@@ -318,6 +460,126 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
   public EAttribute getEntry_Amount()
   {
     return (EAttribute)entryEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBudgetAmountEntry()
+  {
+    return budgetAmountEntryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBudgetAmountEntry_Amount()
+  {
+    return (EAttribute)budgetAmountEntryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBudgetFactorEntry()
+  {
+    return budgetFactorEntryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBudgetFactorEntry_BaseEntry()
+  {
+    return (EReference)budgetFactorEntryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBudgetFactorEntry_Factor()
+  {
+    return (EAttribute)budgetFactorEntryEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getActualAmountEntry()
+  {
+    return actualAmountEntryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getActualAmountEntry_Amount()
+  {
+    return (EAttribute)actualAmountEntryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getActualTransactionEntry()
+  {
+    return actualTransactionEntryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getActualTransactionEntry_Transactions()
+  {
+    return (EReference)actualTransactionEntryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCashTransaction()
+  {
+    return cashTransactionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCardTransaction()
+  {
+    return cardTransactionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCardTransaction_From()
+  {
+    return (EAttribute)cardTransactionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -380,9 +642,37 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     createEReference(monthEClass, MONTH__BUDGET_ENTRIES);
     createEReference(monthEClass, MONTH__ACTUAL_ENTRIES);
 
+    budgetEntryEClass = createEClass(BUDGET_ENTRY);
+    createEReference(budgetEntryEClass, BUDGET_ENTRY__CATEGORY);
+
+    actualEntryEClass = createEClass(ACTUAL_ENTRY);
+    createEReference(actualEntryEClass, ACTUAL_ENTRY__CATEGORY);
+
+    transactionEClass = createEClass(TRANSACTION);
+    createEAttribute(transactionEClass, TRANSACTION__AMOUNT);
+    createEAttribute(transactionEClass, TRANSACTION__DAY);
+
     entryEClass = createEClass(ENTRY);
     createEReference(entryEClass, ENTRY__CATEGORY);
     createEAttribute(entryEClass, ENTRY__AMOUNT);
+
+    budgetAmountEntryEClass = createEClass(BUDGET_AMOUNT_ENTRY);
+    createEAttribute(budgetAmountEntryEClass, BUDGET_AMOUNT_ENTRY__AMOUNT);
+
+    budgetFactorEntryEClass = createEClass(BUDGET_FACTOR_ENTRY);
+    createEReference(budgetFactorEntryEClass, BUDGET_FACTOR_ENTRY__BASE_ENTRY);
+    createEAttribute(budgetFactorEntryEClass, BUDGET_FACTOR_ENTRY__FACTOR);
+
+    actualAmountEntryEClass = createEClass(ACTUAL_AMOUNT_ENTRY);
+    createEAttribute(actualAmountEntryEClass, ACTUAL_AMOUNT_ENTRY__AMOUNT);
+
+    actualTransactionEntryEClass = createEClass(ACTUAL_TRANSACTION_ENTRY);
+    createEReference(actualTransactionEntryEClass, ACTUAL_TRANSACTION_ENTRY__TRANSACTIONS);
+
+    cashTransactionEClass = createEClass(CASH_TRANSACTION);
+
+    cardTransactionEClass = createEClass(CARD_TRANSACTION);
+    createEAttribute(cardTransactionEClass, CARD_TRANSACTION__FROM);
 
     // Create enums
     monthEnumEEnum = createEEnum(MONTH_ENUM);
@@ -419,6 +709,12 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     // Add supertypes to classes
     libraryEClass.getESuperTypes().add(this.getBudgetingFile());
     yearEClass.getESuperTypes().add(this.getBudgetingFile());
+    budgetAmountEntryEClass.getESuperTypes().add(this.getBudgetEntry());
+    budgetFactorEntryEClass.getESuperTypes().add(this.getBudgetEntry());
+    actualAmountEntryEClass.getESuperTypes().add(this.getActualEntry());
+    actualTransactionEntryEClass.getESuperTypes().add(this.getActualEntry());
+    cashTransactionEClass.getESuperTypes().add(this.getTransaction());
+    cardTransactionEClass.getESuperTypes().add(this.getTransaction());
 
     // Initialize classes and features; add operations and parameters
     initEClass(budgetingFileEClass, BudgetingFile.class, "BudgetingFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -438,12 +734,40 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
 
     initEClass(monthEClass, Month.class, "Month", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMonth_Name(), this.getMonthEnum(), "name", null, 0, 1, Month.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMonth_BudgetEntries(), this.getEntry(), null, "budgetEntries", null, 0, -1, Month.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMonth_ActualEntries(), this.getEntry(), null, "actualEntries", null, 0, -1, Month.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMonth_BudgetEntries(), this.getBudgetEntry(), null, "budgetEntries", null, 0, -1, Month.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMonth_ActualEntries(), this.getActualEntry(), null, "actualEntries", null, 0, -1, Month.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(budgetEntryEClass, BudgetEntry.class, "BudgetEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBudgetEntry_Category(), this.getCategory(), null, "category", null, 0, 1, BudgetEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(actualEntryEClass, ActualEntry.class, "ActualEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getActualEntry_Category(), this.getCategory(), null, "category", null, 0, 1, ActualEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(transactionEClass, Transaction.class, "Transaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTransaction_Amount(), ecorePackage.getELong(), "amount", null, 0, 1, Transaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTransaction_Day(), ecorePackage.getEInt(), "day", null, 0, 1, Transaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entryEClass, Entry.class, "Entry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEntry_Category(), this.getCategory(), null, "category", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEntry_Amount(), ecorePackage.getELong(), "amount", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(budgetAmountEntryEClass, BudgetAmountEntry.class, "BudgetAmountEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBudgetAmountEntry_Amount(), ecorePackage.getELong(), "amount", null, 0, 1, BudgetAmountEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(budgetFactorEntryEClass, BudgetFactorEntry.class, "BudgetFactorEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBudgetFactorEntry_BaseEntry(), this.getBudgetEntry(), null, "baseEntry", null, 0, 1, BudgetFactorEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBudgetFactorEntry_Factor(), ecorePackage.getEDouble(), "factor", null, 0, 1, BudgetFactorEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(actualAmountEntryEClass, ActualAmountEntry.class, "ActualAmountEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getActualAmountEntry_Amount(), ecorePackage.getELong(), "amount", null, 0, 1, ActualAmountEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(actualTransactionEntryEClass, ActualTransactionEntry.class, "ActualTransactionEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getActualTransactionEntry_Transactions(), this.getTransaction(), null, "transactions", null, 0, -1, ActualTransactionEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(cashTransactionEClass, CashTransaction.class, "CashTransaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(cardTransactionEClass, CardTransaction.class, "CardTransaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCardTransaction_From(), ecorePackage.getEString(), "from", null, 0, 1, CardTransaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(monthEnumEEnum, MonthEnum.class, "MonthEnum");

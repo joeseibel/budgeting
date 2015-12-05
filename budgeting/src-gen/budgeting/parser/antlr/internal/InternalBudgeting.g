@@ -357,9 +357,9 @@ ruleMonth returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMonthAccess().getBudgetEntriesEntryParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getMonthAccess().getBudgetEntriesBudgetEntryParserRuleCall_3_0()); 
 	    }
-		lv_budgetEntries_3_0=ruleEntry		{
+		lv_budgetEntries_3_0=ruleBudgetEntry		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMonthRule());
 	        }
@@ -367,7 +367,7 @@ ruleMonth returns [EObject current=null]
        			$current, 
        			"budgetEntries",
         		lv_budgetEntries_3_0, 
-        		"Entry");
+        		"BudgetEntry");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -387,9 +387,9 @@ ruleMonth returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMonthAccess().getActualEntriesEntryParserRuleCall_7_0()); 
+	        newCompositeNode(grammarAccess.getMonthAccess().getActualEntriesActualEntryParserRuleCall_7_0()); 
 	    }
-		lv_actualEntries_7_0=ruleEntry		{
+		lv_actualEntries_7_0=ruleActualEntry		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMonthRule());
 	        }
@@ -397,7 +397,7 @@ ruleMonth returns [EObject current=null]
        			$current, 
        			"actualEntries",
         		lv_actualEntries_7_0, 
-        		"Entry");
+        		"ActualEntry");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -413,57 +413,440 @@ ruleMonth returns [EObject current=null]
 
 
 
-// Entry rule entryRuleEntry
-entryRuleEntry returns [EObject current=null] 
+// Entry rule entryRuleBudgetEntry
+entryRuleBudgetEntry returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getEntryRule()); }
-	 iv_ruleEntry=ruleEntry 
-	 { $current=$iv_ruleEntry.current; } 
+	{ newCompositeNode(grammarAccess.getBudgetEntryRule()); }
+	 iv_ruleBudgetEntry=ruleBudgetEntry 
+	 { $current=$iv_ruleBudgetEntry.current; } 
 	 EOF 
 ;
 
-// Rule Entry
-ruleEntry returns [EObject current=null] 
+// Rule BudgetEntry
+ruleBudgetEntry returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getBudgetEntryAccess().getBudgetAmountEntryAction_0_0(),
+            $current);
+    }
+)(
 (
 		{
 			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEntryRule());
+	            $current = createModelElement(grammarAccess.getBudgetEntryRule());
 	        }
         }
-	otherlv_0=RULE_ID
+	otherlv_1=RULE_ID
 	{
-		newLeafNode(otherlv_0, grammarAccess.getEntryAccess().getCategoryCategoryCrossReference_0_0()); 
+		newLeafNode(otherlv_1, grammarAccess.getBudgetEntryAccess().getCategoryCategoryCrossReference_0_1_0()); 
 	}
 
 )
-)	otherlv_1=':' 
+)	otherlv_2=':' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getEntryAccess().getColonKeyword_1());
+    	newLeafNode(otherlv_2, grammarAccess.getBudgetEntryAccess().getColonKeyword_0_2());
     }
 (
 (
-		lv_amount_2_0=RULE_DOLLAR
-		{
-			newLeafNode(lv_amount_2_0, grammarAccess.getEntryAccess().getAmountDOLLARTerminalRuleCall_2_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getBudgetEntryAccess().getAmountDollarParserRuleCall_0_3_0()); 
+	    }
+		lv_amount_3_0=ruleDollar		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEntryRule());
+	            $current = createModelElementForParent(grammarAccess.getBudgetEntryRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"amount",
-        		lv_amount_2_0, 
-        		"DOLLAR");
+        		lv_amount_3_0, 
+        		"Dollar");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
 ))
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getBudgetEntryAccess().getBudgetFactorEntryAction_1_0(),
+            $current);
+    }
+)(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getBudgetEntryRule());
+	        }
+        }
+	otherlv_5=RULE_ID
+	{
+		newLeafNode(otherlv_5, grammarAccess.getBudgetEntryAccess().getCategoryCategoryCrossReference_1_1_0()); 
+	}
+
+)
+)	otherlv_6=':' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getBudgetEntryAccess().getColonKeyword_1_2());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getBudgetEntryRule());
+	        }
+        }
+	otherlv_7=RULE_ID
+	{
+		newLeafNode(otherlv_7, grammarAccess.getBudgetEntryAccess().getBaseEntryBudgetEntryCrossReference_1_3_0()); 
+	}
+
+)
+)	otherlv_8='*' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getBudgetEntryAccess().getAsteriskKeyword_1_4());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getBudgetEntryAccess().getFactorDoubleParserRuleCall_1_5_0()); 
+	    }
+		lv_factor_9_0=ruleDouble		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getBudgetEntryRule());
+	        }
+       		set(
+       			$current, 
+       			"factor",
+        		lv_factor_9_0, 
+        		"Double");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))
 ;
+
+
+
+
+
+// Entry rule entryRuleActualEntry
+entryRuleActualEntry returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getActualEntryRule()); }
+	 iv_ruleActualEntry=ruleActualEntry 
+	 { $current=$iv_ruleActualEntry.current; } 
+	 EOF 
+;
+
+// Rule ActualEntry
+ruleActualEntry returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getActualEntryAccess().getActualAmountEntryAction_0_0(),
+            $current);
+    }
+)(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getActualEntryRule());
+	        }
+        }
+	otherlv_1=RULE_ID
+	{
+		newLeafNode(otherlv_1, grammarAccess.getActualEntryAccess().getCategoryCategoryCrossReference_0_1_0()); 
+	}
+
+)
+)	otherlv_2=':' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getActualEntryAccess().getColonKeyword_0_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getActualEntryAccess().getAmountDollarParserRuleCall_0_3_0()); 
+	    }
+		lv_amount_3_0=ruleDollar		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getActualEntryRule());
+	        }
+       		set(
+       			$current, 
+       			"amount",
+        		lv_amount_3_0, 
+        		"Dollar");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getActualEntryAccess().getActualTransactionEntryAction_1_0(),
+            $current);
+    }
+)(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getActualEntryRule());
+	        }
+        }
+	otherlv_5=RULE_ID
+	{
+		newLeafNode(otherlv_5, grammarAccess.getActualEntryAccess().getCategoryCategoryCrossReference_1_1_0()); 
+	}
+
+)
+)	otherlv_6='{' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getActualEntryAccess().getLeftCurlyBracketKeyword_1_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getActualEntryAccess().getTransactionsTransactionParserRuleCall_1_3_0()); 
+	    }
+		lv_transactions_7_0=ruleTransaction		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getActualEntryRule());
+	        }
+       		add(
+       			$current, 
+       			"transactions",
+        		lv_transactions_7_0, 
+        		"Transaction");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)+	otherlv_8='}' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getActualEntryAccess().getRightCurlyBracketKeyword_1_4());
+    }
+))
+;
+
+
+
+
+
+// Entry rule entryRuleTransaction
+entryRuleTransaction returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTransactionRule()); }
+	 iv_ruleTransaction=ruleTransaction 
+	 { $current=$iv_ruleTransaction.current; } 
+	 EOF 
+;
+
+// Rule Transaction
+ruleTransaction returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getTransactionAccess().getCashTransactionAction_0_0(),
+            $current);
+    }
+)	otherlv_1='cash' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getTransactionAccess().getCashKeyword_0_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTransactionAccess().getAmountDollarParserRuleCall_0_2_0()); 
+	    }
+		lv_amount_2_0=ruleDollar		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTransactionRule());
+	        }
+       		set(
+       			$current, 
+       			"amount",
+        		lv_amount_2_0, 
+        		"Dollar");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_3='on' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getTransactionAccess().getOnKeyword_0_3_0());
+    }
+(
+(
+		lv_day_4_0=RULE_INT
+		{
+			newLeafNode(lv_day_4_0, grammarAccess.getTransactionAccess().getDayINTTerminalRuleCall_0_3_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTransactionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"day",
+        		lv_day_4_0, 
+        		"INT");
+	    }
+
+)
+))?)
+    |((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getTransactionAccess().getCardTransactionAction_1_0(),
+            $current);
+    }
+)	otherlv_6='card' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getTransactionAccess().getCardKeyword_1_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTransactionAccess().getAmountDollarParserRuleCall_1_2_0()); 
+	    }
+		lv_amount_7_0=ruleDollar		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTransactionRule());
+	        }
+       		set(
+       			$current, 
+       			"amount",
+        		lv_amount_7_0, 
+        		"Dollar");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_8='on' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getTransactionAccess().getOnKeyword_1_3());
+    }
+(
+(
+		lv_day_9_0=RULE_INT
+		{
+			newLeafNode(lv_day_9_0, grammarAccess.getTransactionAccess().getDayINTTerminalRuleCall_1_4_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTransactionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"day",
+        		lv_day_9_0, 
+        		"INT");
+	    }
+
+)
+)	otherlv_10='from' 
+    {
+    	newLeafNode(otherlv_10, grammarAccess.getTransactionAccess().getFromKeyword_1_5());
+    }
+(
+(
+		lv_from_11_0=RULE_STRING
+		{
+			newLeafNode(lv_from_11_0, grammarAccess.getTransactionAccess().getFromSTRINGTerminalRuleCall_1_6_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTransactionRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"from",
+        		lv_from_11_0, 
+        		"STRING");
+	    }
+
+)
+)))
+;
+
+
+
+
+
+
+
+// Entry rule entryRuleDollar
+entryRuleDollar returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getDollarRule()); } 
+	 iv_ruleDollar=ruleDollar 
+	 { $current=$iv_ruleDollar.current.getText(); }  
+	 EOF 
+;
+
+// Rule Dollar
+ruleDollar returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+    this_DECIMAL_0=RULE_DECIMAL    {
+		$current.merge(this_DECIMAL_0);
+    }
+
+    { 
+    newLeafNode(this_DECIMAL_0, grammarAccess.getDollarAccess().getDECIMALTerminalRuleCall()); 
+    }
+
+    ;
+
+
+
+
+
+// Entry rule entryRuleDouble
+entryRuleDouble returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getDoubleRule()); } 
+	 iv_ruleDouble=ruleDouble 
+	 { $current=$iv_ruleDouble.current.getText(); }  
+	 EOF 
+;
+
+// Rule Double
+ruleDouble returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(    this_INT_0=RULE_INT    {
+		$current.merge(this_INT_0);
+    }
+
+    { 
+    newLeafNode(this_INT_0, grammarAccess.getDoubleAccess().getINTTerminalRuleCall_0()); 
+    }
+
+    |    this_DECIMAL_1=RULE_DECIMAL    {
+		$current.merge(this_DECIMAL_1);
+    }
+
+    { 
+    newLeafNode(this_DECIMAL_1, grammarAccess.getDoubleAccess().getDECIMALTerminalRuleCall_1()); 
+    }
+)
+    ;
 
 
 
@@ -548,7 +931,7 @@ ruleMonthEnum returns [Enumerator current=null]
 
 
 
-RULE_DOLLAR : RULE_INT '.' '0'..'9' '0'..'9';
+RULE_DECIMAL : RULE_INT '.' RULE_INT;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

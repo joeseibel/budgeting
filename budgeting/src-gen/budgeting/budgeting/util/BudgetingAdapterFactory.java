@@ -100,9 +100,54 @@ public class BudgetingAdapterFactory extends AdapterFactoryImpl
         return createMonthAdapter();
       }
       @Override
+      public Adapter caseBudgetEntry(BudgetEntry object)
+      {
+        return createBudgetEntryAdapter();
+      }
+      @Override
+      public Adapter caseActualEntry(ActualEntry object)
+      {
+        return createActualEntryAdapter();
+      }
+      @Override
+      public Adapter caseTransaction(Transaction object)
+      {
+        return createTransactionAdapter();
+      }
+      @Override
       public Adapter caseEntry(Entry object)
       {
         return createEntryAdapter();
+      }
+      @Override
+      public Adapter caseBudgetAmountEntry(BudgetAmountEntry object)
+      {
+        return createBudgetAmountEntryAdapter();
+      }
+      @Override
+      public Adapter caseBudgetFactorEntry(BudgetFactorEntry object)
+      {
+        return createBudgetFactorEntryAdapter();
+      }
+      @Override
+      public Adapter caseActualAmountEntry(ActualAmountEntry object)
+      {
+        return createActualAmountEntryAdapter();
+      }
+      @Override
+      public Adapter caseActualTransactionEntry(ActualTransactionEntry object)
+      {
+        return createActualTransactionEntryAdapter();
+      }
+      @Override
+      public Adapter caseCashTransaction(CashTransaction object)
+      {
+        return createCashTransactionAdapter();
+      }
+      @Override
+      public Adapter caseCardTransaction(CardTransaction object)
+      {
+        return createCardTransactionAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -202,6 +247,51 @@ public class BudgetingAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.BudgetEntry <em>Budget Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.BudgetEntry
+   * @generated
+   */
+  public Adapter createBudgetEntryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.ActualEntry <em>Actual Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.ActualEntry
+   * @generated
+   */
+  public Adapter createActualEntryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.Transaction <em>Transaction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.Transaction
+   * @generated
+   */
+  public Adapter createTransactionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link budgeting.budgeting.Entry <em>Entry</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -212,6 +302,96 @@ public class BudgetingAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEntryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.BudgetAmountEntry <em>Budget Amount Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.BudgetAmountEntry
+   * @generated
+   */
+  public Adapter createBudgetAmountEntryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.BudgetFactorEntry <em>Budget Factor Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.BudgetFactorEntry
+   * @generated
+   */
+  public Adapter createBudgetFactorEntryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.ActualAmountEntry <em>Actual Amount Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.ActualAmountEntry
+   * @generated
+   */
+  public Adapter createActualAmountEntryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.ActualTransactionEntry <em>Actual Transaction Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.ActualTransactionEntry
+   * @generated
+   */
+  public Adapter createActualTransactionEntryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.CashTransaction <em>Cash Transaction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.CashTransaction
+   * @generated
+   */
+  public Adapter createCashTransactionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link budgeting.budgeting.CardTransaction <em>Card Transaction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see budgeting.budgeting.CardTransaction
+   * @generated
+   */
+  public Adapter createCardTransactionAdapter()
   {
     return null;
   }

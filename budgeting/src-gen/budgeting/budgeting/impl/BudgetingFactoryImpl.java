@@ -70,7 +70,16 @@ public class BudgetingFactoryImpl extends EFactoryImpl implements BudgetingFacto
       case BudgetingPackage.CATEGORY: return createCategory();
       case BudgetingPackage.YEAR: return createYear();
       case BudgetingPackage.MONTH: return createMonth();
+      case BudgetingPackage.BUDGET_ENTRY: return createBudgetEntry();
+      case BudgetingPackage.ACTUAL_ENTRY: return createActualEntry();
+      case BudgetingPackage.TRANSACTION: return createTransaction();
       case BudgetingPackage.ENTRY: return createEntry();
+      case BudgetingPackage.BUDGET_AMOUNT_ENTRY: return createBudgetAmountEntry();
+      case BudgetingPackage.BUDGET_FACTOR_ENTRY: return createBudgetFactorEntry();
+      case BudgetingPackage.ACTUAL_AMOUNT_ENTRY: return createActualAmountEntry();
+      case BudgetingPackage.ACTUAL_TRANSACTION_ENTRY: return createActualTransactionEntry();
+      case BudgetingPackage.CASH_TRANSACTION: return createCashTransaction();
+      case BudgetingPackage.CARD_TRANSACTION: return createCardTransaction();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -170,10 +179,109 @@ public class BudgetingFactoryImpl extends EFactoryImpl implements BudgetingFacto
    * <!-- end-user-doc -->
    * @generated
    */
+  public BudgetEntry createBudgetEntry()
+  {
+    BudgetEntryImpl budgetEntry = new BudgetEntryImpl();
+    return budgetEntry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ActualEntry createActualEntry()
+  {
+    ActualEntryImpl actualEntry = new ActualEntryImpl();
+    return actualEntry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Transaction createTransaction()
+  {
+    TransactionImpl transaction = new TransactionImpl();
+    return transaction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Entry createEntry()
   {
     EntryImpl entry = new EntryImpl();
     return entry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BudgetAmountEntry createBudgetAmountEntry()
+  {
+    BudgetAmountEntryImpl budgetAmountEntry = new BudgetAmountEntryImpl();
+    return budgetAmountEntry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BudgetFactorEntry createBudgetFactorEntry()
+  {
+    BudgetFactorEntryImpl budgetFactorEntry = new BudgetFactorEntryImpl();
+    return budgetFactorEntry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ActualAmountEntry createActualAmountEntry()
+  {
+    ActualAmountEntryImpl actualAmountEntry = new ActualAmountEntryImpl();
+    return actualAmountEntry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ActualTransactionEntry createActualTransactionEntry()
+  {
+    ActualTransactionEntryImpl actualTransactionEntry = new ActualTransactionEntryImpl();
+    return actualTransactionEntry;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CashTransaction createCashTransaction()
+  {
+    CashTransactionImpl cashTransaction = new CashTransactionImpl();
+    return cashTransaction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CardTransaction createCardTransaction()
+  {
+    CardTransactionImpl cardTransaction = new CardTransactionImpl();
+    return cardTransaction;
   }
 
   /**

@@ -2,8 +2,9 @@
  */
 package budgeting.budgeting.impl;
 
+import budgeting.budgeting.ActualEntry;
+import budgeting.budgeting.BudgetEntry;
 import budgeting.budgeting.BudgetingPackage;
-import budgeting.budgeting.Entry;
 import budgeting.budgeting.Month;
 import budgeting.budgeting.MonthEnum;
 
@@ -68,7 +69,7 @@ public class MonthImpl extends MinimalEObjectImpl.Container implements Month
    * @generated
    * @ordered
    */
-  protected EList<Entry> budgetEntries;
+  protected EList<BudgetEntry> budgetEntries;
 
   /**
    * The cached value of the '{@link #getActualEntries() <em>Actual Entries</em>}' containment reference list.
@@ -78,7 +79,7 @@ public class MonthImpl extends MinimalEObjectImpl.Container implements Month
    * @generated
    * @ordered
    */
-  protected EList<Entry> actualEntries;
+  protected EList<ActualEntry> actualEntries;
 
   /**
    * <!-- begin-user-doc -->
@@ -129,11 +130,11 @@ public class MonthImpl extends MinimalEObjectImpl.Container implements Month
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Entry> getBudgetEntries()
+  public EList<BudgetEntry> getBudgetEntries()
   {
     if (budgetEntries == null)
     {
-      budgetEntries = new EObjectContainmentEList<Entry>(Entry.class, this, BudgetingPackage.MONTH__BUDGET_ENTRIES);
+      budgetEntries = new EObjectContainmentEList<BudgetEntry>(BudgetEntry.class, this, BudgetingPackage.MONTH__BUDGET_ENTRIES);
     }
     return budgetEntries;
   }
@@ -143,11 +144,11 @@ public class MonthImpl extends MinimalEObjectImpl.Container implements Month
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Entry> getActualEntries()
+  public EList<ActualEntry> getActualEntries()
   {
     if (actualEntries == null)
     {
-      actualEntries = new EObjectContainmentEList<Entry>(Entry.class, this, BudgetingPackage.MONTH__ACTUAL_ENTRIES);
+      actualEntries = new EObjectContainmentEList<ActualEntry>(ActualEntry.class, this, BudgetingPackage.MONTH__ACTUAL_ENTRIES);
     }
     return actualEntries;
   }
@@ -206,11 +207,11 @@ public class MonthImpl extends MinimalEObjectImpl.Container implements Month
         return;
       case BudgetingPackage.MONTH__BUDGET_ENTRIES:
         getBudgetEntries().clear();
-        getBudgetEntries().addAll((Collection<? extends Entry>)newValue);
+        getBudgetEntries().addAll((Collection<? extends BudgetEntry>)newValue);
         return;
       case BudgetingPackage.MONTH__ACTUAL_ENTRIES:
         getActualEntries().clear();
-        getActualEntries().addAll((Collection<? extends Entry>)newValue);
+        getActualEntries().addAll((Collection<? extends ActualEntry>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

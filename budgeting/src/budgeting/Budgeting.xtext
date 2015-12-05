@@ -26,9 +26,9 @@ Year:
 
 Month:
 	name=MonthEnum 'budget' '{'
-		budgetEntries+=Entry*
+		budgetEntries+=BudgetEntry*
 	'}' 'actual' '{'
-		actualEntries+=Entry*
+		actualEntries+=ActualEntry*
 	'}'
 ;
 
@@ -47,10 +47,35 @@ enum MonthEnum:
 	DECEMBER='december'
 ;
 
-Entry:
-	category=[Category] ':' amount=DOLLAR
+BudgetEntry:
+	{BudgetAmountEntry} category=[Category] ':' amount=Dollar |
+	{BudgetFactorEntry} category=[Category] ':' baseEntry=[BudgetEntry] '*' factor=Double
 ;
 
-terminal DOLLAR returns ecore::ELong:
-	INT '.' '0'..'9' '0'..'9'
+ActualEntry:
+	{ActualAmountEntry} category=[Category] ':' amount=Dollar |
+	{ActualTransactionEntry} category=[Category] '{'
+		transactions+=Transaction+
+	'}'
+;
+
+Transaction:
+	{CashTransaction} 'cash' amount=Dollar ('on' day=INT)? |
+	{CardTransaction} 'card' amount=Dollar 'on' day=INT 'from' from=STRING
+;
+
+Entry:
+	category=[Category] ':' amount=Dollar
+;
+
+Dollar returns ecore::ELong:
+	DECIMAL
+;
+
+Double returns ecore::EDouble:
+	INT | DECIMAL
+;
+
+terminal DECIMAL:
+	INT '.' INT
 ;

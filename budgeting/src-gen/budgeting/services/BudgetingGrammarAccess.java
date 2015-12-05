@@ -174,19 +174,19 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cBudgetKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cBudgetEntriesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cBudgetEntriesEntryParserRuleCall_3_0 = (RuleCall)cBudgetEntriesAssignment_3.eContents().get(0);
+		private final RuleCall cBudgetEntriesBudgetEntryParserRuleCall_3_0 = (RuleCall)cBudgetEntriesAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cActualKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cActualEntriesAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cActualEntriesEntryParserRuleCall_7_0 = (RuleCall)cActualEntriesAssignment_7.eContents().get(0);
+		private final RuleCall cActualEntriesActualEntryParserRuleCall_7_0 = (RuleCall)cActualEntriesAssignment_7.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Month:
-		//	name=MonthEnum "budget" "{" budgetEntries+=Entry* "}" "actual" "{" actualEntries+=Entry* "}";
+		//	name=MonthEnum "budget" "{" budgetEntries+=BudgetEntry* "}" "actual" "{" actualEntries+=ActualEntry* "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=MonthEnum "budget" "{" budgetEntries+=Entry* "}" "actual" "{" actualEntries+=Entry* "}"
+		//name=MonthEnum "budget" "{" budgetEntries+=BudgetEntry* "}" "actual" "{" actualEntries+=ActualEntry* "}"
 		public Group getGroup() { return cGroup; }
 
 		//name=MonthEnum
@@ -201,11 +201,11 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
-		//budgetEntries+=Entry*
+		//budgetEntries+=BudgetEntry*
 		public Assignment getBudgetEntriesAssignment_3() { return cBudgetEntriesAssignment_3; }
 
-		//Entry
-		public RuleCall getBudgetEntriesEntryParserRuleCall_3_0() { return cBudgetEntriesEntryParserRuleCall_3_0; }
+		//BudgetEntry
+		public RuleCall getBudgetEntriesBudgetEntryParserRuleCall_3_0() { return cBudgetEntriesBudgetEntryParserRuleCall_3_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
@@ -216,14 +216,284 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
 
-		//actualEntries+=Entry*
+		//actualEntries+=ActualEntry*
 		public Assignment getActualEntriesAssignment_7() { return cActualEntriesAssignment_7; }
 
-		//Entry
-		public RuleCall getActualEntriesEntryParserRuleCall_7_0() { return cActualEntriesEntryParserRuleCall_7_0; }
+		//ActualEntry
+		public RuleCall getActualEntriesActualEntryParserRuleCall_7_0() { return cActualEntriesActualEntryParserRuleCall_7_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+	}
+
+	public class BudgetEntryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BudgetEntry");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cBudgetAmountEntryAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Assignment cCategoryAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final CrossReference cCategoryCategoryCrossReference_0_1_0 = (CrossReference)cCategoryAssignment_0_1.eContents().get(0);
+		private final RuleCall cCategoryCategoryIDTerminalRuleCall_0_1_0_1 = (RuleCall)cCategoryCategoryCrossReference_0_1_0.eContents().get(1);
+		private final Keyword cColonKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Assignment cAmountAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
+		private final RuleCall cAmountDollarParserRuleCall_0_3_0 = (RuleCall)cAmountAssignment_0_3.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cBudgetFactorEntryAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cCategoryAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final CrossReference cCategoryCategoryCrossReference_1_1_0 = (CrossReference)cCategoryAssignment_1_1.eContents().get(0);
+		private final RuleCall cCategoryCategoryIDTerminalRuleCall_1_1_0_1 = (RuleCall)cCategoryCategoryCrossReference_1_1_0.eContents().get(1);
+		private final Keyword cColonKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Assignment cBaseEntryAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final CrossReference cBaseEntryBudgetEntryCrossReference_1_3_0 = (CrossReference)cBaseEntryAssignment_1_3.eContents().get(0);
+		private final RuleCall cBaseEntryBudgetEntryIDTerminalRuleCall_1_3_0_1 = (RuleCall)cBaseEntryBudgetEntryCrossReference_1_3_0.eContents().get(1);
+		private final Keyword cAsteriskKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		private final Assignment cFactorAssignment_1_5 = (Assignment)cGroup_1.eContents().get(5);
+		private final RuleCall cFactorDoubleParserRuleCall_1_5_0 = (RuleCall)cFactorAssignment_1_5.eContents().get(0);
+		
+		//BudgetEntry:
+		//	{BudgetAmountEntry} category=[Category] ":" amount=Dollar | {BudgetFactorEntry} category=[Category] ":"
+		//	baseEntry=[BudgetEntry] "*" factor=Double;
+		@Override public ParserRule getRule() { return rule; }
+
+		//{BudgetAmountEntry} category=[Category] ":" amount=Dollar | {BudgetFactorEntry} category=[Category] ":"
+		//baseEntry=[BudgetEntry] "*" factor=Double
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//{BudgetAmountEntry} category=[Category] ":" amount=Dollar
+		public Group getGroup_0() { return cGroup_0; }
+
+		//{BudgetAmountEntry}
+		public Action getBudgetAmountEntryAction_0_0() { return cBudgetAmountEntryAction_0_0; }
+
+		//category=[Category]
+		public Assignment getCategoryAssignment_0_1() { return cCategoryAssignment_0_1; }
+
+		//[Category]
+		public CrossReference getCategoryCategoryCrossReference_0_1_0() { return cCategoryCategoryCrossReference_0_1_0; }
+
+		//ID
+		public RuleCall getCategoryCategoryIDTerminalRuleCall_0_1_0_1() { return cCategoryCategoryIDTerminalRuleCall_0_1_0_1; }
+
+		//":"
+		public Keyword getColonKeyword_0_2() { return cColonKeyword_0_2; }
+
+		//amount=Dollar
+		public Assignment getAmountAssignment_0_3() { return cAmountAssignment_0_3; }
+
+		//Dollar
+		public RuleCall getAmountDollarParserRuleCall_0_3_0() { return cAmountDollarParserRuleCall_0_3_0; }
+
+		//{BudgetFactorEntry} category=[Category] ":" baseEntry=[BudgetEntry] "*" factor=Double
+		public Group getGroup_1() { return cGroup_1; }
+
+		//{BudgetFactorEntry}
+		public Action getBudgetFactorEntryAction_1_0() { return cBudgetFactorEntryAction_1_0; }
+
+		//category=[Category]
+		public Assignment getCategoryAssignment_1_1() { return cCategoryAssignment_1_1; }
+
+		//[Category]
+		public CrossReference getCategoryCategoryCrossReference_1_1_0() { return cCategoryCategoryCrossReference_1_1_0; }
+
+		//ID
+		public RuleCall getCategoryCategoryIDTerminalRuleCall_1_1_0_1() { return cCategoryCategoryIDTerminalRuleCall_1_1_0_1; }
+
+		//":"
+		public Keyword getColonKeyword_1_2() { return cColonKeyword_1_2; }
+
+		//baseEntry=[BudgetEntry]
+		public Assignment getBaseEntryAssignment_1_3() { return cBaseEntryAssignment_1_3; }
+
+		//[BudgetEntry]
+		public CrossReference getBaseEntryBudgetEntryCrossReference_1_3_0() { return cBaseEntryBudgetEntryCrossReference_1_3_0; }
+
+		//ID
+		public RuleCall getBaseEntryBudgetEntryIDTerminalRuleCall_1_3_0_1() { return cBaseEntryBudgetEntryIDTerminalRuleCall_1_3_0_1; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_1_4() { return cAsteriskKeyword_1_4; }
+
+		//factor=Double
+		public Assignment getFactorAssignment_1_5() { return cFactorAssignment_1_5; }
+
+		//Double
+		public RuleCall getFactorDoubleParserRuleCall_1_5_0() { return cFactorDoubleParserRuleCall_1_5_0; }
+	}
+
+	public class ActualEntryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActualEntry");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cActualAmountEntryAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Assignment cCategoryAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final CrossReference cCategoryCategoryCrossReference_0_1_0 = (CrossReference)cCategoryAssignment_0_1.eContents().get(0);
+		private final RuleCall cCategoryCategoryIDTerminalRuleCall_0_1_0_1 = (RuleCall)cCategoryCategoryCrossReference_0_1_0.eContents().get(1);
+		private final Keyword cColonKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
+		private final Assignment cAmountAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
+		private final RuleCall cAmountDollarParserRuleCall_0_3_0 = (RuleCall)cAmountAssignment_0_3.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cActualTransactionEntryAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cCategoryAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final CrossReference cCategoryCategoryCrossReference_1_1_0 = (CrossReference)cCategoryAssignment_1_1.eContents().get(0);
+		private final RuleCall cCategoryCategoryIDTerminalRuleCall_1_1_0_1 = (RuleCall)cCategoryCategoryCrossReference_1_1_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Assignment cTransactionsAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cTransactionsTransactionParserRuleCall_1_3_0 = (RuleCall)cTransactionsAssignment_1_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		
+		//ActualEntry:
+		//	{ActualAmountEntry} category=[Category] ":" amount=Dollar | {ActualTransactionEntry} category=[Category] "{"
+		//	transactions+=Transaction+ "}";
+		@Override public ParserRule getRule() { return rule; }
+
+		//{ActualAmountEntry} category=[Category] ":" amount=Dollar | {ActualTransactionEntry} category=[Category] "{"
+		//transactions+=Transaction+ "}"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//{ActualAmountEntry} category=[Category] ":" amount=Dollar
+		public Group getGroup_0() { return cGroup_0; }
+
+		//{ActualAmountEntry}
+		public Action getActualAmountEntryAction_0_0() { return cActualAmountEntryAction_0_0; }
+
+		//category=[Category]
+		public Assignment getCategoryAssignment_0_1() { return cCategoryAssignment_0_1; }
+
+		//[Category]
+		public CrossReference getCategoryCategoryCrossReference_0_1_0() { return cCategoryCategoryCrossReference_0_1_0; }
+
+		//ID
+		public RuleCall getCategoryCategoryIDTerminalRuleCall_0_1_0_1() { return cCategoryCategoryIDTerminalRuleCall_0_1_0_1; }
+
+		//":"
+		public Keyword getColonKeyword_0_2() { return cColonKeyword_0_2; }
+
+		//amount=Dollar
+		public Assignment getAmountAssignment_0_3() { return cAmountAssignment_0_3; }
+
+		//Dollar
+		public RuleCall getAmountDollarParserRuleCall_0_3_0() { return cAmountDollarParserRuleCall_0_3_0; }
+
+		//{ActualTransactionEntry} category=[Category] "{" transactions+=Transaction+ "}"
+		public Group getGroup_1() { return cGroup_1; }
+
+		//{ActualTransactionEntry}
+		public Action getActualTransactionEntryAction_1_0() { return cActualTransactionEntryAction_1_0; }
+
+		//category=[Category]
+		public Assignment getCategoryAssignment_1_1() { return cCategoryAssignment_1_1; }
+
+		//[Category]
+		public CrossReference getCategoryCategoryCrossReference_1_1_0() { return cCategoryCategoryCrossReference_1_1_0; }
+
+		//ID
+		public RuleCall getCategoryCategoryIDTerminalRuleCall_1_1_0_1() { return cCategoryCategoryIDTerminalRuleCall_1_1_0_1; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_1_2() { return cLeftCurlyBracketKeyword_1_2; }
+
+		//transactions+=Transaction+
+		public Assignment getTransactionsAssignment_1_3() { return cTransactionsAssignment_1_3; }
+
+		//Transaction
+		public RuleCall getTransactionsTransactionParserRuleCall_1_3_0() { return cTransactionsTransactionParserRuleCall_1_3_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_1_4() { return cRightCurlyBracketKeyword_1_4; }
+	}
+
+	public class TransactionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Transaction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cCashTransactionAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Keyword cCashKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Assignment cAmountAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final RuleCall cAmountDollarParserRuleCall_0_2_0 = (RuleCall)cAmountAssignment_0_2.eContents().get(0);
+		private final Group cGroup_0_3 = (Group)cGroup_0.eContents().get(3);
+		private final Keyword cOnKeyword_0_3_0 = (Keyword)cGroup_0_3.eContents().get(0);
+		private final Assignment cDayAssignment_0_3_1 = (Assignment)cGroup_0_3.eContents().get(1);
+		private final RuleCall cDayINTTerminalRuleCall_0_3_1_0 = (RuleCall)cDayAssignment_0_3_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cCardTransactionAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cCardKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cAmountAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cAmountDollarParserRuleCall_1_2_0 = (RuleCall)cAmountAssignment_1_2.eContents().get(0);
+		private final Keyword cOnKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		private final Assignment cDayAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
+		private final RuleCall cDayINTTerminalRuleCall_1_4_0 = (RuleCall)cDayAssignment_1_4.eContents().get(0);
+		private final Keyword cFromKeyword_1_5 = (Keyword)cGroup_1.eContents().get(5);
+		private final Assignment cFromAssignment_1_6 = (Assignment)cGroup_1.eContents().get(6);
+		private final RuleCall cFromSTRINGTerminalRuleCall_1_6_0 = (RuleCall)cFromAssignment_1_6.eContents().get(0);
+		
+		//Transaction:
+		//	{CashTransaction} "cash" amount=Dollar ("on" day=INT)? | {CardTransaction} "card" amount=Dollar "on" day=INT "from"
+		//	from=STRING;
+		@Override public ParserRule getRule() { return rule; }
+
+		//{CashTransaction} "cash" amount=Dollar ("on" day=INT)? | {CardTransaction} "card" amount=Dollar "on" day=INT "from"
+		//from=STRING
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//{CashTransaction} "cash" amount=Dollar ("on" day=INT)?
+		public Group getGroup_0() { return cGroup_0; }
+
+		//{CashTransaction}
+		public Action getCashTransactionAction_0_0() { return cCashTransactionAction_0_0; }
+
+		//"cash"
+		public Keyword getCashKeyword_0_1() { return cCashKeyword_0_1; }
+
+		//amount=Dollar
+		public Assignment getAmountAssignment_0_2() { return cAmountAssignment_0_2; }
+
+		//Dollar
+		public RuleCall getAmountDollarParserRuleCall_0_2_0() { return cAmountDollarParserRuleCall_0_2_0; }
+
+		//("on" day=INT)?
+		public Group getGroup_0_3() { return cGroup_0_3; }
+
+		//"on"
+		public Keyword getOnKeyword_0_3_0() { return cOnKeyword_0_3_0; }
+
+		//day=INT
+		public Assignment getDayAssignment_0_3_1() { return cDayAssignment_0_3_1; }
+
+		//INT
+		public RuleCall getDayINTTerminalRuleCall_0_3_1_0() { return cDayINTTerminalRuleCall_0_3_1_0; }
+
+		//{CardTransaction} "card" amount=Dollar "on" day=INT "from" from=STRING
+		public Group getGroup_1() { return cGroup_1; }
+
+		//{CardTransaction}
+		public Action getCardTransactionAction_1_0() { return cCardTransactionAction_1_0; }
+
+		//"card"
+		public Keyword getCardKeyword_1_1() { return cCardKeyword_1_1; }
+
+		//amount=Dollar
+		public Assignment getAmountAssignment_1_2() { return cAmountAssignment_1_2; }
+
+		//Dollar
+		public RuleCall getAmountDollarParserRuleCall_1_2_0() { return cAmountDollarParserRuleCall_1_2_0; }
+
+		//"on"
+		public Keyword getOnKeyword_1_3() { return cOnKeyword_1_3; }
+
+		//day=INT
+		public Assignment getDayAssignment_1_4() { return cDayAssignment_1_4; }
+
+		//INT
+		public RuleCall getDayINTTerminalRuleCall_1_4_0() { return cDayINTTerminalRuleCall_1_4_0; }
+
+		//"from"
+		public Keyword getFromKeyword_1_5() { return cFromKeyword_1_5; }
+
+		//from=STRING
+		public Assignment getFromAssignment_1_6() { return cFromAssignment_1_6; }
+
+		//STRING
+		public RuleCall getFromSTRINGTerminalRuleCall_1_6_0() { return cFromSTRINGTerminalRuleCall_1_6_0; }
 	}
 
 	public class EntryElements extends AbstractParserRuleElementFinder {
@@ -234,13 +504,13 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCategoryCategoryIDTerminalRuleCall_0_0_1 = (RuleCall)cCategoryCategoryCrossReference_0_0.eContents().get(1);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cAmountAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cAmountDOLLARTerminalRuleCall_2_0 = (RuleCall)cAmountAssignment_2.eContents().get(0);
+		private final RuleCall cAmountDollarParserRuleCall_2_0 = (RuleCall)cAmountAssignment_2.eContents().get(0);
 		
 		//Entry:
-		//	category=[Category] ":" amount=DOLLAR;
+		//	category=[Category] ":" amount=Dollar;
 		@Override public ParserRule getRule() { return rule; }
 
-		//category=[Category] ":" amount=DOLLAR
+		//category=[Category] ":" amount=Dollar
 		public Group getGroup() { return cGroup; }
 
 		//category=[Category]
@@ -255,11 +525,43 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 
-		//amount=DOLLAR
+		//amount=Dollar
 		public Assignment getAmountAssignment_2() { return cAmountAssignment_2; }
 
-		//DOLLAR
-		public RuleCall getAmountDOLLARTerminalRuleCall_2_0() { return cAmountDOLLARTerminalRuleCall_2_0; }
+		//Dollar
+		public RuleCall getAmountDollarParserRuleCall_2_0() { return cAmountDollarParserRuleCall_2_0; }
+	}
+
+	public class DollarElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Dollar");
+		private final RuleCall cDECIMALTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//Dollar returns ecore::ELong:
+		//	DECIMAL;
+		@Override public ParserRule getRule() { return rule; }
+
+		//DECIMAL
+		public RuleCall getDECIMALTerminalRuleCall() { return cDECIMALTerminalRuleCall; }
+	}
+
+	public class DoubleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Double");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cDECIMALTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Double returns ecore::EDouble:
+		//	INT | DECIMAL;
+		@Override public ParserRule getRule() { return rule; }
+
+		//INT | DECIMAL
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+
+		//DECIMAL
+		public RuleCall getDECIMALTerminalRuleCall_1() { return cDECIMALTerminalRuleCall_1; }
 	}
 	
 	
@@ -379,8 +681,13 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	private final YearElements pYear;
 	private final MonthElements pMonth;
 	private final MonthEnumElements unknownRuleMonthEnum;
+	private final BudgetEntryElements pBudgetEntry;
+	private final ActualEntryElements pActualEntry;
+	private final TransactionElements pTransaction;
 	private final EntryElements pEntry;
-	private final TerminalRule tDOLLAR;
+	private final DollarElements pDollar;
+	private final DoubleElements pDouble;
+	private final TerminalRule tDECIMAL;
 	
 	private final Grammar grammar;
 
@@ -397,8 +704,13 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		this.pYear = new YearElements();
 		this.pMonth = new MonthElements();
 		this.unknownRuleMonthEnum = new MonthEnumElements();
+		this.pBudgetEntry = new BudgetEntryElements();
+		this.pActualEntry = new ActualEntryElements();
+		this.pTransaction = new TransactionElements();
 		this.pEntry = new EntryElements();
-		this.tDOLLAR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOLLAR");
+		this.pDollar = new DollarElements();
+		this.pDouble = new DoubleElements();
+		this.tDECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DECIMAL");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -469,7 +781,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Month:
-	//	name=MonthEnum "budget" "{" budgetEntries+=Entry* "}" "actual" "{" actualEntries+=Entry* "}";
+	//	name=MonthEnum "budget" "{" budgetEntries+=BudgetEntry* "}" "actual" "{" actualEntries+=ActualEntry* "}";
 	public MonthElements getMonthAccess() {
 		return pMonth;
 	}
@@ -489,8 +801,41 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		return getMonthEnumAccess().getRule();
 	}
 
+	//BudgetEntry:
+	//	{BudgetAmountEntry} category=[Category] ":" amount=Dollar | {BudgetFactorEntry} category=[Category] ":"
+	//	baseEntry=[BudgetEntry] "*" factor=Double;
+	public BudgetEntryElements getBudgetEntryAccess() {
+		return pBudgetEntry;
+	}
+	
+	public ParserRule getBudgetEntryRule() {
+		return getBudgetEntryAccess().getRule();
+	}
+
+	//ActualEntry:
+	//	{ActualAmountEntry} category=[Category] ":" amount=Dollar | {ActualTransactionEntry} category=[Category] "{"
+	//	transactions+=Transaction+ "}";
+	public ActualEntryElements getActualEntryAccess() {
+		return pActualEntry;
+	}
+	
+	public ParserRule getActualEntryRule() {
+		return getActualEntryAccess().getRule();
+	}
+
+	//Transaction:
+	//	{CashTransaction} "cash" amount=Dollar ("on" day=INT)? | {CardTransaction} "card" amount=Dollar "on" day=INT "from"
+	//	from=STRING;
+	public TransactionElements getTransactionAccess() {
+		return pTransaction;
+	}
+	
+	public ParserRule getTransactionRule() {
+		return getTransactionAccess().getRule();
+	}
+
 	//Entry:
-	//	category=[Category] ":" amount=DOLLAR;
+	//	category=[Category] ":" amount=Dollar;
 	public EntryElements getEntryAccess() {
 		return pEntry;
 	}
@@ -499,10 +844,30 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		return getEntryAccess().getRule();
 	}
 
-	//terminal DOLLAR returns ecore::ELong:
-	//	INT "." "0".."9" "0".."9";
-	public TerminalRule getDOLLARRule() {
-		return tDOLLAR;
+	//Dollar returns ecore::ELong:
+	//	DECIMAL;
+	public DollarElements getDollarAccess() {
+		return pDollar;
+	}
+	
+	public ParserRule getDollarRule() {
+		return getDollarAccess().getRule();
+	}
+
+	//Double returns ecore::EDouble:
+	//	INT | DECIMAL;
+	public DoubleElements getDoubleAccess() {
+		return pDouble;
+	}
+	
+	public ParserRule getDoubleRule() {
+		return getDoubleAccess().getRule();
+	}
+
+	//terminal DECIMAL:
+	//	INT "." INT;
+	public TerminalRule getDECIMALRule() {
+		return tDECIMAL;
 	} 
 
 	//terminal ID:

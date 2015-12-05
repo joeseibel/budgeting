@@ -22,19 +22,23 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalBudgetingParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_DOLLAR", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'library'", "'{'", "'}'", "'income'", "'expense'", "'uses'", "'budget'", "'actual'", "':'", "'january'", "'february'", "'march'", "'april'", "'may'", "'june'", "'july'", "'august'", "'september'", "'october'", "'november'", "'december'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_DECIMAL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'library'", "'{'", "'}'", "'income'", "'expense'", "'uses'", "'budget'", "'actual'", "':'", "'*'", "'cash'", "'on'", "'card'", "'from'", "'january'", "'february'", "'march'", "'april'", "'may'", "'june'", "'july'", "'august'", "'september'", "'october'", "'november'", "'december'"
     };
-    public static final int RULE_DOLLAR=6;
-    public static final int RULE_STRING=7;
+    public static final int RULE_STRING=6;
     public static final int RULE_SL_COMMENT=9;
     public static final int T__19=19;
     public static final int T__15=15;
+    public static final int T__37=37;
     public static final int T__16=16;
     public static final int T__17=17;
     public static final int T__18=18;
+    public static final int T__33=33;
     public static final int T__12=12;
+    public static final int T__34=34;
     public static final int T__13=13;
+    public static final int T__35=35;
     public static final int T__14=14;
+    public static final int T__36=36;
     public static final int EOF=-1;
     public static final int T__30=30;
     public static final int T__31=31;
@@ -42,6 +46,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
     public static final int RULE_ID=4;
     public static final int RULE_WS=10;
     public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_DECIMAL=7;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
@@ -659,7 +664,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( ((LA4_0>=21 && LA4_0<=32)) ) {
+                if ( ((LA4_0>=26 && LA4_0<=37)) ) {
                     alt4=1;
                 }
 
@@ -763,7 +768,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMonth"
-    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:327:1: ruleMonth returns [EObject current=null] : ( ( (lv_name_0_0= ruleMonthEnum ) ) otherlv_1= 'budget' otherlv_2= '{' ( (lv_budgetEntries_3_0= ruleEntry ) )* otherlv_4= '}' otherlv_5= 'actual' otherlv_6= '{' ( (lv_actualEntries_7_0= ruleEntry ) )* otherlv_8= '}' ) ;
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:327:1: ruleMonth returns [EObject current=null] : ( ( (lv_name_0_0= ruleMonthEnum ) ) otherlv_1= 'budget' otherlv_2= '{' ( (lv_budgetEntries_3_0= ruleBudgetEntry ) )* otherlv_4= '}' otherlv_5= 'actual' otherlv_6= '{' ( (lv_actualEntries_7_0= ruleActualEntry ) )* otherlv_8= '}' ) ;
     public final EObject ruleMonth() throws RecognitionException {
         EObject current = null;
 
@@ -783,11 +788,11 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:330:28: ( ( ( (lv_name_0_0= ruleMonthEnum ) ) otherlv_1= 'budget' otherlv_2= '{' ( (lv_budgetEntries_3_0= ruleEntry ) )* otherlv_4= '}' otherlv_5= 'actual' otherlv_6= '{' ( (lv_actualEntries_7_0= ruleEntry ) )* otherlv_8= '}' ) )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:331:1: ( ( (lv_name_0_0= ruleMonthEnum ) ) otherlv_1= 'budget' otherlv_2= '{' ( (lv_budgetEntries_3_0= ruleEntry ) )* otherlv_4= '}' otherlv_5= 'actual' otherlv_6= '{' ( (lv_actualEntries_7_0= ruleEntry ) )* otherlv_8= '}' )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:330:28: ( ( ( (lv_name_0_0= ruleMonthEnum ) ) otherlv_1= 'budget' otherlv_2= '{' ( (lv_budgetEntries_3_0= ruleBudgetEntry ) )* otherlv_4= '}' otherlv_5= 'actual' otherlv_6= '{' ( (lv_actualEntries_7_0= ruleActualEntry ) )* otherlv_8= '}' ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:331:1: ( ( (lv_name_0_0= ruleMonthEnum ) ) otherlv_1= 'budget' otherlv_2= '{' ( (lv_budgetEntries_3_0= ruleBudgetEntry ) )* otherlv_4= '}' otherlv_5= 'actual' otherlv_6= '{' ( (lv_actualEntries_7_0= ruleActualEntry ) )* otherlv_8= '}' )
             {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:331:1: ( ( (lv_name_0_0= ruleMonthEnum ) ) otherlv_1= 'budget' otherlv_2= '{' ( (lv_budgetEntries_3_0= ruleEntry ) )* otherlv_4= '}' otherlv_5= 'actual' otherlv_6= '{' ( (lv_actualEntries_7_0= ruleEntry ) )* otherlv_8= '}' )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:331:2: ( (lv_name_0_0= ruleMonthEnum ) ) otherlv_1= 'budget' otherlv_2= '{' ( (lv_budgetEntries_3_0= ruleEntry ) )* otherlv_4= '}' otherlv_5= 'actual' otherlv_6= '{' ( (lv_actualEntries_7_0= ruleEntry ) )* otherlv_8= '}'
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:331:1: ( ( (lv_name_0_0= ruleMonthEnum ) ) otherlv_1= 'budget' otherlv_2= '{' ( (lv_budgetEntries_3_0= ruleBudgetEntry ) )* otherlv_4= '}' otherlv_5= 'actual' otherlv_6= '{' ( (lv_actualEntries_7_0= ruleActualEntry ) )* otherlv_8= '}' )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:331:2: ( (lv_name_0_0= ruleMonthEnum ) ) otherlv_1= 'budget' otherlv_2= '{' ( (lv_budgetEntries_3_0= ruleBudgetEntry ) )* otherlv_4= '}' otherlv_5= 'actual' otherlv_6= '{' ( (lv_actualEntries_7_0= ruleActualEntry ) )* otherlv_8= '}'
             {
             // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:331:2: ( (lv_name_0_0= ruleMonthEnum ) )
             // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:332:1: (lv_name_0_0= ruleMonthEnum )
@@ -828,7 +833,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_2, grammarAccess.getMonthAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:357:1: ( (lv_budgetEntries_3_0= ruleEntry ) )*
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:357:1: ( (lv_budgetEntries_3_0= ruleBudgetEntry ) )*
             loop5:
             do {
                 int alt5=2;
@@ -841,16 +846,16 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:358:1: (lv_budgetEntries_3_0= ruleEntry )
+            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:358:1: (lv_budgetEntries_3_0= ruleBudgetEntry )
             	    {
-            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:358:1: (lv_budgetEntries_3_0= ruleEntry )
-            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:359:3: lv_budgetEntries_3_0= ruleEntry
+            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:358:1: (lv_budgetEntries_3_0= ruleBudgetEntry )
+            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:359:3: lv_budgetEntries_3_0= ruleBudgetEntry
             	    {
             	     
-            	    	        newCompositeNode(grammarAccess.getMonthAccess().getBudgetEntriesEntryParserRuleCall_3_0()); 
+            	    	        newCompositeNode(grammarAccess.getMonthAccess().getBudgetEntriesBudgetEntryParserRuleCall_3_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleEntry_in_ruleMonth761);
-            	    lv_budgetEntries_3_0=ruleEntry();
+            	    pushFollow(FOLLOW_ruleBudgetEntry_in_ruleMonth761);
+            	    lv_budgetEntries_3_0=ruleBudgetEntry();
 
             	    state._fsp--;
 
@@ -862,7 +867,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
             	           			current, 
             	           			"budgetEntries",
             	            		lv_budgetEntries_3_0, 
-            	            		"Entry");
+            	            		"BudgetEntry");
             	    	        afterParserOrEnumRuleCall();
             	    	    
 
@@ -889,7 +894,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_6, grammarAccess.getMonthAccess().getLeftCurlyBracketKeyword_6());
                 
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:387:1: ( (lv_actualEntries_7_0= ruleEntry ) )*
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:387:1: ( (lv_actualEntries_7_0= ruleActualEntry ) )*
             loop6:
             do {
                 int alt6=2;
@@ -902,16 +907,16 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:388:1: (lv_actualEntries_7_0= ruleEntry )
+            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:388:1: (lv_actualEntries_7_0= ruleActualEntry )
             	    {
-            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:388:1: (lv_actualEntries_7_0= ruleEntry )
-            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:389:3: lv_actualEntries_7_0= ruleEntry
+            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:388:1: (lv_actualEntries_7_0= ruleActualEntry )
+            	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:389:3: lv_actualEntries_7_0= ruleActualEntry
             	    {
             	     
-            	    	        newCompositeNode(grammarAccess.getMonthAccess().getActualEntriesEntryParserRuleCall_7_0()); 
+            	    	        newCompositeNode(grammarAccess.getMonthAccess().getActualEntriesActualEntryParserRuleCall_7_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleEntry_in_ruleMonth819);
-            	    lv_actualEntries_7_0=ruleEntry();
+            	    pushFollow(FOLLOW_ruleActualEntry_in_ruleMonth819);
+            	    lv_actualEntries_7_0=ruleActualEntry();
 
             	    state._fsp--;
 
@@ -923,7 +928,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
             	           			current, 
             	           			"actualEntries",
             	            		lv_actualEntries_7_0, 
-            	            		"Entry");
+            	            		"ActualEntry");
             	    	        afterParserOrEnumRuleCall();
             	    	    
 
@@ -962,26 +967,26 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleMonth"
 
 
-    // $ANTLR start "entryRuleEntry"
-    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:417:1: entryRuleEntry returns [EObject current=null] : iv_ruleEntry= ruleEntry EOF ;
-    public final EObject entryRuleEntry() throws RecognitionException {
+    // $ANTLR start "entryRuleBudgetEntry"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:417:1: entryRuleBudgetEntry returns [EObject current=null] : iv_ruleBudgetEntry= ruleBudgetEntry EOF ;
+    public final EObject entryRuleBudgetEntry() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleEntry = null;
+        EObject iv_ruleBudgetEntry = null;
 
 
         try {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:418:2: (iv_ruleEntry= ruleEntry EOF )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:419:2: iv_ruleEntry= ruleEntry EOF
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:418:2: (iv_ruleBudgetEntry= ruleBudgetEntry EOF )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:419:2: iv_ruleBudgetEntry= ruleBudgetEntry EOF
             {
-             newCompositeNode(grammarAccess.getEntryRule()); 
-            pushFollow(FOLLOW_ruleEntry_in_entryRuleEntry868);
-            iv_ruleEntry=ruleEntry();
+             newCompositeNode(grammarAccess.getBudgetEntryRule()); 
+            pushFollow(FOLLOW_ruleBudgetEntry_in_entryRuleBudgetEntry868);
+            iv_ruleBudgetEntry=ruleBudgetEntry();
 
             state._fsp--;
 
-             current =iv_ruleEntry; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEntry878); 
+             current =iv_ruleBudgetEntry; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBudgetEntry878); 
 
             }
 
@@ -995,78 +1000,251 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleEntry"
+    // $ANTLR end "entryRuleBudgetEntry"
 
 
-    // $ANTLR start "ruleEntry"
-    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:426:1: ruleEntry returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= ':' ( (lv_amount_2_0= RULE_DOLLAR ) ) ) ;
-    public final EObject ruleEntry() throws RecognitionException {
+    // $ANTLR start "ruleBudgetEntry"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:426:1: ruleBudgetEntry returns [EObject current=null] : ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) ) | ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '*' ( (lv_factor_9_0= ruleDouble ) ) ) ) ;
+    public final EObject ruleBudgetEntry() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_0=null;
         Token otherlv_1=null;
-        Token lv_amount_2_0=null;
+        Token otherlv_2=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_7=null;
+        Token otherlv_8=null;
+        AntlrDatatypeRuleToken lv_amount_3_0 = null;
+
+        AntlrDatatypeRuleToken lv_factor_9_0 = null;
+
 
          enterRule(); 
             
         try {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:429:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= ':' ( (lv_amount_2_0= RULE_DOLLAR ) ) ) )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:430:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= ':' ( (lv_amount_2_0= RULE_DOLLAR ) ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:429:28: ( ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) ) | ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '*' ( (lv_factor_9_0= ruleDouble ) ) ) ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:430:1: ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) ) | ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '*' ( (lv_factor_9_0= ruleDouble ) ) ) )
             {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:430:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= ':' ( (lv_amount_2_0= RULE_DOLLAR ) ) )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:430:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= ':' ( (lv_amount_2_0= RULE_DOLLAR ) )
-            {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:430:2: ( (otherlv_0= RULE_ID ) )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:431:1: (otherlv_0= RULE_ID )
-            {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:431:1: (otherlv_0= RULE_ID )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:432:3: otherlv_0= RULE_ID
-            {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:430:1: ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) ) | ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '*' ( (lv_factor_9_0= ruleDouble ) ) ) )
+            int alt7=2;
+            int LA7_0 = input.LA(1);
 
-            			if (current==null) {
-            	            current = createModelElement(grammarAccess.getEntryRule());
-            	        }
-                    
-            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleEntry923); 
+            if ( (LA7_0==RULE_ID) ) {
+                int LA7_1 = input.LA(2);
 
-            		newLeafNode(otherlv_0, grammarAccess.getEntryAccess().getCategoryCategoryCrossReference_0_0()); 
-            	
+                if ( (LA7_1==20) ) {
+                    int LA7_2 = input.LA(3);
 
+                    if ( (LA7_2==RULE_ID) ) {
+                        alt7=2;
+                    }
+                    else if ( (LA7_2==RULE_DECIMAL) ) {
+                        alt7=1;
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 7, 2, input);
+
+                        throw nvae;
+                    }
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 7, 1, input);
+
+                    throw nvae;
+                }
             }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 7, 0, input);
 
-
+                throw nvae;
             }
+            switch (alt7) {
+                case 1 :
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:430:2: ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:430:2: ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:430:3: () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:430:3: ()
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:431:5: 
+                    {
 
-            otherlv_1=(Token)match(input,20,FOLLOW_20_in_ruleEntry935); 
+                            current = forceCreateModelElement(
+                                grammarAccess.getBudgetEntryAccess().getBudgetAmountEntryAction_0_0(),
+                                current);
+                        
 
-                	newLeafNode(otherlv_1, grammarAccess.getEntryAccess().getColonKeyword_1());
-                
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:447:1: ( (lv_amount_2_0= RULE_DOLLAR ) )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:448:1: (lv_amount_2_0= RULE_DOLLAR )
-            {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:448:1: (lv_amount_2_0= RULE_DOLLAR )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:449:3: lv_amount_2_0= RULE_DOLLAR
-            {
-            lv_amount_2_0=(Token)match(input,RULE_DOLLAR,FOLLOW_RULE_DOLLAR_in_ruleEntry952); 
+                    }
 
-            			newLeafNode(lv_amount_2_0, grammarAccess.getEntryAccess().getAmountDOLLARTerminalRuleCall_2_0()); 
-            		
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:436:2: ( (otherlv_1= RULE_ID ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:437:1: (otherlv_1= RULE_ID )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:437:1: (otherlv_1= RULE_ID )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:438:3: otherlv_1= RULE_ID
+                    {
 
-            	        if (current==null) {
-            	            current = createModelElement(grammarAccess.getEntryRule());
-            	        }
-                   		setWithLastConsumed(
-                   			current, 
-                   			"amount",
-                    		lv_amount_2_0, 
-                    		"DOLLAR");
-            	    
+                    			if (current==null) {
+                    	            current = createModelElement(grammarAccess.getBudgetEntryRule());
+                    	        }
+                            
+                    otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleBudgetEntry933); 
 
-            }
+                    		newLeafNode(otherlv_1, grammarAccess.getBudgetEntryAccess().getCategoryCategoryCrossReference_0_1_0()); 
+                    	
+
+                    }
 
 
-            }
+                    }
 
+                    otherlv_2=(Token)match(input,20,FOLLOW_20_in_ruleBudgetEntry945); 
+
+                        	newLeafNode(otherlv_2, grammarAccess.getBudgetEntryAccess().getColonKeyword_0_2());
+                        
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:453:1: ( (lv_amount_3_0= ruleDollar ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:454:1: (lv_amount_3_0= ruleDollar )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:454:1: (lv_amount_3_0= ruleDollar )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:455:3: lv_amount_3_0= ruleDollar
+                    {
+                     
+                    	        newCompositeNode(grammarAccess.getBudgetEntryAccess().getAmountDollarParserRuleCall_0_3_0()); 
+                    	    
+                    pushFollow(FOLLOW_ruleDollar_in_ruleBudgetEntry966);
+                    lv_amount_3_0=ruleDollar();
+
+                    state._fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = createModelElementForParent(grammarAccess.getBudgetEntryRule());
+                    	        }
+                           		set(
+                           			current, 
+                           			"amount",
+                            		lv_amount_3_0, 
+                            		"Dollar");
+                    	        afterParserOrEnumRuleCall();
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:472:6: ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '*' ( (lv_factor_9_0= ruleDouble ) ) )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:472:6: ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '*' ( (lv_factor_9_0= ruleDouble ) ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:472:7: () ( (otherlv_5= RULE_ID ) ) otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '*' ( (lv_factor_9_0= ruleDouble ) )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:472:7: ()
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:473:5: 
+                    {
+
+                            current = forceCreateModelElement(
+                                grammarAccess.getBudgetEntryAccess().getBudgetFactorEntryAction_1_0(),
+                                current);
+                        
+
+                    }
+
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:478:2: ( (otherlv_5= RULE_ID ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:479:1: (otherlv_5= RULE_ID )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:479:1: (otherlv_5= RULE_ID )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:480:3: otherlv_5= RULE_ID
+                    {
+
+                    			if (current==null) {
+                    	            current = createModelElement(grammarAccess.getBudgetEntryRule());
+                    	        }
+                            
+                    otherlv_5=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleBudgetEntry1003); 
+
+                    		newLeafNode(otherlv_5, grammarAccess.getBudgetEntryAccess().getCategoryCategoryCrossReference_1_1_0()); 
+                    	
+
+                    }
+
+
+                    }
+
+                    otherlv_6=(Token)match(input,20,FOLLOW_20_in_ruleBudgetEntry1015); 
+
+                        	newLeafNode(otherlv_6, grammarAccess.getBudgetEntryAccess().getColonKeyword_1_2());
+                        
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:495:1: ( (otherlv_7= RULE_ID ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:496:1: (otherlv_7= RULE_ID )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:496:1: (otherlv_7= RULE_ID )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:497:3: otherlv_7= RULE_ID
+                    {
+
+                    			if (current==null) {
+                    	            current = createModelElement(grammarAccess.getBudgetEntryRule());
+                    	        }
+                            
+                    otherlv_7=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleBudgetEntry1035); 
+
+                    		newLeafNode(otherlv_7, grammarAccess.getBudgetEntryAccess().getBaseEntryBudgetEntryCrossReference_1_3_0()); 
+                    	
+
+                    }
+
+
+                    }
+
+                    otherlv_8=(Token)match(input,21,FOLLOW_21_in_ruleBudgetEntry1047); 
+
+                        	newLeafNode(otherlv_8, grammarAccess.getBudgetEntryAccess().getAsteriskKeyword_1_4());
+                        
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:512:1: ( (lv_factor_9_0= ruleDouble ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:513:1: (lv_factor_9_0= ruleDouble )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:513:1: (lv_factor_9_0= ruleDouble )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:514:3: lv_factor_9_0= ruleDouble
+                    {
+                     
+                    	        newCompositeNode(grammarAccess.getBudgetEntryAccess().getFactorDoubleParserRuleCall_1_5_0()); 
+                    	    
+                    pushFollow(FOLLOW_ruleDouble_in_ruleBudgetEntry1068);
+                    lv_factor_9_0=ruleDouble();
+
+                    state._fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = createModelElementForParent(grammarAccess.getBudgetEntryRule());
+                    	        }
+                           		set(
+                           			current, 
+                           			"factor",
+                            		lv_factor_9_0, 
+                            		"Double");
+                    	        afterParserOrEnumRuleCall();
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
 
             }
 
@@ -1084,11 +1262,806 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleEntry"
+    // $ANTLR end "ruleBudgetEntry"
+
+
+    // $ANTLR start "entryRuleActualEntry"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:538:1: entryRuleActualEntry returns [EObject current=null] : iv_ruleActualEntry= ruleActualEntry EOF ;
+    public final EObject entryRuleActualEntry() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleActualEntry = null;
+
+
+        try {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:539:2: (iv_ruleActualEntry= ruleActualEntry EOF )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:540:2: iv_ruleActualEntry= ruleActualEntry EOF
+            {
+             newCompositeNode(grammarAccess.getActualEntryRule()); 
+            pushFollow(FOLLOW_ruleActualEntry_in_entryRuleActualEntry1105);
+            iv_ruleActualEntry=ruleActualEntry();
+
+            state._fsp--;
+
+             current =iv_ruleActualEntry; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleActualEntry1115); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleActualEntry"
+
+
+    // $ANTLR start "ruleActualEntry"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:547:1: ruleActualEntry returns [EObject current=null] : ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) ) | ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= '{' ( (lv_transactions_7_0= ruleTransaction ) )+ otherlv_8= '}' ) ) ;
+    public final EObject ruleActualEntry() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_1=null;
+        Token otherlv_2=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_8=null;
+        AntlrDatatypeRuleToken lv_amount_3_0 = null;
+
+        EObject lv_transactions_7_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:550:28: ( ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) ) | ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= '{' ( (lv_transactions_7_0= ruleTransaction ) )+ otherlv_8= '}' ) ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:551:1: ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) ) | ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= '{' ( (lv_transactions_7_0= ruleTransaction ) )+ otherlv_8= '}' ) )
+            {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:551:1: ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) ) | ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= '{' ( (lv_transactions_7_0= ruleTransaction ) )+ otherlv_8= '}' ) )
+            int alt9=2;
+            int LA9_0 = input.LA(1);
+
+            if ( (LA9_0==RULE_ID) ) {
+                int LA9_1 = input.LA(2);
+
+                if ( (LA9_1==20) ) {
+                    alt9=1;
+                }
+                else if ( (LA9_1==13) ) {
+                    alt9=2;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 9, 1, input);
+
+                    throw nvae;
+                }
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 9, 0, input);
+
+                throw nvae;
+            }
+            switch (alt9) {
+                case 1 :
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:551:2: ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:551:2: ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:551:3: () ( (otherlv_1= RULE_ID ) ) otherlv_2= ':' ( (lv_amount_3_0= ruleDollar ) )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:551:3: ()
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:552:5: 
+                    {
+
+                            current = forceCreateModelElement(
+                                grammarAccess.getActualEntryAccess().getActualAmountEntryAction_0_0(),
+                                current);
+                        
+
+                    }
+
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:557:2: ( (otherlv_1= RULE_ID ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:558:1: (otherlv_1= RULE_ID )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:558:1: (otherlv_1= RULE_ID )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:559:3: otherlv_1= RULE_ID
+                    {
+
+                    			if (current==null) {
+                    	            current = createModelElement(grammarAccess.getActualEntryRule());
+                    	        }
+                            
+                    otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleActualEntry1170); 
+
+                    		newLeafNode(otherlv_1, grammarAccess.getActualEntryAccess().getCategoryCategoryCrossReference_0_1_0()); 
+                    	
+
+                    }
+
+
+                    }
+
+                    otherlv_2=(Token)match(input,20,FOLLOW_20_in_ruleActualEntry1182); 
+
+                        	newLeafNode(otherlv_2, grammarAccess.getActualEntryAccess().getColonKeyword_0_2());
+                        
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:574:1: ( (lv_amount_3_0= ruleDollar ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:575:1: (lv_amount_3_0= ruleDollar )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:575:1: (lv_amount_3_0= ruleDollar )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:576:3: lv_amount_3_0= ruleDollar
+                    {
+                     
+                    	        newCompositeNode(grammarAccess.getActualEntryAccess().getAmountDollarParserRuleCall_0_3_0()); 
+                    	    
+                    pushFollow(FOLLOW_ruleDollar_in_ruleActualEntry1203);
+                    lv_amount_3_0=ruleDollar();
+
+                    state._fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = createModelElementForParent(grammarAccess.getActualEntryRule());
+                    	        }
+                           		set(
+                           			current, 
+                           			"amount",
+                            		lv_amount_3_0, 
+                            		"Dollar");
+                    	        afterParserOrEnumRuleCall();
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:593:6: ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= '{' ( (lv_transactions_7_0= ruleTransaction ) )+ otherlv_8= '}' )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:593:6: ( () ( (otherlv_5= RULE_ID ) ) otherlv_6= '{' ( (lv_transactions_7_0= ruleTransaction ) )+ otherlv_8= '}' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:593:7: () ( (otherlv_5= RULE_ID ) ) otherlv_6= '{' ( (lv_transactions_7_0= ruleTransaction ) )+ otherlv_8= '}'
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:593:7: ()
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:594:5: 
+                    {
+
+                            current = forceCreateModelElement(
+                                grammarAccess.getActualEntryAccess().getActualTransactionEntryAction_1_0(),
+                                current);
+                        
+
+                    }
+
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:599:2: ( (otherlv_5= RULE_ID ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:600:1: (otherlv_5= RULE_ID )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:600:1: (otherlv_5= RULE_ID )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:601:3: otherlv_5= RULE_ID
+                    {
+
+                    			if (current==null) {
+                    	            current = createModelElement(grammarAccess.getActualEntryRule());
+                    	        }
+                            
+                    otherlv_5=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleActualEntry1240); 
+
+                    		newLeafNode(otherlv_5, grammarAccess.getActualEntryAccess().getCategoryCategoryCrossReference_1_1_0()); 
+                    	
+
+                    }
+
+
+                    }
+
+                    otherlv_6=(Token)match(input,13,FOLLOW_13_in_ruleActualEntry1252); 
+
+                        	newLeafNode(otherlv_6, grammarAccess.getActualEntryAccess().getLeftCurlyBracketKeyword_1_2());
+                        
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:616:1: ( (lv_transactions_7_0= ruleTransaction ) )+
+                    int cnt8=0;
+                    loop8:
+                    do {
+                        int alt8=2;
+                        int LA8_0 = input.LA(1);
+
+                        if ( (LA8_0==22||LA8_0==24) ) {
+                            alt8=1;
+                        }
+
+
+                        switch (alt8) {
+                    	case 1 :
+                    	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:617:1: (lv_transactions_7_0= ruleTransaction )
+                    	    {
+                    	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:617:1: (lv_transactions_7_0= ruleTransaction )
+                    	    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:618:3: lv_transactions_7_0= ruleTransaction
+                    	    {
+                    	     
+                    	    	        newCompositeNode(grammarAccess.getActualEntryAccess().getTransactionsTransactionParserRuleCall_1_3_0()); 
+                    	    	    
+                    	    pushFollow(FOLLOW_ruleTransaction_in_ruleActualEntry1273);
+                    	    lv_transactions_7_0=ruleTransaction();
+
+                    	    state._fsp--;
+
+
+                    	    	        if (current==null) {
+                    	    	            current = createModelElementForParent(grammarAccess.getActualEntryRule());
+                    	    	        }
+                    	           		add(
+                    	           			current, 
+                    	           			"transactions",
+                    	            		lv_transactions_7_0, 
+                    	            		"Transaction");
+                    	    	        afterParserOrEnumRuleCall();
+                    	    	    
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt8 >= 1 ) break loop8;
+                                EarlyExitException eee =
+                                    new EarlyExitException(8, input);
+                                throw eee;
+                        }
+                        cnt8++;
+                    } while (true);
+
+                    otherlv_8=(Token)match(input,14,FOLLOW_14_in_ruleActualEntry1286); 
+
+                        	newLeafNode(otherlv_8, grammarAccess.getActualEntryAccess().getRightCurlyBracketKeyword_1_4());
+                        
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleActualEntry"
+
+
+    // $ANTLR start "entryRuleTransaction"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:646:1: entryRuleTransaction returns [EObject current=null] : iv_ruleTransaction= ruleTransaction EOF ;
+    public final EObject entryRuleTransaction() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleTransaction = null;
+
+
+        try {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:647:2: (iv_ruleTransaction= ruleTransaction EOF )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:648:2: iv_ruleTransaction= ruleTransaction EOF
+            {
+             newCompositeNode(grammarAccess.getTransactionRule()); 
+            pushFollow(FOLLOW_ruleTransaction_in_entryRuleTransaction1323);
+            iv_ruleTransaction=ruleTransaction();
+
+            state._fsp--;
+
+             current =iv_ruleTransaction; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTransaction1333); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleTransaction"
+
+
+    // $ANTLR start "ruleTransaction"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:655:1: ruleTransaction returns [EObject current=null] : ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) ) ;
+    public final EObject ruleTransaction() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_1=null;
+        Token otherlv_3=null;
+        Token lv_day_4_0=null;
+        Token otherlv_6=null;
+        Token otherlv_8=null;
+        Token lv_day_9_0=null;
+        Token otherlv_10=null;
+        Token lv_from_11_0=null;
+        AntlrDatatypeRuleToken lv_amount_2_0 = null;
+
+        AntlrDatatypeRuleToken lv_amount_7_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:658:28: ( ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:659:1: ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) )
+            {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:659:1: ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) )
+            int alt11=2;
+            int LA11_0 = input.LA(1);
+
+            if ( (LA11_0==22) ) {
+                alt11=1;
+            }
+            else if ( (LA11_0==24) ) {
+                alt11=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 11, 0, input);
+
+                throw nvae;
+            }
+            switch (alt11) {
+                case 1 :
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:659:2: ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:659:2: ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:659:3: () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )?
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:659:3: ()
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:660:5: 
+                    {
+
+                            current = forceCreateModelElement(
+                                grammarAccess.getTransactionAccess().getCashTransactionAction_0_0(),
+                                current);
+                        
+
+                    }
+
+                    otherlv_1=(Token)match(input,22,FOLLOW_22_in_ruleTransaction1380); 
+
+                        	newLeafNode(otherlv_1, grammarAccess.getTransactionAccess().getCashKeyword_0_1());
+                        
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:669:1: ( (lv_amount_2_0= ruleDollar ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:670:1: (lv_amount_2_0= ruleDollar )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:670:1: (lv_amount_2_0= ruleDollar )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:671:3: lv_amount_2_0= ruleDollar
+                    {
+                     
+                    	        newCompositeNode(grammarAccess.getTransactionAccess().getAmountDollarParserRuleCall_0_2_0()); 
+                    	    
+                    pushFollow(FOLLOW_ruleDollar_in_ruleTransaction1401);
+                    lv_amount_2_0=ruleDollar();
+
+                    state._fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = createModelElementForParent(grammarAccess.getTransactionRule());
+                    	        }
+                           		set(
+                           			current, 
+                           			"amount",
+                            		lv_amount_2_0, 
+                            		"Dollar");
+                    	        afterParserOrEnumRuleCall();
+                    	    
+
+                    }
+
+
+                    }
+
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:687:2: (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )?
+                    int alt10=2;
+                    int LA10_0 = input.LA(1);
+
+                    if ( (LA10_0==23) ) {
+                        alt10=1;
+                    }
+                    switch (alt10) {
+                        case 1 :
+                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:687:4: otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) )
+                            {
+                            otherlv_3=(Token)match(input,23,FOLLOW_23_in_ruleTransaction1414); 
+
+                                	newLeafNode(otherlv_3, grammarAccess.getTransactionAccess().getOnKeyword_0_3_0());
+                                
+                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:691:1: ( (lv_day_4_0= RULE_INT ) )
+                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:692:1: (lv_day_4_0= RULE_INT )
+                            {
+                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:692:1: (lv_day_4_0= RULE_INT )
+                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:693:3: lv_day_4_0= RULE_INT
+                            {
+                            lv_day_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleTransaction1431); 
+
+                            			newLeafNode(lv_day_4_0, grammarAccess.getTransactionAccess().getDayINTTerminalRuleCall_0_3_1_0()); 
+                            		
+
+                            	        if (current==null) {
+                            	            current = createModelElement(grammarAccess.getTransactionRule());
+                            	        }
+                                   		setWithLastConsumed(
+                                   			current, 
+                                   			"day",
+                                    		lv_day_4_0, 
+                                    		"INT");
+                            	    
+
+                            }
+
+
+                            }
+
+
+                            }
+                            break;
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:710:6: ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:710:6: ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:710:7: () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:710:7: ()
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:711:5: 
+                    {
+
+                            current = forceCreateModelElement(
+                                grammarAccess.getTransactionAccess().getCardTransactionAction_1_0(),
+                                current);
+                        
+
+                    }
+
+                    otherlv_6=(Token)match(input,24,FOLLOW_24_in_ruleTransaction1467); 
+
+                        	newLeafNode(otherlv_6, grammarAccess.getTransactionAccess().getCardKeyword_1_1());
+                        
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:720:1: ( (lv_amount_7_0= ruleDollar ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:721:1: (lv_amount_7_0= ruleDollar )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:721:1: (lv_amount_7_0= ruleDollar )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:722:3: lv_amount_7_0= ruleDollar
+                    {
+                     
+                    	        newCompositeNode(grammarAccess.getTransactionAccess().getAmountDollarParserRuleCall_1_2_0()); 
+                    	    
+                    pushFollow(FOLLOW_ruleDollar_in_ruleTransaction1488);
+                    lv_amount_7_0=ruleDollar();
+
+                    state._fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = createModelElementForParent(grammarAccess.getTransactionRule());
+                    	        }
+                           		set(
+                           			current, 
+                           			"amount",
+                            		lv_amount_7_0, 
+                            		"Dollar");
+                    	        afterParserOrEnumRuleCall();
+                    	    
+
+                    }
+
+
+                    }
+
+                    otherlv_8=(Token)match(input,23,FOLLOW_23_in_ruleTransaction1500); 
+
+                        	newLeafNode(otherlv_8, grammarAccess.getTransactionAccess().getOnKeyword_1_3());
+                        
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:742:1: ( (lv_day_9_0= RULE_INT ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:743:1: (lv_day_9_0= RULE_INT )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:743:1: (lv_day_9_0= RULE_INT )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:744:3: lv_day_9_0= RULE_INT
+                    {
+                    lv_day_9_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleTransaction1517); 
+
+                    			newLeafNode(lv_day_9_0, grammarAccess.getTransactionAccess().getDayINTTerminalRuleCall_1_4_0()); 
+                    		
+
+                    	        if (current==null) {
+                    	            current = createModelElement(grammarAccess.getTransactionRule());
+                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"day",
+                            		lv_day_9_0, 
+                            		"INT");
+                    	    
+
+                    }
+
+
+                    }
+
+                    otherlv_10=(Token)match(input,25,FOLLOW_25_in_ruleTransaction1534); 
+
+                        	newLeafNode(otherlv_10, grammarAccess.getTransactionAccess().getFromKeyword_1_5());
+                        
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:764:1: ( (lv_from_11_0= RULE_STRING ) )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:765:1: (lv_from_11_0= RULE_STRING )
+                    {
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:765:1: (lv_from_11_0= RULE_STRING )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:766:3: lv_from_11_0= RULE_STRING
+                    {
+                    lv_from_11_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleTransaction1551); 
+
+                    			newLeafNode(lv_from_11_0, grammarAccess.getTransactionAccess().getFromSTRINGTerminalRuleCall_1_6_0()); 
+                    		
+
+                    	        if (current==null) {
+                    	            current = createModelElement(grammarAccess.getTransactionRule());
+                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"from",
+                            		lv_from_11_0, 
+                            		"STRING");
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleTransaction"
+
+
+    // $ANTLR start "entryRuleDollar"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:792:1: entryRuleDollar returns [String current=null] : iv_ruleDollar= ruleDollar EOF ;
+    public final String entryRuleDollar() throws RecognitionException {
+        String current = null;
+
+        AntlrDatatypeRuleToken iv_ruleDollar = null;
+
+
+        try {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:793:2: (iv_ruleDollar= ruleDollar EOF )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:794:2: iv_ruleDollar= ruleDollar EOF
+            {
+             newCompositeNode(grammarAccess.getDollarRule()); 
+            pushFollow(FOLLOW_ruleDollar_in_entryRuleDollar1596);
+            iv_ruleDollar=ruleDollar();
+
+            state._fsp--;
+
+             current =iv_ruleDollar.getText(); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDollar1607); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleDollar"
+
+
+    // $ANTLR start "ruleDollar"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:801:1: ruleDollar returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_DECIMAL_0= RULE_DECIMAL ;
+    public final AntlrDatatypeRuleToken ruleDollar() throws RecognitionException {
+        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+
+        Token this_DECIMAL_0=null;
+
+         enterRule(); 
+            
+        try {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:804:28: (this_DECIMAL_0= RULE_DECIMAL )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:805:5: this_DECIMAL_0= RULE_DECIMAL
+            {
+            this_DECIMAL_0=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleDollar1646); 
+
+            		current.merge(this_DECIMAL_0);
+                
+             
+                newLeafNode(this_DECIMAL_0, grammarAccess.getDollarAccess().getDECIMALTerminalRuleCall()); 
+                
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleDollar"
+
+
+    // $ANTLR start "entryRuleDouble"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:820:1: entryRuleDouble returns [String current=null] : iv_ruleDouble= ruleDouble EOF ;
+    public final String entryRuleDouble() throws RecognitionException {
+        String current = null;
+
+        AntlrDatatypeRuleToken iv_ruleDouble = null;
+
+
+        try {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:821:2: (iv_ruleDouble= ruleDouble EOF )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:822:2: iv_ruleDouble= ruleDouble EOF
+            {
+             newCompositeNode(grammarAccess.getDoubleRule()); 
+            pushFollow(FOLLOW_ruleDouble_in_entryRuleDouble1691);
+            iv_ruleDouble=ruleDouble();
+
+            state._fsp--;
+
+             current =iv_ruleDouble.getText(); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDouble1702); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleDouble"
+
+
+    // $ANTLR start "ruleDouble"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:829:1: ruleDouble returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT | this_DECIMAL_1= RULE_DECIMAL ) ;
+    public final AntlrDatatypeRuleToken ruleDouble() throws RecognitionException {
+        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+
+        Token this_INT_0=null;
+        Token this_DECIMAL_1=null;
+
+         enterRule(); 
+            
+        try {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:832:28: ( (this_INT_0= RULE_INT | this_DECIMAL_1= RULE_DECIMAL ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:833:1: (this_INT_0= RULE_INT | this_DECIMAL_1= RULE_DECIMAL )
+            {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:833:1: (this_INT_0= RULE_INT | this_DECIMAL_1= RULE_DECIMAL )
+            int alt12=2;
+            int LA12_0 = input.LA(1);
+
+            if ( (LA12_0==RULE_INT) ) {
+                alt12=1;
+            }
+            else if ( (LA12_0==RULE_DECIMAL) ) {
+                alt12=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 12, 0, input);
+
+                throw nvae;
+            }
+            switch (alt12) {
+                case 1 :
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:833:6: this_INT_0= RULE_INT
+                    {
+                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDouble1742); 
+
+                    		current.merge(this_INT_0);
+                        
+                     
+                        newLeafNode(this_INT_0, grammarAccess.getDoubleAccess().getINTTerminalRuleCall_0()); 
+                        
+
+                    }
+                    break;
+                case 2 :
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:841:10: this_DECIMAL_1= RULE_DECIMAL
+                    {
+                    this_DECIMAL_1=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleDouble1768); 
+
+                    		current.merge(this_DECIMAL_1);
+                        
+                     
+                        newLeafNode(this_DECIMAL_1, grammarAccess.getDoubleAccess().getDECIMALTerminalRuleCall_1()); 
+                        
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleDouble"
 
 
     // $ANTLR start "ruleMonthEnum"
-    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:473:1: ruleMonthEnum returns [Enumerator current=null] : ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) ) ;
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:856:1: ruleMonthEnum returns [Enumerator current=null] : ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) ) ;
     public final Enumerator ruleMonthEnum() throws RecognitionException {
         Enumerator current = null;
 
@@ -1107,87 +2080,87 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:475:28: ( ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) ) )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:476:1: ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:858:28: ( ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:859:1: ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) )
             {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:476:1: ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) )
-            int alt7=12;
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:859:1: ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) )
+            int alt13=12;
             switch ( input.LA(1) ) {
-            case 21:
-                {
-                alt7=1;
-                }
-                break;
-            case 22:
-                {
-                alt7=2;
-                }
-                break;
-            case 23:
-                {
-                alt7=3;
-                }
-                break;
-            case 24:
-                {
-                alt7=4;
-                }
-                break;
-            case 25:
-                {
-                alt7=5;
-                }
-                break;
             case 26:
                 {
-                alt7=6;
+                alt13=1;
                 }
                 break;
             case 27:
                 {
-                alt7=7;
+                alt13=2;
                 }
                 break;
             case 28:
                 {
-                alt7=8;
+                alt13=3;
                 }
                 break;
             case 29:
                 {
-                alt7=9;
+                alt13=4;
                 }
                 break;
             case 30:
                 {
-                alt7=10;
+                alt13=5;
                 }
                 break;
             case 31:
                 {
-                alt7=11;
+                alt13=6;
                 }
                 break;
             case 32:
                 {
-                alt7=12;
+                alt13=7;
+                }
+                break;
+            case 33:
+                {
+                alt13=8;
+                }
+                break;
+            case 34:
+                {
+                alt13=9;
+                }
+                break;
+            case 35:
+                {
+                alt13=10;
+                }
+                break;
+            case 36:
+                {
+                alt13=11;
+                }
+                break;
+            case 37:
+                {
+                alt13=12;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 7, 0, input);
+                    new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt7) {
+            switch (alt13) {
                 case 1 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:476:2: (enumLiteral_0= 'january' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:859:2: (enumLiteral_0= 'january' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:476:2: (enumLiteral_0= 'january' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:476:4: enumLiteral_0= 'january'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:859:2: (enumLiteral_0= 'january' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:859:4: enumLiteral_0= 'january'
                     {
-                    enumLiteral_0=(Token)match(input,21,FOLLOW_21_in_ruleMonthEnum1007); 
+                    enumLiteral_0=(Token)match(input,26,FOLLOW_26_in_ruleMonthEnum1827); 
 
                             current = grammarAccess.getMonthEnumAccess().getJANUARYEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getMonthEnumAccess().getJANUARYEnumLiteralDeclaration_0()); 
@@ -1199,12 +2172,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:482:6: (enumLiteral_1= 'february' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:865:6: (enumLiteral_1= 'february' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:482:6: (enumLiteral_1= 'february' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:482:8: enumLiteral_1= 'february'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:865:6: (enumLiteral_1= 'february' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:865:8: enumLiteral_1= 'february'
                     {
-                    enumLiteral_1=(Token)match(input,22,FOLLOW_22_in_ruleMonthEnum1024); 
+                    enumLiteral_1=(Token)match(input,27,FOLLOW_27_in_ruleMonthEnum1844); 
 
                             current = grammarAccess.getMonthEnumAccess().getFEBRUARYEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getMonthEnumAccess().getFEBRUARYEnumLiteralDeclaration_1()); 
@@ -1216,12 +2189,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:488:6: (enumLiteral_2= 'march' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:871:6: (enumLiteral_2= 'march' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:488:6: (enumLiteral_2= 'march' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:488:8: enumLiteral_2= 'march'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:871:6: (enumLiteral_2= 'march' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:871:8: enumLiteral_2= 'march'
                     {
-                    enumLiteral_2=(Token)match(input,23,FOLLOW_23_in_ruleMonthEnum1041); 
+                    enumLiteral_2=(Token)match(input,28,FOLLOW_28_in_ruleMonthEnum1861); 
 
                             current = grammarAccess.getMonthEnumAccess().getMARCHEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getMonthEnumAccess().getMARCHEnumLiteralDeclaration_2()); 
@@ -1233,12 +2206,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:494:6: (enumLiteral_3= 'april' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:877:6: (enumLiteral_3= 'april' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:494:6: (enumLiteral_3= 'april' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:494:8: enumLiteral_3= 'april'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:877:6: (enumLiteral_3= 'april' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:877:8: enumLiteral_3= 'april'
                     {
-                    enumLiteral_3=(Token)match(input,24,FOLLOW_24_in_ruleMonthEnum1058); 
+                    enumLiteral_3=(Token)match(input,29,FOLLOW_29_in_ruleMonthEnum1878); 
 
                             current = grammarAccess.getMonthEnumAccess().getAPRILEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getMonthEnumAccess().getAPRILEnumLiteralDeclaration_3()); 
@@ -1250,12 +2223,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:500:6: (enumLiteral_4= 'may' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:883:6: (enumLiteral_4= 'may' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:500:6: (enumLiteral_4= 'may' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:500:8: enumLiteral_4= 'may'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:883:6: (enumLiteral_4= 'may' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:883:8: enumLiteral_4= 'may'
                     {
-                    enumLiteral_4=(Token)match(input,25,FOLLOW_25_in_ruleMonthEnum1075); 
+                    enumLiteral_4=(Token)match(input,30,FOLLOW_30_in_ruleMonthEnum1895); 
 
                             current = grammarAccess.getMonthEnumAccess().getMAYEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getMonthEnumAccess().getMAYEnumLiteralDeclaration_4()); 
@@ -1267,12 +2240,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:506:6: (enumLiteral_5= 'june' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:889:6: (enumLiteral_5= 'june' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:506:6: (enumLiteral_5= 'june' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:506:8: enumLiteral_5= 'june'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:889:6: (enumLiteral_5= 'june' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:889:8: enumLiteral_5= 'june'
                     {
-                    enumLiteral_5=(Token)match(input,26,FOLLOW_26_in_ruleMonthEnum1092); 
+                    enumLiteral_5=(Token)match(input,31,FOLLOW_31_in_ruleMonthEnum1912); 
 
                             current = grammarAccess.getMonthEnumAccess().getJUNEEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_5, grammarAccess.getMonthEnumAccess().getJUNEEnumLiteralDeclaration_5()); 
@@ -1284,12 +2257,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:512:6: (enumLiteral_6= 'july' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:895:6: (enumLiteral_6= 'july' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:512:6: (enumLiteral_6= 'july' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:512:8: enumLiteral_6= 'july'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:895:6: (enumLiteral_6= 'july' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:895:8: enumLiteral_6= 'july'
                     {
-                    enumLiteral_6=(Token)match(input,27,FOLLOW_27_in_ruleMonthEnum1109); 
+                    enumLiteral_6=(Token)match(input,32,FOLLOW_32_in_ruleMonthEnum1929); 
 
                             current = grammarAccess.getMonthEnumAccess().getJULYEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_6, grammarAccess.getMonthEnumAccess().getJULYEnumLiteralDeclaration_6()); 
@@ -1301,12 +2274,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:518:6: (enumLiteral_7= 'august' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:901:6: (enumLiteral_7= 'august' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:518:6: (enumLiteral_7= 'august' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:518:8: enumLiteral_7= 'august'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:901:6: (enumLiteral_7= 'august' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:901:8: enumLiteral_7= 'august'
                     {
-                    enumLiteral_7=(Token)match(input,28,FOLLOW_28_in_ruleMonthEnum1126); 
+                    enumLiteral_7=(Token)match(input,33,FOLLOW_33_in_ruleMonthEnum1946); 
 
                             current = grammarAccess.getMonthEnumAccess().getAUGUSTEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_7, grammarAccess.getMonthEnumAccess().getAUGUSTEnumLiteralDeclaration_7()); 
@@ -1318,12 +2291,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:524:6: (enumLiteral_8= 'september' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:907:6: (enumLiteral_8= 'september' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:524:6: (enumLiteral_8= 'september' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:524:8: enumLiteral_8= 'september'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:907:6: (enumLiteral_8= 'september' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:907:8: enumLiteral_8= 'september'
                     {
-                    enumLiteral_8=(Token)match(input,29,FOLLOW_29_in_ruleMonthEnum1143); 
+                    enumLiteral_8=(Token)match(input,34,FOLLOW_34_in_ruleMonthEnum1963); 
 
                             current = grammarAccess.getMonthEnumAccess().getSEPTEMBEREnumLiteralDeclaration_8().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_8, grammarAccess.getMonthEnumAccess().getSEPTEMBEREnumLiteralDeclaration_8()); 
@@ -1335,12 +2308,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:530:6: (enumLiteral_9= 'october' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:913:6: (enumLiteral_9= 'october' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:530:6: (enumLiteral_9= 'october' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:530:8: enumLiteral_9= 'october'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:913:6: (enumLiteral_9= 'october' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:913:8: enumLiteral_9= 'october'
                     {
-                    enumLiteral_9=(Token)match(input,30,FOLLOW_30_in_ruleMonthEnum1160); 
+                    enumLiteral_9=(Token)match(input,35,FOLLOW_35_in_ruleMonthEnum1980); 
 
                             current = grammarAccess.getMonthEnumAccess().getOCTOBEREnumLiteralDeclaration_9().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_9, grammarAccess.getMonthEnumAccess().getOCTOBEREnumLiteralDeclaration_9()); 
@@ -1352,12 +2325,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 11 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:536:6: (enumLiteral_10= 'november' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:919:6: (enumLiteral_10= 'november' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:536:6: (enumLiteral_10= 'november' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:536:8: enumLiteral_10= 'november'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:919:6: (enumLiteral_10= 'november' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:919:8: enumLiteral_10= 'november'
                     {
-                    enumLiteral_10=(Token)match(input,31,FOLLOW_31_in_ruleMonthEnum1177); 
+                    enumLiteral_10=(Token)match(input,36,FOLLOW_36_in_ruleMonthEnum1997); 
 
                             current = grammarAccess.getMonthEnumAccess().getNOVEMBEREnumLiteralDeclaration_10().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_10, grammarAccess.getMonthEnumAccess().getNOVEMBEREnumLiteralDeclaration_10()); 
@@ -1369,12 +2342,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 12 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:542:6: (enumLiteral_11= 'december' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:925:6: (enumLiteral_11= 'december' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:542:6: (enumLiteral_11= 'december' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:542:8: enumLiteral_11= 'december'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:925:6: (enumLiteral_11= 'december' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:925:8: enumLiteral_11= 'december'
                     {
-                    enumLiteral_11=(Token)match(input,32,FOLLOW_32_in_ruleMonthEnum1194); 
+                    enumLiteral_11=(Token)match(input,37,FOLLOW_37_in_ruleMonthEnum2014); 
 
                             current = grammarAccess.getMonthEnumAccess().getDECEMBEREnumLiteralDeclaration_11().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_11, grammarAccess.getMonthEnumAccess().getDECEMBEREnumLiteralDeclaration_11()); 
@@ -1430,36 +2403,69 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_RULE_INT_in_ruleYear541 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_17_in_ruleYear558 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleYear578 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleYear590 = new BitSet(new long[]{0x00000001FFE04000L});
-    public static final BitSet FOLLOW_ruleMonth_in_ruleYear611 = new BitSet(new long[]{0x00000001FFE04000L});
+    public static final BitSet FOLLOW_13_in_ruleYear590 = new BitSet(new long[]{0x0000003FFC004000L});
+    public static final BitSet FOLLOW_ruleMonth_in_ruleYear611 = new BitSet(new long[]{0x0000003FFC004000L});
     public static final BitSet FOLLOW_14_in_ruleYear624 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMonth_in_entryRuleMonth660 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleMonth670 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMonthEnum_in_ruleMonth716 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_18_in_ruleMonth728 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_13_in_ruleMonth740 = new BitSet(new long[]{0x0000000000004010L});
-    public static final BitSet FOLLOW_ruleEntry_in_ruleMonth761 = new BitSet(new long[]{0x0000000000004010L});
+    public static final BitSet FOLLOW_ruleBudgetEntry_in_ruleMonth761 = new BitSet(new long[]{0x0000000000004010L});
     public static final BitSet FOLLOW_14_in_ruleMonth774 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_19_in_ruleMonth786 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_13_in_ruleMonth798 = new BitSet(new long[]{0x0000000000004010L});
-    public static final BitSet FOLLOW_ruleEntry_in_ruleMonth819 = new BitSet(new long[]{0x0000000000004010L});
+    public static final BitSet FOLLOW_ruleActualEntry_in_ruleMonth819 = new BitSet(new long[]{0x0000000000004010L});
     public static final BitSet FOLLOW_14_in_ruleMonth832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEntry_in_entryRuleEntry868 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEntry878 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleEntry923 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleEntry935 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_DOLLAR_in_ruleEntry952 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ruleMonthEnum1007 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_ruleMonthEnum1024 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_ruleMonthEnum1041 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleMonthEnum1058 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_ruleMonthEnum1075 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_ruleMonthEnum1092 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_ruleMonthEnum1109 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleMonthEnum1126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleMonthEnum1143 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleMonthEnum1160 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleMonthEnum1177 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleMonthEnum1194 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBudgetEntry_in_entryRuleBudgetEntry868 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBudgetEntry878 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleBudgetEntry933 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_20_in_ruleBudgetEntry945 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_ruleDollar_in_ruleBudgetEntry966 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleBudgetEntry1003 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_20_in_ruleBudgetEntry1015 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleBudgetEntry1035 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleBudgetEntry1047 = new BitSet(new long[]{0x00000000000000A0L});
+    public static final BitSet FOLLOW_ruleDouble_in_ruleBudgetEntry1068 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleActualEntry_in_entryRuleActualEntry1105 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleActualEntry1115 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleActualEntry1170 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_20_in_ruleActualEntry1182 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_ruleDollar_in_ruleActualEntry1203 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleActualEntry1240 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleActualEntry1252 = new BitSet(new long[]{0x0000000001400000L});
+    public static final BitSet FOLLOW_ruleTransaction_in_ruleActualEntry1273 = new BitSet(new long[]{0x0000000001404000L});
+    public static final BitSet FOLLOW_14_in_ruleActualEntry1286 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTransaction_in_entryRuleTransaction1323 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTransaction1333 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_ruleTransaction1380 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_ruleDollar_in_ruleTransaction1401 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_23_in_ruleTransaction1414 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleTransaction1431 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_ruleTransaction1467 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_ruleDollar_in_ruleTransaction1488 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleTransaction1500 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleTransaction1517 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_ruleTransaction1534 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleTransaction1551 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDollar_in_entryRuleDollar1596 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDollar1607 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleDollar1646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDouble_in_entryRuleDouble1691 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDouble1702 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDouble1742 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleDouble1768 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_ruleMonthEnum1827 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_ruleMonthEnum1844 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleMonthEnum1861 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleMonthEnum1878 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleMonthEnum1895 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_ruleMonthEnum1912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleMonthEnum1929 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleMonthEnum1946 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleMonthEnum1963 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleMonthEnum1980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleMonthEnum1997 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleMonthEnum2014 = new BitSet(new long[]{0x0000000000000002L});
 
 }

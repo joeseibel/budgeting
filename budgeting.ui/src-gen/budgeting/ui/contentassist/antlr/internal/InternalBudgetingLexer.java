@@ -12,24 +12,29 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalBudgetingLexer extends Lexer {
-    public static final int RULE_DOLLAR=6;
     public static final int RULE_STRING=7;
     public static final int RULE_SL_COMMENT=9;
     public static final int T__19=19;
     public static final int T__15=15;
+    public static final int T__37=37;
     public static final int T__16=16;
     public static final int T__17=17;
     public static final int T__18=18;
+    public static final int T__33=33;
     public static final int T__12=12;
+    public static final int T__34=34;
     public static final int T__13=13;
+    public static final int T__35=35;
     public static final int T__14=14;
+    public static final int T__36=36;
     public static final int EOF=-1;
     public static final int T__30=30;
     public static final int T__31=31;
     public static final int T__32=32;
-    public static final int RULE_ID=4;
+    public static final int RULE_ID=6;
     public static final int RULE_WS=10;
     public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_DECIMAL=4;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
@@ -478,8 +483,112 @@ public class InternalBudgetingLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:31:7: ( 'income' )
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:31:9: 'income'
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:31:7: ( '*' )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:31:9: '*'
+            {
+            match('*'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__32"
+
+    // $ANTLR start "T__33"
+    public final void mT__33() throws RecognitionException {
+        try {
+            int _type = T__33;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:32:7: ( 'cash' )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:32:9: 'cash'
+            {
+            match("cash"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__33"
+
+    // $ANTLR start "T__34"
+    public final void mT__34() throws RecognitionException {
+        try {
+            int _type = T__34;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:33:7: ( 'on' )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:33:9: 'on'
+            {
+            match("on"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__34"
+
+    // $ANTLR start "T__35"
+    public final void mT__35() throws RecognitionException {
+        try {
+            int _type = T__35;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:34:7: ( 'card' )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:34:9: 'card'
+            {
+            match("card"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__35"
+
+    // $ANTLR start "T__36"
+    public final void mT__36() throws RecognitionException {
+        try {
+            int _type = T__36;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:35:7: ( 'from' )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:35:9: 'from'
+            {
+            match("from"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__36"
+
+    // $ANTLR start "T__37"
+    public final void mT__37() throws RecognitionException {
+        try {
+            int _type = T__37;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:36:7: ( 'income' )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:36:9: 'income'
             {
             match("income"); 
 
@@ -492,20 +601,19 @@ public class InternalBudgetingLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__32"
+    // $ANTLR end "T__37"
 
-    // $ANTLR start "RULE_DOLLAR"
-    public final void mRULE_DOLLAR() throws RecognitionException {
+    // $ANTLR start "RULE_DECIMAL"
+    public final void mRULE_DECIMAL() throws RecognitionException {
         try {
-            int _type = RULE_DOLLAR;
+            int _type = RULE_DECIMAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1383:13: ( RULE_INT '.' '0' .. '9' '0' .. '9' )
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1383:15: RULE_INT '.' '0' .. '9' '0' .. '9'
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2716:14: ( RULE_INT '.' RULE_INT )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2716:16: RULE_INT '.' RULE_INT
             {
             mRULE_INT(); 
             match('.'); 
-            matchRange('0','9'); 
-            matchRange('0','9'); 
+            mRULE_INT(); 
 
             }
 
@@ -515,17 +623,17 @@ public class InternalBudgetingLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "RULE_DOLLAR"
+    // $ANTLR end "RULE_DECIMAL"
 
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1385:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1385:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2718:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2718:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1385:11: ( '^' )?
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2718:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -534,7 +642,7 @@ public class InternalBudgetingLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1385:11: '^'
+                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2718:11: '^'
                     {
                     match('^'); 
 
@@ -552,7 +660,7 @@ public class InternalBudgetingLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1385:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2718:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -601,10 +709,10 @@ public class InternalBudgetingLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1387:10: ( ( '0' .. '9' )+ )
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1387:12: ( '0' .. '9' )+
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2720:10: ( ( '0' .. '9' )+ )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2720:12: ( '0' .. '9' )+
             {
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1387:12: ( '0' .. '9' )+
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2720:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -618,7 +726,7 @@ public class InternalBudgetingLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1387:13: '0' .. '9'
+            	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2720:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -650,10 +758,10 @@ public class InternalBudgetingLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -671,10 +779,10 @@ public class InternalBudgetingLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -690,7 +798,7 @@ public class InternalBudgetingLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:21: '\\\\' .
+                    	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -698,7 +806,7 @@ public class InternalBudgetingLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -723,10 +831,10 @@ public class InternalBudgetingLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -742,7 +850,7 @@ public class InternalBudgetingLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:54: '\\\\' .
+                    	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -750,7 +858,7 @@ public class InternalBudgetingLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1389:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2722:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -793,12 +901,12 @@ public class InternalBudgetingLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1391:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1391:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2724:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2724:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1391:24: ( options {greedy=false; } : . )*
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2724:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -823,7 +931,7 @@ public class InternalBudgetingLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1391:52: .
+            	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2724:52: .
             	    {
             	    matchAny(); 
 
@@ -853,12 +961,12 @@ public class InternalBudgetingLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1393:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1393:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2726:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2726:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1393:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2726:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -871,7 +979,7 @@ public class InternalBudgetingLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1393:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2726:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -891,7 +999,7 @@ public class InternalBudgetingLexer extends Lexer {
                 }
             } while (true);
 
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1393:40: ( ( '\\r' )? '\\n' )?
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2726:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -900,9 +1008,9 @@ public class InternalBudgetingLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1393:41: ( '\\r' )? '\\n'
+                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2726:41: ( '\\r' )? '\\n'
                     {
-                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1393:41: ( '\\r' )?
+                    // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2726:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -911,7 +1019,7 @@ public class InternalBudgetingLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1393:41: '\\r'
+                            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2726:41: '\\r'
                             {
                             match('\r'); 
 
@@ -943,10 +1051,10 @@ public class InternalBudgetingLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1395:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1395:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2728:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2728:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1395:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2728:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1000,8 +1108,8 @@ public class InternalBudgetingLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1397:16: ( . )
-            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1397:18: .
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2730:16: ( . )
+            // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:2730:18: .
             {
             matchAny(); 
 
@@ -1016,8 +1124,8 @@ public class InternalBudgetingLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | RULE_DOLLAR | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=29;
+        // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | RULE_DECIMAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=34;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -1168,56 +1276,91 @@ public class InternalBudgetingLexer extends Lexer {
                 }
                 break;
             case 22 :
-                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:136: RULE_DOLLAR
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:136: T__33
                 {
-                mRULE_DOLLAR(); 
+                mT__33(); 
 
                 }
                 break;
             case 23 :
-                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:148: RULE_ID
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:142: T__34
+                {
+                mT__34(); 
+
+                }
+                break;
+            case 24 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:148: T__35
+                {
+                mT__35(); 
+
+                }
+                break;
+            case 25 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:154: T__36
+                {
+                mT__36(); 
+
+                }
+                break;
+            case 26 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:160: T__37
+                {
+                mT__37(); 
+
+                }
+                break;
+            case 27 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:166: RULE_DECIMAL
+                {
+                mRULE_DECIMAL(); 
+
+                }
+                break;
+            case 28 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:179: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 24 :
-                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:156: RULE_INT
+            case 29 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:187: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 25 :
-                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:165: RULE_STRING
+            case 30 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:196: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 26 :
-                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:177: RULE_ML_COMMENT
+            case 31 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:208: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 27 :
-                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:193: RULE_SL_COMMENT
+            case 32 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:224: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 28 :
-                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:209: RULE_WS
+            case 33 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:240: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 29 :
-                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:217: RULE_ANY_OTHER
+            case 34 :
+                // ../budgeting.ui/src-gen/budgeting/ui/contentassist/antlr/internal/InternalBudgeting.g:1:248: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1231,80 +1374,76 @@ public class InternalBudgetingLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\12\32\2\uffff\2\32\1\uffff\1\32\1\55\1\30\1\uffff\3\30\2\uffff\1\32\1\uffff\14\32\2\uffff\2\32\1\uffff\1\32\1\uffff\1\55\5\uffff\6\32\1\114\15\32\1\132\1\133\2\32\1\uffff\10\32\1\146\4\32\2\uffff\1\32\1\154\1\155\7\32\1\uffff\5\32\2\uffff\1\172\1\173\5\32\1\u0081\1\u0082\1\u0083\1\u0084\1\32\2\uffff\1\32\1\u0087\2\32\1\u008a\4\uffff\1\u008b\1\32\1\uffff\1\u008d\1\u008e\2\uffff\1\u008f\3\uffff";
+        "\1\uffff\12\34\2\uffff\2\34\2\uffff\2\34\1\63\1\32\1\uffff\3\32\2\uffff\1\34\1\uffff\12\34\1\107\3\34\2\uffff\2\34\2\uffff\2\34\1\uffff\1\63\5\uffff\7\34\1\127\5\34\1\uffff\12\34\1\147\1\150\1\34\1\152\1\34\1\uffff\10\34\1\164\1\34\1\166\1\167\3\34\2\uffff\1\34\1\uffff\1\174\1\175\7\34\1\uffff\1\34\2\uffff\4\34\2\uffff\1\u008a\1\u008b\5\34\1\u0091\1\u0092\1\u0093\1\u0094\1\34\2\uffff\1\34\1\u0097\2\34\1\u009a\4\uffff\1\u009b\1\34\1\uffff\1\u009d\1\u009e\2\uffff\1\u009f\3\uffff";
     static final String DFA12_eofS =
-        "\u0090\uffff";
+        "\u00a0\uffff";
     static final String DFA12_minS =
-        "\1\0\1\170\1\141\1\145\1\141\1\143\1\145\1\143\1\157\1\145\1\151\2\uffff\1\163\1\165\1\uffff\1\156\1\56\1\101\1\uffff\2\0\1\52\2\uffff\1\160\1\uffff\1\156\1\154\1\142\2\162\1\147\1\164\1\160\1\164\1\166\1\143\1\142\2\uffff\1\145\1\144\1\uffff\1\143\1\uffff\1\56\5\uffff\1\145\1\165\1\145\1\171\1\162\1\143\1\60\1\151\2\165\1\164\1\157\2\145\1\162\1\163\1\147\1\157\1\156\1\141\2\60\1\165\1\150\1\uffff\1\154\1\163\1\141\1\145\1\142\2\155\1\141\1\60\1\145\1\155\1\163\1\162\2\uffff\1\141\2\60\1\164\1\154\1\155\1\145\2\142\1\162\1\uffff\1\164\2\145\1\171\1\162\2\uffff\2\60\1\142\1\162\2\145\1\171\4\60\1\171\2\uffff\1\145\1\60\2\162\1\60\4\uffff\1\60\1\162\1\uffff\2\60\2\uffff\1\60\3\uffff";
+        "\1\0\1\170\1\141\1\145\1\141\1\143\1\145\1\143\1\157\1\145\1\151\2\uffff\1\163\1\165\2\uffff\1\141\1\156\1\56\1\101\1\uffff\2\0\1\52\2\uffff\1\160\1\uffff\1\156\1\154\1\142\1\157\2\162\1\147\1\164\1\160\1\164\1\60\1\166\1\143\1\142\2\uffff\1\145\1\144\2\uffff\1\162\1\143\1\uffff\1\56\5\uffff\1\145\1\165\1\145\1\171\1\162\1\155\1\143\1\60\1\151\2\165\1\164\1\157\1\uffff\2\145\1\162\1\163\1\147\1\150\1\144\1\157\1\156\1\141\2\60\1\165\1\60\1\150\1\uffff\1\154\1\163\1\141\1\145\1\142\2\155\1\141\1\60\1\145\2\60\1\155\1\163\1\162\2\uffff\1\141\1\uffff\2\60\1\164\1\154\1\155\1\145\2\142\1\162\1\uffff\1\164\2\uffff\2\145\1\171\1\162\2\uffff\2\60\1\142\1\162\2\145\1\171\4\60\1\171\2\uffff\1\145\1\60\2\162\1\60\4\uffff\1\60\1\162\1\uffff\2\60\2\uffff\1\60\3\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\170\1\165\1\145\1\141\1\165\1\145\1\143\1\157\1\145\1\151\2\uffff\1\163\1\165\1\uffff\1\156\1\71\1\172\1\uffff\2\uffff\1\57\2\uffff\1\160\1\uffff\2\156\1\142\1\171\1\162\1\147\1\164\1\160\1\164\1\166\1\143\1\142\2\uffff\1\145\1\144\1\uffff\1\143\1\uffff\1\71\5\uffff\1\145\1\165\1\145\1\171\1\162\1\143\1\172\1\151\2\165\1\164\1\157\2\145\1\162\1\163\1\147\1\157\1\156\1\141\2\172\1\165\1\150\1\uffff\1\154\1\163\1\141\1\145\1\142\2\155\1\141\1\172\1\145\1\155\1\163\1\162\2\uffff\1\141\2\172\1\164\1\154\1\155\1\145\2\142\1\162\1\uffff\1\164\2\145\1\171\1\162\2\uffff\2\172\1\142\1\162\2\145\1\171\4\172\1\171\2\uffff\1\145\1\172\2\162\1\172\4\uffff\1\172\1\162\1\uffff\2\172\2\uffff\1\172\3\uffff";
+        "\1\uffff\1\170\1\165\1\162\1\141\1\165\1\145\1\156\1\157\1\145\1\151\2\uffff\1\163\1\165\2\uffff\1\141\1\156\1\71\1\172\1\uffff\2\uffff\1\57\2\uffff\1\160\1\uffff\2\156\1\142\1\157\1\171\1\162\1\147\1\164\1\160\1\164\1\172\1\166\1\143\1\142\2\uffff\1\145\1\144\2\uffff\1\163\1\143\1\uffff\1\71\5\uffff\1\145\1\165\1\145\1\171\1\162\1\155\1\143\1\172\1\151\2\165\1\164\1\157\1\uffff\2\145\1\162\1\163\1\147\1\150\1\144\1\157\1\156\1\141\2\172\1\165\1\172\1\150\1\uffff\1\154\1\163\1\141\1\145\1\142\2\155\1\141\1\172\1\145\2\172\1\155\1\163\1\162\2\uffff\1\141\1\uffff\2\172\1\164\1\154\1\155\1\145\2\142\1\162\1\uffff\1\164\2\uffff\2\145\1\171\1\162\2\uffff\2\172\1\142\1\162\2\145\1\171\4\172\1\171\2\uffff\1\145\1\172\2\162\1\172\4\uffff\1\172\1\162\1\uffff\2\172\2\uffff\1\172\3\uffff";
     static final String DFA12_acceptS =
-        "\13\uffff\1\17\1\20\2\uffff\1\24\3\uffff\1\27\3\uffff\1\34\1\35\1\uffff\1\27\14\uffff\1\17\1\20\2\uffff\1\24\1\uffff\1\30\1\uffff\1\26\1\31\1\32\1\33\1\34\30\uffff\1\6\15\uffff\1\7\1\10\12\uffff\1\21\5\uffff\1\4\1\5\14\uffff\1\11\1\23\5\uffff\1\22\1\25\1\1\1\2\2\uffff\1\13\2\uffff\1\16\1\3\1\uffff\1\14\1\15\1\12";
+        "\13\uffff\1\17\1\20\2\uffff\1\24\1\25\4\uffff\1\34\3\uffff\1\41\1\42\1\uffff\1\34\16\uffff\1\17\1\20\2\uffff\1\24\1\25\2\uffff\1\35\1\uffff\1\33\1\36\1\37\1\40\1\41\15\uffff\1\27\17\uffff\1\6\17\uffff\1\7\1\10\1\uffff\1\31\11\uffff\1\21\1\uffff\1\26\1\30\4\uffff\1\4\1\5\14\uffff\1\11\1\23\5\uffff\1\22\1\32\1\1\1\2\2\uffff\1\13\2\uffff\1\16\1\3\1\uffff\1\14\1\15\1\12";
     static final String DFA12_specialS =
-        "\1\1\23\uffff\1\0\1\2\172\uffff}>";
+        "\1\2\25\uffff\1\1\1\0\u0088\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\30\2\27\2\30\1\27\22\30\1\27\1\30\1\24\4\30\1\25\7\30\1\26\12\21\1\17\6\30\32\23\3\30\1\22\1\23\1\30\1\5\1\16\1\23\1\11\1\1\1\3\2\23\1\20\1\2\1\23\1\12\1\4\1\10\1\7\3\23\1\6\1\23\1\15\5\23\1\13\1\30\1\14\uff82\30",
-            "\1\31",
-            "\1\33\23\uffff\1\34",
-            "\1\35",
-            "\1\36",
-            "\1\41\14\uffff\1\37\4\uffff\1\40",
-            "\1\42",
-            "\1\43",
-            "\1\44",
+            "\11\32\2\31\2\32\1\31\22\32\1\31\1\32\1\26\4\32\1\27\2\32\1\20\4\32\1\30\12\23\1\17\6\32\32\25\3\32\1\24\1\25\1\32\1\5\1\16\1\21\1\11\1\1\1\3\2\25\1\22\1\2\1\25\1\12\1\4\1\10\1\7\3\25\1\6\1\25\1\15\5\25\1\13\1\32\1\14\uff82\32",
+            "\1\33",
+            "\1\35\23\uffff\1\36",
+            "\1\37\14\uffff\1\40",
+            "\1\41",
+            "\1\44\14\uffff\1\42\4\uffff\1\43",
             "\1\45",
-            "\1\46",
-            "",
-            "",
+            "\1\46\12\uffff\1\47",
+            "\1\50",
             "\1\51",
             "\1\52",
             "",
-            "\1\54",
-            "\1\57\1\uffff\12\56",
-            "\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
-            "\0\60",
-            "\0\60",
-            "\1\61\4\uffff\1\62",
+            "\1\55",
+            "\1\56",
             "",
             "",
-            "\1\64",
+            "\1\61",
+            "\1\62",
+            "\1\65\1\uffff\12\64",
+            "\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
-            "\1\65",
-            "\1\67\1\uffff\1\66",
-            "\1\70",
-            "\1\71\6\uffff\1\72",
+            "\0\66",
+            "\0\66",
+            "\1\67\4\uffff\1\70",
+            "",
+            "",
+            "\1\72",
+            "",
             "\1\73",
-            "\1\74",
-            "\1\75",
+            "\1\75\1\uffff\1\74",
             "\1\76",
             "\1\77",
-            "\1\100",
-            "\1\101",
+            "\1\100\6\uffff\1\101",
             "\1\102",
-            "",
-            "",
             "\1\103",
             "\1\104",
-            "",
             "\1\105",
-            "",
-            "\1\57\1\uffff\12\56",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\106",
-            "\1\107",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\110",
             "\1\111",
             "\1\112",
+            "",
+            "",
             "\1\113",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\115",
-            "\1\116",
+            "\1\114",
+            "",
+            "",
+            "\1\116\1\115",
             "\1\117",
+            "",
+            "\1\65\1\uffff\12\64",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\120",
             "\1\121",
             "\1\122",
@@ -1312,14 +1451,14 @@ public class InternalBudgetingLexer extends Lexer {
             "\1\124",
             "\1\125",
             "\1\126",
-            "\1\127",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\130",
             "\1\131",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\132",
+            "\1\133",
             "\1\134",
-            "\1\135",
             "",
+            "\1\135",
             "\1\136",
             "\1\137",
             "\1\140",
@@ -1328,62 +1467,82 @@ public class InternalBudgetingLexer extends Lexer {
             "\1\143",
             "\1\144",
             "\1\145",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\147",
-            "\1\150",
+            "\1\146",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\151",
-            "\1\152",
-            "",
-            "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\153",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "",
+            "\1\154",
+            "\1\155",
             "\1\156",
             "\1\157",
             "\1\160",
             "\1\161",
             "\1\162",
             "\1\163",
-            "\1\164",
-            "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\165",
-            "\1\166",
-            "\1\167",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\170",
             "\1\171",
+            "\1\172",
             "",
             "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\174",
-            "\1\175",
+            "\1\173",
+            "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\176",
             "\1\177",
             "\1\u0080",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\u0081",
+            "\1\u0082",
+            "\1\u0083",
+            "\1\u0084",
+            "",
             "\1\u0085",
             "",
             "",
             "\1\u0086",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\u0087",
             "\1\u0088",
             "\1\u0089",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
             "",
-            "",
-            "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\u008c",
+            "\1\u008d",
+            "\1\u008e",
+            "\1\u008f",
+            "\1\u0090",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\u0095",
             "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "",
+            "\1\u0096",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\u0098",
+            "\1\u0099",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
             "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "",
+            "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\u009c",
+            "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "",
+            "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
             "",
             ""
@@ -1419,23 +1578,33 @@ public class InternalBudgetingLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | RULE_DOLLAR | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | RULE_DECIMAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_20 = input.LA(1);
+                        int LA12_23 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_20>='\u0000' && LA12_20<='\uFFFF')) ) {s = 48;}
+                        if ( ((LA12_23>='\u0000' && LA12_23<='\uFFFF')) ) {s = 54;}
 
-                        else s = 24;
+                        else s = 26;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
+                        int LA12_22 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_22>='\u0000' && LA12_22<='\uFFFF')) ) {s = 54;}
+
+                        else s = 26;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -1469,33 +1638,27 @@ public class InternalBudgetingLexer extends Lexer {
 
                         else if ( (LA12_0==':') ) {s = 15;}
 
-                        else if ( (LA12_0=='i') ) {s = 16;}
+                        else if ( (LA12_0=='*') ) {s = 16;}
 
-                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 17;}
+                        else if ( (LA12_0=='c') ) {s = 17;}
 
-                        else if ( (LA12_0=='^') ) {s = 18;}
+                        else if ( (LA12_0=='i') ) {s = 18;}
 
-                        else if ( ((LA12_0>='A' && LA12_0<='Z')||LA12_0=='_'||LA12_0=='c'||(LA12_0>='g' && LA12_0<='h')||LA12_0=='k'||(LA12_0>='p' && LA12_0<='r')||LA12_0=='t'||(LA12_0>='v' && LA12_0<='z')) ) {s = 19;}
+                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 19;}
 
-                        else if ( (LA12_0=='\"') ) {s = 20;}
+                        else if ( (LA12_0=='^') ) {s = 20;}
 
-                        else if ( (LA12_0=='\'') ) {s = 21;}
+                        else if ( ((LA12_0>='A' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='g' && LA12_0<='h')||LA12_0=='k'||(LA12_0>='p' && LA12_0<='r')||LA12_0=='t'||(LA12_0>='v' && LA12_0<='z')) ) {s = 21;}
 
-                        else if ( (LA12_0=='/') ) {s = 22;}
+                        else if ( (LA12_0=='\"') ) {s = 22;}
 
-                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 23;}
+                        else if ( (LA12_0=='\'') ) {s = 23;}
 
-                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='.')||(LA12_0>=';' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||LA12_0=='|'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 24;}
+                        else if ( (LA12_0=='/') ) {s = 24;}
 
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA12_21 = input.LA(1);
+                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 25;}
 
-                        s = -1;
-                        if ( ((LA12_21>='\u0000' && LA12_21<='\uFFFF')) ) {s = 48;}
-
-                        else s = 24;
+                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||(LA12_0>='(' && LA12_0<=')')||(LA12_0>='+' && LA12_0<='.')||(LA12_0>=';' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||LA12_0=='|'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 26;}
 
                         if ( s>=0 ) return s;
                         break;

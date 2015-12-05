@@ -57,7 +57,7 @@ public interface Month extends EObject
 
   /**
    * Returns the value of the '<em><b>Budget Entries</b></em>' containment reference list.
-   * The list contents are of type {@link budgeting.budgeting.Entry}.
+   * The list contents are of type {@link budgeting.budgeting.BudgetEntry}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Budget Entries</em>' containment reference list isn't clear,
@@ -69,11 +69,11 @@ public interface Month extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<Entry> getBudgetEntries();
+  EList<BudgetEntry> getBudgetEntries();
 
   /**
    * Returns the value of the '<em><b>Actual Entries</b></em>' containment reference list.
-   * The list contents are of type {@link budgeting.budgeting.Entry}.
+   * The list contents are of type {@link budgeting.budgeting.ActualEntry}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Actual Entries</em>' containment reference list isn't clear,
@@ -85,6 +85,6 @@ public interface Month extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<Entry> getActualEntries();
+  EList<ActualEntry> getActualEntries();
 
 } // Month

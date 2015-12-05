@@ -10,14 +10,19 @@ class BudgetingValueConverterService extends DefaultTerminalConverters {
 	//This was done because char literals do not exist in Xtend
 	val static char DOT = '.'
 	
-	@ValueConverter(rule = "DOLLAR")
-	def IValueConverter<Long> DOLLAR() {
+	@ValueConverter(rule = "Dollar")
+	def IValueConverter<Long> Dollar() {
 		new IValueConverter<Long> {
 			override toValue(String string, INode node) throws ValueConverterException {
 				if (string == null) {
 					0L
 				} else {
-					Long.parseUnsignedLong(new StringBuilder(string).deleteCharAt(string.indexOf(DOT)).toString)
+					val dotPosition = string.indexOf(DOT)
+					if (string.length - dotPosition != 3) {
+						throw new ValueConverterException("Dollar amount must have 2 digits after the decimal point.", node, null)
+					} else {
+						Long.parseUnsignedLong(new StringBuilder(string).deleteCharAt(dotPosition).toString)
+					}
 				}
 			}
 			

@@ -243,6 +243,99 @@ public interface BudgetingPackage extends EPackage
   int MONTH_FEATURE_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.BudgetEntryImpl <em>Budget Entry</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.BudgetEntryImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getBudgetEntry()
+   * @generated
+   */
+  int BUDGET_ENTRY = 5;
+
+  /**
+   * The feature id for the '<em><b>Category</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUDGET_ENTRY__CATEGORY = 0;
+
+  /**
+   * The number of structural features of the '<em>Budget Entry</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUDGET_ENTRY_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.ActualEntryImpl <em>Actual Entry</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.ActualEntryImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getActualEntry()
+   * @generated
+   */
+  int ACTUAL_ENTRY = 6;
+
+  /**
+   * The feature id for the '<em><b>Category</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTUAL_ENTRY__CATEGORY = 0;
+
+  /**
+   * The number of structural features of the '<em>Actual Entry</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTUAL_ENTRY_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.TransactionImpl <em>Transaction</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.TransactionImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getTransaction()
+   * @generated
+   */
+  int TRANSACTION = 7;
+
+  /**
+   * The feature id for the '<em><b>Amount</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRANSACTION__AMOUNT = 0;
+
+  /**
+   * The feature id for the '<em><b>Day</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRANSACTION__DAY = 1;
+
+  /**
+   * The number of structural features of the '<em>Transaction</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRANSACTION_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link budgeting.budgeting.impl.EntryImpl <em>Entry</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -250,7 +343,7 @@ public interface BudgetingPackage extends EPackage
    * @see budgeting.budgeting.impl.BudgetingPackageImpl#getEntry()
    * @generated
    */
-  int ENTRY = 5;
+  int ENTRY = 8;
 
   /**
    * The feature id for the '<em><b>Category</b></em>' reference.
@@ -280,6 +373,246 @@ public interface BudgetingPackage extends EPackage
   int ENTRY_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.BudgetAmountEntryImpl <em>Budget Amount Entry</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.BudgetAmountEntryImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getBudgetAmountEntry()
+   * @generated
+   */
+  int BUDGET_AMOUNT_ENTRY = 9;
+
+  /**
+   * The feature id for the '<em><b>Category</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUDGET_AMOUNT_ENTRY__CATEGORY = BUDGET_ENTRY__CATEGORY;
+
+  /**
+   * The feature id for the '<em><b>Amount</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUDGET_AMOUNT_ENTRY__AMOUNT = BUDGET_ENTRY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Budget Amount Entry</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUDGET_AMOUNT_ENTRY_FEATURE_COUNT = BUDGET_ENTRY_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.BudgetFactorEntryImpl <em>Budget Factor Entry</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.BudgetFactorEntryImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getBudgetFactorEntry()
+   * @generated
+   */
+  int BUDGET_FACTOR_ENTRY = 10;
+
+  /**
+   * The feature id for the '<em><b>Category</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUDGET_FACTOR_ENTRY__CATEGORY = BUDGET_ENTRY__CATEGORY;
+
+  /**
+   * The feature id for the '<em><b>Base Entry</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUDGET_FACTOR_ENTRY__BASE_ENTRY = BUDGET_ENTRY_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Factor</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUDGET_FACTOR_ENTRY__FACTOR = BUDGET_ENTRY_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Budget Factor Entry</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUDGET_FACTOR_ENTRY_FEATURE_COUNT = BUDGET_ENTRY_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.ActualAmountEntryImpl <em>Actual Amount Entry</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.ActualAmountEntryImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getActualAmountEntry()
+   * @generated
+   */
+  int ACTUAL_AMOUNT_ENTRY = 11;
+
+  /**
+   * The feature id for the '<em><b>Category</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTUAL_AMOUNT_ENTRY__CATEGORY = ACTUAL_ENTRY__CATEGORY;
+
+  /**
+   * The feature id for the '<em><b>Amount</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTUAL_AMOUNT_ENTRY__AMOUNT = ACTUAL_ENTRY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Actual Amount Entry</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTUAL_AMOUNT_ENTRY_FEATURE_COUNT = ACTUAL_ENTRY_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.ActualTransactionEntryImpl <em>Actual Transaction Entry</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.ActualTransactionEntryImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getActualTransactionEntry()
+   * @generated
+   */
+  int ACTUAL_TRANSACTION_ENTRY = 12;
+
+  /**
+   * The feature id for the '<em><b>Category</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTUAL_TRANSACTION_ENTRY__CATEGORY = ACTUAL_ENTRY__CATEGORY;
+
+  /**
+   * The feature id for the '<em><b>Transactions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTUAL_TRANSACTION_ENTRY__TRANSACTIONS = ACTUAL_ENTRY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Actual Transaction Entry</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTUAL_TRANSACTION_ENTRY_FEATURE_COUNT = ACTUAL_ENTRY_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.CashTransactionImpl <em>Cash Transaction</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.CashTransactionImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getCashTransaction()
+   * @generated
+   */
+  int CASH_TRANSACTION = 13;
+
+  /**
+   * The feature id for the '<em><b>Amount</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CASH_TRANSACTION__AMOUNT = TRANSACTION__AMOUNT;
+
+  /**
+   * The feature id for the '<em><b>Day</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CASH_TRANSACTION__DAY = TRANSACTION__DAY;
+
+  /**
+   * The number of structural features of the '<em>Cash Transaction</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CASH_TRANSACTION_FEATURE_COUNT = TRANSACTION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link budgeting.budgeting.impl.CardTransactionImpl <em>Card Transaction</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see budgeting.budgeting.impl.CardTransactionImpl
+   * @see budgeting.budgeting.impl.BudgetingPackageImpl#getCardTransaction()
+   * @generated
+   */
+  int CARD_TRANSACTION = 14;
+
+  /**
+   * The feature id for the '<em><b>Amount</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CARD_TRANSACTION__AMOUNT = TRANSACTION__AMOUNT;
+
+  /**
+   * The feature id for the '<em><b>Day</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CARD_TRANSACTION__DAY = TRANSACTION__DAY;
+
+  /**
+   * The feature id for the '<em><b>From</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CARD_TRANSACTION__FROM = TRANSACTION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Card Transaction</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CARD_TRANSACTION_FEATURE_COUNT = TRANSACTION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link budgeting.budgeting.MonthEnum <em>Month Enum</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -287,7 +620,7 @@ public interface BudgetingPackage extends EPackage
    * @see budgeting.budgeting.impl.BudgetingPackageImpl#getMonthEnum()
    * @generated
    */
-  int MONTH_ENUM = 6;
+  int MONTH_ENUM = 15;
 
 
   /**
@@ -451,6 +784,80 @@ public interface BudgetingPackage extends EPackage
   EReference getMonth_ActualEntries();
 
   /**
+   * Returns the meta object for class '{@link budgeting.budgeting.BudgetEntry <em>Budget Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Budget Entry</em>'.
+   * @see budgeting.budgeting.BudgetEntry
+   * @generated
+   */
+  EClass getBudgetEntry();
+
+  /**
+   * Returns the meta object for the reference '{@link budgeting.budgeting.BudgetEntry#getCategory <em>Category</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Category</em>'.
+   * @see budgeting.budgeting.BudgetEntry#getCategory()
+   * @see #getBudgetEntry()
+   * @generated
+   */
+  EReference getBudgetEntry_Category();
+
+  /**
+   * Returns the meta object for class '{@link budgeting.budgeting.ActualEntry <em>Actual Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Actual Entry</em>'.
+   * @see budgeting.budgeting.ActualEntry
+   * @generated
+   */
+  EClass getActualEntry();
+
+  /**
+   * Returns the meta object for the reference '{@link budgeting.budgeting.ActualEntry#getCategory <em>Category</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Category</em>'.
+   * @see budgeting.budgeting.ActualEntry#getCategory()
+   * @see #getActualEntry()
+   * @generated
+   */
+  EReference getActualEntry_Category();
+
+  /**
+   * Returns the meta object for class '{@link budgeting.budgeting.Transaction <em>Transaction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Transaction</em>'.
+   * @see budgeting.budgeting.Transaction
+   * @generated
+   */
+  EClass getTransaction();
+
+  /**
+   * Returns the meta object for the attribute '{@link budgeting.budgeting.Transaction#getAmount <em>Amount</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Amount</em>'.
+   * @see budgeting.budgeting.Transaction#getAmount()
+   * @see #getTransaction()
+   * @generated
+   */
+  EAttribute getTransaction_Amount();
+
+  /**
+   * Returns the meta object for the attribute '{@link budgeting.budgeting.Transaction#getDay <em>Day</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Day</em>'.
+   * @see budgeting.budgeting.Transaction#getDay()
+   * @see #getTransaction()
+   * @generated
+   */
+  EAttribute getTransaction_Day();
+
+  /**
    * Returns the meta object for class '{@link budgeting.budgeting.Entry <em>Entry</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -481,6 +888,132 @@ public interface BudgetingPackage extends EPackage
    * @generated
    */
   EAttribute getEntry_Amount();
+
+  /**
+   * Returns the meta object for class '{@link budgeting.budgeting.BudgetAmountEntry <em>Budget Amount Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Budget Amount Entry</em>'.
+   * @see budgeting.budgeting.BudgetAmountEntry
+   * @generated
+   */
+  EClass getBudgetAmountEntry();
+
+  /**
+   * Returns the meta object for the attribute '{@link budgeting.budgeting.BudgetAmountEntry#getAmount <em>Amount</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Amount</em>'.
+   * @see budgeting.budgeting.BudgetAmountEntry#getAmount()
+   * @see #getBudgetAmountEntry()
+   * @generated
+   */
+  EAttribute getBudgetAmountEntry_Amount();
+
+  /**
+   * Returns the meta object for class '{@link budgeting.budgeting.BudgetFactorEntry <em>Budget Factor Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Budget Factor Entry</em>'.
+   * @see budgeting.budgeting.BudgetFactorEntry
+   * @generated
+   */
+  EClass getBudgetFactorEntry();
+
+  /**
+   * Returns the meta object for the reference '{@link budgeting.budgeting.BudgetFactorEntry#getBaseEntry <em>Base Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Base Entry</em>'.
+   * @see budgeting.budgeting.BudgetFactorEntry#getBaseEntry()
+   * @see #getBudgetFactorEntry()
+   * @generated
+   */
+  EReference getBudgetFactorEntry_BaseEntry();
+
+  /**
+   * Returns the meta object for the attribute '{@link budgeting.budgeting.BudgetFactorEntry#getFactor <em>Factor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Factor</em>'.
+   * @see budgeting.budgeting.BudgetFactorEntry#getFactor()
+   * @see #getBudgetFactorEntry()
+   * @generated
+   */
+  EAttribute getBudgetFactorEntry_Factor();
+
+  /**
+   * Returns the meta object for class '{@link budgeting.budgeting.ActualAmountEntry <em>Actual Amount Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Actual Amount Entry</em>'.
+   * @see budgeting.budgeting.ActualAmountEntry
+   * @generated
+   */
+  EClass getActualAmountEntry();
+
+  /**
+   * Returns the meta object for the attribute '{@link budgeting.budgeting.ActualAmountEntry#getAmount <em>Amount</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Amount</em>'.
+   * @see budgeting.budgeting.ActualAmountEntry#getAmount()
+   * @see #getActualAmountEntry()
+   * @generated
+   */
+  EAttribute getActualAmountEntry_Amount();
+
+  /**
+   * Returns the meta object for class '{@link budgeting.budgeting.ActualTransactionEntry <em>Actual Transaction Entry</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Actual Transaction Entry</em>'.
+   * @see budgeting.budgeting.ActualTransactionEntry
+   * @generated
+   */
+  EClass getActualTransactionEntry();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link budgeting.budgeting.ActualTransactionEntry#getTransactions <em>Transactions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Transactions</em>'.
+   * @see budgeting.budgeting.ActualTransactionEntry#getTransactions()
+   * @see #getActualTransactionEntry()
+   * @generated
+   */
+  EReference getActualTransactionEntry_Transactions();
+
+  /**
+   * Returns the meta object for class '{@link budgeting.budgeting.CashTransaction <em>Cash Transaction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Cash Transaction</em>'.
+   * @see budgeting.budgeting.CashTransaction
+   * @generated
+   */
+  EClass getCashTransaction();
+
+  /**
+   * Returns the meta object for class '{@link budgeting.budgeting.CardTransaction <em>Card Transaction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Card Transaction</em>'.
+   * @see budgeting.budgeting.CardTransaction
+   * @generated
+   */
+  EClass getCardTransaction();
+
+  /**
+   * Returns the meta object for the attribute '{@link budgeting.budgeting.CardTransaction#getFrom <em>From</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>From</em>'.
+   * @see budgeting.budgeting.CardTransaction#getFrom()
+   * @see #getCardTransaction()
+   * @generated
+   */
+  EAttribute getCardTransaction_From();
 
   /**
    * Returns the meta object for enum '{@link budgeting.budgeting.MonthEnum <em>Month Enum</em>}'.
@@ -646,6 +1179,68 @@ public interface BudgetingPackage extends EPackage
     EReference MONTH__ACTUAL_ENTRIES = eINSTANCE.getMonth_ActualEntries();
 
     /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.BudgetEntryImpl <em>Budget Entry</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.BudgetEntryImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getBudgetEntry()
+     * @generated
+     */
+    EClass BUDGET_ENTRY = eINSTANCE.getBudgetEntry();
+
+    /**
+     * The meta object literal for the '<em><b>Category</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BUDGET_ENTRY__CATEGORY = eINSTANCE.getBudgetEntry_Category();
+
+    /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.ActualEntryImpl <em>Actual Entry</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.ActualEntryImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getActualEntry()
+     * @generated
+     */
+    EClass ACTUAL_ENTRY = eINSTANCE.getActualEntry();
+
+    /**
+     * The meta object literal for the '<em><b>Category</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ACTUAL_ENTRY__CATEGORY = eINSTANCE.getActualEntry_Category();
+
+    /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.TransactionImpl <em>Transaction</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.TransactionImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getTransaction()
+     * @generated
+     */
+    EClass TRANSACTION = eINSTANCE.getTransaction();
+
+    /**
+     * The meta object literal for the '<em><b>Amount</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRANSACTION__AMOUNT = eINSTANCE.getTransaction_Amount();
+
+    /**
+     * The meta object literal for the '<em><b>Day</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRANSACTION__DAY = eINSTANCE.getTransaction_Day();
+
+    /**
      * The meta object literal for the '{@link budgeting.budgeting.impl.EntryImpl <em>Entry</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -670,6 +1265,114 @@ public interface BudgetingPackage extends EPackage
      * @generated
      */
     EAttribute ENTRY__AMOUNT = eINSTANCE.getEntry_Amount();
+
+    /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.BudgetAmountEntryImpl <em>Budget Amount Entry</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.BudgetAmountEntryImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getBudgetAmountEntry()
+     * @generated
+     */
+    EClass BUDGET_AMOUNT_ENTRY = eINSTANCE.getBudgetAmountEntry();
+
+    /**
+     * The meta object literal for the '<em><b>Amount</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BUDGET_AMOUNT_ENTRY__AMOUNT = eINSTANCE.getBudgetAmountEntry_Amount();
+
+    /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.BudgetFactorEntryImpl <em>Budget Factor Entry</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.BudgetFactorEntryImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getBudgetFactorEntry()
+     * @generated
+     */
+    EClass BUDGET_FACTOR_ENTRY = eINSTANCE.getBudgetFactorEntry();
+
+    /**
+     * The meta object literal for the '<em><b>Base Entry</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BUDGET_FACTOR_ENTRY__BASE_ENTRY = eINSTANCE.getBudgetFactorEntry_BaseEntry();
+
+    /**
+     * The meta object literal for the '<em><b>Factor</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BUDGET_FACTOR_ENTRY__FACTOR = eINSTANCE.getBudgetFactorEntry_Factor();
+
+    /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.ActualAmountEntryImpl <em>Actual Amount Entry</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.ActualAmountEntryImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getActualAmountEntry()
+     * @generated
+     */
+    EClass ACTUAL_AMOUNT_ENTRY = eINSTANCE.getActualAmountEntry();
+
+    /**
+     * The meta object literal for the '<em><b>Amount</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACTUAL_AMOUNT_ENTRY__AMOUNT = eINSTANCE.getActualAmountEntry_Amount();
+
+    /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.ActualTransactionEntryImpl <em>Actual Transaction Entry</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.ActualTransactionEntryImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getActualTransactionEntry()
+     * @generated
+     */
+    EClass ACTUAL_TRANSACTION_ENTRY = eINSTANCE.getActualTransactionEntry();
+
+    /**
+     * The meta object literal for the '<em><b>Transactions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ACTUAL_TRANSACTION_ENTRY__TRANSACTIONS = eINSTANCE.getActualTransactionEntry_Transactions();
+
+    /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.CashTransactionImpl <em>Cash Transaction</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.CashTransactionImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getCashTransaction()
+     * @generated
+     */
+    EClass CASH_TRANSACTION = eINSTANCE.getCashTransaction();
+
+    /**
+     * The meta object literal for the '{@link budgeting.budgeting.impl.CardTransactionImpl <em>Card Transaction</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see budgeting.budgeting.impl.CardTransactionImpl
+     * @see budgeting.budgeting.impl.BudgetingPackageImpl#getCardTransaction()
+     * @generated
+     */
+    EClass CARD_TRANSACTION = eINSTANCE.getCardTransaction();
+
+    /**
+     * The meta object literal for the '<em><b>From</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CARD_TRANSACTION__FROM = eINSTANCE.getCardTransaction_From();
 
     /**
      * The meta object literal for the '{@link budgeting.budgeting.MonthEnum <em>Month Enum</em>}' enum.

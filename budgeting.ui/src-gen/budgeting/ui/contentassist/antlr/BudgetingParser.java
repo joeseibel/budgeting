@@ -39,11 +39,22 @@ public class BudgetingParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getBudgetingFileAccess().getAlternatives(), "rule__BudgetingFile__Alternatives");
 					put(grammarAccess.getCategoryAccess().getAlternatives_0(), "rule__Category__Alternatives_0");
+					put(grammarAccess.getBudgetEntryAccess().getAlternatives(), "rule__BudgetEntry__Alternatives");
+					put(grammarAccess.getActualEntryAccess().getAlternatives(), "rule__ActualEntry__Alternatives");
+					put(grammarAccess.getTransactionAccess().getAlternatives(), "rule__Transaction__Alternatives");
+					put(grammarAccess.getDoubleAccess().getAlternatives(), "rule__Double__Alternatives");
 					put(grammarAccess.getMonthEnumAccess().getAlternatives(), "rule__MonthEnum__Alternatives");
 					put(grammarAccess.getLibraryAccess().getGroup(), "rule__Library__Group__0");
 					put(grammarAccess.getCategoryAccess().getGroup(), "rule__Category__Group__0");
 					put(grammarAccess.getYearAccess().getGroup(), "rule__Year__Group__0");
 					put(grammarAccess.getMonthAccess().getGroup(), "rule__Month__Group__0");
+					put(grammarAccess.getBudgetEntryAccess().getGroup_0(), "rule__BudgetEntry__Group_0__0");
+					put(grammarAccess.getBudgetEntryAccess().getGroup_1(), "rule__BudgetEntry__Group_1__0");
+					put(grammarAccess.getActualEntryAccess().getGroup_0(), "rule__ActualEntry__Group_0__0");
+					put(grammarAccess.getActualEntryAccess().getGroup_1(), "rule__ActualEntry__Group_1__0");
+					put(grammarAccess.getTransactionAccess().getGroup_0(), "rule__Transaction__Group_0__0");
+					put(grammarAccess.getTransactionAccess().getGroup_0_3(), "rule__Transaction__Group_0_3__0");
+					put(grammarAccess.getTransactionAccess().getGroup_1(), "rule__Transaction__Group_1__0");
 					put(grammarAccess.getEntryAccess().getGroup(), "rule__Entry__Group__0");
 					put(grammarAccess.getLibraryAccess().getNameAssignment_1(), "rule__Library__NameAssignment_1");
 					put(grammarAccess.getLibraryAccess().getCategoriesAssignment_3(), "rule__Library__CategoriesAssignment_3");
@@ -55,6 +66,20 @@ public class BudgetingParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMonthAccess().getNameAssignment_0(), "rule__Month__NameAssignment_0");
 					put(grammarAccess.getMonthAccess().getBudgetEntriesAssignment_3(), "rule__Month__BudgetEntriesAssignment_3");
 					put(grammarAccess.getMonthAccess().getActualEntriesAssignment_7(), "rule__Month__ActualEntriesAssignment_7");
+					put(grammarAccess.getBudgetEntryAccess().getCategoryAssignment_0_1(), "rule__BudgetEntry__CategoryAssignment_0_1");
+					put(grammarAccess.getBudgetEntryAccess().getAmountAssignment_0_3(), "rule__BudgetEntry__AmountAssignment_0_3");
+					put(grammarAccess.getBudgetEntryAccess().getCategoryAssignment_1_1(), "rule__BudgetEntry__CategoryAssignment_1_1");
+					put(grammarAccess.getBudgetEntryAccess().getBaseEntryAssignment_1_3(), "rule__BudgetEntry__BaseEntryAssignment_1_3");
+					put(grammarAccess.getBudgetEntryAccess().getFactorAssignment_1_5(), "rule__BudgetEntry__FactorAssignment_1_5");
+					put(grammarAccess.getActualEntryAccess().getCategoryAssignment_0_1(), "rule__ActualEntry__CategoryAssignment_0_1");
+					put(grammarAccess.getActualEntryAccess().getAmountAssignment_0_3(), "rule__ActualEntry__AmountAssignment_0_3");
+					put(grammarAccess.getActualEntryAccess().getCategoryAssignment_1_1(), "rule__ActualEntry__CategoryAssignment_1_1");
+					put(grammarAccess.getActualEntryAccess().getTransactionsAssignment_1_3(), "rule__ActualEntry__TransactionsAssignment_1_3");
+					put(grammarAccess.getTransactionAccess().getAmountAssignment_0_2(), "rule__Transaction__AmountAssignment_0_2");
+					put(grammarAccess.getTransactionAccess().getDayAssignment_0_3_1(), "rule__Transaction__DayAssignment_0_3_1");
+					put(grammarAccess.getTransactionAccess().getAmountAssignment_1_2(), "rule__Transaction__AmountAssignment_1_2");
+					put(grammarAccess.getTransactionAccess().getDayAssignment_1_4(), "rule__Transaction__DayAssignment_1_4");
+					put(grammarAccess.getTransactionAccess().getFromAssignment_1_6(), "rule__Transaction__FromAssignment_1_6");
 					put(grammarAccess.getEntryAccess().getCategoryAssignment_0(), "rule__Entry__CategoryAssignment_0");
 					put(grammarAccess.getEntryAccess().getAmountAssignment_2(), "rule__Entry__AmountAssignment_2");
 				}

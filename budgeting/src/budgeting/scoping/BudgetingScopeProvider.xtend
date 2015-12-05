@@ -3,10 +3,13 @@
  */
 package budgeting.scoping
 
+import budgeting.budgeting.Month
 import budgeting.budgeting.Year
 import org.eclipse.emf.ecore.EReference
+import org.eclipse.xtext.resource.EObjectDescription
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
+import org.eclipse.xtext.scoping.impl.SimpleScope
 
 import static extension org.eclipse.xtext.scoping.Scopes.scopeFor
 
@@ -18,7 +21,15 @@ import static extension org.eclipse.xtext.scoping.Scopes.scopeFor
  *
  */
 class BudgetingScopeProvider extends AbstractDeclarativeScopeProvider {
-	def IScope scope_Entry_category(Year context, EReference reference) {
+	def IScope scope_BudgetEntry_category(Year context, EReference reference) {
+		context.library.categories.scopeFor
+	}
+	
+	def IScope scope_BudgetFactorEntry_baseEntry(Month context, EReference reference) {
+		new SimpleScope(context.budgetEntries.map[EObjectDescription.create(category.name, it)])
+	}
+	
+	def IScope scope_ActualEntry_category(Year context, EReference reference) {
 		context.library.categories.scopeFor
 	}
 }

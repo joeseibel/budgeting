@@ -68,6 +68,33 @@ public interface BudgetingFactory extends EFactory
   Month createMonth();
 
   /**
+   * Returns a new object of class '<em>Budget Entry</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Budget Entry</em>'.
+   * @generated
+   */
+  BudgetEntry createBudgetEntry();
+
+  /**
+   * Returns a new object of class '<em>Actual Entry</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Actual Entry</em>'.
+   * @generated
+   */
+  ActualEntry createActualEntry();
+
+  /**
+   * Returns a new object of class '<em>Transaction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Transaction</em>'.
+   * @generated
+   */
+  Transaction createTransaction();
+
+  /**
    * Returns a new object of class '<em>Entry</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -75,6 +102,60 @@ public interface BudgetingFactory extends EFactory
    * @generated
    */
   Entry createEntry();
+
+  /**
+   * Returns a new object of class '<em>Budget Amount Entry</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Budget Amount Entry</em>'.
+   * @generated
+   */
+  BudgetAmountEntry createBudgetAmountEntry();
+
+  /**
+   * Returns a new object of class '<em>Budget Factor Entry</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Budget Factor Entry</em>'.
+   * @generated
+   */
+  BudgetFactorEntry createBudgetFactorEntry();
+
+  /**
+   * Returns a new object of class '<em>Actual Amount Entry</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Actual Amount Entry</em>'.
+   * @generated
+   */
+  ActualAmountEntry createActualAmountEntry();
+
+  /**
+   * Returns a new object of class '<em>Actual Transaction Entry</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Actual Transaction Entry</em>'.
+   * @generated
+   */
+  ActualTransactionEntry createActualTransactionEntry();
+
+  /**
+   * Returns a new object of class '<em>Cash Transaction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cash Transaction</em>'.
+   * @generated
+   */
+  CashTransaction createCashTransaction();
+
+  /**
+   * Returns a new object of class '<em>Card Transaction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Card Transaction</em>'.
+   * @generated
+   */
+  CardTransaction createCardTransaction();
 
   /**
    * Returns the package supported by this factory.
