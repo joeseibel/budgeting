@@ -73,7 +73,6 @@ public class BudgetingFactoryImpl extends EFactoryImpl implements BudgetingFacto
       case BudgetingPackage.BUDGET_ENTRY: return createBudgetEntry();
       case BudgetingPackage.ACTUAL_ENTRY: return createActualEntry();
       case BudgetingPackage.TRANSACTION: return createTransaction();
-      case BudgetingPackage.ENTRY: return createEntry();
       case BudgetingPackage.INCOME_CATEGORY: return createIncomeCategory();
       case BudgetingPackage.EXPENSE_CATEGORY: return createExpenseCategory();
       case BudgetingPackage.BUDGET_AMOUNT_ENTRY: return createBudgetAmountEntry();
@@ -207,17 +206,6 @@ public class BudgetingFactoryImpl extends EFactoryImpl implements BudgetingFacto
   {
     TransactionImpl transaction = new TransactionImpl();
     return transaction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Entry createEntry()
-  {
-    EntryImpl entry = new EntryImpl();
-    return entry;
   }
 
   /**

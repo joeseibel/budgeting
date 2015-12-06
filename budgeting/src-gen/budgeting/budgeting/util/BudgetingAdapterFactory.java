@@ -115,11 +115,6 @@ public class BudgetingAdapterFactory extends AdapterFactoryImpl
         return createTransactionAdapter();
       }
       @Override
-      public Adapter caseEntry(Entry object)
-      {
-        return createEntryAdapter();
-      }
-      @Override
       public Adapter caseIncomeCategory(IncomeCategory object)
       {
         return createIncomeCategoryAdapter();
@@ -297,21 +292,6 @@ public class BudgetingAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTransactionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link budgeting.budgeting.Entry <em>Entry</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see budgeting.budgeting.Entry
-   * @generated
-   */
-  public Adapter createEntryAdapter()
   {
     return null;
   }

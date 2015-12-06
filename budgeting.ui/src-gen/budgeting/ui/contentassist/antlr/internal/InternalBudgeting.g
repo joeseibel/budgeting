@@ -280,8 +280,6 @@ finally {
 
 
 
-
-
 // Entry rule entryRuleDollar
 entryRuleDollar 
 :
@@ -2667,7 +2665,6 @@ finally {
 
 
 
-
 rule__Library__NameAssignment_1
     @init {
 		int stackSize = keepStackSize();
@@ -3081,8 +3078,6 @@ rule__Transaction__FromAssignment_1_6
 finally {
 	restoreStackSize(stackSize);
 }
-
-
 
 
 RULE_DECIMAL : RULE_INT '.' RULE_INT;

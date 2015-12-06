@@ -853,8 +853,6 @@ ruleTransaction returns [EObject current=null]
 
 
 
-
-
 // Entry rule entryRuleDollar
 entryRuleDollar returns [String current=null] 
 	:

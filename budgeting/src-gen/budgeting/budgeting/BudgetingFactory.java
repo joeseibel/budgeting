@@ -95,15 +95,6 @@ public interface BudgetingFactory extends EFactory
   Transaction createTransaction();
 
   /**
-   * Returns a new object of class '<em>Entry</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Entry</em>'.
-   * @generated
-   */
-  Entry createEntry();
-
-  /**
    * Returns a new object of class '<em>Income Category</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

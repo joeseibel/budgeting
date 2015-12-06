@@ -10,7 +10,6 @@ import budgeting.budgeting.BudgetFactorEntry;
 import budgeting.budgeting.BudgetingPackage;
 import budgeting.budgeting.CardTransaction;
 import budgeting.budgeting.CashTransaction;
-import budgeting.budgeting.Entry;
 import budgeting.budgeting.ExpenseCategory;
 import budgeting.budgeting.IncomeCategory;
 import budgeting.budgeting.Library;
@@ -57,9 +56,6 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case BudgetingPackage.CASH_TRANSACTION:
 				sequence_Transaction(context, (CashTransaction) semanticObject); 
-				return; 
-			case BudgetingPackage.ENTRY:
-				sequence_Entry(context, (Entry) semanticObject); 
 				return; 
 			case BudgetingPackage.EXPENSE_CATEGORY:
 				sequence_Category(context, (ExpenseCategory) semanticObject); 
@@ -170,25 +166,6 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getCategoryAccess().getNameIDTerminalRuleCall_0_2_0(), semanticObject.getName());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (category=[Category|ID] amount=Dollar)
-	 */
-	protected void sequence_Entry(EObject context, Entry semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.ENTRY__CATEGORY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.ENTRY__CATEGORY));
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.ENTRY__AMOUNT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.ENTRY__AMOUNT));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getEntryAccess().getCategoryCategoryIDTerminalRuleCall_0_0_1(), semanticObject.getCategory());
-		feeder.accept(grammarAccess.getEntryAccess().getAmountDollarParserRuleCall_2_0(), semanticObject.getAmount());
 		feeder.finish();
 	}
 	

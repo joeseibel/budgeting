@@ -14,7 +14,6 @@ import budgeting.budgeting.BudgetingPackage;
 import budgeting.budgeting.CardTransaction;
 import budgeting.budgeting.CashTransaction;
 import budgeting.budgeting.Category;
-import budgeting.budgeting.Entry;
 import budgeting.budgeting.ExpenseCategory;
 import budgeting.budgeting.IncomeCategory;
 import budgeting.budgeting.Library;
@@ -94,13 +93,6 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
    * @generated
    */
   private EClass transactionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass entryEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -443,36 +435,6 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getEntry()
-  {
-    return entryEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEntry_Category()
-  {
-    return (EReference)entryEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getEntry_Amount()
-  {
-    return (EAttribute)entryEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getIncomeCategory()
   {
     return incomeCategoryEClass;
@@ -687,10 +649,6 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     createEAttribute(transactionEClass, TRANSACTION__AMOUNT);
     createEAttribute(transactionEClass, TRANSACTION__DAY);
 
-    entryEClass = createEClass(ENTRY);
-    createEReference(entryEClass, ENTRY__CATEGORY);
-    createEAttribute(entryEClass, ENTRY__AMOUNT);
-
     incomeCategoryEClass = createEClass(INCOME_CATEGORY);
 
     expenseCategoryEClass = createEClass(EXPENSE_CATEGORY);
@@ -787,10 +745,6 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     initEClass(transactionEClass, Transaction.class, "Transaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTransaction_Amount(), ecorePackage.getELong(), "amount", null, 0, 1, Transaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getTransaction_Day(), ecorePackage.getEInt(), "day", null, 0, 1, Transaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(entryEClass, Entry.class, "Entry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEntry_Category(), this.getCategory(), null, "category", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEntry_Amount(), ecorePackage.getELong(), "amount", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(incomeCategoryEClass, IncomeCategory.class, "IncomeCategory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

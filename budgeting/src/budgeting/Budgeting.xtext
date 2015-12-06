@@ -65,10 +65,6 @@ Transaction:
 	{CardTransaction} 'card' amount=Dollar 'on' day=INT 'from' from=STRING
 ;
 
-Entry:
-	category=[Category] ':' amount=Dollar
-;
-
 Dollar returns ecore::ELong:
 	DECIMAL
 ;

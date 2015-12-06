@@ -58,7 +58,6 @@ public class BudgetingParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTransactionAccess().getGroup_0(), "rule__Transaction__Group_0__0");
 					put(grammarAccess.getTransactionAccess().getGroup_0_3(), "rule__Transaction__Group_0_3__0");
 					put(grammarAccess.getTransactionAccess().getGroup_1(), "rule__Transaction__Group_1__0");
-					put(grammarAccess.getEntryAccess().getGroup(), "rule__Entry__Group__0");
 					put(grammarAccess.getLibraryAccess().getNameAssignment_1(), "rule__Library__NameAssignment_1");
 					put(grammarAccess.getLibraryAccess().getCategoriesAssignment_3(), "rule__Library__CategoriesAssignment_3");
 					put(grammarAccess.getCategoryAccess().getNameAssignment_0_2(), "rule__Category__NameAssignment_0_2");
@@ -85,8 +84,6 @@ public class BudgetingParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTransactionAccess().getAmountAssignment_1_2(), "rule__Transaction__AmountAssignment_1_2");
 					put(grammarAccess.getTransactionAccess().getDayAssignment_1_4(), "rule__Transaction__DayAssignment_1_4");
 					put(grammarAccess.getTransactionAccess().getFromAssignment_1_6(), "rule__Transaction__FromAssignment_1_6");
-					put(grammarAccess.getEntryAccess().getCategoryAssignment_0(), "rule__Entry__CategoryAssignment_0");
-					put(grammarAccess.getEntryAccess().getAmountAssignment_2(), "rule__Entry__AmountAssignment_2");
 				}
 			};
 		}

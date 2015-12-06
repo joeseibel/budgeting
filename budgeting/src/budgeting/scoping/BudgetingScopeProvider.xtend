@@ -21,15 +21,11 @@ import static extension org.eclipse.xtext.scoping.Scopes.scopeFor
  *
  */
 class BudgetingScopeProvider extends AbstractDeclarativeScopeProvider {
-	def IScope scope_BudgetEntry_category(Year context, EReference reference) {
+	def IScope scope_Category(Year context, EReference reference) {
 		context.library.categories.scopeFor
 	}
 	
 	def IScope scope_BudgetFactorEntry_baseEntry(Month context, EReference reference) {
 		new SimpleScope(context.budgetEntries.map[EObjectDescription.create(category.name, it)])
-	}
-	
-	def IScope scope_ActualEntry_category(Year context, EReference reference) {
-		context.library.categories.scopeFor
 	}
 }

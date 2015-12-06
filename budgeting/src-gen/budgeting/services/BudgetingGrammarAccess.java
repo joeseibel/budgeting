@@ -550,42 +550,6 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getFromSTRINGTerminalRuleCall_1_6_0() { return cFromSTRINGTerminalRuleCall_1_6_0; }
 	}
 
-	public class EntryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Entry");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cCategoryAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cCategoryCategoryCrossReference_0_0 = (CrossReference)cCategoryAssignment_0.eContents().get(0);
-		private final RuleCall cCategoryCategoryIDTerminalRuleCall_0_0_1 = (RuleCall)cCategoryCategoryCrossReference_0_0.eContents().get(1);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cAmountAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cAmountDollarParserRuleCall_2_0 = (RuleCall)cAmountAssignment_2.eContents().get(0);
-		
-		//Entry:
-		//	category=[Category] ":" amount=Dollar;
-		@Override public ParserRule getRule() { return rule; }
-
-		//category=[Category] ":" amount=Dollar
-		public Group getGroup() { return cGroup; }
-
-		//category=[Category]
-		public Assignment getCategoryAssignment_0() { return cCategoryAssignment_0; }
-
-		//[Category]
-		public CrossReference getCategoryCategoryCrossReference_0_0() { return cCategoryCategoryCrossReference_0_0; }
-
-		//ID
-		public RuleCall getCategoryCategoryIDTerminalRuleCall_0_0_1() { return cCategoryCategoryIDTerminalRuleCall_0_0_1; }
-
-		//":"
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
-
-		//amount=Dollar
-		public Assignment getAmountAssignment_2() { return cAmountAssignment_2; }
-
-		//Dollar
-		public RuleCall getAmountDollarParserRuleCall_2_0() { return cAmountDollarParserRuleCall_2_0; }
-	}
-
 	public class DollarElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Dollar");
 		private final RuleCall cDECIMALTerminalRuleCall = (RuleCall)rule.eContents().get(1);
@@ -738,7 +702,6 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	private final BudgetEntryElements pBudgetEntry;
 	private final ActualEntryElements pActualEntry;
 	private final TransactionElements pTransaction;
-	private final EntryElements pEntry;
 	private final DollarElements pDollar;
 	private final DoubleElements pDouble;
 	private final TerminalRule tDECIMAL;
@@ -761,7 +724,6 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		this.pBudgetEntry = new BudgetEntryElements();
 		this.pActualEntry = new ActualEntryElements();
 		this.pTransaction = new TransactionElements();
-		this.pEntry = new EntryElements();
 		this.pDollar = new DollarElements();
 		this.pDouble = new DoubleElements();
 		this.tDECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DECIMAL");
@@ -887,16 +849,6 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTransactionRule() {
 		return getTransactionAccess().getRule();
-	}
-
-	//Entry:
-	//	category=[Category] ":" amount=Dollar;
-	public EntryElements getEntryAccess() {
-		return pEntry;
-	}
-	
-	public ParserRule getEntryRule() {
-		return getEntryAccess().getRule();
 	}
 
 	//Dollar returns ecore::ELong:
