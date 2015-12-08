@@ -3,75 +3,91 @@
  */
 package budgeting.formatting2;
 
-import budgeting.budgeting.ActualEntry
+import budgeting.budgeting.ActualAmountEntry
 import budgeting.budgeting.ActualTransactionEntry
 import budgeting.budgeting.BudgetEntry
 import budgeting.budgeting.BudgetingPackage
-import budgeting.budgeting.Category
 import budgeting.budgeting.ExpenseCategory
 import budgeting.budgeting.IncomeCategory
 import budgeting.budgeting.Library
 import budgeting.budgeting.Month
 import budgeting.budgeting.Transaction
 import budgeting.budgeting.Year
-import budgeting.services.BudgetingGrammarAccess
-import com.google.inject.Inject
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 import org.eclipse.xtext.xbase.formatting2.IndentOnceAutowrapFormatter
 
-class BudgetingFormatter extends AbstractFormatter2 {
-	@Inject extension BudgetingGrammarAccess
+import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
+class BudgetingFormatter extends AbstractFormatter2 {
 	def dispatch void format(Library library, extension IFormattableDocument document) {
-		library.regionForKeyword(libraryAccess.libraryKeyword_0.value).prepend[noSpace]
+		library.surround[noSpace]
 		library.regionForFeature(BudgetingPackage.eINSTANCE.library_Name).surround[oneSpace]
-		library.regionForKeyword(libraryAccess.leftCurlyBracketKeyword_2.value).append[newLine; increaseIndentation]
+		library.regionForKeyword("{").append[setNewLines(1, 1, Integer.MAX_VALUE); increaseIndentation]
 		library.categories.forEach[format(document)]
-		library.regionForKeyword(libraryAccess.rightCurlyBracketKeyword_4.value).prepend[decreaseIndentation]
+		library.regionForKeyword("}").prepend[decreaseIndentation]
 	}
 	
 	def dispatch void format(IncomeCategory incomeCategory, extension IFormattableDocument document) {
-		incomeCategory.regionForKeyword(categoryAccess.incomeKeyword_0_1.value).append[oneSpace]
-		incomeCategory.regionForFeature(BudgetingPackage.eINSTANCE.category_Name).append[newLine]
+		incomeCategory.regionForKeyword("income").append[oneSpace]
+		incomeCategory.append[setNewLines(1, 1, Integer.MAX_VALUE)]
 	}
 	
 	def dispatch void format(ExpenseCategory expenseCategory, extension IFormattableDocument document) {
-		expenseCategory.regionForKeyword(categoryAccess.expenseKeyword_1_1.value).append[oneSpace]
-		expenseCategory.append[newLine]
-		expenseCategory.regionForKeyword(categoryAccess.leftSquareBracketKeyword_1_3_0.value).prepend[oneSpace].append[noSpace]
+		expenseCategory.regionForKeyword("expense").append[oneSpace]
+		expenseCategory.append[setNewLines(1, 1, Integer.MAX_VALUE)]
+		expenseCategory.regionForKeyword("[").prepend[oneSpace].append[noSpace]
 		expenseCategory.formatConditionally([
 			val extension doc = requireFitsInLine
-			expenseCategory.regionsForKeywords(categoryAccess.commaKeyword_1_3_2_0.value).forEach[prepend[noSpace].append[oneSpace]]
-			expenseCategory.regionForKeyword(categoryAccess.rightSquareBracketKeyword_1_3_3.value).prepend[noSpace]
+			expenseCategory.regionsForKeywords(",").forEach[prepend[noSpace].append[oneSpace]]
+			expenseCategory.regionForKeyword("]").prepend[noSpace]
 		], [extension doc |
-			val indentFormatter = new IndentOnceAutowrapFormatter(expenseCategory.regionForKeyword(categoryAccess.rightSquareBracketKeyword_1_3_3.value).previousHiddenRegion)
-			expenseCategory.regionsForKeywords(categoryAccess.commaKeyword_1_3_2_0.value).forEach[prepend[noSpace].append[oneSpace; autowrap; onAutowrap = indentFormatter]]
-			expenseCategory.regionForKeyword(categoryAccess.rightSquareBracketKeyword_1_3_3.value).prepend[newLine]
+			val indentFormatter = new IndentOnceAutowrapFormatter(expenseCategory.regionForKeyword("]").previousHiddenRegion)
+			expenseCategory.regionsForKeywords(",").forEach[prepend[noSpace].append[oneSpace; autowrap; onAutowrap = indentFormatter]]
+			expenseCategory.regionForKeyword("]").prepend[newLine]
 		])
 	}
 
 	def dispatch void format(Year year, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (Month months : year.getMonths()) {
-			format(months, document);
-		}
+		year.surround[noSpace]
+		year.regionForKeyword("uses").surround[oneSpace]
+		year.regionForKeyword("{").prepend[oneSpace].append[setNewLines(1, 1, Integer.MAX_VALUE); increaseIndentation]
+		year.months.forEach[format(document)]
+		year.regionForKeyword("}").prepend[decreaseIndentation]
 	}
 
 	def dispatch void format(Month month, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (BudgetEntry budgetEntries : month.getBudgetEntries()) {
-			format(budgetEntries, document);
-		}
-		for (ActualEntry actualEntries : month.getActualEntries()) {
-			format(actualEntries, document);
-		}
+		month.regionsForKeywords("budget", "actual").forEach[surround[oneSpace]]
+		month.regionsForKeywords("{").forEach[append[setNewLines(1, 1, Integer.MAX_VALUE); increaseIndentation]]
+		month.regionsForKeywords("}").forEach[prepend[decreaseIndentation]]
+		(month.budgetEntries + month.actualEntries).forEach[format(document)]
+		month.append[if (month == month.getContainerOfType(Year).months.last) {
+			setNewLines(1, 1, Integer.MAX_VALUE)
+		} else {
+			setNewLines(2, 2, Integer.MAX_VALUE)
+		}]
+	}
+	
+	def dispatch void format(BudgetEntry budgetEntry, extension IFormattableDocument document) {
+		budgetEntry.regionForKeyword(":").prepend[noSpace].append[oneSpace]
+		budgetEntry.regionForKeyword("*").surround[oneSpace]
+		budgetEntry.append[setNewLines(1, 1, Integer.MAX_VALUE)]
+	}
+	
+	def dispatch void format(ActualAmountEntry actualAmountEntry, extension IFormattableDocument document) {
+		actualAmountEntry.regionForKeyword(":").prepend[noSpace].append[oneSpace]
+		actualAmountEntry.append[setNewLines(1, 1, Integer.MAX_VALUE)]
 	}
 
-	def dispatch void format(ActualTransactionEntry actualtransactionentry, extension IFormattableDocument document) {
-		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (Transaction transactions : actualtransactionentry.getTransactions()) {
-			format(transactions, document);
-		}
+	def dispatch void format(ActualTransactionEntry actualTransactionEntry, extension IFormattableDocument document) {
+		actualTransactionEntry.regionForKeyword("{").prepend[oneSpace].append[newLine; increaseIndentation]
+		actualTransactionEntry.transactions.forEach[format(document)]
+		actualTransactionEntry.regionForKeyword("}").prepend[decreaseIndentation].append[setNewLines(1, 1, Integer.MAX_VALUE)]
+	}
+	
+	def dispatch void format(Transaction transaction, extension IFormattableDocument document) {
+		transaction.regionsForKeywords("cash", "card").forEach[append[oneSpace]]
+		transaction.regionsForKeywords("on", "from").forEach[surround[oneSpace]]
+		transaction.append[setNewLines(1, 1, Integer.MAX_VALUE)]
 	}
 }
