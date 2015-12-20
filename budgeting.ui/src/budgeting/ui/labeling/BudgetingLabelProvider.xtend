@@ -3,27 +3,70 @@
  */
 package budgeting.ui.labeling
 
+import budgeting.budgeting.ActualAmountEntry
+import budgeting.budgeting.ActualTransactionEntry
+import budgeting.budgeting.BudgetAmountEntry
+import budgeting.budgeting.BudgetFactorEntry
+import budgeting.budgeting.ExpenseCategory
+import budgeting.budgeting.IncomeCategory
+import budgeting.budgeting.Month
+import budgeting.services.BudgetingGrammarAccess
 import com.google.inject.Inject
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
+import org.eclipse.jface.viewers.StyledString
+import org.eclipse.jface.viewers.StyledString.Styler
+import org.eclipse.swt.SWT
+import org.eclipse.swt.widgets.Display
+import org.eclipse.xtext.conversion.IValueConverterService
+import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 
 /**
  * Provides labels for EObjects.
  * 
  * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#label-provider
  */
-class BudgetingLabelProvider extends org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider {
-
+class BudgetingLabelProvider extends DefaultEObjectLabelProvider {
+	val static Styler RED_STYLER = [foreground = Display.^default.getSystemColor(SWT.COLOR_RED)]
+	
 	@Inject
-	new(org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider delegate) {
+	IValueConverterService converterService
+	@Inject
+	BudgetingGrammarAccess grammarAccess
+	
+	@Inject
+	new(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
-
-	// Labels and icons can be computed like this:
 	
-//	def text(Greeting ele) {
-//		'A greeting to ' + ele.name
-//	}
-//
-//	def image(Greeting ele) {
-//		'Greeting.gif'
-//	}
+	def String text(Month month) {
+		month.name.getLiteral
+	}
+	
+	def Object text(BudgetAmountEntry budgetAmountEntry) {
+		switch category : budgetAmountEntry.category {
+			case category.eIsProxy: "<unknown>: " + budgetAmountEntry.amount.toDollar
+			IncomeCategory: category.name + ": " + budgetAmountEntry.amount.toDollar
+			ExpenseCategory: new StyledString(category.name + ": ").append(budgetAmountEntry.amount.toDollar, RED_STYLER)
+		}
+	}
+	
+	def StyledString text(BudgetFactorEntry budgetFactorEntry) {
+		new StyledString((budgetFactorEntry.category.name ?: "<unknown>") + ": ").append('''«budgetFactorEntry.baseEntry?.category?.name ?: "<unknown>"» * «budgetFactorEntry.factor»''', RED_STYLER)
+	}
+	
+	def Object text(ActualAmountEntry actualAmountEntry) {
+		switch category : actualAmountEntry.category {
+			case category.eIsProxy: "<unknown>: " + actualAmountEntry.amount.toDollar
+			IncomeCategory: category.name + ": " + actualAmountEntry.amount.toDollar
+			ExpenseCategory: new StyledString(category.name + ": ").append(actualAmountEntry.amount.toDollar, RED_STYLER)
+		}
+	}
+	
+	def StyledString text(ActualTransactionEntry actualTransactionEntry) {
+		new StyledString((actualTransactionEntry.category.name ?: "<unknown>") + ": ").append(actualTransactionEntry.transactions.fold(0L, [$0 + $1.amount]).toDollar, RED_STYLER)
+	}
+	
+	def private toDollar(long amount) {
+		converterService.toString(amount, grammarAccess.dollarRule.name)
+	}
 }
