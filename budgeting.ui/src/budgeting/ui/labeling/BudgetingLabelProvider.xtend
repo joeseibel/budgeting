@@ -16,9 +16,12 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.jface.viewers.StyledString
 import org.eclipse.jface.viewers.StyledString.Styler
 import org.eclipse.swt.SWT
+import org.eclipse.swt.graphics.RGB
 import org.eclipse.swt.widgets.Display
 import org.eclipse.xtext.conversion.IValueConverterService
+import org.eclipse.xtext.ui.editor.utils.TextStyle
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
+import org.eclipse.xtext.ui.label.StylerFactory
 
 /**
  * Provides labels for EObjects.
@@ -32,6 +35,8 @@ class BudgetingLabelProvider extends DefaultEObjectLabelProvider {
 	IValueConverterService converterService
 	@Inject
 	BudgetingGrammarAccess grammarAccess
+	@Inject
+	StylerFactory stylerFactory
 	
 	@Inject
 	new(AdapterFactoryLabelProvider delegate) {
@@ -63,7 +68,11 @@ class BudgetingLabelProvider extends DefaultEObjectLabelProvider {
 	}
 	
 	def StyledString text(ActualTransactionEntry actualTransactionEntry) {
-		new StyledString((actualTransactionEntry.category.name ?: "<unknown>") + ": ").append(actualTransactionEntry.transactions.fold(0L, [$0 + $1.amount]).toDollar, RED_STYLER)
+		val italicRedStyler = stylerFactory.createXtextStyleAdapterStyler(new TextStyle => [
+			style = SWT.ITALIC
+			color = new RGB(255, 0, 0)
+		])
+		new StyledString((actualTransactionEntry.category.name ?: "<unknown>") + ": ").append(actualTransactionEntry.transactions.fold(0L, [$0 + $1.amount]).toDollar, italicRedStyler)
 	}
 	
 	def private toDollar(long amount) {
