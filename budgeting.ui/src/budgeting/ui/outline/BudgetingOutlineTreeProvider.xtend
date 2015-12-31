@@ -3,11 +3,11 @@
  */
 package budgeting.ui.outline
 
-/**
- * Customization of the default outline structure.
- *
- * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#outline
- */
-class BudgetingOutlineTreeProvider extends org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider {
-	
+import budgeting.budgeting.ActualTransactionEntry
+import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+
+class BudgetingOutlineTreeProvider extends DefaultOutlineTreeProvider {
+	def protected boolean _isLeaf(ActualTransactionEntry actualTransactionEntry) {
+		true
+	}
 }
