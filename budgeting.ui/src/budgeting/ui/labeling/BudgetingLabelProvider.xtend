@@ -43,6 +43,10 @@ class BudgetingLabelProvider extends DefaultEObjectLabelProvider {
 		super(delegate);
 	}
 	
+	def StyledString text(ExpenseCategory expenseCategory) {
+		new StyledString(expenseCategory.name, RED_STYLER)
+	}
+	
 	def String text(Month month) {
 		month.name.getLiteral
 	}
