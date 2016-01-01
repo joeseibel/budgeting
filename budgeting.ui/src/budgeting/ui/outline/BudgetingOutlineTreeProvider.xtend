@@ -14,7 +14,6 @@ import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode
 import org.eclipse.xtext.util.ITextRegion
-import org.eclipse.xtext.util.TextRegion
 
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.getURI
 import static extension org.eclipse.xtext.nodemodel.util.NodeModelUtils.getNode
@@ -52,9 +51,8 @@ class BudgetingOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			if (sectionNodes.empty) {
 				keywordRegion = null
 			} else {
-				keywordRegion = sectionNodes.head.textRegion
-				val lastSectionNode = sectionNodes.last
-				textRegion = new TextRegion(keywordRegion.offset, lastSectionNode.offset - keywordRegion.offset + lastSectionNode.length)
+				keywordRegion = sectionNodes.head.textRegionWithLineInformation
+				textRegion = keywordRegion.merge(sectionNodes.last.textRegionWithLineInformation)
 			}
 		}
 		
