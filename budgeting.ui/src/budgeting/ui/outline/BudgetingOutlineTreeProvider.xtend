@@ -4,10 +4,88 @@
 package budgeting.ui.outline
 
 import budgeting.budgeting.ActualTransactionEntry
+import budgeting.budgeting.Month
+import org.eclipse.emf.common.util.URI
+import org.eclipse.jface.viewers.ILabelProvider
+import org.eclipse.xtext.Keyword
+import org.eclipse.xtext.nodemodel.INode
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode
+import org.eclipse.xtext.util.ITextRegion
+import org.eclipse.xtext.util.TextRegion
+
+import static extension org.eclipse.emf.ecore.util.EcoreUtil.getURI
+import static extension org.eclipse.xtext.nodemodel.util.NodeModelUtils.getNode
 
 class BudgetingOutlineTreeProvider extends DefaultOutlineTreeProvider {
+	def protected boolean _isLeaf(Month month) {
+		false
+	}
+	
 	def protected boolean _isLeaf(ActualTransactionEntry actualTransactionEntry) {
 		true
+	}
+	
+	def protected void _createChildren(EObjectNode parentNode, Month month) {
+		new BudgetOutlineNode(parentNode, month, labelProvider)
+		new ActualOutlineNode(parentNode, month, labelProvider)
+	}
+	
+	def protected void _createChildren(BudgetOutlineNode parentNode, Month month) {
+		month.budgetEntries.forEach[createNode(parentNode, it)]
+	}
+	
+	def protected void _createChildren(ActualOutlineNode parentNode, Month month) {
+		month.actualEntries.forEach[createNode(parentNode, it)]
+	}
+	
+	private static abstract class MonthSectionOutlineNode extends AbstractOutlineNode {
+		val URI monthURI
+		val ITextRegion keywordRegion
+		
+		new(IOutlineNode parent, Month month, String text, boolean isLeaf, ILabelProvider labelProvider) {
+			super(parent, labelProvider.getImage(MonthSectionOutlineNode), text, isLeaf)
+			monthURI = month.URI
+			val sectionNodes = month.node.children.filter[grammarElement instanceof Keyword].trimToSection.toList
+			if (sectionNodes.empty) {
+				keywordRegion = null
+			} else {
+				keywordRegion = sectionNodes.head.textRegion
+				val lastSectionNode = sectionNodes.last
+				textRegion = new TextRegion(keywordRegion.offset, lastSectionNode.offset - keywordRegion.offset + lastSectionNode.length)
+			}
+		}
+		
+		override getSignificantTextRegion() {
+			keywordRegion ?: super.significantTextRegion
+		}
+		
+		override protected getEObjectURI() {
+			monthURI
+		}
+		
+		def protected Iterable<INode> trimToSection(Iterable<INode> keywords)
+	}
+	
+	private static class BudgetOutlineNode extends MonthSectionOutlineNode {
+		new(IOutlineNode parent, Month month, ILabelProvider labelProvider) {
+			super(parent, month, "budget", month.budgetEntries.empty, labelProvider)
+		}
+		
+		override protected trimToSection(Iterable<INode> keywords) {
+			keywords.dropWhile[(grammarElement as Keyword).value != "budget"].takeWhile[(grammarElement as Keyword).value != "actual"]
+		}
+	}
+	
+	private static class ActualOutlineNode extends MonthSectionOutlineNode {
+		new(IOutlineNode parent, Month month, ILabelProvider labelProvider) {
+			super(parent, month, "actual", month.actualEntries.empty, labelProvider)
+		}
+		
+		override protected trimToSection(Iterable<INode> keywords) {
+			keywords.dropWhile[(grammarElement as Keyword).value != "actual"]
+		}
 	}
 }
