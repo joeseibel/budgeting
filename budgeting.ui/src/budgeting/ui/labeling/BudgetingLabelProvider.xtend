@@ -10,6 +10,7 @@ import budgeting.budgeting.BudgetFactorEntry
 import budgeting.budgeting.ExpenseCategory
 import budgeting.budgeting.IncomeCategory
 import budgeting.budgeting.Month
+import budgeting.budgeting.Year
 import budgeting.services.BudgetingGrammarAccess
 import com.google.inject.Inject
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
@@ -47,8 +48,12 @@ class BudgetingLabelProvider extends DefaultEObjectLabelProvider {
 		new StyledString(expenseCategory.name, RED_STYLER)
 	}
 	
+	def String text(Year year) {
+		year.name.toString
+	}
+	
 	def String text(Month month) {
-		month.name.getLiteral
+		month.name.literal
 	}
 	
 	def Object text(BudgetAmountEntry budgetAmountEntry) {
