@@ -4,6 +4,9 @@
 package budgeting.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
+
+import budgeting.ui.editor.syntaxcoloring.BudgetingAntlrTokenToAttributeIdMapper;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -11,5 +14,9 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 public class BudgetingUiModule extends budgeting.ui.AbstractBudgetingUiModule {
 	public BudgetingUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+	
+	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
+		return BudgetingAntlrTokenToAttributeIdMapper.class;
 	}
 }
