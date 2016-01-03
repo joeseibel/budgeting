@@ -5,8 +5,12 @@ package budgeting.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 
 import budgeting.ui.editor.syntaxcoloring.BudgetingAntlrTokenToAttributeIdMapper;
+import budgeting.ui.editor.syntaxcoloring.BudgetingHighlightingConfiguration;
+import budgeting.ui.editor.syntaxcoloring.BudgetingSemanticHighlightingCalculator;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -18,5 +22,13 @@ public class BudgetingUiModule extends budgeting.ui.AbstractBudgetingUiModule {
 	
 	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
 		return BudgetingAntlrTokenToAttributeIdMapper.class;
+	}
+	
+	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+		return BudgetingHighlightingConfiguration.class;
+	}
+	
+	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+		return BudgetingSemanticHighlightingCalculator.class;
 	}
 }
