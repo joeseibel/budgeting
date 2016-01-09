@@ -12,6 +12,7 @@ package budgeting.budgeting;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link budgeting.budgeting.CardTransaction#getDay <em>Day</em>}</li>
  *   <li>{@link budgeting.budgeting.CardTransaction#getFrom <em>From</em>}</li>
  * </ul>
  *
@@ -21,6 +22,32 @@ package budgeting.budgeting;
  */
 public interface CardTransaction extends Transaction
 {
+  /**
+   * Returns the value of the '<em><b>Day</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Day</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Day</em>' attribute.
+   * @see #setDay(int)
+   * @see budgeting.budgeting.BudgetingPackage#getCardTransaction_Day()
+   * @model
+   * @generated
+   */
+  int getDay();
+
+  /**
+   * Sets the value of the '{@link budgeting.budgeting.CardTransaction#getDay <em>Day</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Day</em>' attribute.
+   * @see #getDay()
+   * @generated
+   */
+  void setDay(int value);
+
   /**
    * Returns the value of the '<em><b>From</b></em>' attribute.
    * <!-- begin-user-doc -->

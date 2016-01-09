@@ -757,19 +757,19 @@ ruleTransaction returns [EObject current=null]
     }
 (
 (
-		lv_day_4_0=RULE_INT
-		{
-			newLeafNode(lv_day_4_0, grammarAccess.getTransactionAccess().getDayINTTerminalRuleCall_0_3_1_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getTransactionAccess().getDayOptionalIntParserRuleCall_0_3_1_0()); 
+	    }
+		lv_day_4_0=ruleOptionalInt		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getTransactionRule());
+	            $current = createModelElementForParent(grammarAccess.getTransactionRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"day",
         		lv_day_4_0, 
-        		"INT");
+        		"OptionalInt");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -911,6 +911,34 @@ ruleDouble returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
     newLeafNode(this_DECIMAL_1, grammarAccess.getDoubleAccess().getDECIMALTerminalRuleCall_1()); 
     }
 )
+    ;
+
+
+
+
+
+// Entry rule entryRuleOptionalInt
+entryRuleOptionalInt returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getOptionalIntRule()); } 
+	 iv_ruleOptionalInt=ruleOptionalInt 
+	 { $current=$iv_ruleOptionalInt.current.getText(); }  
+	 EOF 
+;
+
+// Rule OptionalInt
+ruleOptionalInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+    this_INT_0=RULE_INT    {
+		$current.merge(this_INT_0);
+    }
+
+    { 
+    newLeafNode(this_INT_0, grammarAccess.getOptionalIntAccess().getINTTerminalRuleCall()); 
+    }
+
     ;
 
 

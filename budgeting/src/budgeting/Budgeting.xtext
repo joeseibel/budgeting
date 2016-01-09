@@ -61,7 +61,7 @@ ActualEntry:
 ;
 
 Transaction:
-	{CashTransaction} 'cash' amount=Dollar ('on' day=INT)? |
+	{CashTransaction} 'cash' amount=Dollar ('on' day=OptionalInt)? |
 	{CardTransaction} 'card' amount=Dollar 'on' day=INT 'from' from=STRING
 ;
 
@@ -71,6 +71,10 @@ Dollar returns ecore::ELong:
 
 Double returns ecore::EDouble:
 	INT | DECIMAL
+;
+
+OptionalInt returns ecore::EIntegerObject:
+	INT
 ;
 
 terminal DECIMAL:

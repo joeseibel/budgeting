@@ -1479,11 +1479,11 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
             if ( (LA11_0==RULE_ID) ) {
                 int LA11_1 = input.LA(2);
 
-                if ( (LA11_1==13) ) {
-                    alt11=2;
-                }
-                else if ( (LA11_1==23) ) {
+                if ( (LA11_1==23) ) {
                     alt11=1;
+                }
+                else if ( (LA11_1==13) ) {
+                    alt11=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -1741,13 +1741,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTransaction"
-    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:722:1: ruleTransaction returns [EObject current=null] : ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) ) ;
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:722:1: ruleTransaction returns [EObject current=null] : ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= ruleOptionalInt ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) ) ;
     public final EObject ruleTransaction() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
         Token otherlv_3=null;
-        Token lv_day_4_0=null;
         Token otherlv_6=null;
         Token otherlv_8=null;
         Token lv_day_9_0=null;
@@ -1755,16 +1754,18 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
         Token lv_from_11_0=null;
         AntlrDatatypeRuleToken lv_amount_2_0 = null;
 
+        AntlrDatatypeRuleToken lv_day_4_0 = null;
+
         AntlrDatatypeRuleToken lv_amount_7_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:725:28: ( ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) ) )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:1: ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:725:28: ( ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= ruleOptionalInt ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:1: ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= ruleOptionalInt ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) )
             {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:1: ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:1: ( ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= ruleOptionalInt ) ) )? ) | ( () otherlv_6= 'card' ( (lv_amount_7_0= ruleDollar ) ) otherlv_8= 'on' ( (lv_day_9_0= RULE_INT ) ) otherlv_10= 'from' ( (lv_from_11_0= RULE_STRING ) ) ) )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1782,10 +1783,10 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
             }
             switch (alt13) {
                 case 1 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:2: ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:2: ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= ruleOptionalInt ) ) )? )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:2: ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )? )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:3: () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )?
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:2: ( () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= ruleOptionalInt ) ) )? )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:3: () otherlv_1= 'cash' ( (lv_amount_2_0= ruleDollar ) ) (otherlv_3= 'on' ( (lv_day_4_0= ruleOptionalInt ) ) )?
                     {
                     // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:726:3: ()
                     // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:727:5: 
@@ -1833,7 +1834,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:754:2: (otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) ) )?
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:754:2: (otherlv_3= 'on' ( (lv_day_4_0= ruleOptionalInt ) ) )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -1842,31 +1843,36 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt12) {
                         case 1 :
-                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:754:4: otherlv_3= 'on' ( (lv_day_4_0= RULE_INT ) )
+                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:754:4: otherlv_3= 'on' ( (lv_day_4_0= ruleOptionalInt ) )
                             {
                             otherlv_3=(Token)match(input,26,FOLLOW_26_in_ruleTransaction1523); 
 
                                 	newLeafNode(otherlv_3, grammarAccess.getTransactionAccess().getOnKeyword_0_3_0());
                                 
-                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:758:1: ( (lv_day_4_0= RULE_INT ) )
-                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:759:1: (lv_day_4_0= RULE_INT )
+                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:758:1: ( (lv_day_4_0= ruleOptionalInt ) )
+                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:759:1: (lv_day_4_0= ruleOptionalInt )
                             {
-                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:759:1: (lv_day_4_0= RULE_INT )
-                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:760:3: lv_day_4_0= RULE_INT
+                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:759:1: (lv_day_4_0= ruleOptionalInt )
+                            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:760:3: lv_day_4_0= ruleOptionalInt
                             {
-                            lv_day_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleTransaction1540); 
+                             
+                            	        newCompositeNode(grammarAccess.getTransactionAccess().getDayOptionalIntParserRuleCall_0_3_1_0()); 
+                            	    
+                            pushFollow(FOLLOW_ruleOptionalInt_in_ruleTransaction1544);
+                            lv_day_4_0=ruleOptionalInt();
 
-                            			newLeafNode(lv_day_4_0, grammarAccess.getTransactionAccess().getDayINTTerminalRuleCall_0_3_1_0()); 
-                            		
+                            state._fsp--;
+
 
                             	        if (current==null) {
-                            	            current = createModelElement(grammarAccess.getTransactionRule());
+                            	            current = createModelElementForParent(grammarAccess.getTransactionRule());
                             	        }
-                                   		setWithLastConsumed(
+                                   		set(
                                    			current, 
                                    			"day",
                                     		lv_day_4_0, 
-                                    		"INT");
+                                    		"OptionalInt");
+                            	        afterParserOrEnumRuleCall();
                             	    
 
                             }
@@ -1903,7 +1909,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_6=(Token)match(input,27,FOLLOW_27_in_ruleTransaction1576); 
+                    otherlv_6=(Token)match(input,27,FOLLOW_27_in_ruleTransaction1575); 
 
                         	newLeafNode(otherlv_6, grammarAccess.getTransactionAccess().getCardKeyword_1_1());
                         
@@ -1916,7 +1922,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                      
                     	        newCompositeNode(grammarAccess.getTransactionAccess().getAmountDollarParserRuleCall_1_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleDollar_in_ruleTransaction1597);
+                    pushFollow(FOLLOW_ruleDollar_in_ruleTransaction1596);
                     lv_amount_7_0=ruleDollar();
 
                     state._fsp--;
@@ -1938,7 +1944,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_8=(Token)match(input,26,FOLLOW_26_in_ruleTransaction1609); 
+                    otherlv_8=(Token)match(input,26,FOLLOW_26_in_ruleTransaction1608); 
 
                         	newLeafNode(otherlv_8, grammarAccess.getTransactionAccess().getOnKeyword_1_3());
                         
@@ -1948,7 +1954,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:810:1: (lv_day_9_0= RULE_INT )
                     // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:811:3: lv_day_9_0= RULE_INT
                     {
-                    lv_day_9_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleTransaction1626); 
+                    lv_day_9_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleTransaction1625); 
 
                     			newLeafNode(lv_day_9_0, grammarAccess.getTransactionAccess().getDayINTTerminalRuleCall_1_4_0()); 
                     		
@@ -1968,7 +1974,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_10=(Token)match(input,28,FOLLOW_28_in_ruleTransaction1643); 
+                    otherlv_10=(Token)match(input,28,FOLLOW_28_in_ruleTransaction1642); 
 
                         	newLeafNode(otherlv_10, grammarAccess.getTransactionAccess().getFromKeyword_1_5());
                         
@@ -1978,7 +1984,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:832:1: (lv_from_11_0= RULE_STRING )
                     // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:833:3: lv_from_11_0= RULE_STRING
                     {
-                    lv_from_11_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleTransaction1660); 
+                    lv_from_11_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleTransaction1659); 
 
                     			newLeafNode(lv_from_11_0, grammarAccess.getTransactionAccess().getFromSTRINGTerminalRuleCall_1_6_0()); 
                     		
@@ -2037,13 +2043,13 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
             // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:859:2: iv_ruleDollar= ruleDollar EOF
             {
              newCompositeNode(grammarAccess.getDollarRule()); 
-            pushFollow(FOLLOW_ruleDollar_in_entryRuleDollar1703);
+            pushFollow(FOLLOW_ruleDollar_in_entryRuleDollar1702);
             iv_ruleDollar=ruleDollar();
 
             state._fsp--;
 
              current =iv_ruleDollar.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDollar1714); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDollar1713); 
 
             }
 
@@ -2073,7 +2079,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
             // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:869:28: (this_DECIMAL_0= RULE_DECIMAL )
             // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:870:5: this_DECIMAL_0= RULE_DECIMAL
             {
-            this_DECIMAL_0=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleDollar1753); 
+            this_DECIMAL_0=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleDollar1752); 
 
             		current.merge(this_DECIMAL_0);
                 
@@ -2110,13 +2116,13 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
             // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:887:2: iv_ruleDouble= ruleDouble EOF
             {
              newCompositeNode(grammarAccess.getDoubleRule()); 
-            pushFollow(FOLLOW_ruleDouble_in_entryRuleDouble1798);
+            pushFollow(FOLLOW_ruleDouble_in_entryRuleDouble1797);
             iv_ruleDouble=ruleDouble();
 
             state._fsp--;
 
              current =iv_ruleDouble.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDouble1809); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDouble1808); 
 
             }
 
@@ -2167,7 +2173,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                 case 1 :
                     // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:898:6: this_INT_0= RULE_INT
                     {
-                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDouble1849); 
+                    this_INT_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDouble1848); 
 
                     		current.merge(this_INT_0);
                         
@@ -2180,7 +2186,7 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:906:10: this_DECIMAL_1= RULE_DECIMAL
                     {
-                    this_DECIMAL_1=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleDouble1875); 
+                    this_DECIMAL_1=(Token)match(input,RULE_DECIMAL,FOLLOW_RULE_DECIMAL_in_ruleDouble1874); 
 
                     		current.merge(this_DECIMAL_1);
                         
@@ -2210,8 +2216,81 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleDouble"
 
 
+    // $ANTLR start "entryRuleOptionalInt"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:921:1: entryRuleOptionalInt returns [String current=null] : iv_ruleOptionalInt= ruleOptionalInt EOF ;
+    public final String entryRuleOptionalInt() throws RecognitionException {
+        String current = null;
+
+        AntlrDatatypeRuleToken iv_ruleOptionalInt = null;
+
+
+        try {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:922:2: (iv_ruleOptionalInt= ruleOptionalInt EOF )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:923:2: iv_ruleOptionalInt= ruleOptionalInt EOF
+            {
+             newCompositeNode(grammarAccess.getOptionalIntRule()); 
+            pushFollow(FOLLOW_ruleOptionalInt_in_entryRuleOptionalInt1920);
+            iv_ruleOptionalInt=ruleOptionalInt();
+
+            state._fsp--;
+
+             current =iv_ruleOptionalInt.getText(); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOptionalInt1931); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleOptionalInt"
+
+
+    // $ANTLR start "ruleOptionalInt"
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:930:1: ruleOptionalInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_INT_0= RULE_INT ;
+    public final AntlrDatatypeRuleToken ruleOptionalInt() throws RecognitionException {
+        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+
+        Token this_INT_0=null;
+
+         enterRule(); 
+            
+        try {
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:933:28: (this_INT_0= RULE_INT )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:934:5: this_INT_0= RULE_INT
+            {
+            this_INT_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleOptionalInt1970); 
+
+            		current.merge(this_INT_0);
+                
+             
+                newLeafNode(this_INT_0, grammarAccess.getOptionalIntAccess().getINTTerminalRuleCall()); 
+                
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleOptionalInt"
+
+
     // $ANTLR start "ruleMonthEnum"
-    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:921:1: ruleMonthEnum returns [Enumerator current=null] : ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) ) ;
+    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:949:1: ruleMonthEnum returns [Enumerator current=null] : ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) ) ;
     public final Enumerator ruleMonthEnum() throws RecognitionException {
         Enumerator current = null;
 
@@ -2230,10 +2309,10 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:923:28: ( ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) ) )
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:924:1: ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:951:28: ( ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:952:1: ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) )
             {
-            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:924:1: ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) )
+            // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:952:1: ( (enumLiteral_0= 'january' ) | (enumLiteral_1= 'february' ) | (enumLiteral_2= 'march' ) | (enumLiteral_3= 'april' ) | (enumLiteral_4= 'may' ) | (enumLiteral_5= 'june' ) | (enumLiteral_6= 'july' ) | (enumLiteral_7= 'august' ) | (enumLiteral_8= 'september' ) | (enumLiteral_9= 'october' ) | (enumLiteral_10= 'november' ) | (enumLiteral_11= 'december' ) )
             int alt15=12;
             switch ( input.LA(1) ) {
             case 29:
@@ -2305,12 +2384,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
 
             switch (alt15) {
                 case 1 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:924:2: (enumLiteral_0= 'january' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:952:2: (enumLiteral_0= 'january' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:924:2: (enumLiteral_0= 'january' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:924:4: enumLiteral_0= 'january'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:952:2: (enumLiteral_0= 'january' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:952:4: enumLiteral_0= 'january'
                     {
-                    enumLiteral_0=(Token)match(input,29,FOLLOW_29_in_ruleMonthEnum1934); 
+                    enumLiteral_0=(Token)match(input,29,FOLLOW_29_in_ruleMonthEnum2028); 
 
                             current = grammarAccess.getMonthEnumAccess().getJANUARYEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getMonthEnumAccess().getJANUARYEnumLiteralDeclaration_0()); 
@@ -2322,12 +2401,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:930:6: (enumLiteral_1= 'february' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:958:6: (enumLiteral_1= 'february' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:930:6: (enumLiteral_1= 'february' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:930:8: enumLiteral_1= 'february'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:958:6: (enumLiteral_1= 'february' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:958:8: enumLiteral_1= 'february'
                     {
-                    enumLiteral_1=(Token)match(input,30,FOLLOW_30_in_ruleMonthEnum1951); 
+                    enumLiteral_1=(Token)match(input,30,FOLLOW_30_in_ruleMonthEnum2045); 
 
                             current = grammarAccess.getMonthEnumAccess().getFEBRUARYEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getMonthEnumAccess().getFEBRUARYEnumLiteralDeclaration_1()); 
@@ -2339,12 +2418,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:936:6: (enumLiteral_2= 'march' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:964:6: (enumLiteral_2= 'march' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:936:6: (enumLiteral_2= 'march' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:936:8: enumLiteral_2= 'march'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:964:6: (enumLiteral_2= 'march' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:964:8: enumLiteral_2= 'march'
                     {
-                    enumLiteral_2=(Token)match(input,31,FOLLOW_31_in_ruleMonthEnum1968); 
+                    enumLiteral_2=(Token)match(input,31,FOLLOW_31_in_ruleMonthEnum2062); 
 
                             current = grammarAccess.getMonthEnumAccess().getMARCHEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getMonthEnumAccess().getMARCHEnumLiteralDeclaration_2()); 
@@ -2356,12 +2435,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:942:6: (enumLiteral_3= 'april' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:970:6: (enumLiteral_3= 'april' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:942:6: (enumLiteral_3= 'april' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:942:8: enumLiteral_3= 'april'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:970:6: (enumLiteral_3= 'april' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:970:8: enumLiteral_3= 'april'
                     {
-                    enumLiteral_3=(Token)match(input,32,FOLLOW_32_in_ruleMonthEnum1985); 
+                    enumLiteral_3=(Token)match(input,32,FOLLOW_32_in_ruleMonthEnum2079); 
 
                             current = grammarAccess.getMonthEnumAccess().getAPRILEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getMonthEnumAccess().getAPRILEnumLiteralDeclaration_3()); 
@@ -2373,12 +2452,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:948:6: (enumLiteral_4= 'may' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:976:6: (enumLiteral_4= 'may' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:948:6: (enumLiteral_4= 'may' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:948:8: enumLiteral_4= 'may'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:976:6: (enumLiteral_4= 'may' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:976:8: enumLiteral_4= 'may'
                     {
-                    enumLiteral_4=(Token)match(input,33,FOLLOW_33_in_ruleMonthEnum2002); 
+                    enumLiteral_4=(Token)match(input,33,FOLLOW_33_in_ruleMonthEnum2096); 
 
                             current = grammarAccess.getMonthEnumAccess().getMAYEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getMonthEnumAccess().getMAYEnumLiteralDeclaration_4()); 
@@ -2390,12 +2469,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:954:6: (enumLiteral_5= 'june' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:982:6: (enumLiteral_5= 'june' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:954:6: (enumLiteral_5= 'june' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:954:8: enumLiteral_5= 'june'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:982:6: (enumLiteral_5= 'june' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:982:8: enumLiteral_5= 'june'
                     {
-                    enumLiteral_5=(Token)match(input,34,FOLLOW_34_in_ruleMonthEnum2019); 
+                    enumLiteral_5=(Token)match(input,34,FOLLOW_34_in_ruleMonthEnum2113); 
 
                             current = grammarAccess.getMonthEnumAccess().getJUNEEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_5, grammarAccess.getMonthEnumAccess().getJUNEEnumLiteralDeclaration_5()); 
@@ -2407,12 +2486,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:960:6: (enumLiteral_6= 'july' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:988:6: (enumLiteral_6= 'july' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:960:6: (enumLiteral_6= 'july' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:960:8: enumLiteral_6= 'july'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:988:6: (enumLiteral_6= 'july' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:988:8: enumLiteral_6= 'july'
                     {
-                    enumLiteral_6=(Token)match(input,35,FOLLOW_35_in_ruleMonthEnum2036); 
+                    enumLiteral_6=(Token)match(input,35,FOLLOW_35_in_ruleMonthEnum2130); 
 
                             current = grammarAccess.getMonthEnumAccess().getJULYEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_6, grammarAccess.getMonthEnumAccess().getJULYEnumLiteralDeclaration_6()); 
@@ -2424,12 +2503,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:966:6: (enumLiteral_7= 'august' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:994:6: (enumLiteral_7= 'august' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:966:6: (enumLiteral_7= 'august' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:966:8: enumLiteral_7= 'august'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:994:6: (enumLiteral_7= 'august' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:994:8: enumLiteral_7= 'august'
                     {
-                    enumLiteral_7=(Token)match(input,36,FOLLOW_36_in_ruleMonthEnum2053); 
+                    enumLiteral_7=(Token)match(input,36,FOLLOW_36_in_ruleMonthEnum2147); 
 
                             current = grammarAccess.getMonthEnumAccess().getAUGUSTEnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_7, grammarAccess.getMonthEnumAccess().getAUGUSTEnumLiteralDeclaration_7()); 
@@ -2441,12 +2520,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:972:6: (enumLiteral_8= 'september' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1000:6: (enumLiteral_8= 'september' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:972:6: (enumLiteral_8= 'september' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:972:8: enumLiteral_8= 'september'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1000:6: (enumLiteral_8= 'september' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1000:8: enumLiteral_8= 'september'
                     {
-                    enumLiteral_8=(Token)match(input,37,FOLLOW_37_in_ruleMonthEnum2070); 
+                    enumLiteral_8=(Token)match(input,37,FOLLOW_37_in_ruleMonthEnum2164); 
 
                             current = grammarAccess.getMonthEnumAccess().getSEPTEMBEREnumLiteralDeclaration_8().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_8, grammarAccess.getMonthEnumAccess().getSEPTEMBEREnumLiteralDeclaration_8()); 
@@ -2458,12 +2537,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:978:6: (enumLiteral_9= 'october' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1006:6: (enumLiteral_9= 'october' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:978:6: (enumLiteral_9= 'october' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:978:8: enumLiteral_9= 'october'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1006:6: (enumLiteral_9= 'october' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1006:8: enumLiteral_9= 'october'
                     {
-                    enumLiteral_9=(Token)match(input,38,FOLLOW_38_in_ruleMonthEnum2087); 
+                    enumLiteral_9=(Token)match(input,38,FOLLOW_38_in_ruleMonthEnum2181); 
 
                             current = grammarAccess.getMonthEnumAccess().getOCTOBEREnumLiteralDeclaration_9().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_9, grammarAccess.getMonthEnumAccess().getOCTOBEREnumLiteralDeclaration_9()); 
@@ -2475,12 +2554,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 11 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:984:6: (enumLiteral_10= 'november' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1012:6: (enumLiteral_10= 'november' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:984:6: (enumLiteral_10= 'november' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:984:8: enumLiteral_10= 'november'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1012:6: (enumLiteral_10= 'november' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1012:8: enumLiteral_10= 'november'
                     {
-                    enumLiteral_10=(Token)match(input,39,FOLLOW_39_in_ruleMonthEnum2104); 
+                    enumLiteral_10=(Token)match(input,39,FOLLOW_39_in_ruleMonthEnum2198); 
 
                             current = grammarAccess.getMonthEnumAccess().getNOVEMBEREnumLiteralDeclaration_10().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_10, grammarAccess.getMonthEnumAccess().getNOVEMBEREnumLiteralDeclaration_10()); 
@@ -2492,12 +2571,12 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 12 :
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:990:6: (enumLiteral_11= 'december' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1018:6: (enumLiteral_11= 'december' )
                     {
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:990:6: (enumLiteral_11= 'december' )
-                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:990:8: enumLiteral_11= 'december'
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1018:6: (enumLiteral_11= 'december' )
+                    // ../budgeting/src-gen/budgeting/parser/antlr/internal/InternalBudgeting.g:1018:8: enumLiteral_11= 'december'
                     {
-                    enumLiteral_11=(Token)match(input,40,FOLLOW_40_in_ruleMonthEnum2121); 
+                    enumLiteral_11=(Token)match(input,40,FOLLOW_40_in_ruleMonthEnum2215); 
 
                             current = grammarAccess.getMonthEnumAccess().getDECEMBEREnumLiteralDeclaration_11().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_11, grammarAccess.getMonthEnumAccess().getDECEMBEREnumLiteralDeclaration_11()); 
@@ -2597,31 +2676,34 @@ public class InternalBudgetingParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_25_in_ruleTransaction1489 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_ruleDollar_in_ruleTransaction1510 = new BitSet(new long[]{0x0000000004000002L});
     public static final BitSet FOLLOW_26_in_ruleTransaction1523 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleTransaction1540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_ruleTransaction1576 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_ruleDollar_in_ruleTransaction1597 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_ruleTransaction1609 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleTransaction1626 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_ruleTransaction1643 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleTransaction1660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDollar_in_entryRuleDollar1703 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDollar1714 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleDollar1753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDouble_in_entryRuleDouble1798 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDouble1809 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDouble1849 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleDouble1875 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleMonthEnum1934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleMonthEnum1951 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleMonthEnum1968 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleMonthEnum1985 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleMonthEnum2002 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleMonthEnum2019 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleMonthEnum2036 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleMonthEnum2053 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleMonthEnum2070 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleMonthEnum2087 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleMonthEnum2104 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleMonthEnum2121 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOptionalInt_in_ruleTransaction1544 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_ruleTransaction1575 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_ruleDollar_in_ruleTransaction1596 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_ruleTransaction1608 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleTransaction1625 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_ruleTransaction1642 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleTransaction1659 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDollar_in_entryRuleDollar1702 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDollar1713 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleDollar1752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDouble_in_entryRuleDouble1797 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDouble1808 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDouble1848 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DECIMAL_in_ruleDouble1874 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOptionalInt_in_entryRuleOptionalInt1920 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOptionalInt1931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleOptionalInt1970 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleMonthEnum2028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleMonthEnum2045 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_ruleMonthEnum2062 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleMonthEnum2079 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleMonthEnum2096 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleMonthEnum2113 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleMonthEnum2130 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleMonthEnum2147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleMonthEnum2164 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleMonthEnum2181 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleMonthEnum2198 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleMonthEnum2215 = new BitSet(new long[]{0x0000000000000002L});
 
 }

@@ -336,6 +336,34 @@ finally {
 
 
 
+// Entry rule entryRuleOptionalInt
+entryRuleOptionalInt 
+:
+{ before(grammarAccess.getOptionalIntRule()); }
+	 ruleOptionalInt
+{ after(grammarAccess.getOptionalIntRule()); } 
+	 EOF 
+;
+
+// Rule OptionalInt
+ruleOptionalInt
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getOptionalIntAccess().getINTTerminalRuleCall()); }
+	RULE_INT
+{ after(grammarAccess.getOptionalIntAccess().getINTTerminalRuleCall()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 
 // Rule MonthEnum
 ruleMonthEnum
@@ -3025,8 +3053,8 @@ rule__Transaction__DayAssignment_0_3_1
     }
 :
 (
-{ before(grammarAccess.getTransactionAccess().getDayINTTerminalRuleCall_0_3_1_0()); }
-	RULE_INT{ after(grammarAccess.getTransactionAccess().getDayINTTerminalRuleCall_0_3_1_0()); }
+{ before(grammarAccess.getTransactionAccess().getDayOptionalIntParserRuleCall_0_3_1_0()); }
+	ruleOptionalInt{ after(grammarAccess.getTransactionAccess().getDayOptionalIntParserRuleCall_0_3_1_0()); }
 )
 
 ;

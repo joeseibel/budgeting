@@ -47,7 +47,6 @@
     </genClasses>
     <genClasses ecoreClass="Budgeting.ecore#//Transaction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Budgeting.ecore#//Transaction/amount"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Budgeting.ecore#//Transaction/day"/>
     </genClasses>
     <genClasses ecoreClass="Budgeting.ecore#//IncomeCategory"/>
     <genClasses ecoreClass="Budgeting.ecore#//ExpenseCategory">
@@ -66,8 +65,11 @@
     <genClasses ecoreClass="Budgeting.ecore#//ActualTransactionEntry">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Budgeting.ecore#//ActualTransactionEntry/transactions"/>
     </genClasses>
-    <genClasses ecoreClass="Budgeting.ecore#//CashTransaction"/>
+    <genClasses ecoreClass="Budgeting.ecore#//CashTransaction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Budgeting.ecore#//CashTransaction/day"/>
+    </genClasses>
     <genClasses ecoreClass="Budgeting.ecore#//CardTransaction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Budgeting.ecore#//CardTransaction/day"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Budgeting.ecore#//CardTransaction/from"/>
     </genClasses>
   </genPackages>

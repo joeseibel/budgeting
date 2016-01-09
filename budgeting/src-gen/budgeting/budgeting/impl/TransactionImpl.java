@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link budgeting.budgeting.impl.TransactionImpl#getAmount <em>Amount</em>}</li>
- *   <li>{@link budgeting.budgeting.impl.TransactionImpl#getDay <em>Day</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,26 +46,6 @@ public class TransactionImpl extends MinimalEObjectImpl.Container implements Tra
    * @ordered
    */
   protected long amount = AMOUNT_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getDay() <em>Day</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDay()
-   * @generated
-   * @ordered
-   */
-  protected static final int DAY_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getDay() <em>Day</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDay()
-   * @generated
-   * @ordered
-   */
-  protected int day = DAY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -117,29 +96,6 @@ public class TransactionImpl extends MinimalEObjectImpl.Container implements Tra
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getDay()
-  {
-    return day;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setDay(int newDay)
-  {
-    int oldDay = day;
-    day = newDay;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, BudgetingPackage.TRANSACTION__DAY, oldDay, day));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -147,8 +103,6 @@ public class TransactionImpl extends MinimalEObjectImpl.Container implements Tra
     {
       case BudgetingPackage.TRANSACTION__AMOUNT:
         return getAmount();
-      case BudgetingPackage.TRANSACTION__DAY:
-        return getDay();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -165,9 +119,6 @@ public class TransactionImpl extends MinimalEObjectImpl.Container implements Tra
     {
       case BudgetingPackage.TRANSACTION__AMOUNT:
         setAmount((Long)newValue);
-        return;
-      case BudgetingPackage.TRANSACTION__DAY:
-        setDay((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -186,9 +137,6 @@ public class TransactionImpl extends MinimalEObjectImpl.Container implements Tra
       case BudgetingPackage.TRANSACTION__AMOUNT:
         setAmount(AMOUNT_EDEFAULT);
         return;
-      case BudgetingPackage.TRANSACTION__DAY:
-        setDay(DAY_EDEFAULT);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -205,8 +153,6 @@ public class TransactionImpl extends MinimalEObjectImpl.Container implements Tra
     {
       case BudgetingPackage.TRANSACTION__AMOUNT:
         return amount != AMOUNT_EDEFAULT;
-      case BudgetingPackage.TRANSACTION__DAY:
-        return day != DAY_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -224,8 +170,6 @@ public class TransactionImpl extends MinimalEObjectImpl.Container implements Tra
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (amount: ");
     result.append(amount);
-    result.append(", day: ");
-    result.append(day);
     result.append(')');
     return result.toString();
   }

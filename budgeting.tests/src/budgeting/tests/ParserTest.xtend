@@ -24,6 +24,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import static extension org.junit.Assert.assertEquals
+import static extension org.junit.Assert.assertNull
 import static extension org.junit.Assert.assertTrue
 
 @RunWith(XtextRunner)
@@ -247,7 +248,7 @@ class ParserTest {
 					3.assertEquals(transactions.size)
 					transactions.get(0) as CashTransaction => [
 						1122L.assertEquals(amount)
-						0.assertEquals(day)
+						day.assertNull
 					]
 					transactions.get(1) as CashTransaction => [
 						3344L.assertEquals(amount)

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link budgeting.budgeting.impl.CardTransactionImpl#getDay <em>Day</em>}</li>
  *   <li>{@link budgeting.budgeting.impl.CardTransactionImpl#getFrom <em>From</em>}</li>
  * </ul>
  *
@@ -26,6 +27,26 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class CardTransactionImpl extends TransactionImpl implements CardTransaction
 {
+  /**
+   * The default value of the '{@link #getDay() <em>Day</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDay()
+   * @generated
+   * @ordered
+   */
+  protected static final int DAY_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getDay() <em>Day</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDay()
+   * @generated
+   * @ordered
+   */
+  protected int day = DAY_EDEFAULT;
+
   /**
    * The default value of the '{@link #getFrom() <em>From</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -72,6 +93,29 @@ public class CardTransactionImpl extends TransactionImpl implements CardTransact
    * <!-- end-user-doc -->
    * @generated
    */
+  public int getDay()
+  {
+    return day;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDay(int newDay)
+  {
+    int oldDay = day;
+    day = newDay;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, BudgetingPackage.CARD_TRANSACTION__DAY, oldDay, day));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getFrom()
   {
     return from;
@@ -100,6 +144,8 @@ public class CardTransactionImpl extends TransactionImpl implements CardTransact
   {
     switch (featureID)
     {
+      case BudgetingPackage.CARD_TRANSACTION__DAY:
+        return getDay();
       case BudgetingPackage.CARD_TRANSACTION__FROM:
         return getFrom();
     }
@@ -116,6 +162,9 @@ public class CardTransactionImpl extends TransactionImpl implements CardTransact
   {
     switch (featureID)
     {
+      case BudgetingPackage.CARD_TRANSACTION__DAY:
+        setDay((Integer)newValue);
+        return;
       case BudgetingPackage.CARD_TRANSACTION__FROM:
         setFrom((String)newValue);
         return;
@@ -133,6 +182,9 @@ public class CardTransactionImpl extends TransactionImpl implements CardTransact
   {
     switch (featureID)
     {
+      case BudgetingPackage.CARD_TRANSACTION__DAY:
+        setDay(DAY_EDEFAULT);
+        return;
       case BudgetingPackage.CARD_TRANSACTION__FROM:
         setFrom(FROM_EDEFAULT);
         return;
@@ -150,6 +202,8 @@ public class CardTransactionImpl extends TransactionImpl implements CardTransact
   {
     switch (featureID)
     {
+      case BudgetingPackage.CARD_TRANSACTION__DAY:
+        return day != DAY_EDEFAULT;
       case BudgetingPackage.CARD_TRANSACTION__FROM:
         return FROM_EDEFAULT == null ? from != null : !FROM_EDEFAULT.equals(from);
     }
@@ -167,7 +221,9 @@ public class CardTransactionImpl extends TransactionImpl implements CardTransact
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (from: ");
+    result.append(" (day: ");
+    result.append(day);
+    result.append(", from: ");
     result.append(from);
     result.append(')');
     return result.toString();

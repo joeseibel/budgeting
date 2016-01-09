@@ -196,8 +196,8 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 		if(errorAcceptor != null) {
 			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.TRANSACTION__AMOUNT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.TRANSACTION__AMOUNT));
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.TRANSACTION__DAY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.TRANSACTION__DAY));
+			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.CARD_TRANSACTION__DAY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.CARD_TRANSACTION__DAY));
 			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.CARD_TRANSACTION__FROM) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.CARD_TRANSACTION__FROM));
 		}
@@ -212,7 +212,7 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Constraint:
-	 *     (amount=Dollar day=INT?)
+	 *     (amount=Dollar day=OptionalInt?)
 	 */
 	protected void sequence_Transaction(EObject context, CashTransaction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -309,22 +309,13 @@ public interface BudgetingPackage extends EPackage
   int TRANSACTION__AMOUNT = 0;
 
   /**
-   * The feature id for the '<em><b>Day</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TRANSACTION__DAY = 1;
-
-  /**
    * The number of structural features of the '<em>Transaction</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRANSACTION_FEATURE_COUNT = 2;
+  int TRANSACTION_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link budgeting.budgeting.impl.IncomeCategoryImpl <em>Income Category</em>}' class.
@@ -574,7 +565,7 @@ public interface BudgetingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CASH_TRANSACTION__DAY = TRANSACTION__DAY;
+  int CASH_TRANSACTION__DAY = TRANSACTION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Cash Transaction</em>' class.
@@ -583,7 +574,7 @@ public interface BudgetingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CASH_TRANSACTION_FEATURE_COUNT = TRANSACTION_FEATURE_COUNT + 0;
+  int CASH_TRANSACTION_FEATURE_COUNT = TRANSACTION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link budgeting.budgeting.impl.CardTransactionImpl <em>Card Transaction</em>}' class.
@@ -611,7 +602,7 @@ public interface BudgetingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CARD_TRANSACTION__DAY = TRANSACTION__DAY;
+  int CARD_TRANSACTION__DAY = TRANSACTION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>From</b></em>' attribute.
@@ -620,7 +611,7 @@ public interface BudgetingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CARD_TRANSACTION__FROM = TRANSACTION_FEATURE_COUNT + 0;
+  int CARD_TRANSACTION__FROM = TRANSACTION_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Card Transaction</em>' class.
@@ -629,7 +620,7 @@ public interface BudgetingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CARD_TRANSACTION_FEATURE_COUNT = TRANSACTION_FEATURE_COUNT + 1;
+  int CARD_TRANSACTION_FEATURE_COUNT = TRANSACTION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link budgeting.budgeting.MonthEnum <em>Month Enum</em>}' enum.
@@ -855,17 +846,6 @@ public interface BudgetingPackage extends EPackage
   EAttribute getTransaction_Amount();
 
   /**
-   * Returns the meta object for the attribute '{@link budgeting.budgeting.Transaction#getDay <em>Day</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Day</em>'.
-   * @see budgeting.budgeting.Transaction#getDay()
-   * @see #getTransaction()
-   * @generated
-   */
-  EAttribute getTransaction_Day();
-
-  /**
    * Returns the meta object for class '{@link budgeting.budgeting.IncomeCategory <em>Income Category</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1002,6 +982,17 @@ public interface BudgetingPackage extends EPackage
   EClass getCashTransaction();
 
   /**
+   * Returns the meta object for the attribute '{@link budgeting.budgeting.CashTransaction#getDay <em>Day</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Day</em>'.
+   * @see budgeting.budgeting.CashTransaction#getDay()
+   * @see #getCashTransaction()
+   * @generated
+   */
+  EAttribute getCashTransaction_Day();
+
+  /**
    * Returns the meta object for class '{@link budgeting.budgeting.CardTransaction <em>Card Transaction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1010,6 +1001,17 @@ public interface BudgetingPackage extends EPackage
    * @generated
    */
   EClass getCardTransaction();
+
+  /**
+   * Returns the meta object for the attribute '{@link budgeting.budgeting.CardTransaction#getDay <em>Day</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Day</em>'.
+   * @see budgeting.budgeting.CardTransaction#getDay()
+   * @see #getCardTransaction()
+   * @generated
+   */
+  EAttribute getCardTransaction_Day();
 
   /**
    * Returns the meta object for the attribute '{@link budgeting.budgeting.CardTransaction#getFrom <em>From</em>}'.
@@ -1232,14 +1234,6 @@ public interface BudgetingPackage extends EPackage
     EAttribute TRANSACTION__AMOUNT = eINSTANCE.getTransaction_Amount();
 
     /**
-     * The meta object literal for the '<em><b>Day</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TRANSACTION__DAY = eINSTANCE.getTransaction_Day();
-
-    /**
      * The meta object literal for the '{@link budgeting.budgeting.impl.IncomeCategoryImpl <em>Income Category</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1358,6 +1352,14 @@ public interface BudgetingPackage extends EPackage
     EClass CASH_TRANSACTION = eINSTANCE.getCashTransaction();
 
     /**
+     * The meta object literal for the '<em><b>Day</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CASH_TRANSACTION__DAY = eINSTANCE.getCashTransaction_Day();
+
+    /**
      * The meta object literal for the '{@link budgeting.budgeting.impl.CardTransactionImpl <em>Card Transaction</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1366,6 +1368,14 @@ public interface BudgetingPackage extends EPackage
      * @generated
      */
     EClass CARD_TRANSACTION = eINSTANCE.getCardTransaction();
+
+    /**
+     * The meta object literal for the '<em><b>Day</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CARD_TRANSACTION__DAY = eINSTANCE.getCardTransaction_Day();
 
     /**
      * The meta object literal for the '<em><b>From</b></em>' attribute feature.

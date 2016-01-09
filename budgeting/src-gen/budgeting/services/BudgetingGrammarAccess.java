@@ -467,7 +467,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_0_3 = (Group)cGroup_0.eContents().get(3);
 		private final Keyword cOnKeyword_0_3_0 = (Keyword)cGroup_0_3.eContents().get(0);
 		private final Assignment cDayAssignment_0_3_1 = (Assignment)cGroup_0_3.eContents().get(1);
-		private final RuleCall cDayINTTerminalRuleCall_0_3_1_0 = (RuleCall)cDayAssignment_0_3_1.eContents().get(0);
+		private final RuleCall cDayOptionalIntParserRuleCall_0_3_1_0 = (RuleCall)cDayAssignment_0_3_1.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Action cCardTransactionAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cCardKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
@@ -481,15 +481,15 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFromSTRINGTerminalRuleCall_1_6_0 = (RuleCall)cFromAssignment_1_6.eContents().get(0);
 		
 		//Transaction:
-		//	{CashTransaction} "cash" amount=Dollar ("on" day=INT)? | {CardTransaction} "card" amount=Dollar "on" day=INT "from"
-		//	from=STRING;
+		//	{CashTransaction} "cash" amount=Dollar ("on" day=OptionalInt)? | {CardTransaction} "card" amount=Dollar "on" day=INT
+		//	"from" from=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{CashTransaction} "cash" amount=Dollar ("on" day=INT)? | {CardTransaction} "card" amount=Dollar "on" day=INT "from"
-		//from=STRING
+		//{CashTransaction} "cash" amount=Dollar ("on" day=OptionalInt)? | {CardTransaction} "card" amount=Dollar "on" day=INT
+		//"from" from=STRING
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{CashTransaction} "cash" amount=Dollar ("on" day=INT)?
+		//{CashTransaction} "cash" amount=Dollar ("on" day=OptionalInt)?
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{CashTransaction}
@@ -504,17 +504,17 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//Dollar
 		public RuleCall getAmountDollarParserRuleCall_0_2_0() { return cAmountDollarParserRuleCall_0_2_0; }
 
-		//("on" day=INT)?
+		//("on" day=OptionalInt)?
 		public Group getGroup_0_3() { return cGroup_0_3; }
 
 		//"on"
 		public Keyword getOnKeyword_0_3_0() { return cOnKeyword_0_3_0; }
 
-		//day=INT
+		//day=OptionalInt
 		public Assignment getDayAssignment_0_3_1() { return cDayAssignment_0_3_1; }
 
-		//INT
-		public RuleCall getDayINTTerminalRuleCall_0_3_1_0() { return cDayINTTerminalRuleCall_0_3_1_0; }
+		//OptionalInt
+		public RuleCall getDayOptionalIntParserRuleCall_0_3_1_0() { return cDayOptionalIntParserRuleCall_0_3_1_0; }
 
 		//{CardTransaction} "card" amount=Dollar "on" day=INT "from" from=STRING
 		public Group getGroup_1() { return cGroup_1; }
@@ -580,6 +580,18 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 
 		//DECIMAL
 		public RuleCall getDECIMALTerminalRuleCall_1() { return cDECIMALTerminalRuleCall_1; }
+	}
+
+	public class OptionalIntElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OptionalInt");
+		private final RuleCall cINTTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		
+		//OptionalInt returns ecore::EIntegerObject:
+		//	INT;
+		@Override public ParserRule getRule() { return rule; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall() { return cINTTerminalRuleCall; }
 	}
 	
 	
@@ -704,6 +716,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	private final TransactionElements pTransaction;
 	private final DollarElements pDollar;
 	private final DoubleElements pDouble;
+	private final OptionalIntElements pOptionalInt;
 	private final TerminalRule tDECIMAL;
 	
 	private final Grammar grammar;
@@ -726,6 +739,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTransaction = new TransactionElements();
 		this.pDollar = new DollarElements();
 		this.pDouble = new DoubleElements();
+		this.pOptionalInt = new OptionalIntElements();
 		this.tDECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DECIMAL");
 	}
 	
@@ -841,8 +855,8 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Transaction:
-	//	{CashTransaction} "cash" amount=Dollar ("on" day=INT)? | {CardTransaction} "card" amount=Dollar "on" day=INT "from"
-	//	from=STRING;
+	//	{CashTransaction} "cash" amount=Dollar ("on" day=OptionalInt)? | {CardTransaction} "card" amount=Dollar "on" day=INT
+	//	"from" from=STRING;
 	public TransactionElements getTransactionAccess() {
 		return pTransaction;
 	}
@@ -869,6 +883,16 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getDoubleRule() {
 		return getDoubleAccess().getRule();
+	}
+
+	//OptionalInt returns ecore::EIntegerObject:
+	//	INT;
+	public OptionalIntElements getOptionalIntAccess() {
+		return pOptionalInt;
+	}
+	
+	public ParserRule getOptionalIntRule() {
+		return getOptionalIntAccess().getRule();
 	}
 
 	//terminal DECIMAL:

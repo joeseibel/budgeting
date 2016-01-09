@@ -425,16 +425,6 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTransaction_Day()
-  {
-    return (EAttribute)transactionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getIncomeCategory()
   {
     return incomeCategoryEClass;
@@ -565,6 +555,16 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getCashTransaction_Day()
+  {
+    return (EAttribute)cashTransactionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getCardTransaction()
   {
     return cardTransactionEClass;
@@ -575,9 +575,19 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getCardTransaction_From()
+  public EAttribute getCardTransaction_Day()
   {
     return (EAttribute)cardTransactionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCardTransaction_From()
+  {
+    return (EAttribute)cardTransactionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -647,7 +657,6 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
 
     transactionEClass = createEClass(TRANSACTION);
     createEAttribute(transactionEClass, TRANSACTION__AMOUNT);
-    createEAttribute(transactionEClass, TRANSACTION__DAY);
 
     incomeCategoryEClass = createEClass(INCOME_CATEGORY);
 
@@ -668,8 +677,10 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     createEReference(actualTransactionEntryEClass, ACTUAL_TRANSACTION_ENTRY__TRANSACTIONS);
 
     cashTransactionEClass = createEClass(CASH_TRANSACTION);
+    createEAttribute(cashTransactionEClass, CASH_TRANSACTION__DAY);
 
     cardTransactionEClass = createEClass(CARD_TRANSACTION);
+    createEAttribute(cardTransactionEClass, CARD_TRANSACTION__DAY);
     createEAttribute(cardTransactionEClass, CARD_TRANSACTION__FROM);
 
     // Create enums
@@ -744,7 +755,6 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
 
     initEClass(transactionEClass, Transaction.class, "Transaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTransaction_Amount(), ecorePackage.getELong(), "amount", null, 0, 1, Transaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getTransaction_Day(), ecorePackage.getEInt(), "day", null, 0, 1, Transaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(incomeCategoryEClass, IncomeCategory.class, "IncomeCategory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -765,8 +775,10 @@ public class BudgetingPackageImpl extends EPackageImpl implements BudgetingPacka
     initEReference(getActualTransactionEntry_Transactions(), this.getTransaction(), null, "transactions", null, 0, -1, ActualTransactionEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(cashTransactionEClass, CashTransaction.class, "CashTransaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCashTransaction_Day(), ecorePackage.getEIntegerObject(), "day", null, 0, 1, CashTransaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(cardTransactionEClass, CardTransaction.class, "CardTransaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCardTransaction_Day(), ecorePackage.getEInt(), "day", null, 0, 1, CardTransaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCardTransaction_From(), ecorePackage.getEString(), "from", null, 0, 1, CardTransaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
