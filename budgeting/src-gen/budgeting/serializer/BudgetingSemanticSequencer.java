@@ -17,17 +17,15 @@ import budgeting.budgeting.Month;
 import budgeting.budgeting.Year;
 import budgeting.services.BudgetingGrammarAccess;
 import com.google.inject.Inject;
-import com.google.inject.Provider;
+import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.xtext.Action;
+import org.eclipse.xtext.Parameter;
+import org.eclipse.xtext.ParserRule;
+import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
-import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
-import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic.Acceptor;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
-import org.eclipse.xtext.serializer.sequencer.GenericSequencer;
-import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
-import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
-import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
@@ -37,8 +35,13 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 	private BudgetingGrammarAccess grammarAccess;
 	
 	@Override
-	public void createSequence(EObject context, EObject semanticObject) {
-		if(semanticObject.eClass().getEPackage() == BudgetingPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+	public void sequence(ISerializationContext context, EObject semanticObject) {
+		EPackage epackage = semanticObject.eClass().getEPackage();
+		ParserRule rule = context.getParserRule();
+		Action action = context.getAssignedAction();
+		Set<Parameter> parameters = context.getEnabledBooleanParameters();
+		if (epackage == BudgetingPackage.eINSTANCE)
+			switch (semanticObject.eClass().getClassifierID()) {
 			case BudgetingPackage.ACTUAL_AMOUNT_ENTRY:
 				sequence_ActualEntry(context, (ActualAmountEntry) semanticObject); 
 				return; 
@@ -73,22 +76,25 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 				sequence_Year(context, (Year) semanticObject); 
 				return; 
 			}
-		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
+		if (errorAcceptor != null)
+			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
 	
 	/**
+	 * Contexts:
+	 *     ActualEntry returns ActualAmountEntry
+	 *
 	 * Constraint:
 	 *     (category=[Category|ID] amount=Dollar)
 	 */
-	protected void sequence_ActualEntry(EObject context, ActualAmountEntry semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.ACTUAL_ENTRY__CATEGORY) == ValueTransient.YES)
+	protected void sequence_ActualEntry(ISerializationContext context, ActualAmountEntry semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.ACTUAL_ENTRY__CATEGORY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.ACTUAL_ENTRY__CATEGORY));
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.ACTUAL_AMOUNT_ENTRY__AMOUNT) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.ACTUAL_AMOUNT_ENTRY__AMOUNT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.ACTUAL_AMOUNT_ENTRY__AMOUNT));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getActualEntryAccess().getCategoryCategoryIDTerminalRuleCall_0_1_0_1(), semanticObject.getCategory());
 		feeder.accept(grammarAccess.getActualEntryAccess().getAmountDollarParserRuleCall_0_3_0(), semanticObject.getAmount());
 		feeder.finish();
@@ -96,27 +102,32 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	
 	/**
+	 * Contexts:
+	 *     ActualEntry returns ActualTransactionEntry
+	 *
 	 * Constraint:
 	 *     (category=[Category|ID] transactions+=Transaction+)
 	 */
-	protected void sequence_ActualEntry(EObject context, ActualTransactionEntry semanticObject) {
+	protected void sequence_ActualEntry(ISerializationContext context, ActualTransactionEntry semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     BudgetEntry returns BudgetAmountEntry
+	 *
 	 * Constraint:
 	 *     (category=[Category|ID] amount=Dollar)
 	 */
-	protected void sequence_BudgetEntry(EObject context, BudgetAmountEntry semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.BUDGET_ENTRY__CATEGORY) == ValueTransient.YES)
+	protected void sequence_BudgetEntry(ISerializationContext context, BudgetAmountEntry semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.BUDGET_ENTRY__CATEGORY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.BUDGET_ENTRY__CATEGORY));
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.BUDGET_AMOUNT_ENTRY__AMOUNT) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.BUDGET_AMOUNT_ENTRY__AMOUNT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.BUDGET_AMOUNT_ENTRY__AMOUNT));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getBudgetEntryAccess().getCategoryCategoryIDTerminalRuleCall_0_1_0_1(), semanticObject.getCategory());
 		feeder.accept(grammarAccess.getBudgetEntryAccess().getAmountDollarParserRuleCall_0_3_0(), semanticObject.getAmount());
 		feeder.finish();
@@ -124,20 +135,22 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	
 	/**
+	 * Contexts:
+	 *     BudgetEntry returns BudgetFactorEntry
+	 *
 	 * Constraint:
 	 *     (category=[Category|ID] baseEntry=[BudgetEntry|ID] factor=Double)
 	 */
-	protected void sequence_BudgetEntry(EObject context, BudgetFactorEntry semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.BUDGET_ENTRY__CATEGORY) == ValueTransient.YES)
+	protected void sequence_BudgetEntry(ISerializationContext context, BudgetFactorEntry semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.BUDGET_ENTRY__CATEGORY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.BUDGET_ENTRY__CATEGORY));
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.BUDGET_FACTOR_ENTRY__BASE_ENTRY) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.BUDGET_FACTOR_ENTRY__BASE_ENTRY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.BUDGET_FACTOR_ENTRY__BASE_ENTRY));
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.BUDGET_FACTOR_ENTRY__FACTOR) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.BUDGET_FACTOR_ENTRY__FACTOR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.BUDGET_FACTOR_ENTRY__FACTOR));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getBudgetEntryAccess().getCategoryCategoryIDTerminalRuleCall_1_1_0_1(), semanticObject.getCategory());
 		feeder.accept(grammarAccess.getBudgetEntryAccess().getBaseEntryBudgetEntryIDTerminalRuleCall_1_3_0_1(), semanticObject.getBaseEntry());
 		feeder.accept(grammarAccess.getBudgetEntryAccess().getFactorDoubleParserRuleCall_1_5_0(), semanticObject.getFactor());
@@ -146,63 +159,77 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	
 	/**
+	 * Contexts:
+	 *     Category returns ExpenseCategory
+	 *
 	 * Constraint:
 	 *     (name=ID (patterns+=STRING patterns+=STRING*)?)
 	 */
-	protected void sequence_Category(EObject context, ExpenseCategory semanticObject) {
+	protected void sequence_Category(ISerializationContext context, ExpenseCategory semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Category returns IncomeCategory
+	 *
 	 * Constraint:
 	 *     name=ID
 	 */
-	protected void sequence_Category(EObject context, IncomeCategory semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.CATEGORY__NAME) == ValueTransient.YES)
+	protected void sequence_Category(ISerializationContext context, IncomeCategory semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.CATEGORY__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.CATEGORY__NAME));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getCategoryAccess().getNameIDTerminalRuleCall_0_2_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     BudgetingFile returns Library
+	 *     Library returns Library
+	 *
 	 * Constraint:
 	 *     (name=ID categories+=Category*)
 	 */
-	protected void sequence_Library(EObject context, Library semanticObject) {
+	protected void sequence_Library(ISerializationContext context, Library semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Month returns Month
+	 *
 	 * Constraint:
 	 *     (name=MonthEnum budgetEntries+=BudgetEntry* actualEntries+=ActualEntry*)
 	 */
-	protected void sequence_Month(EObject context, Month semanticObject) {
+	protected void sequence_Month(ISerializationContext context, Month semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Transaction returns CardTransaction
+	 *
 	 * Constraint:
 	 *     (amount=Dollar day=INT from=STRING)
 	 */
-	protected void sequence_Transaction(EObject context, CardTransaction semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.TRANSACTION__AMOUNT) == ValueTransient.YES)
+	protected void sequence_Transaction(ISerializationContext context, CardTransaction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.TRANSACTION__AMOUNT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.TRANSACTION__AMOUNT));
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.CARD_TRANSACTION__DAY) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.CARD_TRANSACTION__DAY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.CARD_TRANSACTION__DAY));
-			if(transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.CARD_TRANSACTION__FROM) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, BudgetingPackage.Literals.CARD_TRANSACTION__FROM) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.CARD_TRANSACTION__FROM));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTransactionAccess().getAmountDollarParserRuleCall_1_2_0(), semanticObject.getAmount());
 		feeder.accept(grammarAccess.getTransactionAccess().getDayINTTerminalRuleCall_1_4_0(), semanticObject.getDay());
 		feeder.accept(grammarAccess.getTransactionAccess().getFromSTRINGTerminalRuleCall_1_6_0(), semanticObject.getFrom());
@@ -211,19 +238,28 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	
 	/**
+	 * Contexts:
+	 *     Transaction returns CashTransaction
+	 *
 	 * Constraint:
 	 *     (amount=Dollar day=OptionalInt?)
 	 */
-	protected void sequence_Transaction(EObject context, CashTransaction semanticObject) {
+	protected void sequence_Transaction(ISerializationContext context, CashTransaction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     BudgetingFile returns Year
+	 *     Year returns Year
+	 *
 	 * Constraint:
 	 *     (name=INT library=[Library|ID] months+=Month*)
 	 */
-	protected void sequence_Year(EObject context, Year semanticObject) {
+	protected void sequence_Year(ISerializationContext context, Year semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
+	
+	
 }

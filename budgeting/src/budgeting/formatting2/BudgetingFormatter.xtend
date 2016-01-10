@@ -22,45 +22,45 @@ import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 class BudgetingFormatter extends AbstractFormatter2 {
 	def dispatch void format(Library library, extension IFormattableDocument document) {
 		library.surround[noSpace]
-		library.regionForFeature(BudgetingPackage.eINSTANCE.library_Name).surround[oneSpace]
-		library.regionForKeyword("{").append[setNewLines(1, 1, Integer.MAX_VALUE); increaseIndentation]
-		library.categories.forEach[format(document)]
-		library.regionForKeyword("}").prepend[decreaseIndentation]
+		library.regionFor.feature(BudgetingPackage.eINSTANCE.library_Name).surround[oneSpace]
+		library.regionFor.keyword("{").append[setNewLines(1, 1, Integer.MAX_VALUE)]
+		library.categories.forEach[it.format(document)]
 	}
 	
 	def dispatch void format(IncomeCategory incomeCategory, extension IFormattableDocument document) {
-		incomeCategory.regionForKeyword("income").append[oneSpace]
+		incomeCategory.surround[indent]
+		incomeCategory.regionFor.keyword("income").append[oneSpace]
 		incomeCategory.append[setNewLines(1, 1, Integer.MAX_VALUE)]
 	}
 	
 	def dispatch void format(ExpenseCategory expenseCategory, extension IFormattableDocument document) {
-		expenseCategory.regionForKeyword("expense").append[oneSpace]
+		expenseCategory.surround[indent]
+		expenseCategory.regionFor.keyword("expense").append[oneSpace]
 		expenseCategory.append[setNewLines(1, 1, Integer.MAX_VALUE)]
-		expenseCategory.regionForKeyword("[").prepend[oneSpace].append[noSpace]
+		expenseCategory.regionFor.keyword("[").prepend[oneSpace].append[noSpace]
 		expenseCategory.formatConditionally([
 			val extension doc = requireFitsInLine
-			expenseCategory.regionsForKeywords(",").forEach[prepend[noSpace].append[oneSpace]]
-			expenseCategory.regionForKeyword("]").prepend[noSpace]
+			expenseCategory.regionFor.keywords(",").forEach[prepend[noSpace].append[oneSpace]]
+			expenseCategory.regionFor.keyword("]").prepend[noSpace]
 		], [extension doc |
-			val indentFormatter = new IndentOnceAutowrapFormatter(expenseCategory.regionForKeyword("]").previousHiddenRegion)
-			expenseCategory.regionsForKeywords(",").forEach[prepend[noSpace].append[oneSpace; autowrap; onAutowrap = indentFormatter]]
-			expenseCategory.regionForKeyword("]").prepend[newLine]
+			val indentFormatter = new IndentOnceAutowrapFormatter(expenseCategory.regionFor.keyword("]").previousHiddenRegion)
+			expenseCategory.regionFor.keywords(",").forEach[prepend[noSpace].append[oneSpace; autowrap; onAutowrap = indentFormatter]]
+			expenseCategory.regionFor.keyword("]").prepend[newLine]
 		])
 	}
 
 	def dispatch void format(Year year, extension IFormattableDocument document) {
 		year.surround[noSpace]
-		year.regionForKeyword("uses").surround[oneSpace]
-		year.regionForKeyword("{").prepend[oneSpace].append[setNewLines(1, 1, Integer.MAX_VALUE); increaseIndentation]
-		year.months.forEach[format(document)]
-		year.regionForKeyword("}").prepend[decreaseIndentation]
+		year.regionFor.keyword("uses").surround[oneSpace]
+		year.regionFor.keyword("{").prepend[oneSpace].append[setNewLines(1, 1, Integer.MAX_VALUE)]
+		year.months.forEach[it.format(document)]
 	}
 
 	def dispatch void format(Month month, extension IFormattableDocument document) {
-		month.regionsForKeywords("budget", "actual").forEach[surround[oneSpace]]
-		month.regionsForKeywords("{").forEach[append[setNewLines(1, 1, Integer.MAX_VALUE); increaseIndentation]]
-		month.regionsForKeywords("}").forEach[prepend[decreaseIndentation]]
-		(month.budgetEntries + month.actualEntries).forEach[format(document)]
+		month.surround[indent]
+		month.regionFor.keywords("budget", "actual").forEach[surround[oneSpace]]
+		month.regionFor.keywords("{").forEach[append[setNewLines(1, 1, Integer.MAX_VALUE)]]
+		(month.budgetEntries + month.actualEntries).forEach[it.format(document)]
 		month.append[if (month == month.getContainerOfType(Year).months.last) {
 			setNewLines(1, 1, Integer.MAX_VALUE)
 		} else {
@@ -69,25 +69,29 @@ class BudgetingFormatter extends AbstractFormatter2 {
 	}
 	
 	def dispatch void format(BudgetEntry budgetEntry, extension IFormattableDocument document) {
-		budgetEntry.regionForKeyword(":").prepend[noSpace].append[oneSpace]
-		budgetEntry.regionForKeyword("*").surround[oneSpace]
+		budgetEntry.surround[indent]
+		budgetEntry.regionFor.keyword(":").prepend[noSpace].append[oneSpace]
+		budgetEntry.regionFor.keyword("*").surround[oneSpace]
 		budgetEntry.append[setNewLines(1, 1, Integer.MAX_VALUE)]
 	}
 	
 	def dispatch void format(ActualAmountEntry actualAmountEntry, extension IFormattableDocument document) {
-		actualAmountEntry.regionForKeyword(":").prepend[noSpace].append[oneSpace]
+		actualAmountEntry.surround[indent]
+		actualAmountEntry.regionFor.keyword(":").prepend[noSpace].append[oneSpace]
 		actualAmountEntry.append[setNewLines(1, 1, Integer.MAX_VALUE)]
 	}
 
 	def dispatch void format(ActualTransactionEntry actualTransactionEntry, extension IFormattableDocument document) {
-		actualTransactionEntry.regionForKeyword("{").prepend[oneSpace].append[newLine; increaseIndentation]
-		actualTransactionEntry.transactions.forEach[format(document)]
-		actualTransactionEntry.regionForKeyword("}").prepend[decreaseIndentation].append[setNewLines(1, 1, Integer.MAX_VALUE)]
+		actualTransactionEntry.surround[indent]
+		actualTransactionEntry.regionFor.keyword("{").prepend[oneSpace].append[newLine]
+		actualTransactionEntry.transactions.forEach[it.format(document)]
+		actualTransactionEntry.append[setNewLines(1, 1, Integer.MAX_VALUE)]
 	}
 	
 	def dispatch void format(Transaction transaction, extension IFormattableDocument document) {
-		transaction.regionsForKeywords("cash", "card").forEach[append[oneSpace]]
-		transaction.regionsForKeywords("on", "from").forEach[surround[oneSpace]]
+		transaction.surround[indent]
+		transaction.regionFor.keywords("cash", "card").forEach[append[oneSpace]]
+		transaction.regionFor.keywords("on", "from").forEach[surround[oneSpace]]
 		transaction.append[setNewLines(1, 1, Integer.MAX_VALUE)]
 	}
 }

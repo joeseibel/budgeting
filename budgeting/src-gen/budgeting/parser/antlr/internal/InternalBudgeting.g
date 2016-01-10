@@ -136,7 +136,7 @@ ruleLibrary returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -157,7 +157,7 @@ ruleLibrary returns [EObject current=null]
        			$current, 
        			"categories",
         		lv_categories_3_0, 
-        		"Category");
+        		"budgeting.Budgeting.Category");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -211,7 +211,7 @@ ruleCategory returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -240,7 +240,7 @@ ruleCategory returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_5_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -262,7 +262,7 @@ ruleCategory returns [EObject current=null]
        			$current, 
        			"patterns",
         		lv_patterns_7_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -284,7 +284,7 @@ ruleCategory returns [EObject current=null]
        			$current, 
        			"patterns",
         		lv_patterns_9_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -327,7 +327,7 @@ ruleYear returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"INT");
+        		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
 )
@@ -365,7 +365,7 @@ ruleYear returns [EObject current=null]
        			$current, 
        			"months",
         		lv_months_4_0, 
-        		"Month");
+        		"budgeting.Budgeting.Month");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -408,7 +408,7 @@ ruleMonth returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"MonthEnum");
+        		"budgeting.Budgeting.MonthEnum");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -434,7 +434,7 @@ ruleMonth returns [EObject current=null]
        			$current, 
        			"budgetEntries",
         		lv_budgetEntries_3_0, 
-        		"BudgetEntry");
+        		"budgeting.Budgeting.BudgetEntry");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -464,7 +464,7 @@ ruleMonth returns [EObject current=null]
        			$current, 
        			"actualEntries",
         		lv_actualEntries_7_0, 
-        		"ActualEntry");
+        		"budgeting.Budgeting.ActualEntry");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -530,7 +530,7 @@ ruleBudgetEntry returns [EObject current=null]
        			$current, 
        			"amount",
         		lv_amount_3_0, 
-        		"Dollar");
+        		"budgeting.Budgeting.Dollar");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -589,7 +589,7 @@ ruleBudgetEntry returns [EObject current=null]
        			$current, 
        			"factor",
         		lv_factor_9_0, 
-        		"Double");
+        		"budgeting.Budgeting.Double");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -651,7 +651,7 @@ ruleActualEntry returns [EObject current=null]
        			$current, 
        			"amount",
         		lv_amount_3_0, 
-        		"Dollar");
+        		"budgeting.Budgeting.Dollar");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -693,7 +693,7 @@ ruleActualEntry returns [EObject current=null]
        			$current, 
        			"transactions",
         		lv_transactions_7_0, 
-        		"Transaction");
+        		"budgeting.Budgeting.Transaction");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -746,7 +746,7 @@ ruleTransaction returns [EObject current=null]
        			$current, 
        			"amount",
         		lv_amount_2_0, 
-        		"Dollar");
+        		"budgeting.Budgeting.Dollar");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -768,7 +768,7 @@ ruleTransaction returns [EObject current=null]
        			$current, 
        			"day",
         		lv_day_4_0, 
-        		"OptionalInt");
+        		"budgeting.Budgeting.OptionalInt");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -797,7 +797,7 @@ ruleTransaction returns [EObject current=null]
        			$current, 
        			"amount",
         		lv_amount_7_0, 
-        		"Dollar");
+        		"budgeting.Budgeting.Dollar");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -820,7 +820,7 @@ ruleTransaction returns [EObject current=null]
        			$current, 
        			"day",
         		lv_day_9_0, 
-        		"INT");
+        		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
 )
@@ -842,7 +842,7 @@ ruleTransaction returns [EObject current=null]
        			$current, 
        			"from",
         		lv_from_11_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )

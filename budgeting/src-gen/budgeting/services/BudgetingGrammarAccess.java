@@ -19,7 +19,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	public class BudgetingFileElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BudgetingFile");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.BudgetingFile");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cLibraryParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cYearParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -39,7 +39,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class LibraryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Library");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.Library");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLibraryKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -50,13 +50,15 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Library:
-		//	"library" name=ID "{" categories+=Category* "}";
+		//	'library' name=ID '{'
+		//	categories+=Category*
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"library" name=ID "{" categories+=Category* "}"
+		//'library' name=ID '{' categories+=Category* '}'
 		public Group getGroup() { return cGroup; }
 
-		//"library"
+		//'library'
 		public Keyword getLibraryKeyword_0() { return cLibraryKeyword_0; }
 
 		//name=ID
@@ -65,7 +67,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
 		//categories+=Category*
@@ -74,12 +76,12 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//Category
 		public RuleCall getCategoriesCategoryParserRuleCall_3_0() { return cCategoriesCategoryParserRuleCall_3_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class CategoryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Category");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.Category");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Action cIncomeCategoryAction_0_0 = (Action)cGroup_0.eContents().get(0);
@@ -102,21 +104,21 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_1_3_3 = (Keyword)cGroup_1_3.eContents().get(3);
 		
 		//Category:
-		//	{IncomeCategory} "income" name=ID | {ExpenseCategory} "expense" name=ID ("[" patterns+=STRING ("," patterns+=STRING)*
-		//	"]")?;
+		//	{IncomeCategory} 'income' name=ID | {ExpenseCategory} 'expense' name=ID ('[' patterns+=STRING (',' patterns+=STRING)*
+		//	']')?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{IncomeCategory} "income" name=ID | {ExpenseCategory} "expense" name=ID ("[" patterns+=STRING ("," patterns+=STRING)*
-		//"]")?
+		//{IncomeCategory} 'income' name=ID | {ExpenseCategory} 'expense' name=ID ('[' patterns+=STRING (',' patterns+=STRING)*
+		//']')?
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{IncomeCategory} "income" name=ID
+		//{IncomeCategory} 'income' name=ID
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{IncomeCategory}
 		public Action getIncomeCategoryAction_0_0() { return cIncomeCategoryAction_0_0; }
 
-		//"income"
+		//'income'
 		public Keyword getIncomeKeyword_0_1() { return cIncomeKeyword_0_1; }
 
 		//name=ID
@@ -125,13 +127,13 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0_2_0() { return cNameIDTerminalRuleCall_0_2_0; }
 
-		//{ExpenseCategory} "expense" name=ID ("[" patterns+=STRING ("," patterns+=STRING)* "]")?
+		//{ExpenseCategory} 'expense' name=ID ('[' patterns+=STRING (',' patterns+=STRING)* ']')?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{ExpenseCategory}
 		public Action getExpenseCategoryAction_1_0() { return cExpenseCategoryAction_1_0; }
 
-		//"expense"
+		//'expense'
 		public Keyword getExpenseKeyword_1_1() { return cExpenseKeyword_1_1; }
 
 		//name=ID
@@ -140,10 +142,10 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_2_0() { return cNameIDTerminalRuleCall_1_2_0; }
 
-		//("[" patterns+=STRING ("," patterns+=STRING)* "]")?
+		//('[' patterns+=STRING (',' patterns+=STRING)* ']')?
 		public Group getGroup_1_3() { return cGroup_1_3; }
 
-		//"["
+		//'['
 		public Keyword getLeftSquareBracketKeyword_1_3_0() { return cLeftSquareBracketKeyword_1_3_0; }
 
 		//patterns+=STRING
@@ -152,10 +154,10 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getPatternsSTRINGTerminalRuleCall_1_3_1_0() { return cPatternsSTRINGTerminalRuleCall_1_3_1_0; }
 
-		//("," patterns+=STRING)*
+		//(',' patterns+=STRING)*
 		public Group getGroup_1_3_2() { return cGroup_1_3_2; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_3_2_0() { return cCommaKeyword_1_3_2_0; }
 
 		//patterns+=STRING
@@ -164,12 +166,12 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getPatternsSTRINGTerminalRuleCall_1_3_2_1_0() { return cPatternsSTRINGTerminalRuleCall_1_3_2_1_0; }
 
-		//"]"
+		//']'
 		public Keyword getRightSquareBracketKeyword_1_3_3() { return cRightSquareBracketKeyword_1_3_3; }
 	}
 
 	public class YearElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Year");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.Year");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameINTTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -183,10 +185,12 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Year:
-		//	name=INT "uses" library=[Library] "{" months+=Month* "}";
+		//	name=INT 'uses' library=[Library] '{'
+		//	months+=Month*
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=INT "uses" library=[Library] "{" months+=Month* "}"
+		//name=INT 'uses' library=[Library] '{' months+=Month* '}'
 		public Group getGroup() { return cGroup; }
 
 		//name=INT
@@ -195,7 +199,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getNameINTTerminalRuleCall_0_0() { return cNameINTTerminalRuleCall_0_0; }
 
-		//"uses"
+		//'uses'
 		public Keyword getUsesKeyword_1() { return cUsesKeyword_1; }
 
 		//library=[Library]
@@ -207,7 +211,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getLibraryLibraryIDTerminalRuleCall_2_0_1() { return cLibraryLibraryIDTerminalRuleCall_2_0_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 
 		//months+=Month*
@@ -216,12 +220,12 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//Month
 		public RuleCall getMonthsMonthParserRuleCall_4_0() { return cMonthsMonthParserRuleCall_4_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 
 	public class MonthElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Month");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.Month");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameMonthEnumEnumRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -237,10 +241,14 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Month:
-		//	name=MonthEnum "budget" "{" budgetEntries+=BudgetEntry* "}" "actual" "{" actualEntries+=ActualEntry* "}";
+		//	name=MonthEnum 'budget' '{'
+		//	budgetEntries+=BudgetEntry*
+		//	'}' 'actual' '{'
+		//	actualEntries+=ActualEntry*
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=MonthEnum "budget" "{" budgetEntries+=BudgetEntry* "}" "actual" "{" actualEntries+=ActualEntry* "}"
+		//name=MonthEnum 'budget' '{' budgetEntries+=BudgetEntry* '}' 'actual' '{' actualEntries+=ActualEntry* '}'
 		public Group getGroup() { return cGroup; }
 
 		//name=MonthEnum
@@ -249,10 +257,10 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//MonthEnum
 		public RuleCall getNameMonthEnumEnumRuleCall_0_0() { return cNameMonthEnumEnumRuleCall_0_0; }
 
-		//"budget"
+		//'budget'
 		public Keyword getBudgetKeyword_1() { return cBudgetKeyword_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
 		//budgetEntries+=BudgetEntry*
@@ -261,13 +269,13 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//BudgetEntry
 		public RuleCall getBudgetEntriesBudgetEntryParserRuleCall_3_0() { return cBudgetEntriesBudgetEntryParserRuleCall_3_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 
-		//"actual"
+		//'actual'
 		public Keyword getActualKeyword_5() { return cActualKeyword_5; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
 
 		//actualEntries+=ActualEntry*
@@ -276,12 +284,12 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//ActualEntry
 		public RuleCall getActualEntriesActualEntryParserRuleCall_7_0() { return cActualEntriesActualEntryParserRuleCall_7_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
 	}
 
 	public class BudgetEntryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BudgetEntry");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.BudgetEntry");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Action cBudgetAmountEntryAction_0_0 = (Action)cGroup_0.eContents().get(0);
@@ -305,15 +313,15 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFactorDoubleParserRuleCall_1_5_0 = (RuleCall)cFactorAssignment_1_5.eContents().get(0);
 		
 		//BudgetEntry:
-		//	{BudgetAmountEntry} category=[Category] ":" amount=Dollar | {BudgetFactorEntry} category=[Category] ":"
-		//	baseEntry=[BudgetEntry] "*" factor=Double;
+		//	{BudgetAmountEntry} category=[Category] ':' amount=Dollar | {BudgetFactorEntry} category=[Category] ':'
+		//	baseEntry=[BudgetEntry] '*' factor=Double;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{BudgetAmountEntry} category=[Category] ":" amount=Dollar | {BudgetFactorEntry} category=[Category] ":"
-		//baseEntry=[BudgetEntry] "*" factor=Double
+		//{BudgetAmountEntry} category=[Category] ':' amount=Dollar | {BudgetFactorEntry} category=[Category] ':'
+		//baseEntry=[BudgetEntry] '*' factor=Double
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{BudgetAmountEntry} category=[Category] ":" amount=Dollar
+		//{BudgetAmountEntry} category=[Category] ':' amount=Dollar
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{BudgetAmountEntry}
@@ -328,7 +336,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getCategoryCategoryIDTerminalRuleCall_0_1_0_1() { return cCategoryCategoryIDTerminalRuleCall_0_1_0_1; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_0_2() { return cColonKeyword_0_2; }
 
 		//amount=Dollar
@@ -337,7 +345,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//Dollar
 		public RuleCall getAmountDollarParserRuleCall_0_3_0() { return cAmountDollarParserRuleCall_0_3_0; }
 
-		//{BudgetFactorEntry} category=[Category] ":" baseEntry=[BudgetEntry] "*" factor=Double
+		//{BudgetFactorEntry} category=[Category] ':' baseEntry=[BudgetEntry] '*' factor=Double
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{BudgetFactorEntry}
@@ -352,7 +360,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getCategoryCategoryIDTerminalRuleCall_1_1_0_1() { return cCategoryCategoryIDTerminalRuleCall_1_1_0_1; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_1_2() { return cColonKeyword_1_2; }
 
 		//baseEntry=[BudgetEntry]
@@ -364,7 +372,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getBaseEntryBudgetEntryIDTerminalRuleCall_1_3_0_1() { return cBaseEntryBudgetEntryIDTerminalRuleCall_1_3_0_1; }
 
-		//"*"
+		//'*'
 		public Keyword getAsteriskKeyword_1_4() { return cAsteriskKeyword_1_4; }
 
 		//factor=Double
@@ -375,7 +383,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ActualEntryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActualEntry");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.ActualEntry");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Action cActualAmountEntryAction_0_0 = (Action)cGroup_0.eContents().get(0);
@@ -396,15 +404,16 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
 		
 		//ActualEntry:
-		//	{ActualAmountEntry} category=[Category] ":" amount=Dollar | {ActualTransactionEntry} category=[Category] "{"
-		//	transactions+=Transaction+ "}";
+		//	{ActualAmountEntry} category=[Category] ':' amount=Dollar | {ActualTransactionEntry} category=[Category] '{'
+		//	transactions+=Transaction+
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{ActualAmountEntry} category=[Category] ":" amount=Dollar | {ActualTransactionEntry} category=[Category] "{"
-		//transactions+=Transaction+ "}"
+		//{ActualAmountEntry} category=[Category] ':' amount=Dollar | {ActualTransactionEntry} category=[Category] '{'
+		//transactions+=Transaction+ '}'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{ActualAmountEntry} category=[Category] ":" amount=Dollar
+		//{ActualAmountEntry} category=[Category] ':' amount=Dollar
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{ActualAmountEntry}
@@ -419,7 +428,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getCategoryCategoryIDTerminalRuleCall_0_1_0_1() { return cCategoryCategoryIDTerminalRuleCall_0_1_0_1; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_0_2() { return cColonKeyword_0_2; }
 
 		//amount=Dollar
@@ -428,7 +437,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//Dollar
 		public RuleCall getAmountDollarParserRuleCall_0_3_0() { return cAmountDollarParserRuleCall_0_3_0; }
 
-		//{ActualTransactionEntry} category=[Category] "{" transactions+=Transaction+ "}"
+		//{ActualTransactionEntry} category=[Category] '{' transactions+=Transaction+ '}'
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{ActualTransactionEntry}
@@ -443,7 +452,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getCategoryCategoryIDTerminalRuleCall_1_1_0_1() { return cCategoryCategoryIDTerminalRuleCall_1_1_0_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_2() { return cLeftCurlyBracketKeyword_1_2; }
 
 		//transactions+=Transaction+
@@ -452,12 +461,12 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//Transaction
 		public RuleCall getTransactionsTransactionParserRuleCall_1_3_0() { return cTransactionsTransactionParserRuleCall_1_3_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_4() { return cRightCurlyBracketKeyword_1_4; }
 	}
 
 	public class TransactionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Transaction");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.Transaction");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Action cCashTransactionAction_0_0 = (Action)cGroup_0.eContents().get(0);
@@ -481,21 +490,21 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFromSTRINGTerminalRuleCall_1_6_0 = (RuleCall)cFromAssignment_1_6.eContents().get(0);
 		
 		//Transaction:
-		//	{CashTransaction} "cash" amount=Dollar ("on" day=OptionalInt)? | {CardTransaction} "card" amount=Dollar "on" day=INT
-		//	"from" from=STRING;
+		//	{CashTransaction} 'cash' amount=Dollar ('on' day=OptionalInt)? | {CardTransaction} 'card' amount=Dollar 'on' day=INT
+		//	'from' from=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
-		//{CashTransaction} "cash" amount=Dollar ("on" day=OptionalInt)? | {CardTransaction} "card" amount=Dollar "on" day=INT
-		//"from" from=STRING
+		//{CashTransaction} 'cash' amount=Dollar ('on' day=OptionalInt)? | {CardTransaction} 'card' amount=Dollar 'on' day=INT
+		//'from' from=STRING
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{CashTransaction} "cash" amount=Dollar ("on" day=OptionalInt)?
+		//{CashTransaction} 'cash' amount=Dollar ('on' day=OptionalInt)?
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{CashTransaction}
 		public Action getCashTransactionAction_0_0() { return cCashTransactionAction_0_0; }
 
-		//"cash"
+		//'cash'
 		public Keyword getCashKeyword_0_1() { return cCashKeyword_0_1; }
 
 		//amount=Dollar
@@ -504,10 +513,10 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//Dollar
 		public RuleCall getAmountDollarParserRuleCall_0_2_0() { return cAmountDollarParserRuleCall_0_2_0; }
 
-		//("on" day=OptionalInt)?
+		//('on' day=OptionalInt)?
 		public Group getGroup_0_3() { return cGroup_0_3; }
 
-		//"on"
+		//'on'
 		public Keyword getOnKeyword_0_3_0() { return cOnKeyword_0_3_0; }
 
 		//day=OptionalInt
@@ -516,13 +525,13 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//OptionalInt
 		public RuleCall getDayOptionalIntParserRuleCall_0_3_1_0() { return cDayOptionalIntParserRuleCall_0_3_1_0; }
 
-		//{CardTransaction} "card" amount=Dollar "on" day=INT "from" from=STRING
+		//{CardTransaction} 'card' amount=Dollar 'on' day=INT 'from' from=STRING
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{CardTransaction}
 		public Action getCardTransactionAction_1_0() { return cCardTransactionAction_1_0; }
 
-		//"card"
+		//'card'
 		public Keyword getCardKeyword_1_1() { return cCardKeyword_1_1; }
 
 		//amount=Dollar
@@ -531,7 +540,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//Dollar
 		public RuleCall getAmountDollarParserRuleCall_1_2_0() { return cAmountDollarParserRuleCall_1_2_0; }
 
-		//"on"
+		//'on'
 		public Keyword getOnKeyword_1_3() { return cOnKeyword_1_3; }
 
 		//day=INT
@@ -540,7 +549,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		//INT
 		public RuleCall getDayINTTerminalRuleCall_1_4_0() { return cDayINTTerminalRuleCall_1_4_0; }
 
-		//"from"
+		//'from'
 		public Keyword getFromKeyword_1_5() { return cFromKeyword_1_5; }
 
 		//from=STRING
@@ -551,11 +560,11 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class DollarElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Dollar");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.Dollar");
 		private final RuleCall cDECIMALTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//Dollar returns ecore::ELong:
-		//	DECIMAL;
+		//Dollar ecore::ELong:
+		//	DECIMAL
 		@Override public ParserRule getRule() { return rule; }
 
 		//DECIMAL
@@ -563,13 +572,13 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class DoubleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Double");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.Double");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cDECIMALTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//Double returns ecore::EDouble:
-		//	INT | DECIMAL;
+		//Double ecore::EDouble:
+		//	INT | DECIMAL
 		@Override public ParserRule getRule() { return rule; }
 
 		//INT | DECIMAL
@@ -583,11 +592,11 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class OptionalIntElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OptionalInt");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.OptionalInt");
 		private final RuleCall cINTTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//OptionalInt returns ecore::EIntegerObject:
-		//	INT;
+		//OptionalInt ecore::EIntegerObject:
+		//	INT
 		@Override public ParserRule getRule() { return rule; }
 
 		//INT
@@ -596,7 +605,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	public class MonthEnumElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "MonthEnum");
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.MonthEnum");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cJANUARYEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
 		private final Keyword cJANUARYJanuaryKeyword_0_0 = (Keyword)cJANUARYEnumLiteralDeclaration_0.eContents().get(0);
@@ -624,84 +633,94 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDECEMBERDecemberKeyword_11_0 = (Keyword)cDECEMBEREnumLiteralDeclaration_11.eContents().get(0);
 		
 		//enum MonthEnum:
-		//	JANUARY="january" | FEBRUARY="february" | MARCH="march" | APRIL="april" | MAY="may" | JUNE="june" | JULY="july" |
-		//	AUGUST="august" | SEPTEMBER="september" | OCTOBER="october" | NOVEMBER="november" | DECEMBER="december";
+		//	JANUARY='january' |
+		//	FEBRUARY='february' |
+		//	MARCH='march' |
+		//	APRIL='april' |
+		//	MAY='may' |
+		//	JUNE='june' |
+		//	JULY='july' |
+		//	AUGUST='august' |
+		//	SEPTEMBER='september' |
+		//	OCTOBER='october' |
+		//	NOVEMBER='november' |
+		//	DECEMBER='december';
 		public EnumRule getRule() { return rule; }
 
-		//JANUARY="january" | FEBRUARY="february" | MARCH="march" | APRIL="april" | MAY="may" | JUNE="june" | JULY="july" |
-		//AUGUST="august" | SEPTEMBER="september" | OCTOBER="october" | NOVEMBER="november" | DECEMBER="december"
+		//JANUARY='january' | FEBRUARY='february' | MARCH='march' | APRIL='april' | MAY='may' | JUNE='june' | JULY='july' |
+		//AUGUST='august' | SEPTEMBER='september' | OCTOBER='october' | NOVEMBER='november' | DECEMBER='december'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//JANUARY="january"
+		//JANUARY='january'
 		public EnumLiteralDeclaration getJANUARYEnumLiteralDeclaration_0() { return cJANUARYEnumLiteralDeclaration_0; }
 
-		//"january"
+		//'january'
 		public Keyword getJANUARYJanuaryKeyword_0_0() { return cJANUARYJanuaryKeyword_0_0; }
 
-		//FEBRUARY="february"
+		//FEBRUARY='february'
 		public EnumLiteralDeclaration getFEBRUARYEnumLiteralDeclaration_1() { return cFEBRUARYEnumLiteralDeclaration_1; }
 
-		//"february"
+		//'february'
 		public Keyword getFEBRUARYFebruaryKeyword_1_0() { return cFEBRUARYFebruaryKeyword_1_0; }
 
-		//MARCH="march"
+		//MARCH='march'
 		public EnumLiteralDeclaration getMARCHEnumLiteralDeclaration_2() { return cMARCHEnumLiteralDeclaration_2; }
 
-		//"march"
+		//'march'
 		public Keyword getMARCHMarchKeyword_2_0() { return cMARCHMarchKeyword_2_0; }
 
-		//APRIL="april"
+		//APRIL='april'
 		public EnumLiteralDeclaration getAPRILEnumLiteralDeclaration_3() { return cAPRILEnumLiteralDeclaration_3; }
 
-		//"april"
+		//'april'
 		public Keyword getAPRILAprilKeyword_3_0() { return cAPRILAprilKeyword_3_0; }
 
-		//MAY="may"
+		//MAY='may'
 		public EnumLiteralDeclaration getMAYEnumLiteralDeclaration_4() { return cMAYEnumLiteralDeclaration_4; }
 
-		//"may"
+		//'may'
 		public Keyword getMAYMayKeyword_4_0() { return cMAYMayKeyword_4_0; }
 
-		//JUNE="june"
+		//JUNE='june'
 		public EnumLiteralDeclaration getJUNEEnumLiteralDeclaration_5() { return cJUNEEnumLiteralDeclaration_5; }
 
-		//"june"
+		//'june'
 		public Keyword getJUNEJuneKeyword_5_0() { return cJUNEJuneKeyword_5_0; }
 
-		//JULY="july"
+		//JULY='july'
 		public EnumLiteralDeclaration getJULYEnumLiteralDeclaration_6() { return cJULYEnumLiteralDeclaration_6; }
 
-		//"july"
+		//'july'
 		public Keyword getJULYJulyKeyword_6_0() { return cJULYJulyKeyword_6_0; }
 
-		//AUGUST="august"
+		//AUGUST='august'
 		public EnumLiteralDeclaration getAUGUSTEnumLiteralDeclaration_7() { return cAUGUSTEnumLiteralDeclaration_7; }
 
-		//"august"
+		//'august'
 		public Keyword getAUGUSTAugustKeyword_7_0() { return cAUGUSTAugustKeyword_7_0; }
 
-		//SEPTEMBER="september"
+		//SEPTEMBER='september'
 		public EnumLiteralDeclaration getSEPTEMBEREnumLiteralDeclaration_8() { return cSEPTEMBEREnumLiteralDeclaration_8; }
 
-		//"september"
+		//'september'
 		public Keyword getSEPTEMBERSeptemberKeyword_8_0() { return cSEPTEMBERSeptemberKeyword_8_0; }
 
-		//OCTOBER="october"
+		//OCTOBER='october'
 		public EnumLiteralDeclaration getOCTOBEREnumLiteralDeclaration_9() { return cOCTOBEREnumLiteralDeclaration_9; }
 
-		//"october"
+		//'october'
 		public Keyword getOCTOBEROctoberKeyword_9_0() { return cOCTOBEROctoberKeyword_9_0; }
 
-		//NOVEMBER="november"
+		//NOVEMBER='november'
 		public EnumLiteralDeclaration getNOVEMBEREnumLiteralDeclaration_10() { return cNOVEMBEREnumLiteralDeclaration_10; }
 
-		//"november"
+		//'november'
 		public Keyword getNOVEMBERNovemberKeyword_10_0() { return cNOVEMBERNovemberKeyword_10_0; }
 
-		//DECEMBER="december"
+		//DECEMBER='december'
 		public EnumLiteralDeclaration getDECEMBEREnumLiteralDeclaration_11() { return cDECEMBEREnumLiteralDeclaration_11; }
 
-		//"december"
+		//'december'
 		public Keyword getDECEMBERDecemberKeyword_11_0() { return cDECEMBERDecemberKeyword_11_0; }
 	}
 	
@@ -710,7 +729,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	private final CategoryElements pCategory;
 	private final YearElements pYear;
 	private final MonthElements pMonth;
-	private final MonthEnumElements unknownRuleMonthEnum;
+	private final MonthEnumElements eMonthEnum;
 	private final BudgetEntryElements pBudgetEntry;
 	private final ActualEntryElements pActualEntry;
 	private final TransactionElements pTransaction;
@@ -733,14 +752,14 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		this.pCategory = new CategoryElements();
 		this.pYear = new YearElements();
 		this.pMonth = new MonthElements();
-		this.unknownRuleMonthEnum = new MonthEnumElements();
+		this.eMonthEnum = new MonthEnumElements();
 		this.pBudgetEntry = new BudgetEntryElements();
 		this.pActualEntry = new ActualEntryElements();
 		this.pTransaction = new TransactionElements();
 		this.pDollar = new DollarElements();
 		this.pDouble = new DoubleElements();
 		this.pOptionalInt = new OptionalIntElements();
-		this.tDECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DECIMAL");
+		this.tDECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "budgeting.Budgeting.DECIMAL");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -781,7 +800,9 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Library:
-	//	"library" name=ID "{" categories+=Category* "}";
+	//	'library' name=ID '{'
+	//	categories+=Category*
+	//	'}';
 	public LibraryElements getLibraryAccess() {
 		return pLibrary;
 	}
@@ -791,8 +812,8 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Category:
-	//	{IncomeCategory} "income" name=ID | {ExpenseCategory} "expense" name=ID ("[" patterns+=STRING ("," patterns+=STRING)*
-	//	"]")?;
+	//	{IncomeCategory} 'income' name=ID | {ExpenseCategory} 'expense' name=ID ('[' patterns+=STRING (',' patterns+=STRING)*
+	//	']')?;
 	public CategoryElements getCategoryAccess() {
 		return pCategory;
 	}
@@ -802,7 +823,9 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Year:
-	//	name=INT "uses" library=[Library] "{" months+=Month* "}";
+	//	name=INT 'uses' library=[Library] '{'
+	//	months+=Month*
+	//	'}';
 	public YearElements getYearAccess() {
 		return pYear;
 	}
@@ -812,7 +835,11 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Month:
-	//	name=MonthEnum "budget" "{" budgetEntries+=BudgetEntry* "}" "actual" "{" actualEntries+=ActualEntry* "}";
+	//	name=MonthEnum 'budget' '{'
+	//	budgetEntries+=BudgetEntry*
+	//	'}' 'actual' '{'
+	//	actualEntries+=ActualEntry*
+	//	'}';
 	public MonthElements getMonthAccess() {
 		return pMonth;
 	}
@@ -822,10 +849,20 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum MonthEnum:
-	//	JANUARY="january" | FEBRUARY="february" | MARCH="march" | APRIL="april" | MAY="may" | JUNE="june" | JULY="july" |
-	//	AUGUST="august" | SEPTEMBER="september" | OCTOBER="october" | NOVEMBER="november" | DECEMBER="december";
+	//	JANUARY='january' |
+	//	FEBRUARY='february' |
+	//	MARCH='march' |
+	//	APRIL='april' |
+	//	MAY='may' |
+	//	JUNE='june' |
+	//	JULY='july' |
+	//	AUGUST='august' |
+	//	SEPTEMBER='september' |
+	//	OCTOBER='october' |
+	//	NOVEMBER='november' |
+	//	DECEMBER='december';
 	public MonthEnumElements getMonthEnumAccess() {
-		return unknownRuleMonthEnum;
+		return eMonthEnum;
 	}
 	
 	public EnumRule getMonthEnumRule() {
@@ -833,8 +870,8 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BudgetEntry:
-	//	{BudgetAmountEntry} category=[Category] ":" amount=Dollar | {BudgetFactorEntry} category=[Category] ":"
-	//	baseEntry=[BudgetEntry] "*" factor=Double;
+	//	{BudgetAmountEntry} category=[Category] ':' amount=Dollar | {BudgetFactorEntry} category=[Category] ':'
+	//	baseEntry=[BudgetEntry] '*' factor=Double;
 	public BudgetEntryElements getBudgetEntryAccess() {
 		return pBudgetEntry;
 	}
@@ -844,8 +881,9 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ActualEntry:
-	//	{ActualAmountEntry} category=[Category] ":" amount=Dollar | {ActualTransactionEntry} category=[Category] "{"
-	//	transactions+=Transaction+ "}";
+	//	{ActualAmountEntry} category=[Category] ':' amount=Dollar | {ActualTransactionEntry} category=[Category] '{'
+	//	transactions+=Transaction+
+	//	'}';
 	public ActualEntryElements getActualEntryAccess() {
 		return pActualEntry;
 	}
@@ -855,8 +893,8 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Transaction:
-	//	{CashTransaction} "cash" amount=Dollar ("on" day=OptionalInt)? | {CardTransaction} "card" amount=Dollar "on" day=INT
-	//	"from" from=STRING;
+	//	{CashTransaction} 'cash' amount=Dollar ('on' day=OptionalInt)? | {CardTransaction} 'card' amount=Dollar 'on' day=INT
+	//	'from' from=STRING;
 	public TransactionElements getTransactionAccess() {
 		return pTransaction;
 	}
@@ -865,8 +903,8 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		return getTransactionAccess().getRule();
 	}
 
-	//Dollar returns ecore::ELong:
-	//	DECIMAL;
+	//Dollar ecore::ELong:
+	//	DECIMAL
 	public DollarElements getDollarAccess() {
 		return pDollar;
 	}
@@ -875,8 +913,8 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		return getDollarAccess().getRule();
 	}
 
-	//Double returns ecore::EDouble:
-	//	INT | DECIMAL;
+	//Double ecore::EDouble:
+	//	INT | DECIMAL
 	public DoubleElements getDoubleAccess() {
 		return pDouble;
 	}
@@ -885,8 +923,8 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		return getDoubleAccess().getRule();
 	}
 
-	//OptionalInt returns ecore::EIntegerObject:
-	//	INT;
+	//OptionalInt ecore::EIntegerObject:
+	//	INT
 	public OptionalIntElements getOptionalIntAccess() {
 		return pOptionalInt;
 	}
@@ -896,44 +934,44 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal DECIMAL:
-	//	INT "." INT;
+	//	INT '.' INT;
 	public TerminalRule getDECIMALRule() {
 		return tDECIMAL;
 	} 
 
 	//terminal ID:
-	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	'^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 	public TerminalRule getIDRule() {
 		return gaTerminals.getIDRule();
 	} 
 
 	//terminal INT returns ecore::EInt:
-	//	"0".."9"+;
+	//	'0'..'9'+;
 	public TerminalRule getINTRule() {
 		return gaTerminals.getINTRule();
 	} 
 
 	//terminal STRING:
-	//	"\"" ("\\" . / * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\""))* "\"" | "\'" ("\\" .
-	//	/ * 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' * / | !("\\" | "\'"))* "\'";
+	//	'"' ('\\' . | !('\\' | '"'))* '"' |
+	//	"'" ('\\' . | !('\\' | "'"))* "'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	} 
 
 	//terminal ML_COMMENT:
-	//	"/ *"->"* /";
+	//	'/ *'->'* /';
 	public TerminalRule getML_COMMENTRule() {
 		return gaTerminals.getML_COMMENTRule();
 	} 
 
 	//terminal SL_COMMENT:
-	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
+	//	'//' !('\n' | '\r')* ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaTerminals.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:
-	//	(" " | "\t" | "\r" | "\n")+;
+	//	' ' | '\t' | '\r' | '\n'+;
 	public TerminalRule getWSRule() {
 		return gaTerminals.getWSRule();
 	} 

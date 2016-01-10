@@ -21,5 +21,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: budgeting.ui.quickfix,
  budgeting.ui.contentassist,
  budgeting.ui.internal,
- budgeting.ui.contentassist.antlr
+ budgeting.ui.contentassist.antlr,
+ budgeting.ui.contentassist.antlr.internal
 Bundle-Activator: budgeting.ui.internal.BudgetingActivator
