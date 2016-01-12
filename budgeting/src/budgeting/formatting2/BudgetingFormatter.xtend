@@ -45,7 +45,7 @@ class BudgetingFormatter extends AbstractFormatter2 {
 		], [extension doc |
 			val indentFormatter = new IndentOnceAutowrapFormatter(expenseCategory.regionFor.keyword("]").previousHiddenRegion)
 			expenseCategory.regionFor.keywords(",").forEach[prepend[noSpace].append[oneSpace; autowrap; onAutowrap = indentFormatter]]
-			expenseCategory.regionFor.keyword("]").prepend[newLine]
+			expenseCategory.regionFor.keyword("]").prepend[setNewLines(1, 1, Integer.MAX_VALUE)]
 		])
 	}
 
