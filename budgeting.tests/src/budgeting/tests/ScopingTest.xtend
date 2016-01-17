@@ -53,7 +53,7 @@ class ScopingTest {
 		'''
 			2016 uses lib1 {
 			}
-		'''.parse(resourceSet) as Year => [
+		'''.parse(URI.createURI("2016." + fileExtension), resourceSet) as Year => [
 			assertNoIssues
 			2016.assertEquals(name)
 			assertScope(BudgetingPackage.eINSTANCE.year_Library, #["lib1", "lib2"])
@@ -85,7 +85,7 @@ class ScopingTest {
 					}
 				}
 			}
-		'''.parse(resourceSet) as Year => [
+		'''.parse(URI.createURI("2016." + fileExtension), resourceSet) as Year => [
 			assertNoIssues
 			2016.assertEquals(name)
 			months.head => [
@@ -133,7 +133,7 @@ class ScopingTest {
 				} actual {
 				}
 			}
-		'''.parse(resourceSet) as Year => [
+		'''.parse(URI.createURI("2016." + fileExtension), resourceSet) as Year => [
 			assertNoIssues
 			2016.assertEquals(name)
 			months.head => [

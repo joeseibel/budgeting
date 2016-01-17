@@ -101,7 +101,7 @@ class ParserTest {
 		'''
 			2016 uses lib1 {
 			}
-		'''.parse(resourceSet) as Year => [
+		'''.parse(URI.createURI("2016." + fileExtension), resourceSet) as Year => [
 			assertNoIssues
 			2016.assertEquals(name)
 			"lib1".assertEquals(library.name)
@@ -168,7 +168,7 @@ class ParserTest {
 				} actual {
 				}
 			}
-		'''.parse(resourceSet) as Year => [
+		'''.parse(URI.createURI("2016." + fileExtension), resourceSet) as Year => [
 			assertNoIssues
 			2016.assertEquals(name)
 			"lib1".assertEquals(library.name)
@@ -217,7 +217,7 @@ class ParserTest {
 					}
 				}
 			}
-		'''.parse(resourceSet) as Year => [
+		'''.parse(URI.createURI("2016." + fileExtension), resourceSet) as Year => [
 			assertNoIssues
 			2016.assertEquals(name)
 			"lib1".assertEquals(library.name)

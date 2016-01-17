@@ -3,6 +3,7 @@ package budgeting.validation
 import budgeting.budgeting.BudgetingPackage
 import budgeting.budgeting.ExpenseCategory
 import budgeting.budgeting.Library
+import budgeting.budgeting.Year
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
 import org.eclipse.xtext.validation.Check
@@ -42,5 +43,14 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		multiples.mapValues[map[value]].forEach[pattern, categories | categories.forEach[category | category.patterns.indexed.filter[value == pattern].forEach[
 			error('''Pattern '«pattern»' found in multiple categories''', category, BudgetingPackage.eINSTANCE.expenseCategory_Patterns, key)
 		]]]
+	}
+	
+	@Check
+	def void checkYearName(Year year) {
+		val yearName = year.name
+		val fileName = year.eResource.URI.trimFileExtension.lastSegment
+		if (yearName.toString != fileName) {
+			error('''"«yearName»" does not match filename "«fileName»"''', BudgetingPackage.eINSTANCE.year_Name)
+		}
 	}
 }
