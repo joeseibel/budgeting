@@ -83,4 +83,17 @@ class ValidatorTest {
 			categories.last.assertError(BudgetingPackage.eINSTANCE.expenseCategory, null, 'Pattern "pattern1" found in multiple categories')
 		]
 	}
+	
+	@Test
+	def void testCheckYearName() {
+		'''
+			2016 uses lib1 {
+			}
+		'''.parse => [
+			tester.validate(it) => [
+				assertDiagnosticsCount(1)
+				assertError(null, '"2016" does not match filename "__synthetic0"')
+			]
+		]
+	}
 }
