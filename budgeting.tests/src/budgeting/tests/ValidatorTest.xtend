@@ -8,6 +8,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
+import org.eclipse.xtext.junit4.validation.AssertableDiagnostics
 import org.eclipse.xtext.junit4.validation.ValidatorTester
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -41,6 +42,20 @@ class ValidatorTest {
 		]) => [
 			assertDiagnosticsCount(1)
 			assertError(null, "Invalid pattern: Unclosed group")
+		]
+	}
+	
+	@Test
+	def void testCheckDuplicatePatterns() {
+		tester.validate(BudgetingFactory.eINSTANCE.createExpenseCategory => [
+			patterns += #["pattern1", "pattern2", "pattern1", "pattern3", "pattern4", "pattern4"]
+		]) => [
+			assertDiagnosticsCount(4)
+			assertAll(AssertableDiagnostics.warning(null, "Duplicate pattern 'pattern1'"),
+				AssertableDiagnostics.warning(null, "Duplicate pattern 'pattern1'"),
+				AssertableDiagnostics.warning(null, "Duplicate pattern 'pattern4'"),
+				AssertableDiagnostics.warning(null, "Duplicate pattern 'pattern4'")
+			)
 		]
 	}
 }

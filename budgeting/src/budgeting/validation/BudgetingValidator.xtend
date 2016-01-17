@@ -25,4 +25,12 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 			error("Invalid pattern: " + e.description, BudgetingPackage.eINSTANCE.expenseCategory_Patterns, index)
 		}]
 	}
+	
+	@Check
+	def void checkDuplicatePatterns(ExpenseCategory expense) {
+		val duplicates = expense.patterns.indexed.groupBy[value].filter[pattern, pairs | pairs.size > 1]
+		duplicates.mapValues[map[key]].forEach[pattern, indicies | indicies.forEach[index |
+			warning("Duplicate pattern '" + pattern + "'", BudgetingPackage.eINSTANCE.expenseCategory_Patterns, index)
+		]]
+	}
 }
