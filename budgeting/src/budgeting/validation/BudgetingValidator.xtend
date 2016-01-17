@@ -33,4 +33,14 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 			warning("Duplicate pattern '" + pattern + "'", BudgetingPackage.eINSTANCE.expenseCategory_Patterns, index)
 		]]
 	}
+	
+	@Check
+	def void checkPatternDuplicatedInMultipleCategories(Library library) {
+		val expenseCategories = library.categories.filter(ExpenseCategory)
+		val patternsAndCategories = expenseCategories.map[category | category.patterns.toSet.map[pattern | pattern -> category]].flatten
+		val multiples = patternsAndCategories.groupBy[key].filter[pattern, pairs | pairs.size > 1]
+		multiples.mapValues[map[value]].forEach[pattern, categories | categories.forEach[category | category.patterns.indexed.filter[value == pattern].forEach[
+			error('''Pattern '«pattern»' found in multiple categories''', category, BudgetingPackage.eINSTANCE.expenseCategory_Patterns, key)
+		]]]
+	}
 }

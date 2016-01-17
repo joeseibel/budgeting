@@ -58,7 +58,7 @@ class ParserTest {
 				income income2
 				expense expense1
 				expense expense2 ["pattern1"]
-				expense expense3 ["pattern1", "pattern2", "pattern3"]
+				expense expense3 ["pattern2", "pattern3", "pattern4"]
 			}
 		'''.parse(URI.createURI("lib1." + fileExtension), resourceSetProvider.get) as Library => [
 			assertNoIssues
@@ -82,9 +82,9 @@ class ParserTest {
 			categories.get(4) as ExpenseCategory => [
 				"expense3".assertEquals(name)
 				3.assertEquals(patterns.size)
-				"pattern1".assertEquals(patterns.get(0))
-				"pattern2".assertEquals(patterns.get(1))
-				"pattern3".assertEquals(patterns.get(2))
+				"pattern2".assertEquals(patterns.get(0))
+				"pattern3".assertEquals(patterns.get(1))
+				"pattern4".assertEquals(patterns.get(2))
 			]
 		]
 	}
