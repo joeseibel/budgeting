@@ -96,4 +96,28 @@ class ValidatorTest {
 			]
 		]
 	}
+	
+	@Test
+	def void testCheckYearNameRange() {
+		'''
+			5 uses lib1 {
+			}
+		'''.parse(URI.createURI("5." + fileExtension), resourceSetProvider.get) => [
+			tester.validate(it) => [
+				assertDiagnosticsCount(1)
+				assertWarning(null, 'Check year "5". It seems to be too early')
+			]
+		]
+		
+		val futureYear = java.time.Year.now.value + 10
+		'''
+			«futureYear» uses lib1 {
+			}
+		'''.parse(URI.createURI(futureYear + "." + fileExtension), resourceSetProvider.get) => [
+			tester.validate(it) => [
+				assertDiagnosticsCount(1)
+				assertWarning(null, '''Check year "«futureYear»". It seems to be too late''')
+			]
+		]
+	}
 }

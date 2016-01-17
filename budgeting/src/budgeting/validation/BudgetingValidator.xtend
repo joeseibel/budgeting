@@ -53,4 +53,13 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 			error('''"«yearName»" does not match filename "«fileName»"''', BudgetingPackage.eINSTANCE.year_Name)
 		}
 	}
+	
+	@Check
+	def void checkYearNameRange(Year year) {
+		if (year.name < 2015) {
+			warning('''Check year "«year.name»". It seems to be too early''', BudgetingPackage.eINSTANCE.year_Name)
+		} else if (year.name > java.time.Year.now.value + 1) {
+			warning('''Check year "«year.name»". It seems to be too late''', BudgetingPackage.eINSTANCE.year_Name)
+		}
+	}
 }
