@@ -62,10 +62,10 @@ class ValidatorTest {
 			patterns += #["pattern1", "pattern2", "pattern1", "pattern3", "pattern4", "pattern4"]
 		]) => [
 			assertDiagnosticsCount(4)
-			assertAll(AssertableDiagnostics.warning(null, "Duplicate pattern 'pattern1'"),
-				AssertableDiagnostics.warning(null, "Duplicate pattern 'pattern1'"),
-				AssertableDiagnostics.warning(null, "Duplicate pattern 'pattern4'"),
-				AssertableDiagnostics.warning(null, "Duplicate pattern 'pattern4'")
+			assertAll(AssertableDiagnostics.warning(null, 'Duplicate pattern "pattern1"'),
+				AssertableDiagnostics.warning(null, 'Duplicate pattern "pattern1"'),
+				AssertableDiagnostics.warning(null, 'Duplicate pattern "pattern4"'),
+				AssertableDiagnostics.warning(null, 'Duplicate pattern "pattern4"')
 			)
 		]
 	}
@@ -79,8 +79,8 @@ class ValidatorTest {
 			}
 		'''.parse(URI.createURI("lib1." + fileExtension), resourceSetProvider.get) as Library => [
 			2.assertEquals(validate.size)
-			categories.head.assertError(BudgetingPackage.eINSTANCE.expenseCategory, null, "Pattern 'pattern1' found in multiple categories")
-			categories.last.assertError(BudgetingPackage.eINSTANCE.expenseCategory, null, "Pattern 'pattern1' found in multiple categories")
+			categories.head.assertError(BudgetingPackage.eINSTANCE.expenseCategory, null, 'Pattern "pattern1" found in multiple categories')
+			categories.last.assertError(BudgetingPackage.eINSTANCE.expenseCategory, null, 'Pattern "pattern1" found in multiple categories')
 		]
 	}
 }

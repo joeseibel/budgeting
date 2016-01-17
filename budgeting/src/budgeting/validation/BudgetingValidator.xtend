@@ -31,7 +31,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 	def void checkDuplicatePatterns(ExpenseCategory expense) {
 		val duplicates = expense.patterns.indexed.groupBy[value].filter[pattern, pairs | pairs.size > 1]
 		duplicates.mapValues[map[key]].forEach[pattern, indicies | indicies.forEach[index |
-			warning("Duplicate pattern '" + pattern + "'", BudgetingPackage.eINSTANCE.expenseCategory_Patterns, index)
+			warning('''Duplicate pattern "«pattern»"''', BudgetingPackage.eINSTANCE.expenseCategory_Patterns, index)
 		]]
 	}
 	
@@ -41,7 +41,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		val patternsAndCategories = expenseCategories.map[category | category.patterns.toSet.map[pattern | pattern -> category]].flatten
 		val multiples = patternsAndCategories.groupBy[key].filter[pattern, pairs | pairs.size > 1]
 		multiples.mapValues[map[value]].forEach[pattern, categories | categories.forEach[category | category.patterns.indexed.filter[value == pattern].forEach[
-			error('''Pattern '«pattern»' found in multiple categories''', category, BudgetingPackage.eINSTANCE.expenseCategory_Patterns, key)
+			error('''Pattern "«pattern»" found in multiple categories''', category, BudgetingPackage.eINSTANCE.expenseCategory_Patterns, key)
 		]]]
 	}
 	
