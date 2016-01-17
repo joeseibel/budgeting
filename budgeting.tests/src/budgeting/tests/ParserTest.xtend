@@ -15,6 +15,7 @@ import budgeting.budgeting.MonthEnum
 import budgeting.budgeting.Year
 import com.google.inject.Inject
 import com.google.inject.Provider
+import org.eclipse.emf.common.util.URI
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
@@ -42,7 +43,7 @@ class ParserTest {
 		'''
 			library lib1 {
 			}
-		'''.parse as Library => [
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSetProvider.get) as Library => [
 			assertNoIssues
 			"lib1".assertEquals(name)
 			categories.empty.assertTrue
@@ -59,7 +60,7 @@ class ParserTest {
 				expense expense2 ["pattern1"]
 				expense expense3 ["pattern1", "pattern2", "pattern3"]
 			}
-		'''.parse as Library => [
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSetProvider.get) as Library => [
 			assertNoIssues
 			"lib1".assertEquals(name)
 			5.assertEquals(categories.size)
@@ -94,7 +95,7 @@ class ParserTest {
 		'''
 			library lib1 {
 			}
-		'''.parse(resourceSet) as Library => [
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet) as Library => [
 			assertNoIssues
 		]
 		'''
@@ -114,7 +115,7 @@ class ParserTest {
 		'''
 			library lib1 {
 			}
-		'''.parse(resourceSet) as Library => [
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet) as Library => [
 			assertNoIssues
 		]
 		'''
@@ -195,7 +196,7 @@ class ParserTest {
 				income income1
 				expense expense1
 			}
-		'''.parse(resourceSet) as Library => [
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet) as Library => [
 			assertNoIssues
 		]
 		'''

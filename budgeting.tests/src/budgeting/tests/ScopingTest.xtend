@@ -9,6 +9,7 @@ import budgeting.budgeting.MonthEnum
 import budgeting.budgeting.Year
 import com.google.inject.Inject
 import com.google.inject.Provider
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.junit4.InjectWith
@@ -40,13 +41,13 @@ class ScopingTest {
 		'''
 			library lib1 {
 			}
-		'''.parse(resourceSet) as Library => [
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet) as Library => [
 			assertNoIssues
 		]
 		'''
 			library lib2 {
 			}
-		'''.parse(resourceSet) as Library => [
+		'''.parse(URI.createURI("lib2." + fileExtension), resourceSet) as Library => [
 			assertNoIssues
 		]
 		'''
@@ -69,7 +70,7 @@ class ScopingTest {
 				expense expense1
 				expense expense2
 			}
-		'''.parse(resourceSet) as Library => [
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet) as Library => [
 			assertNoIssues
 		]
 		'''
@@ -120,7 +121,7 @@ class ScopingTest {
 				expense expense1
 				expense expense2
 			}
-		'''.parse(resourceSet) as Library => [
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet) as Library => [
 			assertNoIssues
 		]
 		'''
