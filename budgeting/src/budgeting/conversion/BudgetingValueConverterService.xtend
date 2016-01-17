@@ -7,8 +7,6 @@ import org.eclipse.xtext.conversion.ValueConverter
 import org.eclipse.xtext.conversion.ValueConverterException
 import org.eclipse.xtext.nodemodel.INode
 
-import static budgeting.conversion.BudgetingValueConverterService.*
-
 class BudgetingValueConverterService extends DefaultTerminalConverters {
 	//This was done because char literals do not exist in Xtend
 	val static char DOT = '.'
