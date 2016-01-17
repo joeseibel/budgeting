@@ -1,6 +1,7 @@
 package budgeting.tests
 
 import budgeting.BudgetingInjectorProvider
+import budgeting.budgeting.BudgetingFactory
 import budgeting.budgeting.BudgetingFile
 import budgeting.validation.BudgetingValidator
 import com.google.inject.Inject
@@ -21,7 +22,7 @@ class ValidatorTest {
 	ValidatorTester<BudgetingValidator> tester
 	
 	@Test
-	def void testLibraryName() {
+	def void testCheckLibraryName() {
 		'''
 			library lib1 {
 			}
@@ -30,6 +31,16 @@ class ValidatorTest {
 				assertDiagnosticsCount(1)
 				assertError(null, '"lib1" does not match filename "__synthetic0"')
 			]
+		]
+	}
+	
+	@Test
+	def void testCheckPatternValidity() {
+		tester.validate(BudgetingFactory.eINSTANCE.createExpenseCategory => [
+			patterns += "("
+		]) => [
+			assertDiagnosticsCount(1)
+			assertError(null, "Invalid pattern: Unclosed group")
 		]
 	}
 }
