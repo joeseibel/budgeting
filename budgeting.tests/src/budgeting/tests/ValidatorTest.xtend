@@ -5,6 +5,7 @@ import budgeting.budgeting.BudgetingFactory
 import budgeting.budgeting.BudgetingFile
 import budgeting.budgeting.BudgetingPackage
 import budgeting.budgeting.Library
+import budgeting.budgeting.Year
 import budgeting.validation.BudgetingValidator
 import com.google.inject.Inject
 import com.google.inject.Provider
@@ -118,6 +119,30 @@ class ValidatorTest {
 				assertDiagnosticsCount(1)
 				assertWarning(null, '''Check year "«futureYear»". It seems to be too late''')
 			]
+		]
+	}
+	
+	@Test
+	def void testCheckDuplicateMonths() {
+		val resourceSet = resourceSetProvider.get
+		'''
+			library lib1 {
+			}
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet)
+		'''
+			2016 uses lib1 {
+				january budget {
+				} actual {
+				}
+				
+				january budget {
+				} actual {
+				}
+			}
+		'''.parse(URI.createURI("2016." + fileExtension), resourceSet) as Year => [
+			2.assertEquals(validate.size)
+			months.head.assertError(BudgetingPackage.eINSTANCE.month, null, 'Duplicate month "january"')
+			months.last.assertError(BudgetingPackage.eINSTANCE.month, null, 'Duplicate month "january"')
 		]
 	}
 }

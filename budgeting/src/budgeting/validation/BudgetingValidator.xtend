@@ -8,6 +8,19 @@ import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
 import org.eclipse.xtext.validation.Check
 
+/*
+ * Need to implement:
+ * -Month out of order [Year]
+ * -Actual entries in future month [Month]
+ * -Duplicate budget entries [Month]
+ * -Duplicate actual entries [Month]
+ * -Cyclic dependency for budget factor entry (separate check for itself) [BudgetFactorEntry]
+ * -Day is 0 [CashTransaction, CardTransaction]
+ * -Day is out of range for month [CashTransaction, CardTransaction]
+ * -Transactions out of order [ActualTransactionEntry]
+ * -Zero sum budget [Month]
+ * -Zero sum actual for past months [Month]
+ */
 class BudgetingValidator extends AbstractBudgetingValidator {
 	@Check
 	def void checkLibraryName(Library library) {
@@ -61,5 +74,13 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		} else if (year.name > java.time.Year.now.value + 1) {
 			warning('''Check year "«year.name»". It seems to be too late''', BudgetingPackage.eINSTANCE.year_Name)
 		}
+	}
+	
+	@Check
+	def void checkDuplicateMonths(Year year) {
+		val duplicates = year.months.groupBy[name].filter[monthName, months | months.size > 1]
+		duplicates.values.flatten.forEach[
+			error('''Duplicate month "«name»"''', it, BudgetingPackage.eINSTANCE.month_Name)
+		]
 	}
 }
