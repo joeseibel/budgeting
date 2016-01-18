@@ -83,4 +83,11 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 			error('''Duplicate month "«name»"''', it, BudgetingPackage.eINSTANCE.month_Name)
 		]
 	}
+	
+	@Check
+	def void checkMonthOrdering(Year year) {
+		if (year.months != year.months.sortBy[name]) {
+			warning("Month entries are out of order", BudgetingPackage.eINSTANCE.year_Name)
+		}
+	}
 }

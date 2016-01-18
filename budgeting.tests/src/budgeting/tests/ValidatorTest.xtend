@@ -145,4 +145,24 @@ class ValidatorTest {
 			months.last.assertError(BudgetingPackage.eINSTANCE.month, null, 'Duplicate month "january"')
 		]
 	}
+	
+	@Test
+	def void testCheckMonthOrdering() {
+		'''
+			2016 uses lib1 {
+				february budget {
+				} actual {
+				}
+				
+				january budget {
+				} actual {
+				}
+			}
+		'''.parse(URI.createURI("2016." + fileExtension), resourceSetProvider.get) => [
+			tester.validate(it) => [
+				assertDiagnosticsCount(1)
+				assertWarning(null, "Month entries are out of order")
+			]
+		]
+	}
 }
