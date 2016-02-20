@@ -330,12 +330,41 @@ class ValidatorTest {
 				} actual {
 					income1 {
 						cash 1.00
+					}
+					expense1 {
+						cash 1.00
+					}
 				}
 			}
 		'''.parse(resourceSet) as Year => [
+			months.head => [
+				tester.validate(actualEntries.get(0)) => [
+					assertDiagnosticsCount(1)
+					assertError(null, '"income1" is not an expense category')
+				]
+				tester.validate(actualEntries.get(1)) => [
+					assertDiagnosticsCount(0)
+				]
+			]
+		]
+	}
+	
+	@Test
+	def void testCheckTransactionOrdering() {
+		'''
+			2016 uses lib1 {
+				january budget {
+				} actual {
+					expense1 {
+						cash 1.00 on 20
+						card 1.00 on 10 from "store1"
+					}
+				}
+			}
+		'''.parse as Year => [
 			tester.validate(months.head.actualEntries.head) => [
 				assertDiagnosticsCount(1)
-				assertError(null, '"income1" is not an expense category')
+				assertError(null, "Transactions are out of order")
 			]
 		]
 	}

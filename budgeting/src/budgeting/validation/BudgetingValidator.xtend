@@ -21,7 +21,6 @@ import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
 /*
  * Need to implement:
- * -Transactions out of order [ActualTransactionEntry]
  * -Zero sum budget [Month]
  * -Zero sum actual for past months [Month]
  */
@@ -160,8 +159,19 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 	
 	@Check
 	def void checkTransactionEntryIsExpense(ActualTransactionEntry actualEntry) {
-		if (!(actualEntry.category instanceof ExpenseCategory)) {
+		if (!actualEntry.category.eIsProxy && !(actualEntry.category instanceof ExpenseCategory)) {
 			error('''"«actualEntry.category.name»" is not an expense category''', BudgetingPackage.eINSTANCE.actualEntry_Category)
+		}
+	}
+	
+	@Check
+	def void checkTransactionOrdering(ActualTransactionEntry actualEntry) {
+		val days = actualEntry.transactions.map[switch it {
+			CashTransaction: day
+			CardTransaction: day
+		}].filterNull.toList
+		if (days != days.sort) {
+			error("Transactions are out of order", BudgetingPackage.eINSTANCE.actualEntry_Category)
 		}
 	}
 	
