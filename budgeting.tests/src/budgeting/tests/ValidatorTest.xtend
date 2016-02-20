@@ -212,4 +212,31 @@ class ValidatorTest {
 			]
 		]
 	}
+	
+	@Test
+	def void testCheckDuplicateActualEntries() {
+		val resourceSet = resourceSetProvider.get
+		'''
+			library lib1 {
+				expense expense1
+			}
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet)
+		'''
+			2016 uses lib1 {
+				january budget {
+				} actual {
+					expense1: 1.00
+					expense1 {
+						cash 2.00
+					}
+				}
+			}
+		'''.parse(URI.createURI("2016." + fileExtension), resourceSet) as Year => [
+			2.assertEquals(validate.size)
+			months.head => [
+				actualEntries.get(0).assertError(BudgetingPackage.eINSTANCE.actualEntry, null, 'Duplicate actual entry for category "expense1"')
+				actualEntries.get(1).assertError(BudgetingPackage.eINSTANCE.actualEntry, null, 'Duplicate actual entry for category "expense1"')
+			]
+		]
+	}
 }

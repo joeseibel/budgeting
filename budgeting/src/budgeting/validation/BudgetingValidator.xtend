@@ -15,7 +15,6 @@ import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
 /*
  * Need to implement:
- * -Duplicate actual entries [Month]
  * -Cyclic dependency for budget factor entry (separate check for itself) [BudgetFactorEntry]
  * -Day is 0 [CashTransaction, CardTransaction]
  * -Day is out of range for month [CashTransaction, CardTransaction]
@@ -109,6 +108,14 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		val duplicates = month.budgetEntries.groupBy[category].filter[category, budgetEntries | budgetEntries.size > 1]
 		duplicates.values.flatten.forEach[
 			error('''Duplicate budget entry for category "«category.name»"''', it, BudgetingPackage.eINSTANCE.budgetEntry_Category)
+		]
+	}
+	
+	@Check
+	def void checkDuplicateActualEntries(Month month) {
+		val duplicates = month.actualEntries.groupBy[category].filter[category, actualEntries | actualEntries.size > 1]
+		duplicates.values.flatten.forEach[
+			error('''Duplicate actual entry for category "«category.name»"''', it, BudgetingPackage.eINSTANCE.actualEntry_Category)
 		]
 	}
 	
