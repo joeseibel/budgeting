@@ -2,11 +2,15 @@ package budgeting.validation
 
 import budgeting.budgeting.BudgetFactorEntry
 import budgeting.budgeting.BudgetingPackage
+import budgeting.budgeting.CardTransaction
+import budgeting.budgeting.CashTransaction
 import budgeting.budgeting.ExpenseCategory
 import budgeting.budgeting.Library
 import budgeting.budgeting.Month
 import budgeting.budgeting.MonthEnum
 import budgeting.budgeting.Year
+import java.time.DateTimeException
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
@@ -16,8 +20,6 @@ import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
 /*
  * Need to implement:
- * -Day is 0 [CashTransaction, CardTransaction]
- * -Day is out of range for month [CashTransaction, CardTransaction]
  * -Transactions out of order [ActualTransactionEntry]
  * -Zero sum budget [Month]
  * -Zero sum actual for past months [Month]
@@ -132,6 +134,26 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 				visitedEntries += baseEntry
 				baseEntry
 			}
+		}
+	}
+	
+	@Check
+	def void checkDayRange(CashTransaction transaction) {
+		if (transaction.day != null) {
+			try {
+				LocalDate.of(transaction.getContainerOfType(Year).name, transaction.getContainerOfType(Month).name.ordinal + 1, transaction.day)
+			} catch (DateTimeException e) {
+				error('''Day "«transaction.day»" is out of range''', BudgetingPackage.eINSTANCE.cashTransaction_Day)
+			}
+		}
+	}
+	
+	@Check
+	def void checkDayRange(CardTransaction transaction) {
+		try {
+			LocalDate.of(transaction.getContainerOfType(Year).name, transaction.getContainerOfType(Month).name.ordinal + 1, transaction.day)
+		} catch (DateTimeException e) {
+			error('''Day "«transaction.day»" is out of range''', BudgetingPackage.eINSTANCE.cardTransaction_Day)
 		}
 	}
 	

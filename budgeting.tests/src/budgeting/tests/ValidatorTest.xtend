@@ -21,6 +21,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import static extension org.junit.Assert.assertEquals
+import budgeting.budgeting.ActualTransactionEntry
 
 @RunWith(XtextRunner)
 @InjectWith(BudgetingInjectorProvider)
@@ -176,12 +177,10 @@ class ValidatorTest {
 					expense1: 10.00
 				}
 			}
-		'''.parse(URI.createURI(futureYear + "." + fileExtension), resourceSetProvider.get) as Year => [
-			months.head => [
-				tester.validate(it) => [
-					assertDiagnosticsCount(1)
-					assertError(null, '"december" contains actual entries even though it is in the future')
-				]
+		'''.parse as Year => [
+			tester.validate(months.head) => [
+				assertDiagnosticsCount(1)
+				assertError(null, '"december" contains actual entries even though it is in the future')
 			]
 		]
 	}
@@ -248,7 +247,7 @@ class ValidatorTest {
 				income income1
 				income income2
 			}
-		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet)
+		'''.parse(resourceSet)
 		'''
 			2016 uses lib1 {
 				january budget {
@@ -257,11 +256,62 @@ class ValidatorTest {
 				} actual {
 				}
 			}
-		'''.parse(URI.createURI("2016." + fileExtension), resourceSet) as Year => [
-			2.assertEquals(validate.size)
+		'''.parse(resourceSet) as Year => [
 			months.head => [
-				budgetEntries.get(0).assertError(BudgetingPackage.eINSTANCE.budgetFactorEntry, null, 'Cycle detected for budget entry "income1"')
-				budgetEntries.get(1).assertError(BudgetingPackage.eINSTANCE.budgetFactorEntry, null, 'Cycle detected for budget entry "income2"')
+				tester.validate(budgetEntries.get(0)) => [
+					assertDiagnosticsCount(1)
+					assertError(null, 'Cycle detected for budget entry "income1"')
+				]
+				tester.validate(budgetEntries.get(1)) => [
+					assertDiagnosticsCount(1)
+					assertError(null, 'Cycle detected for budget entry "income2"')
+				]
+			]
+		]
+	}
+	
+	@Test
+	def void testCheckDayRange() {
+		'''
+			2016 uses lib1 {
+				february budget {
+				} actual {
+					expense1 {
+						cash 1.00 on 0
+						cash 1.00 on 100
+						cash 1.00 on 30
+						card 1.00 on 0 from "store1"
+						card 1.00 on 100 from "store2"
+						card 1.00 on 30 from "store3"
+					}
+				}
+			}
+		'''.parse as Year => [
+			months.head.actualEntries.head as ActualTransactionEntry => [
+				tester.validate(transactions.get(0)) => [
+					assertDiagnosticsCount(1)
+					assertError(null, 'Day "0" is out of range')
+				]
+				tester.validate(transactions.get(1)) => [
+					assertDiagnosticsCount(1)
+					assertError(null, 'Day "100" is out of range')
+				]
+				tester.validate(transactions.get(2)) => [
+					assertDiagnosticsCount(1)
+					assertError(null, 'Day "30" is out of range')
+				]
+				tester.validate(transactions.get(3)) => [
+					assertDiagnosticsCount(1)
+					assertError(null, 'Day "0" is out of range')
+				]
+				tester.validate(transactions.get(4)) => [
+					assertDiagnosticsCount(1)
+					assertError(null, 'Day "100" is out of range')
+				]
+				tester.validate(transactions.get(5)) => [
+					assertDiagnosticsCount(1)
+					assertError(null, 'Day "30" is out of range')
+				]
 			]
 		]
 	}
