@@ -195,6 +195,7 @@ class ParserTest {
 			library lib1 {
 				income income1
 				expense expense1
+				expense expense2
 			}
 		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet) as Library => [
 			assertNoIssues
@@ -208,6 +209,7 @@ class ParserTest {
 				february budget {
 					income1: 12.34
 					expense1: income1 * 0.2
+					expense2: 9.87
 				} actual {
 					income1: 98.76
 					expense1 {
@@ -229,7 +231,7 @@ class ParserTest {
 			]
 			months.get(1) => [
 				MonthEnum.FEBRUARY.assertEquals(name)
-				2.assertEquals(budgetEntries.size)
+				3.assertEquals(budgetEntries.size)
 				budgetEntries.get(0) as BudgetAmountEntry => [
 					"income1".assertEquals(category.name)
 					1234L.assertEquals(amount)
@@ -238,6 +240,10 @@ class ParserTest {
 					"expense1".assertEquals(category.name)
 					"income1".assertEquals(baseEntry.category.name)
 					0.2.assertEquals(factor, 0.0)
+				]
+				budgetEntries.get(2) as BudgetAmountEntry => [
+					"expense2".assertEquals(category.name)
+					987L.assertEquals(amount)
 				]
 				2.assertEquals(actualEntries.size)
 				actualEntries.get(0) as ActualAmountEntry => [

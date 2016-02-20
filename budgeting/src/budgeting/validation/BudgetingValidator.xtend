@@ -1,6 +1,7 @@
 package budgeting.validation
 
 import budgeting.budgeting.ActualTransactionEntry
+import budgeting.budgeting.BudgetAmountEntry
 import budgeting.budgeting.BudgetFactorEntry
 import budgeting.budgeting.BudgetingPackage
 import budgeting.budgeting.CardTransaction
@@ -10,21 +11,30 @@ import budgeting.budgeting.Library
 import budgeting.budgeting.Month
 import budgeting.budgeting.MonthEnum
 import budgeting.budgeting.Year
+import budgeting.services.BudgetingGrammarAccess
+import com.google.inject.Inject
 import java.time.DateTimeException
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.OptionalLong
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
+import org.eclipse.xtext.conversion.IValueConverterService
 import org.eclipse.xtext.validation.Check
 
+import static extension java.lang.Math.round
 import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
 /*
  * Need to implement:
- * -Zero sum budget [Month]
  * -Zero sum actual for past months [Month]
  */
 class BudgetingValidator extends AbstractBudgetingValidator {
+	@Inject
+	IValueConverterService converterService
+	@Inject
+	BudgetingGrammarAccess grammarAccess
+	
 	@Check
 	def void checkLibraryName(Library library) {
 		val libName = library.name
@@ -175,7 +185,50 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
+	@Check
+	def void checkZeroSumBudget(Month month) {
+		//Don't validate if there are linking errors or if there are duplicate budget entries.
+		if (month.budgetEntries.forall[!category.eIsProxy] && month.budgetEntries.map[category].toSet.size == month.budgetEntries.size) {
+			val amounts = month.budgetEntries.map[
+				val entryAmount = switch it {
+					BudgetAmountEntry: OptionalLong.of(amount)
+					BudgetFactorEntry: calculateAmount
+				}
+				if (category instanceof ExpenseCategory && entryAmount.present) {
+					OptionalLong.of(-entryAmount.asLong)
+				} else {
+					entryAmount
+				}
+			]
+			if (!amounts.empty && amounts.forall[present]) {
+				val sum = amounts.map[asLong].reduce[$0 + $1]
+				if (sum != 0L) {
+					error("Sum of budget entries is " + converterService.toString(sum, grammarAccess.dollarRule.name), BudgetingPackage.eINSTANCE.month_Name)
+				}
+			}
+		}
+	}
+	
 	def private static operator_greaterThan(MonthEnum a, java.time.Month b) {
 		a.ordinal > b.ordinal
+	}
+	
+	def private static calculateAmount(BudgetFactorEntry budgetEntry) {
+		val factorEntries = newArrayList(budgetEntry)
+		var cycleFound = false
+		while (!cycleFound && !factorEntries.last.baseEntry.eIsProxy && factorEntries.last.baseEntry instanceof BudgetFactorEntry) {
+			if (factorEntries.contains(factorEntries.last.baseEntry)) {
+				cycleFound = true
+			} else {
+				factorEntries += factorEntries.last.baseEntry as BudgetFactorEntry
+			}
+		}
+		if (cycleFound || factorEntries.last.baseEntry.eIsProxy) {
+			OptionalLong.empty
+		} else {
+			val totalFactor = factorEntries.map[factor].reduce[$0 * $1]
+			val amount = totalFactor * (factorEntries.last.baseEntry as BudgetAmountEntry).amount
+			OptionalLong.of(amount.round)
+		}
 	}
 }

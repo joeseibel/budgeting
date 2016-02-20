@@ -368,4 +368,35 @@ class ValidatorTest {
 			]
 		]
 	}
+	
+	@Test
+	def void testCheckZeroSumBudget() {
+		val resourceSet = resourceSetProvider.get
+		'''
+			library lib1 {
+				income income1
+				expense expense1
+				expense expense2
+				expense expense3
+				expense expense4
+			}
+		'''.parse(resourceSet)
+		'''
+			2016 uses lib1 {
+				january budget {
+					income1: 100.00
+					expense1: income1 * 0.1
+					expense2: expense1 * 0.5
+					expense3: expense2 * 0.2
+					expense4: 10.00
+				} actual {
+				}
+			}
+		'''.parse(resourceSet) as Year => [
+			tester.validate(months.head) => [
+				assertDiagnosticsCount(1)
+				assertError(null, "Sum of budget entries is 74.00")
+			]
+		]
+	}
 }

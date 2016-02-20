@@ -7,6 +7,8 @@ import org.eclipse.xtext.conversion.ValueConverter
 import org.eclipse.xtext.conversion.ValueConverterException
 import org.eclipse.xtext.nodemodel.INode
 
+import static extension java.lang.Math.abs
+
 class BudgetingValueConverterService extends DefaultTerminalConverters {
 	//This was done because char literals do not exist in Xtend
 	val static char DOT = '.'
@@ -32,7 +34,7 @@ class BudgetingValueConverterService extends DefaultTerminalConverters {
 			}
 			
 			override toString(Long value) throws ValueConverterException {
-				value / 100 + "." + FORMAT.format(value % 100)
+				value / 100 + "." + FORMAT.format(value.abs % 100)
 			}
 		}
 	}
