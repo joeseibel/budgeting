@@ -315,4 +315,28 @@ class ValidatorTest {
 			]
 		]
 	}
+	
+	@Test
+	def void testCheckTransactionEntryIsExpense() {
+		val resourceSet = resourceSetProvider.get
+		'''
+			library lib1 {
+				income income1
+			}
+		'''.parse(resourceSet)
+		'''
+			2016 uses lib1 {
+				january budget {
+				} actual {
+					income1 {
+						cash 1.00
+				}
+			}
+		'''.parse(resourceSet) as Year => [
+			tester.validate(months.head.actualEntries.head) => [
+				assertDiagnosticsCount(1)
+				assertError(null, '"income1" is not an expense category')
+			]
+		]
+	}
 }

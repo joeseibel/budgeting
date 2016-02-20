@@ -1,5 +1,6 @@
 package budgeting.validation
 
+import budgeting.budgeting.ActualTransactionEntry
 import budgeting.budgeting.BudgetFactorEntry
 import budgeting.budgeting.BudgetingPackage
 import budgeting.budgeting.CardTransaction
@@ -154,6 +155,13 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 			LocalDate.of(transaction.getContainerOfType(Year).name, transaction.getContainerOfType(Month).name.ordinal + 1, transaction.day)
 		} catch (DateTimeException e) {
 			error('''Day "«transaction.day»" is out of range''', BudgetingPackage.eINSTANCE.cardTransaction_Day)
+		}
+	}
+	
+	@Check
+	def void checkTransactionEntryIsExpense(ActualTransactionEntry actualEntry) {
+		if (!(actualEntry.category instanceof ExpenseCategory)) {
+			error('''"«actualEntry.category.name»" is not an expense category''', BudgetingPackage.eINSTANCE.actualEntry_Category)
 		}
 	}
 	
