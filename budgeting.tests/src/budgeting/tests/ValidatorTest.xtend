@@ -185,4 +185,31 @@ class ValidatorTest {
 			]
 		]
 	}
+	
+	@Test
+	def void testCheckDuplicateBudgetEntries() {
+		val resourceSet = resourceSetProvider.get
+		'''
+			library lib1 {
+				income income1
+				income income2
+			}
+		'''.parse(URI.createURI("lib1." + fileExtension), resourceSet)
+		'''
+			2016 uses lib1 {
+				january budget {
+					income1: 1.00
+					income2: 2.00
+					income2: income1 * 3
+				} actual {
+				}
+			}
+		'''.parse(URI.createURI("2016." + fileExtension), resourceSet) as Year => [
+			2.assertEquals(validate.size)
+			months.head => [
+				budgetEntries.get(1).assertError(BudgetingPackage.eINSTANCE.budgetEntry, null, 'Duplicate budget entry for category "income2"')
+				budgetEntries.get(2).assertError(BudgetingPackage.eINSTANCE.budgetEntry, null, 'Duplicate budget entry for category "income2"')
+			]
+		]
+	}
 }
