@@ -1,5 +1,6 @@
 package budgeting.validation
 
+import budgeting.budgeting.BudgetFactorEntry
 import budgeting.budgeting.BudgetingPackage
 import budgeting.budgeting.ExpenseCategory
 import budgeting.budgeting.Library
@@ -15,7 +16,6 @@ import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
 /*
  * Need to implement:
- * -Cyclic dependency for budget factor entry (separate check for itself) [BudgetFactorEntry]
  * -Day is 0 [CashTransaction, CardTransaction]
  * -Day is out of range for month [CashTransaction, CardTransaction]
  * -Transactions out of order [ActualTransactionEntry]
@@ -117,6 +117,22 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		duplicates.values.flatten.forEach[
 			error('''Duplicate actual entry for category "«category.name»"''', it, BudgetingPackage.eINSTANCE.actualEntry_Category)
 		]
+	}
+	
+	@Check
+	def void checkCyclicBudgetFactoryDependency(BudgetFactorEntry budgetEntry) {
+		val visitedEntries = newHashSet(budgetEntry)
+		var currentEntry = budgetEntry
+		while (currentEntry?.baseEntry instanceof BudgetFactorEntry) {
+			val baseEntry = currentEntry.baseEntry as BudgetFactorEntry
+			currentEntry = if (visitedEntries.contains(baseEntry)) {
+				error('''Cycle detected for budget entry "«budgetEntry.category.name»"''', BudgetingPackage.eINSTANCE.budgetFactorEntry_BaseEntry)
+				null
+			} else {
+				visitedEntries += baseEntry
+				baseEntry
+			}
+		}
 	}
 	
 	def private static operator_greaterThan(MonthEnum a, java.time.Month b) {
