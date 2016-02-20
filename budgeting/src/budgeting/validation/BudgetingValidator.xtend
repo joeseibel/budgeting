@@ -3,15 +3,18 @@ package budgeting.validation
 import budgeting.budgeting.BudgetingPackage
 import budgeting.budgeting.ExpenseCategory
 import budgeting.budgeting.Library
+import budgeting.budgeting.Month
+import budgeting.budgeting.MonthEnum
 import budgeting.budgeting.Year
+import java.time.LocalDateTime
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
 import org.eclipse.xtext.validation.Check
 
+import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
+
 /*
  * Need to implement:
- * -Month out of order [Year]
- * -Actual entries in future month [Month]
  * -Duplicate budget entries [Month]
  * -Duplicate actual entries [Month]
  * -Cyclic dependency for budget factor entry (separate check for itself) [BudgetFactorEntry]
@@ -89,5 +92,20 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		if (year.months != year.months.sortBy[name]) {
 			warning("Month entries are out of order", BudgetingPackage.eINSTANCE.year_Name)
 		}
+	}
+	
+	@Check
+	def void checkActualEntriesInFutureMonth(Month month) {
+		if (!month.actualEntries.empty) {
+			val yearName = month.getContainerOfType(Year).name
+			val now = LocalDateTime.now
+			if (yearName > now.year || (yearName == now.year && month.name > now.month)) {
+				error('''"«month.name»" contains actual entries even though it is in the future''', BudgetingPackage.eINSTANCE.month_Name)
+			}
+		}
+	}
+	
+	def private static operator_greaterThan(MonthEnum a, java.time.Month b) {
+		a.ordinal > b.ordinal
 	}
 }

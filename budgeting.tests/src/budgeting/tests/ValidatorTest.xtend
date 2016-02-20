@@ -165,4 +165,24 @@ class ValidatorTest {
 			]
 		]
 	}
+	
+	@Test
+	def void testCheckActualEntriesInFutureMonth() {
+		val futureYear = java.time.Year.now.value + 1
+		'''
+			«futureYear» uses lib1 {
+				december budget {
+				} actual {
+					expense1: 10.00
+				}
+			}
+		'''.parse(URI.createURI(futureYear + "." + fileExtension), resourceSetProvider.get) as Year => [
+			months.head => [
+				tester.validate(it) => [
+					assertDiagnosticsCount(1)
+					assertError(null, '"december" contains actual entries even though it is in the future')
+				]
+			]
+		]
+	}
 }
