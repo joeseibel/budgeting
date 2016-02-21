@@ -1,5 +1,6 @@
 package budgeting.validation
 
+import budgeting.budgeting.ActualAmountEntry
 import budgeting.budgeting.ActualTransactionEntry
 import budgeting.budgeting.BudgetAmountEntry
 import budgeting.budgeting.BudgetFactorEntry
@@ -15,7 +16,6 @@ import budgeting.services.BudgetingGrammarAccess
 import com.google.inject.Inject
 import java.time.DateTimeException
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.OptionalLong
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
@@ -25,10 +25,6 @@ import org.eclipse.xtext.validation.Check
 import static extension java.lang.Math.round
 import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
-/*
- * Need to implement:
- * -Zero sum actual for past months [Month]
- */
 class BudgetingValidator extends AbstractBudgetingValidator {
 	@Inject
 	IValueConverterService converterService
@@ -108,7 +104,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 	def void checkActualEntriesInFutureMonth(Month month) {
 		if (!month.actualEntries.empty) {
 			val yearName = month.getContainerOfType(Year).name
-			val now = LocalDateTime.now
+			val now = LocalDate.now
 			if (yearName > now.year || (yearName == now.year && month.name > now.month)) {
 				error('''"«month.name»" contains actual entries even though it is in the future''', BudgetingPackage.eINSTANCE.month_Name)
 			}
@@ -188,7 +184,8 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 	@Check
 	def void checkZeroSumBudget(Month month) {
 		//Don't validate if there are linking errors or if there are duplicate budget entries.
-		if (month.budgetEntries.forall[!category.eIsProxy] && month.budgetEntries.map[category].toSet.size == month.budgetEntries.size) {
+		val noDuplicates = month.budgetEntries.map[category].toSet.size == month.budgetEntries.size
+		if (month.budgetEntries.forall[!category.eIsProxy] && noDuplicates) {
 			val amounts = month.budgetEntries.map[
 				val entryAmount = switch it {
 					BudgetAmountEntry: OptionalLong.of(amount)
@@ -201,7 +198,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 				}
 			]
 			if (!amounts.empty && amounts.forall[present]) {
-				val sum = amounts.map[asLong].reduce[$0 + $1]
+				val sum = amounts.map[asLong].sum
 				if (sum != 0L) {
 					error("Sum of budget entries is " + converterService.toString(sum, grammarAccess.dollarRule.name), BudgetingPackage.eINSTANCE.month_Name)
 				}
@@ -209,8 +206,46 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
+	@Check
+	def void checkZeroSumActual(Month month) {
+		//Only validate if the month is in the past, there are no linking errors, and there are no duplicate actual entries.
+		val yearName = month.getContainerOfType(Year).name
+		val now = LocalDate.now
+		val inPast = yearName < now.year || (yearName == now.year && month.name < now.month)
+		val noDuplicates = month.actualEntries.map[category].toSet.size == month.actualEntries.size
+		if (!month.actualEntries.empty && inPast && month.actualEntries.forall[!category.eIsProxy] && noDuplicates) {
+			val amounts = month.actualEntries.map[
+				val entryAmount = switch it {
+					ActualAmountEntry: amount
+					ActualTransactionEntry: transactions.map[amount].sum
+				}
+				if (category instanceof ExpenseCategory) {
+					-entryAmount
+				} else {
+					entryAmount
+				}
+			]
+			val sum = amounts.sum
+			if (sum != 0L) {
+				error("Sum of actual entries in past month is " + converterService.toString(sum, grammarAccess.dollarRule.name), BudgetingPackage.eINSTANCE.month_Name)
+			}
+		}
+	}
+	
 	def private static operator_greaterThan(MonthEnum a, java.time.Month b) {
 		a.ordinal > b.ordinal
+	}
+	
+	def private static operator_lessThan(MonthEnum a, java.time.Month b) {
+		a.ordinal < b.ordinal
+	}
+	
+	def private static sum(Iterable<Long> iterable) {
+		iterable.reduce[$0 + $1]
+	}
+	
+	def private static product(Iterable<Double> iterable) {
+		iterable.reduce[$0 * $1]
 	}
 	
 	def private static calculateAmount(BudgetFactorEntry budgetEntry) {
@@ -226,7 +261,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		if (cycleFound || factorEntries.last.baseEntry.eIsProxy) {
 			OptionalLong.empty
 		} else {
-			val totalFactor = factorEntries.map[factor].reduce[$0 * $1]
+			val totalFactor = factorEntries.map[factor].product
 			val amount = totalFactor * (factorEntries.last.baseEntry as BudgetAmountEntry).amount
 			OptionalLong.of(amount.round)
 		}

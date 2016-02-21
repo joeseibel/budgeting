@@ -399,4 +399,35 @@ class ValidatorTest {
 			]
 		]
 	}
+	
+	@Test
+	def void testCheckZeroSumActual() {
+		val resourceSet = resourceSetProvider.get
+		'''
+			library lib1 {
+				income income1
+				expense expense1
+				expense expense2
+			}
+		'''.parse(resourceSet)
+		'''
+			2016 uses lib1 {
+				january budget {
+				} actual {
+					income1: 100.00
+					expense1: 12.34
+					expense2 {
+						cash 56.78
+						cash 90.12 on 5
+						card 34.56 on 6 from "store1"
+					}
+				}
+			}
+		'''.parse(resourceSet) as Year => [
+			tester.validate(months.head) => [
+				assertDiagnosticsCount(1)
+				assertError(null, "Sum of actual entries in past month is -93.80")
+			]
+		]
+	}
 }

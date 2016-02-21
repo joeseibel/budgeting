@@ -79,6 +79,7 @@ class ScopingTest {
 					income1: 11.22
 					expense1: income1 * 1
 				} actual {
+					income1: 89.10
 					expense1: 33.44
 					expense2 {
 						cash 55.66
@@ -100,10 +101,14 @@ class ScopingTest {
 					assertScope(BudgetingPackage.eINSTANCE.budgetEntry_Category, expectedCategories)
 				]
 				actualEntries.get(0) => [
-					"expense1".assertEquals(category.name)
+					"income1".assertEquals(category.name)
 					assertScope(BudgetingPackage.eINSTANCE.actualEntry_Category, expectedCategories)
 				]
 				actualEntries.get(1) => [
+					"expense1".assertEquals(category.name)
+					assertScope(BudgetingPackage.eINSTANCE.actualEntry_Category, expectedCategories)
+				]
+				actualEntries.get(2) => [
 					"expense2".assertEquals(category.name)
 					assertScope(BudgetingPackage.eINSTANCE.actualEntry_Category, expectedCategories)
 				]
