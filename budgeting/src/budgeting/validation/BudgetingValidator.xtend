@@ -22,7 +22,7 @@ import java.util.regex.PatternSyntaxException
 import org.eclipse.xtext.conversion.IValueConverterService
 import org.eclipse.xtext.validation.Check
 
-import static extension java.lang.Math.round
+import static extension budgeting.BudgetingUtil.calculateAmount
 import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
 class BudgetingValidator extends AbstractBudgetingValidator {
@@ -242,28 +242,5 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 	
 	def private static sum(Iterable<Long> iterable) {
 		iterable.reduce[$0 + $1]
-	}
-	
-	def private static product(Iterable<Double> iterable) {
-		iterable.reduce[$0 * $1]
-	}
-	
-	def private static calculateAmount(BudgetFactorEntry budgetEntry) {
-		val factorEntries = newArrayList(budgetEntry)
-		var cycleFound = false
-		while (!cycleFound && !factorEntries.last.baseEntry.eIsProxy && factorEntries.last.baseEntry instanceof BudgetFactorEntry) {
-			if (factorEntries.contains(factorEntries.last.baseEntry)) {
-				cycleFound = true
-			} else {
-				factorEntries += factorEntries.last.baseEntry as BudgetFactorEntry
-			}
-		}
-		if (cycleFound || factorEntries.last.baseEntry.eIsProxy) {
-			OptionalLong.empty
-		} else {
-			val totalFactor = factorEntries.map[factor].product
-			val amount = totalFactor * (factorEntries.last.baseEntry as BudgetAmountEntry).amount
-			OptionalLong.of(amount.round)
-		}
 	}
 }
