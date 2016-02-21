@@ -138,11 +138,6 @@ public abstract class AbstractBudgetingRuntimeModule extends org.eclipse.xtext.c
 		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS)).to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
 	}
 
-	// contributed by org.eclipse.xtext.generator.generator.GeneratorFragment
-	public Class<? extends org.eclipse.xtext.generator.IGenerator> bindIGenerator() {
-		return budgeting.generator.BudgetingGenerator.class;
-	}
-
 	// contributed by org.eclipse.xtext.generator.formatting2.Formatter2Fragment
 	public Class<? extends org.eclipse.xtext.formatting2.IFormatter2> bindIFormatter2() {
 		return budgeting.formatting2.BudgetingFormatter.class;

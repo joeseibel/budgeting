@@ -85,9 +85,6 @@ Workflow {
     		fragment = exporting.QualifiedNamesFragment auto-inject {}
     		fragment = builder.BuilderIntegrationFragment auto-inject {}
     
-    		// generator API
-    		fragment = generator.GeneratorFragment auto-inject {}
-    
     		// formatter API
     		fragment = formatting2.Formatter2Fragment auto-inject {}
     
