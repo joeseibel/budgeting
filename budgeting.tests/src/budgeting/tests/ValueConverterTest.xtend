@@ -43,5 +43,7 @@ class ValueConverterTest {
 		"0.01".assertEquals(valueConverter.toString(1L, grammarAccess.dollarRule.name))
 		"0.10".assertEquals(valueConverter.toString(10L, grammarAccess.dollarRule.name))
 		"1.00".assertEquals(valueConverter.toString(100L, grammarAccess.dollarRule.name))
+		"-1.00".assertEquals(valueConverter.toString(-100L, grammarAccess.dollarRule.name))
+		"-0.10".assertEquals(valueConverter.toString(-10L, grammarAccess.dollarRule.name))
 	}
 }

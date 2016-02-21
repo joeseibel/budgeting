@@ -34,7 +34,8 @@ class BudgetingValueConverterService extends DefaultTerminalConverters {
 			}
 			
 			override toString(Long value) throws ValueConverterException {
-				value / 100 + "." + FORMAT.format(value.abs % 100)
+				val abs = value.abs
+				'''«IF value < 0»-«ENDIF»«abs / 100».«FORMAT.format(abs % 100)»'''
 			}
 		}
 	}
