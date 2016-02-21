@@ -6,11 +6,12 @@ import budgeting.budgeting.BudgetFactorEntry
 import budgeting.budgeting.BudgetingPackage
 import budgeting.budgeting.ExpenseCategory
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultSemanticHighlightingCalculator
-import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor
+import org.eclipse.xtext.ide.editor.syntaxcoloring.DefaultSemanticHighlightingCalculator
+import org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor
+import org.eclipse.xtext.util.CancelIndicator
 
 class BudgetingSemanticHighlightingCalculator extends DefaultSemanticHighlightingCalculator {
-	override protected highlightElement(EObject object, IHighlightedPositionAcceptor acceptor) {
+	override protected highlightElement(EObject object, IHighlightedPositionAcceptor acceptor, CancelIndicator cancelIndicator) {
 		switch object {
 			ExpenseCategory: {
 				highlightFeature(acceptor, object, BudgetingPackage.eINSTANCE.category_Name, BudgetingHighlightingConfiguration.EXPENSE_ID)
