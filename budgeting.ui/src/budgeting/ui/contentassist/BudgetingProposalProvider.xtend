@@ -21,4 +21,27 @@ class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
 		} catch (RecognitionException e) {
 		}
 	}
+	
+	override completeYear_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		val fileName = context.resource.URI.trimFileExtension.lastSegment
+		try {
+			val proposalYear = Integer.parseInt(fileName)
+			if (proposalYear >= 2015 && proposalYear <= java.time.Year.now.value + 1) {
+				acceptor.accept(createCompletionProposal(fileName, context))
+			}
+		} catch (NumberFormatException e) {
+		}
+	}
+	
+	override protected isValidProposal(String proposal, String prefix, ContentAssistContext context) {
+		super.isValidProposal(proposal, prefix, context)
+	}
+	
+	override protected doCreateIntProposals() {
+		false
+	}
+	
+	override protected doCreateIdProposals() {
+		false
+	}
 }
