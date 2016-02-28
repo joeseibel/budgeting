@@ -240,7 +240,7 @@ class ValidatorTest {
 	}
 	
 	@Test
-	def void testCheckCyclicBudgetFactoryDependency() {
+	def void testCheckCyclicBudgetFactorDependency() {
 		val resourceSet = resourceSetProvider.get
 		'''
 			library lib1 {

@@ -67,6 +67,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]]]
 	}
 	
+	//TODO: Can we provide the year name in content assist?
 	@Check
 	def void checkYearName(Year year) {
 		val yearName = year.name
@@ -85,6 +86,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
+	//TODO: Content assist
 	@Check
 	def void checkDuplicateMonths(Year year) {
 		val duplicates = year.months.groupBy[name].filter[monthName, months | months.size > 1]
@@ -93,6 +95,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]
 	}
 	
+	//TODO: Content assist
 	@Check
 	def void checkMonthOrdering(Year year) {
 		if (year.months != year.months.sortBy[name]) {
@@ -111,6 +114,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
+	//TODO: Content assist
 	@Check
 	def void checkDuplicateBudgetEntries(Month month) {
 		val duplicates = month.budgetEntries.groupBy[category].filter[category, budgetEntries | budgetEntries.size > 1]
@@ -119,6 +123,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]
 	}
 	
+	//TODO: Content assist
 	@Check
 	def void checkDuplicateActualEntries(Month month) {
 		val duplicates = month.actualEntries.groupBy[category].filter[category, actualEntries | actualEntries.size > 1]
@@ -127,8 +132,9 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]
 	}
 	
+	//TODO: Content assist
 	@Check
-	def void checkCyclicBudgetFactoryDependency(BudgetFactorEntry budgetEntry) {
+	def void checkCyclicBudgetFactorDependency(BudgetFactorEntry budgetEntry) {
 		val visitedEntries = newHashSet(budgetEntry)
 		var currentEntry = budgetEntry
 		while (currentEntry?.baseEntry instanceof BudgetFactorEntry) {
@@ -163,6 +169,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
+	//TODO: Content assist
 	@Check
 	def void checkTransactionEntryIsExpense(ActualTransactionEntry actualEntry) {
 		if (!actualEntry.category.eIsProxy && !(actualEntry.category instanceof ExpenseCategory)) {
