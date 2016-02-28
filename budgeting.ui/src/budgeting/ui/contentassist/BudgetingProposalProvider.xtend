@@ -12,6 +12,14 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 
 class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
+	override protected doCreateIntProposals() {
+		false
+	}
+	
+	override protected doCreateIdProposals() {
+		false
+	}
+	
 	override completeLibrary_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		val fileName = context.resource.URI.trimFileExtension.lastSegment
 		val lexer = new InternalBudgetingLexer(new ANTLRStringStream(fileName))
@@ -31,17 +39,5 @@ class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
 			}
 		} catch (NumberFormatException e) {
 		}
-	}
-	
-	override protected isValidProposal(String proposal, String prefix, ContentAssistContext context) {
-		super.isValidProposal(proposal, prefix, context)
-	}
-	
-	override protected doCreateIntProposals() {
-		false
-	}
-	
-	override protected doCreateIdProposals() {
-		false
 	}
 }

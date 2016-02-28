@@ -5,9 +5,11 @@ package budgeting.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.contentassist.IContentProposalPriorities;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 
+import budgeting.ui.contentassist.BudgetingProposalPriorities;
 import budgeting.ui.editor.syntaxcoloring.BudgetingAntlrTokenToAttributeIdMapper;
 import budgeting.ui.editor.syntaxcoloring.BudgetingHighlightingConfiguration;
 import budgeting.ui.editor.syntaxcoloring.BudgetingSemanticHighlightingCalculator;
@@ -30,5 +32,9 @@ public class BudgetingUiModule extends budgeting.ui.AbstractBudgetingUiModule {
 	
 	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return BudgetingSemanticHighlightingCalculator.class;
+	}
+	
+	public Class<? extends IContentProposalPriorities> bindIContentProposalPriorities() {
+		return BudgetingProposalPriorities.class;
 	}
 }

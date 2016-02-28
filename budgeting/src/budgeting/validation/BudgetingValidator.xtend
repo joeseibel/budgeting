@@ -67,7 +67,6 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]]]
 	}
 	
-	//TODO: Can we provide the year name in content assist?
 	@Check
 	def void checkYearName(Year year) {
 		val yearName = year.name
