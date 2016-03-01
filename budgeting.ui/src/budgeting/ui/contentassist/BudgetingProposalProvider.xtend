@@ -72,4 +72,11 @@ class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
 			!existingCategories.contains(name.lastSegment)
 		])
 	}
+	
+	override completeActualEntry_Category(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		val existingCategories = model.getContainerOfType(Month)?.actualEntries?.map[category.name]?.filterNull?.toSet ?: emptySet
+		lookupCrossReference(assignment.terminal as CrossReference, context, acceptor, [
+			!existingCategories.contains(name.lastSegment)
+		])
+	}
 }

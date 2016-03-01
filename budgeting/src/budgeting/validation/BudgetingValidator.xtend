@@ -119,7 +119,6 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]
 	}
 	
-	//TODO: Content assist
 	@Check
 	def void checkDuplicateActualEntries(Month month) {
 		val duplicates = month.actualEntries.groupBy[category].filter[category, actualEntries | actualEntries.size > 1]
