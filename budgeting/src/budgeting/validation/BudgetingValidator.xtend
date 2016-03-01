@@ -85,7 +85,6 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
-	//TODO: Content assist
 	@Check
 	def void checkDuplicateMonths(Year year) {
 		val duplicates = year.months.groupBy[name].filter[monthName, months | months.size > 1]
@@ -94,7 +93,6 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]
 	}
 	
-	//TODO: Content assist
 	@Check
 	def void checkMonthOrdering(Year year) {
 		if (year.months != year.months.sortBy[name]) {
@@ -148,6 +146,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
+	//TODO: Propose current day in content assist if month and year are current
 	@Check
 	def void checkDayRange(CashTransaction transaction) {
 		if (transaction.day != null) {
@@ -159,6 +158,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
+	//TODO: Propose current day in content assist if month and year are current
 	@Check
 	def void checkDayRange(CardTransaction transaction) {
 		try {

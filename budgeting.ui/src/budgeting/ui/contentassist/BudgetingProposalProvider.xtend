@@ -3,13 +3,19 @@
  */
 package budgeting.ui.contentassist
 
+import budgeting.budgeting.MonthEnum
+import budgeting.budgeting.Year
 import budgeting.ui.contentassist.antlr.internal.InternalBudgetingLexer
 import org.antlr.runtime.ANTLRStringStream
 import org.antlr.runtime.RecognitionException
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.Assignment
+import org.eclipse.xtext.Keyword
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
+
+import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
+import static extension org.eclipse.xtext.nodemodel.util.NodeModelUtils.getNode
 
 class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
 	override protected doCreateIntProposals() {
@@ -38,6 +44,23 @@ class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
 				acceptor.accept(createCompletionProposal(fileName, context))
 			}
 		} catch (NumberFormatException e) {
+		}
+	}
+	
+	override completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext, ICompletionProposalAcceptor acceptor) {
+		switch month : MonthEnum.get(keyword.value) {
+			case null: super.completeKeyword(keyword, contentAssistContext, acceptor)
+			default: {
+				val year = contentAssistContext.currentModel.getContainerOfType(Year)
+				val currentOffset = contentAssistContext.currentNode.offset
+				val previousMonth = year.months.findLast[node.offset < currentOffset]?.name
+				val nextMonth = year.months.findFirst[node.offset > currentOffset]?.name
+				if ((previousMonth == null || month.ordinal > previousMonth.ordinal) &&
+					(nextMonth == null || month.ordinal < nextMonth.ordinal) && !year.months.exists[name == month]
+				) {
+					super.completeKeyword(keyword, contentAssistContext, acceptor)
+				}
+			}
 		}
 	}
 }
