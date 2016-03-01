@@ -3,6 +3,7 @@
  */
 package budgeting.ui.contentassist
 
+import budgeting.budgeting.Month
 import budgeting.budgeting.MonthEnum
 import budgeting.budgeting.Year
 import budgeting.ui.contentassist.antlr.internal.InternalBudgetingLexer
@@ -10,6 +11,7 @@ import org.antlr.runtime.ANTLRStringStream
 import org.antlr.runtime.RecognitionException
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.Assignment
+import org.eclipse.xtext.CrossReference
 import org.eclipse.xtext.Keyword
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
@@ -24,6 +26,23 @@ class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
 	
 	override protected doCreateIdProposals() {
 		false
+	}
+	
+	override completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext, ICompletionProposalAcceptor acceptor) {
+		switch month : MonthEnum.get(keyword.value) {
+			case null: super.completeKeyword(keyword, contentAssistContext, acceptor)
+			default: {
+				val year = contentAssistContext.currentModel.getContainerOfType(Year)
+				val currentOffset = contentAssistContext.currentNode.offset
+				val previousMonth = year.months.findLast[node.offset < currentOffset]?.name
+				val nextMonth = year.months.findFirst[node.offset > currentOffset]?.name
+				if ((previousMonth == null || month.ordinal > previousMonth.ordinal) &&
+					(nextMonth == null || month.ordinal < nextMonth.ordinal) && !year.months.exists[name == month]
+				) {
+					super.completeKeyword(keyword, contentAssistContext, acceptor)
+				}
+			}
+		}
 	}
 	
 	override completeLibrary_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
@@ -47,20 +66,10 @@ class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
 		}
 	}
 	
-	override completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext, ICompletionProposalAcceptor acceptor) {
-		switch month : MonthEnum.get(keyword.value) {
-			case null: super.completeKeyword(keyword, contentAssistContext, acceptor)
-			default: {
-				val year = contentAssistContext.currentModel.getContainerOfType(Year)
-				val currentOffset = contentAssistContext.currentNode.offset
-				val previousMonth = year.months.findLast[node.offset < currentOffset]?.name
-				val nextMonth = year.months.findFirst[node.offset > currentOffset]?.name
-				if ((previousMonth == null || month.ordinal > previousMonth.ordinal) &&
-					(nextMonth == null || month.ordinal < nextMonth.ordinal) && !year.months.exists[name == month]
-				) {
-					super.completeKeyword(keyword, contentAssistContext, acceptor)
-				}
-			}
-		}
+	override completeBudgetEntry_Category(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		val existingCategories = model.getContainerOfType(Month)?.budgetEntries?.map[category.name]?.filterNull?.toSet ?: emptySet
+		lookupCrossReference(assignment.terminal as CrossReference, context, acceptor, [
+			!existingCategories.contains(name.lastSegment)
+		])
 	}
 }
