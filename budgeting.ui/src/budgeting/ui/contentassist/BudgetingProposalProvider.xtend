@@ -8,6 +8,7 @@ import budgeting.budgeting.Month
 import budgeting.budgeting.MonthEnum
 import budgeting.budgeting.Year
 import budgeting.ui.contentassist.antlr.internal.InternalBudgetingLexer
+import java.time.LocalDate
 import org.antlr.runtime.ANTLRStringStream
 import org.antlr.runtime.RecognitionException
 import org.eclipse.emf.ecore.EObject
@@ -37,9 +38,7 @@ class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
 				val currentOffset = contentAssistContext.currentNode.offset
 				val previousMonth = year.months.findLast[node.offset < currentOffset]?.name
 				val nextMonth = year.months.findFirst[node.offset > currentOffset]?.name
-				if ((previousMonth == null || month.ordinal > previousMonth.ordinal) &&
-					(nextMonth == null || month.ordinal < nextMonth.ordinal) && !year.months.exists[name == month]
-				) {
+				if ((previousMonth == null || month > previousMonth) && (nextMonth == null || month < nextMonth) && !year.months.exists[name == month]) {
 					super.completeKeyword(keyword, contentAssistContext, acceptor)
 				}
 			}
@@ -86,5 +85,16 @@ class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
 		lookupCrossReference(assignment.terminal as CrossReference, context, acceptor, [
 			name.lastSegment != currentCategory
 		])
+	}
+	
+	override completeTransaction_Day(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		val now = LocalDate.now
+		if (model.getContainerOfType(Month)?.name == now.month && model.getContainerOfType(Year).name == now.year) {
+			acceptor.accept(createCompletionProposal(now.dayOfMonth.toString, context))
+		}
+	}
+	
+	def private static operator_equals(MonthEnum a, java.time.Month b) {
+		(a === null && b === null) || (a !== null && b !== null && a.ordinal == b.ordinal)
 	}
 }

@@ -143,7 +143,6 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
-	//TODO: Propose current day in content assist if month and year are current
 	@Check
 	def void checkDayRange(CashTransaction transaction) {
 		if (transaction.day != null) {
@@ -155,7 +154,6 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
-	//TODO: Propose current day in content assist if month and year are current
 	@Check
 	def void checkDayRange(CardTransaction transaction) {
 		try {
