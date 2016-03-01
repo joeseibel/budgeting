@@ -127,7 +127,6 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]
 	}
 	
-	//TODO: Content assist
 	@Check
 	def void checkCyclicBudgetFactorDependency(BudgetFactorEntry budgetEntry) {
 		val visitedEntries = newHashSet(budgetEntry)

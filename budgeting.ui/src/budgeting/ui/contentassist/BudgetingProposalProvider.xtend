@@ -3,6 +3,7 @@
  */
 package budgeting.ui.contentassist
 
+import budgeting.budgeting.BudgetFactorEntry
 import budgeting.budgeting.Month
 import budgeting.budgeting.MonthEnum
 import budgeting.budgeting.Year
@@ -77,6 +78,13 @@ class BudgetingProposalProvider extends AbstractBudgetingProposalProvider {
 		val existingCategories = model.getContainerOfType(Month)?.actualEntries?.map[category.name]?.filterNull?.toSet ?: emptySet
 		lookupCrossReference(assignment.terminal as CrossReference, context, acceptor, [
 			!existingCategories.contains(name.lastSegment)
+		])
+	}
+	
+	override completeBudgetEntry_BaseEntry(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		val currentCategory = model.getContainerOfType(BudgetFactorEntry)?.category?.name
+		lookupCrossReference(assignment.terminal as CrossReference, context, acceptor, [
+			name.lastSegment != currentCategory
 		])
 	}
 }
