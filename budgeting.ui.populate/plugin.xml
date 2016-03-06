@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="budgeting.ui.populate.PopulateHandler"
+            id="budgeting.ui.populate.populateCommand"
+            name="Populate Card Transactions">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.xtext.ui.outline?after=additions">
+         <command
+               commandId="budgeting.ui.populate.populateCommand"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <and>
+                     <count
+                           value="1">
+                     </count>
+                     <iterate>
+                        <test
+                              forcePluginActivation="true"
+                              property="budgeting.ui.populate.isMonth">
+                        </test>
+                     </iterate>
+                  </and>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="budgeting.ui.populate.EObjectNodePropertyTester"
+            id="budgeting.ui.populate.eObjectNodePropertyTester"
+            namespace="budgeting.ui.populate"
+            properties="isMonth"
+            type="org.eclipse.xtext.ui.editor.outline.impl.EObjectNode">
+      </propertyTester>
+   </extension>
+
+</plugin>
