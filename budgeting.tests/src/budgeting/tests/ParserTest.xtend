@@ -211,7 +211,7 @@ class ParserTest {
 					expense1: income1 * 0.2
 					expense2: 9.87
 				} actual {
-					income1: 98.76
+					income1: 100.32
 					expense1 {
 						cash 11.22
 						cash 33.44 on 4
@@ -248,7 +248,7 @@ class ParserTest {
 				2.assertEquals(actualEntries.size)
 				actualEntries.get(0) as ActualAmountEntry => [
 					"income1".assertEquals(category.name)
-					9876L.assertEquals(amount)
+					10032L.assertEquals(amount)
 				]
 				actualEntries.get(1) as ActualTransactionEntry => [
 					"expense1".assertEquals(category.name)
