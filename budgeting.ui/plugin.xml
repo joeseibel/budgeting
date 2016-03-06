@@ -247,60 +247,6 @@
 	    <persistent value="true"/>
 	</extension>
 
-   <extension
-         point="org.eclipse.xtext.builder.participant">
-      <participant
-            class="budgeting.ui.BudgetingExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
-            fileExtensions="budgeting"
-            >
-      </participant>
-   </extension>
-   <extension
-            point="org.eclipse.ui.preferencePages">
-        <page
-            category="budgeting.Budgeting"
-            class="budgeting.ui.BudgetingExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="budgeting.Budgeting.compiler.preferencePage"
-            name="Compiler">
-            <keywordReference id="budgeting.ui.keyword_Budgeting"/>
-        </page>
-    </extension>
-    <extension
-            point="org.eclipse.ui.propertyPages">
-        <page
-            category="budgeting.Budgeting"
-            class="budgeting.ui.BudgetingExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-            id="budgeting.Budgeting.compiler.propertyPage"
-            name="Compiler">
-            <keywordReference id="budgeting.ui.keyword_Budgeting"/>
-            <enabledWhen>
-	            <adapt type="org.eclipse.core.resources.IProject"/>
-			</enabledWhen>
-	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
-        </page>
-    </extension>
-    <extension point="org.eclipse.ui.menus">
-		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
-			<command
-				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="budgeting.Budgeting.OpenGeneratedCode"
-				style="push">
-					<visibleWhen checkEnabled="false">
-						<reference definitionId="budgeting.Budgeting.Editor.opened" />
-					</visibleWhen>
-			</command>
-		</menuContribution>
-	</extension>
-	<extension point="org.eclipse.ui.handlers">
-		<handler
-			class="budgeting.ui.BudgetingExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
-			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
-				<activeWhen>
-					<reference definitionId="budgeting.Budgeting.Editor.opened" />
-				</activeWhen>
-		</handler>
-	</extension>
-
 	<!-- Quick Outline -->
 	<extension
 		point="org.eclipse.ui.handlers">
