@@ -163,7 +163,6 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}
 	}
 	
-	//TODO: Content assist
 	@Check
 	def void checkTransactionEntryIsExpense(ActualTransactionEntry actualEntry) {
 		if (!actualEntry.category.eIsProxy && !(actualEntry.category instanceof ExpenseCategory)) {
