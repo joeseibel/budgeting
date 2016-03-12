@@ -7,4 +7,5 @@ package class DialogTransaction {
 	val int day
 	val String from
 	val long amount
+	String category
 }

@@ -1,10 +1,12 @@
 package budgeting.ui.populate
 
+import budgeting.budgeting.ExpenseCategory
 import budgeting.budgeting.Month
 import budgeting.budgeting.Year
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.StringReader
+import java.util.List
 import org.apache.commons.csv.CSVParser
 import org.eclipse.core.commands.ExecutionEvent
 import org.eclipse.core.commands.ExecutionException
@@ -12,6 +14,7 @@ import org.eclipse.jface.dialogs.MessageDialog
 import org.eclipse.jface.viewers.IStructuredSelection
 import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.FileDialog
+import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode
 
 import static extension java.lang.Integer.parseInt
@@ -28,9 +31,10 @@ class PopulateHandler extends AbstractPopulateHandler {
 	
 	override execute(ExecutionEvent event) throws ExecutionException {
 		val selectedOutlineNode = (event.currentSelection as IStructuredSelection).firstElement as EObjectNode
-		val selectedMonthAndYear = selectedOutlineNode.readOnly[
+		val modelInfo = selectedOutlineNode.readOnly[
 			val month = it as Month
-			month.name.ordinal + 1 -> month.getContainerOfType(Year).name
+			val year = month.getContainerOfType(Year)
+			new ModelInfo(month.name.toString.toFirstUpper, month.name.ordinal + 1, year.name, year.library.categories.filter(ExpenseCategory).map[name].toList)
 		]
 		
 		val fileDialog = new FileDialog(event.activeShell, SWT.OPEN.bitwiseOr(SWT.APPLICATION_MODAL))
@@ -38,11 +42,12 @@ class PopulateHandler extends AbstractPopulateHandler {
 		val fileName = fileDialog.open
 		if (fileName != null) {
 			try {
-				val transactions = parseCardFile(fileName, selectedMonthAndYear.key, selectedMonthAndYear.value)
+				val transactions = parseCardFile(fileName, modelInfo.monthNumber, modelInfo.year)
 				if (transactions.empty) {
-					MessageDialog.openError(event.activeShell, "No Transactions", "No cleared transactions for selected month found in file.")
+					MessageDialog.openError(event.activeShell, "No Transactions", '''No cleared transactions for «modelInfo.monthName» «modelInfo.year» found in file.''')
 				} else {
-					println(transactions.size)
+					val dialog = new PopulateDialog(event.activeShell, modelInfo.monthName, modelInfo.year, transactions, modelInfo.categoryNames)
+					dialog.open
 				}
 			} catch (IOException e) {
 				MessageDialog.openError(event.activeShell, "IOException", e.message)
@@ -68,5 +73,13 @@ class PopulateHandler extends AbstractPopulateHandler {
 		val firstLine = reader.readLine
 		reader.close
 		firstLine
+	}
+	
+	@FinalFieldsConstructor
+	private static class ModelInfo {
+		val String monthName
+		val int monthNumber
+		val int year
+		val List<String> categoryNames
 	}
 }
