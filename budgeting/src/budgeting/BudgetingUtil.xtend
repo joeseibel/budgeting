@@ -2,11 +2,27 @@ package budgeting
 
 import budgeting.budgeting.BudgetAmountEntry
 import budgeting.budgeting.BudgetFactorEntry
+import budgeting.budgeting.CardTransaction
+import budgeting.budgeting.CashTransaction
+import budgeting.budgeting.Transaction
+import java.util.Comparator
 import java.util.OptionalLong
 
 import static extension java.lang.Math.round
 
 class BudgetingUtil {
+	val public static Comparator<Transaction> TRANSACTION_COMPARATOR = [a, b |
+		val bDay = b.day
+		switch aDay : a.day {
+			case null: switch bDay {
+				case null: 0
+				default: -1
+			}
+			case bDay == null: 1
+			default: aDay.compareTo(bDay)
+		}
+	]
+	
 	def static OptionalLong calculateAmount(BudgetFactorEntry budgetEntry) {
 		val factorEntries = newArrayList(budgetEntry)
 		var cycleFound = false
@@ -28,5 +44,12 @@ class BudgetingUtil {
 	
 	def static Double product(Iterable<Double> iterable) {
 		iterable.reduce[$0 * $1]
+	}
+	
+	def private static getDay(Transaction transaction) {
+		switch transaction {
+			CashTransaction: transaction.day
+			CardTransaction: transaction.day
+		}
 	}
 }
