@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicReference
 import org.apache.commons.csv.CSVParser
 import org.eclipse.core.commands.ExecutionEvent
 import org.eclipse.core.commands.ExecutionException
+import org.eclipse.emf.common.util.URI
 import org.eclipse.jface.dialogs.MessageDialog
 import org.eclipse.jface.dialogs.ProgressMonitorDialog
 import org.eclipse.jface.viewers.IStructuredSelection
@@ -28,6 +29,7 @@ import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode
 import org.eclipse.xtext.util.concurrent.IUnitOfWork
 
 import static extension java.lang.Integer.parseInt
+import static extension org.eclipse.emf.ecore.util.EcoreUtil.getURI
 import static extension org.eclipse.ui.handlers.HandlerUtil.getActiveShell
 import static extension org.eclipse.ui.handlers.HandlerUtil.getCurrentSelection
 import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
@@ -46,7 +48,7 @@ class PopulateHandler extends AbstractPopulateHandler {
 			val year = month.getContainerOfType(Year)
 			new ModelInfo(month.name.toString.toFirstUpper, month.name.ordinal + 1, year.name, year.library.categories.filter(ExpenseCategory).filter[
 				!(month.actualEntries.findFirst[entry | entry.category == it] instanceof ActualAmountEntry)
-			].map[name].toList)
+			].map[URI -> name].toList)
 		]
 		
 		val fileDialog = new FileDialog(event.activeShell, SWT.OPEN.bitwiseOr(SWT.APPLICATION_MODAL))
@@ -55,22 +57,25 @@ class PopulateHandler extends AbstractPopulateHandler {
 		if (fileName != null) {
 			try {
 				val transactions = new AtomicReference<List<DialogTransaction>>
+				//TODO: Check for transactions that are already entered.
+				//TODO: Pre-set category based upon regex patterns.
 				//TODO: Remove ProgressMonitorDialog if parsing the file is never long-running
 				new ProgressMonitorDialog(event.activeShell).run(true, false, [transactions.set(parseCardFile(fileName, modelInfo.monthNumber, modelInfo.year))])
 				if (transactions.get.empty) {
 					MessageDialog.openError(event.activeShell, "No Transactions", '''No cleared transactions for «modelInfo.monthName» «modelInfo.year» found in file.''')
 				} else {
-					val dialog = new PopulateDialog(event.activeShell, modelInfo.monthName, modelInfo.year, transactions.get, modelInfo.categoryNames)
+					val dialog = new PopulateDialog(event.activeShell, modelInfo.monthName, modelInfo.year, transactions.get, modelInfo.categories)
 					if (dialog.open == Window.OK) {
-						val transactionsByCategory = transactions.get.groupBy[category]
+						val transactionsByCategory = transactions.get.groupBy[category.key]
 						selectedOutlineNode.document.modify(new IUnitOfWork.Void<XtextResource> {
 							override process(XtextResource state) throws Exception {
 								val month = state.resourceSet.getEObject(selectedOutlineNode.EObjectURI, true) as Month
-								transactionsByCategory.forEach[category, transactions |
-									val entry = month.actualEntries.filter(ActualTransactionEntry).findFirst[it.category.name == category] ?: {
+								transactionsByCategory.forEach[categoryURI, transactions |
+									val category = state.resourceSet.getEObject(categoryURI, true) as ExpenseCategory
+									val entry = month.actualEntries.filter(ActualTransactionEntry).findFirst[it.category == category] ?: {
 										BudgetingFactory.eINSTANCE.createActualTransactionEntry => [
-											it.category = month.getContainerOfType(Year).library.categories.findFirst[name == category]
-											month.actualEntries.add(it)
+											it.category = category
+											month.actualEntries += it
 										]
 									}
 									entry.transactions += transactions.map[toCardTransaction]
@@ -113,6 +118,6 @@ class PopulateHandler extends AbstractPopulateHandler {
 		val String monthName
 		val int monthNumber
 		val int year
-		val List<String> categoryNames
+		val List<Pair<URI, String>> categories
 	}
 }

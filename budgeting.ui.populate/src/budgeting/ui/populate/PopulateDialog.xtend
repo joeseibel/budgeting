@@ -2,6 +2,7 @@ package budgeting.ui.populate
 
 import java.text.NumberFormat
 import java.util.List
+import org.eclipse.emf.common.util.URI
 import org.eclipse.jface.dialogs.IDialogConstants
 import org.eclipse.jface.dialogs.TitleAreaDialog
 import org.eclipse.jface.layout.TableColumnLayout
@@ -30,14 +31,14 @@ package class PopulateDialog extends TitleAreaDialog {
 	val String month
 	val int year
 	val List<DialogTransaction> transactions
-	val List<String> categoryNames
+	val List<Pair<URI, String>> categories
 	
-	new(Shell parentShell, String month, int year, List<DialogTransaction> transactions, List<String> categoryNames) {
+	new(Shell parentShell, String month, int year, List<DialogTransaction> transactions, List<Pair<URI, String>> categories) {
 		super(parentShell)
 		this.month = month
 		this.year = year
 		this.transactions = transactions
-		this.categoryNames = categoryNames
+		this.categories = categories
 	}
 	
 	override protected isResizable() {
@@ -95,7 +96,7 @@ package class PopulateDialog extends TitleAreaDialog {
 						tableColumnLayout.setColumnData(column, new ColumnPixelData(convertHorizontalDLUsToPixels(56), true, true))
 						labelProvider = new ColumnLabelProvider {
 							override getText(Object element) {
-								(element as DialogTransaction).category
+								(element as DialogTransaction).category?.value
 							}
 						}
 						editingSupport = new EditingSupport(tableViewer) {
@@ -106,8 +107,12 @@ package class PopulateDialog extends TitleAreaDialog {
 							override protected getCellEditor(Object element) {
 								new ComboBoxViewerCellEditor(tableViewer.table, SWT.READ_ONLY) => [
 									contentProvider = ArrayContentProvider.instance
-									labelProvider = new LabelProvider
-									input = categoryNames
+									labelProvider = new LabelProvider {
+										override getText(Object element) {
+											(element as Pair<URI, String>).value
+										}
+									}
+									input = categories
 								]
 							}
 							
@@ -116,7 +121,7 @@ package class PopulateDialog extends TitleAreaDialog {
 							}
 							
 							override protected setValue(Object element, Object value) {
-								(element as DialogTransaction).category = value as String
+								(element as DialogTransaction).category = value as Pair<URI, String>
 								tableViewer.update(element, null)
 								validate
 							}
