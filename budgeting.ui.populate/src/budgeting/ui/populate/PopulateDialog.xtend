@@ -80,6 +80,12 @@ package class PopulateDialog extends TitleAreaDialog {
 							override getText(Object element) {
 								(element as DialogTransaction).day.toString
 							}
+							
+							override getForeground(Object element) {
+								if ((element as DialogTransaction).alreadyEntered) {
+									shell.display.getSystemColor(SWT.COLOR_GRAY)
+								}
+							}
 						}
 					]
 					new TableViewerColumn(tableViewer, SWT.RIGHT) => [
@@ -90,6 +96,12 @@ package class PopulateDialog extends TitleAreaDialog {
 								val amount = (element as DialogTransaction).amount
 								INTEGER_FORMAT.format(amount / 100) + "." + DECIMAL_FORMAT.format(amount % 100)
 							}
+							
+							override getForeground(Object element) {
+								if ((element as DialogTransaction).alreadyEntered) {
+									shell.display.getSystemColor(SWT.COLOR_GRAY)
+								}
+							}
 						}
 					]
 					new TableViewerColumn(tableViewer, SWT.LEFT) => [
@@ -99,10 +111,16 @@ package class PopulateDialog extends TitleAreaDialog {
 							override getText(Object element) {
 								(element as DialogTransaction).category?.value
 							}
+							
+							override getForeground(Object element) {
+								if ((element as DialogTransaction).alreadyEntered) {
+									shell.display.getSystemColor(SWT.COLOR_GRAY)
+								}
+							}
 						}
 						editingSupport = new EditingSupport(tableViewer) {
 							override protected canEdit(Object element) {
-								true
+								!(element as DialogTransaction).alreadyEntered
 							}
 							
 							override protected getCellEditor(Object element) {
@@ -134,6 +152,12 @@ package class PopulateDialog extends TitleAreaDialog {
 						labelProvider = new ColumnLabelProvider {
 							override getText(Object element) {
 								(element as DialogTransaction).from
+							}
+							
+							override getForeground(Object element) {
+								if ((element as DialogTransaction).alreadyEntered) {
+									shell.display.getSystemColor(SWT.COLOR_GRAY)
+								}
 							}
 						}
 					]

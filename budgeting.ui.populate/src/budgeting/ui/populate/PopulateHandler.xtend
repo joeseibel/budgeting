@@ -4,6 +4,7 @@ import budgeting.BudgetingUtil
 import budgeting.budgeting.ActualAmountEntry
 import budgeting.budgeting.ActualTransactionEntry
 import budgeting.budgeting.BudgetingFactory
+import budgeting.budgeting.CardTransaction
 import budgeting.budgeting.ExpenseCategory
 import budgeting.budgeting.Month
 import budgeting.budgeting.Year
@@ -46,7 +47,7 @@ class PopulateHandler extends AbstractPopulateHandler {
 		val modelInfo = selectedOutlineNode.readOnly[
 			val month = it as Month
 			val year = month.getContainerOfType(Year)
-			new ModelInfo(month.name.toString.toFirstUpper, month.name.ordinal + 1, year.name, year.library.categories.filter(ExpenseCategory).filter[
+			new ModelInfo(month.name.toString.toFirstUpper, year.name, year.library.categories.filter(ExpenseCategory).filter[
 				!(month.actualEntries.findFirst[entry | entry.category == it] instanceof ActualAmountEntry)
 			].map[URI -> name].toList)
 		]
@@ -57,16 +58,15 @@ class PopulateHandler extends AbstractPopulateHandler {
 		if (fileName != null) {
 			try {
 				val transactions = new AtomicReference<List<DialogTransaction>>
-				//TODO: Check for transactions that are already entered.
 				//TODO: Pre-set category based upon regex patterns.
 				//TODO: Remove ProgressMonitorDialog if parsing the file is never long-running
-				new ProgressMonitorDialog(event.activeShell).run(true, false, [transactions.set(parseCardFile(fileName, modelInfo.monthNumber, modelInfo.year))])
+				new ProgressMonitorDialog(event.activeShell).run(true, false, [transactions.set(selectedOutlineNode.readOnly[parseCardFile(fileName, it as Month, modelInfo.year)])])
 				if (transactions.get.empty) {
 					MessageDialog.openError(event.activeShell, "No Transactions", '''No cleared transactions for «modelInfo.monthName» «modelInfo.year» found in file.''')
 				} else {
 					val dialog = new PopulateDialog(event.activeShell, modelInfo.monthName, modelInfo.year, transactions.get, modelInfo.categories)
 					if (dialog.open == Window.OK) {
-						val transactionsByCategory = transactions.get.filter[category.key != null].groupBy[category.key]
+						val transactionsByCategory = transactions.get.filter[!alreadyEntered && category.key != null].groupBy[category.key]
 						selectedOutlineNode.document.modify(new IUnitOfWork.Void<XtextResource> {
 							override process(XtextResource state) throws Exception {
 								val month = state.resourceSet.getEObject(selectedOutlineNode.EObjectURI, true) as Month
@@ -94,12 +94,26 @@ class PopulateHandler extends AbstractPopulateHandler {
 		null
 	}
 	
-	override protected parseCardFileImpl(CSVParser parser, int selectedMonth, int selectedYear) throws IOException {
+	override protected parseCardFileImpl(CSVParser parser, Month selectedMonth, int selectedYear) throws IOException {
 		val filtered = parser.records.filter[get(STATUS_FIELD) == CLEARED_VALUE && !get(DEBIT_FIELD).empty && {
 			val dateArray = get(DATE_FIELD).split("/")
-			dateArray.head.parseInt == selectedMonth && dateArray.last.parseInt == selectedYear
+			dateArray.head.parseInt == selectedMonth.name.ordinal + 1 && dateArray.last.parseInt == selectedYear
 		}]
-		filtered.map[new DialogTransaction(get(DATE_FIELD).split("/").get(1).parseInt, get(DESCRIPTION_FIELD).firstLine, get(DEBIT_FIELD).toDollar)].toList
+		filtered.map[
+			val day = get(DATE_FIELD).split("/").get(1).parseInt
+			val from = get(DESCRIPTION_FIELD).firstLine
+			val amount = get(DEBIT_FIELD).toDollar
+			
+			val entryWithExistingTransaction = selectedMonth.actualEntries.filter(ActualTransactionEntry).findFirst[
+				transactions.filter(CardTransaction).exists[it.day == day && it.from == from && it.amount == amount]
+			]
+			
+			if (entryWithExistingTransaction == null) {
+				new DialogTransaction(day, from, amount)
+			} else {
+				new DialogTransaction(day, from, amount, entryWithExistingTransaction.category, true)
+			}
+		].toList
 	}
 	
 	def private static toDollar(String s) {
@@ -116,7 +130,6 @@ class PopulateHandler extends AbstractPopulateHandler {
 	@FinalFieldsConstructor
 	private static class ModelInfo {
 		val String monthName
-		val int monthNumber
 		val int year
 		val List<Pair<URI, String>> categories
 	}

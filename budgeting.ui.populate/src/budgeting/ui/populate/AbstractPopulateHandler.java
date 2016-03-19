@@ -9,6 +9,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.eclipse.core.commands.AbstractHandler;
 
+import budgeting.budgeting.Month;
+
 /*
  * The only purpose of this file is to utilize try-with-resources, which is not
  * supported in Xtend. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=366020
@@ -16,12 +18,12 @@ import org.eclipse.core.commands.AbstractHandler;
  * be moved into PopulateHandler
  */
 abstract class AbstractPopulateHandler extends AbstractHandler {
-	protected List<DialogTransaction> parseCardFile(final String fileName, final int selectedMonth, final int selectedYear) throws IOException {
+	protected List<DialogTransaction> parseCardFile(final String fileName, final Month selectedMonth, final int selectedYear) throws IOException {
 		final BufferedReader reader = new BufferedReader(new FileReader(fileName));
 		try (final CSVParser parser = CSVFormat.DEFAULT.withHeader().withIgnoreSurroundingSpaces().parse(reader)) {
 			return parseCardFileImpl(parser, selectedMonth, selectedYear);
 		}
 	}
 	
-	protected abstract List<DialogTransaction> parseCardFileImpl(CSVParser parser, int selectedMonth, int selectedYear) throws IOException;
+	protected abstract List<DialogTransaction> parseCardFileImpl(CSVParser parser, Month selectedMonth, int selectedYear) throws IOException;
 }
