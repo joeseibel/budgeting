@@ -66,7 +66,7 @@ class PopulateHandler extends AbstractPopulateHandler {
 				} else {
 					val dialog = new PopulateDialog(event.activeShell, modelInfo.monthName, modelInfo.year, transactions.get, modelInfo.categories)
 					if (dialog.open == Window.OK) {
-						val transactionsByCategory = transactions.get.groupBy[category.key]
+						val transactionsByCategory = transactions.get.filter[category.key != null].groupBy[category.key]
 						selectedOutlineNode.document.modify(new IUnitOfWork.Void<XtextResource> {
 							override process(XtextResource state) throws Exception {
 								val month = state.resourceSet.getEObject(selectedOutlineNode.EObjectURI, true) as Month

@@ -27,6 +27,7 @@ package class PopulateDialog extends TitleAreaDialog {
 		minimumIntegerDigits = 2
 		maximumIntegerDigits = 2
 	]
+	val static Pair<URI, String> DO_NOT_ENTER_CATEGORY = null -> "DO NOT ENTER"
 	
 	val String month
 	val int year
@@ -38,7 +39,7 @@ package class PopulateDialog extends TitleAreaDialog {
 		this.month = month
 		this.year = year
 		this.transactions = transactions
-		this.categories = categories
+		this.categories = (categories + #[DO_NOT_ENTER_CATEGORY]).toList
 	}
 	
 	override protected isResizable() {
