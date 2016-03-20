@@ -28,9 +28,25 @@ class FormatterTest {
 					income income1
 					expense expense1
 					expense expense2 ["pattern1"]
-					expense expense3 ["pattern1", "pattern2", "pattern3", "pattern4", "pattern5", "pattern6", "pattern7", "pattern8",
-						"pattern9", "pattern10", "pattern11", "pattern12", "pattern13", "pattern14", "pattern15", "pattern16",
-						"pattern17", "pattern18"
+					expense expense3 [
+						"pattern1",
+						"pattern2",
+						"pattern3",
+						"pattern4",
+						"pattern5",
+						"pattern6",
+						"pattern7",
+						"pattern8",
+						"pattern9",
+						"pattern10",
+						"pattern11",
+						"pattern12",
+						"pattern13",
+						"pattern14",
+						"pattern15",
+						"pattern16",
+						"pattern17",
+						"pattern18"
 					]
 				}'''
 			toBeFormatted = 'library lib1{income income1 expense expense1 expense expense2["pattern1"]expense expense3[' +
@@ -38,19 +54,6 @@ class FormatterTest {
 				'"pattern10","pattern11","pattern12","pattern13","pattern14","pattern15","pattern16","pattern17",' +
 				'"pattern18"]}'
 		]
-		//TODO: Should work but doesn't.  Check again when upgrading to Xtext 2.9
-//		assertFormatted[
-//			expectation = '''
-//				library lib1 {
-//					expense expense1 ["pattern1", "pattern2", "pattern3", "pattern4", "pattern5", "pattern6", "pattern7", "pattern8",
-//						"pattern9", "pattern10", "pattern11", "pattern12", "pattern13", "pattern14", "pattern15", "pattern16",
-//						"pattern17"
-//					]
-//				}'''
-//			toBeFormatted = 'library lib1{expense expense1["pattern1","pattern2","pattern3","pattern4","pattern5",' +
-//				'"pattern6","pattern7","pattern8","pattern9","pattern10","pattern11","pattern12","pattern13","pattern14",' +
-//				'"pattern15","pattern16","pattern17"]}'
-//		]
 	}
 	
 	@Test

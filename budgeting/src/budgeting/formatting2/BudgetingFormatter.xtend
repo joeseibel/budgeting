@@ -37,16 +37,15 @@ class BudgetingFormatter extends AbstractFormatter2 {
 		expenseCategory.surround[indent]
 		expenseCategory.regionFor.keyword("expense").append[oneSpace]
 		expenseCategory.append[setNewLines(1, 1, Integer.MAX_VALUE)]
-		expenseCategory.regionFor.keyword("[").prepend[oneSpace].append[noSpace]
-		expenseCategory.formatConditionally([
-			val extension doc = requireFitsInLine
-			expenseCategory.regionFor.keywords(",").forEach[prepend[noSpace].append[oneSpace]]
+		if (expenseCategory.patterns.size == 1) {
+			expenseCategory.regionFor.keyword("[").prepend[oneSpace].append[noSpace]
 			expenseCategory.regionFor.keyword("]").prepend[noSpace]
-		], [extension doc |
-			val indentFormatter = new IndentOnceAutowrapFormatter(expenseCategory.regionFor.keyword("]").previousHiddenRegion)
-			expenseCategory.regionFor.keywords(",").forEach[prepend[noSpace].append[oneSpace; autowrap; onAutowrap = indentFormatter]]
+		} else if (expenseCategory.patterns.size > 1) {
+			expenseCategory.regionFor.keyword("[").prepend[oneSpace].append[setNewLines(1, 1, Integer.MAX_VALUE)]
+			expenseCategory.regionFor.features(BudgetingPackage.eINSTANCE.expenseCategory_Patterns).forEach[surround[indent]]
+			expenseCategory.regionFor.keywords(",").forEach[prepend[noSpace].append[setNewLines(1, 1, Integer.MAX_VALUE)]]
 			expenseCategory.regionFor.keyword("]").prepend[setNewLines(1, 1, Integer.MAX_VALUE)]
-		])
+		}
 	}
 
 	def dispatch void format(Year year, extension IFormattableDocument document) {

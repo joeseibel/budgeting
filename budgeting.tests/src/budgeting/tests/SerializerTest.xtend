@@ -57,7 +57,11 @@ class SerializerTest {
 				income income2
 				expense expense1
 				expense expense2 ["pattern1"]
-				expense expense3 ["pattern1", "pattern2", "pattern3"]
+				expense expense3 [
+					"pattern1",
+					"pattern2",
+					"pattern3"
+				]
 			}'''.assertSerialize(BudgetingFactory.eINSTANCE.createLibrary => [
 				name = "lib1"
 				categories += BudgetingFactory.eINSTANCE.createIncomeCategory => [
