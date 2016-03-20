@@ -3,6 +3,8 @@ package budgeting.ui.populate
 import java.text.NumberFormat
 import java.util.List
 import org.eclipse.emf.common.util.URI
+import org.eclipse.jface.action.Action
+import org.eclipse.jface.action.MenuManager
 import org.eclipse.jface.dialogs.IDialogConstants
 import org.eclipse.jface.dialogs.TitleAreaDialog
 import org.eclipse.jface.layout.TableColumnLayout
@@ -16,6 +18,8 @@ import org.eclipse.jface.viewers.LabelProvider
 import org.eclipse.jface.viewers.TableViewer
 import org.eclipse.jface.viewers.TableViewerColumn
 import org.eclipse.swt.SWT
+import org.eclipse.swt.dnd.Clipboard
+import org.eclipse.swt.dnd.TextTransfer
 import org.eclipse.swt.graphics.Point
 import org.eclipse.swt.layout.GridData
 import org.eclipse.swt.widgets.Composite
@@ -161,6 +165,19 @@ package class PopulateDialog extends TitleAreaDialog {
 							}
 						}
 					]
+					
+					val copyAction = new Action("Copy From") {
+						override run() {
+							val clipboard = new Clipboard(shell.display)
+							clipboard.setContents(#[(tableViewer.structuredSelection.firstElement as DialogTransaction).from], #[TextTransfer.instance])
+							clipboard.dispose
+						}
+					}
+					tableViewer.table.menu = (new MenuManager => [
+						add(copyAction)
+						addMenuListener[copyAction.enabled = !tableViewer.structuredSelection.empty]
+					]).createContextMenu(tableViewer.table)
+					
 					tableViewer.contentProvider = ArrayContentProvider.instance
 					tableViewer.input = transactions
 					tableViewer.table.linesVisible = true
