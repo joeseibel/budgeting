@@ -14,13 +14,11 @@ import java.io.StringReader
 import java.util.ArrayList
 import java.util.LinkedHashMap
 import java.util.List
-import java.util.concurrent.atomic.AtomicReference
 import org.apache.commons.csv.CSVParser
 import org.eclipse.core.commands.ExecutionEvent
 import org.eclipse.core.commands.ExecutionException
 import org.eclipse.emf.common.util.URI
 import org.eclipse.jface.dialogs.MessageDialog
-import org.eclipse.jface.dialogs.ProgressMonitorDialog
 import org.eclipse.jface.viewers.IStructuredSelection
 import org.eclipse.jface.window.Window
 import org.eclipse.swt.SWT
@@ -58,35 +56,12 @@ class PopulateHandler extends AbstractPopulateHandler {
 		val fileName = fileDialog.open
 		if (fileName != null) {
 			try {
-				//TODO: Remove ProgressMonitorDialog if parsing the file is never long-running
-				val parseResultReference = new AtomicReference
-				new ProgressMonitorDialog(event.activeShell).run(true, false, [parseResultReference.set(selectedOutlineNode.readOnly[parseCardFile(fileName, it as Month, modelInfo.year)])])
-				switch parseResult: parseResultReference.get {
+				switch parseResult : selectedOutlineNode.readOnly[parseCardFile(fileName, it as Month, modelInfo.year)] {
 					String: MessageDialog.openError(event.activeShell, "Multiple Matches", parseResult)
-					List<DialogTransaction> case parseResult.empty: MessageDialog.openError(event.activeShell, "No Transactions", '''No cleared transactions for «modelInfo.monthName» «modelInfo.year» found in file.''')
-					List<DialogTransaction>: {
-						val dialog = new PopulateDialog(event.activeShell, modelInfo.monthName, modelInfo.year, parseResult, modelInfo.categories)
-						if (dialog.open == Window.OK) {
-							val transactionsByCategory = parseResult.filter[!alreadyEntered && category.key != null].groupBy[category.key]
-							selectedOutlineNode.document.modify(new IUnitOfWork.Void<XtextResource> {
-								override process(XtextResource state) throws Exception {
-									val month = state.resourceSet.getEObject(selectedOutlineNode.EObjectURI, true) as Month
-									transactionsByCategory.forEach[categoryURI, transactions |
-										val category = state.resourceSet.getEObject(categoryURI, true) as ExpenseCategory
-										val entry = month.actualEntries.filter(ActualTransactionEntry).findFirst[it.category == category] ?: {
-											BudgetingFactory.eINSTANCE.createActualTransactionEntry => [
-												it.category = category
-												month.actualEntries += it
-											]
-										}
-										entry.transactions += transactions.map[toCardTransaction]
-										val unsorted = new ArrayList(entry.transactions)
-										entry.transactions.clear
-										entry.transactions += unsorted.sortWith(BudgetingUtil.TRANSACTION_COMPARATOR)
-									]
-								}
-							})
-						}
+					List<DialogTransaction>: if (parseResult.empty) {
+						MessageDialog.openError(event.activeShell, "No Transactions", '''No cleared transactions for «modelInfo.monthName» «modelInfo.year» found in file.''')
+					} else if (new PopulateDialog(event.activeShell, modelInfo.monthName, modelInfo.year, parseResult, modelInfo.categories).open == Window.OK) {
+						populate(parseResult, selectedOutlineNode)
 					}
 				}
 			} catch (IOException e) {
@@ -121,9 +96,7 @@ class PopulateHandler extends AbstractPopulateHandler {
 						throw new MatchesMultiplePatternsException('''
 							"«from»" matches multiple patterns:
 								«FOR entry : matchingPatterns.entrySet»«FOR pattern : entry.value»
-								«entry.key.name»: "«pattern»"
-								«ENDFOR»«ENDFOR»
-						''')
+								«entry.key.name»: "«pattern»"«ENDFOR»«ENDFOR»''')
 					}
 				} else {
 					new DialogTransaction(day, from, amount, entryWithExistingTransaction.category, true)
@@ -132,6 +105,24 @@ class PopulateHandler extends AbstractPopulateHandler {
 		} catch (MatchesMultiplePatternsException e) {
 			e.message
 		}
+	}
+	
+	def private static populate(List<DialogTransaction> parseResult, EObjectNode selectedOutlineNode) {
+		val transactionsByCategory = parseResult.filter[!alreadyEntered && category.key != null].groupBy[category.key]
+		selectedOutlineNode.document.modify([XtextResource it |
+			val month = resourceSet.getEObject(selectedOutlineNode.EObjectURI, true) as Month
+			transactionsByCategory.forEach[categoryURI, transactions |
+				val category = resourceSet.getEObject(categoryURI, true) as ExpenseCategory
+				val entry = month.actualEntries.filter(ActualTransactionEntry).findFirst[it.category == category] ?: BudgetingFactory.eINSTANCE.createActualTransactionEntry => [
+					it.category = category
+					month.actualEntries += it
+				]
+				entry.transactions += transactions.map[toCardTransaction]
+				val unsorted = new ArrayList(entry.transactions)
+				entry.transactions.clear
+				entry.transactions += unsorted.sortWith(BudgetingUtil.TRANSACTION_COMPARATOR)
+			]
+		] as IUnitOfWork.Void<XtextResource>)
 	}
 	
 	def private static toDollar(String s) {
