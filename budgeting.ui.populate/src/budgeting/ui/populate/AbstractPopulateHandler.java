@@ -3,7 +3,6 @@ package budgeting.ui.populate;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -18,12 +17,12 @@ import budgeting.budgeting.Month;
  * be moved into PopulateHandler
  */
 abstract class AbstractPopulateHandler extends AbstractHandler {
-	protected List<DialogTransaction> parseCardFile(final String fileName, final Month selectedMonth, final int selectedYear) throws IOException {
+	protected Object parseCardFile(final String fileName, final Month selectedMonth, final int selectedYear) throws IOException {
 		final BufferedReader reader = new BufferedReader(new FileReader(fileName));
 		try (final CSVParser parser = CSVFormat.DEFAULT.withHeader().withIgnoreSurroundingSpaces().parse(reader)) {
 			return parseCardFileImpl(parser, selectedMonth, selectedYear);
 		}
 	}
 	
-	protected abstract List<DialogTransaction> parseCardFileImpl(CSVParser parser, Month selectedMonth, int selectedYear) throws IOException;
+	protected abstract Object parseCardFileImpl(CSVParser parser, Month selectedMonth, int selectedYear) throws IOException;
 }

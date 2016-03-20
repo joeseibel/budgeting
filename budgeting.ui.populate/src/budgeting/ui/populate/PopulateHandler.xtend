@@ -12,6 +12,7 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.StringReader
 import java.util.ArrayList
+import java.util.LinkedHashMap
 import java.util.List
 import java.util.concurrent.atomic.AtomicReference
 import org.apache.commons.csv.CSVParser
@@ -57,34 +58,35 @@ class PopulateHandler extends AbstractPopulateHandler {
 		val fileName = fileDialog.open
 		if (fileName != null) {
 			try {
-				val transactions = new AtomicReference<List<DialogTransaction>>
-				//TODO: Pre-set category based upon regex patterns.
 				//TODO: Remove ProgressMonitorDialog if parsing the file is never long-running
-				new ProgressMonitorDialog(event.activeShell).run(true, false, [transactions.set(selectedOutlineNode.readOnly[parseCardFile(fileName, it as Month, modelInfo.year)])])
-				if (transactions.get.empty) {
-					MessageDialog.openError(event.activeShell, "No Transactions", '''No cleared transactions for «modelInfo.monthName» «modelInfo.year» found in file.''')
-				} else {
-					val dialog = new PopulateDialog(event.activeShell, modelInfo.monthName, modelInfo.year, transactions.get, modelInfo.categories)
-					if (dialog.open == Window.OK) {
-						val transactionsByCategory = transactions.get.filter[!alreadyEntered && category.key != null].groupBy[category.key]
-						selectedOutlineNode.document.modify(new IUnitOfWork.Void<XtextResource> {
-							override process(XtextResource state) throws Exception {
-								val month = state.resourceSet.getEObject(selectedOutlineNode.EObjectURI, true) as Month
-								transactionsByCategory.forEach[categoryURI, transactions |
-									val category = state.resourceSet.getEObject(categoryURI, true) as ExpenseCategory
-									val entry = month.actualEntries.filter(ActualTransactionEntry).findFirst[it.category == category] ?: {
-										BudgetingFactory.eINSTANCE.createActualTransactionEntry => [
-											it.category = category
-											month.actualEntries += it
-										]
-									}
-									entry.transactions += transactions.map[toCardTransaction]
-									val unsorted = new ArrayList(entry.transactions)
-									entry.transactions.clear
-									entry.transactions += unsorted.sortWith(BudgetingUtil.TRANSACTION_COMPARATOR)
-								]
-							}
-						})
+				val parseResultReference = new AtomicReference
+				new ProgressMonitorDialog(event.activeShell).run(true, false, [parseResultReference.set(selectedOutlineNode.readOnly[parseCardFile(fileName, it as Month, modelInfo.year)])])
+				switch parseResult: parseResultReference.get {
+					String: MessageDialog.openError(event.activeShell, "Multiple Matches", parseResult)
+					List<DialogTransaction> case parseResult.empty: MessageDialog.openError(event.activeShell, "No Transactions", '''No cleared transactions for «modelInfo.monthName» «modelInfo.year» found in file.''')
+					List<DialogTransaction>: {
+						val dialog = new PopulateDialog(event.activeShell, modelInfo.monthName, modelInfo.year, parseResult, modelInfo.categories)
+						if (dialog.open == Window.OK) {
+							val transactionsByCategory = parseResult.filter[!alreadyEntered && category.key != null].groupBy[category.key]
+							selectedOutlineNode.document.modify(new IUnitOfWork.Void<XtextResource> {
+								override process(XtextResource state) throws Exception {
+									val month = state.resourceSet.getEObject(selectedOutlineNode.EObjectURI, true) as Month
+									transactionsByCategory.forEach[categoryURI, transactions |
+										val category = state.resourceSet.getEObject(categoryURI, true) as ExpenseCategory
+										val entry = month.actualEntries.filter(ActualTransactionEntry).findFirst[it.category == category] ?: {
+											BudgetingFactory.eINSTANCE.createActualTransactionEntry => [
+												it.category = category
+												month.actualEntries += it
+											]
+										}
+										entry.transactions += transactions.map[toCardTransaction]
+										val unsorted = new ArrayList(entry.transactions)
+										entry.transactions.clear
+										entry.transactions += unsorted.sortWith(BudgetingUtil.TRANSACTION_COMPARATOR)
+									]
+								}
+							})
+						}
 					}
 				}
 			} catch (IOException e) {
@@ -99,21 +101,37 @@ class PopulateHandler extends AbstractPopulateHandler {
 			val dateArray = get(DATE_FIELD).split("/")
 			dateArray.head.parseInt == selectedMonth.name.ordinal + 1 && dateArray.last.parseInt == selectedYear
 		}]
-		filtered.map[
-			val day = get(DATE_FIELD).split("/").get(1).parseInt
-			val from = get(DESCRIPTION_FIELD).firstLine
-			val amount = get(DEBIT_FIELD).toDollar
-			
-			val entryWithExistingTransaction = selectedMonth.actualEntries.filter(ActualTransactionEntry).findFirst[
-				transactions.filter(CardTransaction).exists[it.day == day && it.from == from && it.amount == amount]
-			]
-			
-			if (entryWithExistingTransaction == null) {
-				new DialogTransaction(day, from, amount)
-			} else {
-				new DialogTransaction(day, from, amount, entryWithExistingTransaction.category, true)
-			}
-		].toList
+		try {
+			filtered.map[
+				val day = get(DATE_FIELD).split("/").get(1).parseInt
+				val from = get(DESCRIPTION_FIELD).firstLine
+				val amount = get(DEBIT_FIELD).toDollar
+				
+				val entryWithExistingTransaction = selectedMonth.actualEntries.filter(ActualTransactionEntry).findFirst[
+					transactions.filter(CardTransaction).exists[it.day == day && it.from == from && it.amount == amount]
+				]
+				if (entryWithExistingTransaction == null) {
+					val expenseCategories = selectedMonth.getContainerOfType(Year).library.categories.filter(ExpenseCategory)
+					val matchingPatterns = new LinkedHashMap(expenseCategories.toInvertedMap[patterns.filter[from.matches(it)].toList].filter[category, patterns | !patterns.empty])
+					if (matchingPatterns.empty) {
+						new DialogTransaction(day, from, amount)
+					} else if (matchingPatterns.size == 1) {
+						new DialogTransaction(day, from, amount, matchingPatterns.keySet.head, false)
+					} else {
+						throw new MatchesMultiplePatternsException('''
+							"«from»" matches multiple patterns:
+								«FOR entry : matchingPatterns.entrySet»«FOR pattern : entry.value»
+								«entry.key.name»: "«pattern»"
+								«ENDFOR»«ENDFOR»
+						''')
+					}
+				} else {
+					new DialogTransaction(day, from, amount, entryWithExistingTransaction.category, true)
+				}
+			].toList
+		} catch (MatchesMultiplePatternsException e) {
+			e.message
+		}
 	}
 	
 	def private static toDollar(String s) {
@@ -132,5 +150,11 @@ class PopulateHandler extends AbstractPopulateHandler {
 		val String monthName
 		val int year
 		val List<Pair<URI, String>> categories
+	}
+	
+	private static class MatchesMultiplePatternsException extends RuntimeException {
+		new(String message) {
+			super(message)
+		}
 	}
 }
