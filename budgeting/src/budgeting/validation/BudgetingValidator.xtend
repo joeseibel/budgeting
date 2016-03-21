@@ -26,6 +26,7 @@ import static extension budgeting.BudgetingUtil.calculateAmount
 import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
 class BudgetingValidator extends AbstractBudgetingValidator {
+	val public static String DUPLICATE_PATTERNS = "DUPLICATE_PATTERNS"
 	val public static String MONTHS_OUT_OF_ORDER = "MONTHS_OUT_OF_ORDER"
 	val public static String TRANSACTIONS_OUT_OF_ORDER = "TRANSACTIONS_OUT_OF_ORDER"
 	
@@ -34,7 +35,6 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 	@Inject
 	BudgetingGrammarAccess grammarAccess
 	
-	//TODO QuickFix
 	@Check
 	def void checkLibraryName(Library library) {
 		val libName = library.name
@@ -53,12 +53,11 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}]
 	}
 	
-	//TODO QuickFix
 	@Check
 	def void checkDuplicatePatterns(ExpenseCategory expense) {
 		val duplicates = expense.patterns.indexed.groupBy[value].filter[pattern, pairs | pairs.size > 1]
 		duplicates.mapValues[map[key]].forEach[pattern, indicies | indicies.forEach[index |
-			warning('''Duplicate pattern "«pattern»"''', BudgetingPackage.eINSTANCE.expenseCategory_Patterns, index)
+			warning('''Duplicate pattern "«pattern»"''', BudgetingPackage.eINSTANCE.expenseCategory_Patterns, index, DUPLICATE_PATTERNS)
 		]]
 	}
 	
@@ -72,7 +71,6 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]]]
 	}
 	
-	//TODO QuickFix
 	@Check
 	def void checkYearName(Year year) {
 		val yearName = year.name

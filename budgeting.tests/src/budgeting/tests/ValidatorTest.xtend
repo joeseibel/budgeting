@@ -64,10 +64,10 @@ class ValidatorTest {
 			patterns += #["pattern1", "pattern2", "pattern1", "pattern3", "pattern4", "pattern4"]
 		]) => [
 			assertDiagnosticsCount(4)
-			assertAll(AssertableDiagnostics.warning(null, 'Duplicate pattern "pattern1"'),
-				AssertableDiagnostics.warning(null, 'Duplicate pattern "pattern1"'),
-				AssertableDiagnostics.warning(null, 'Duplicate pattern "pattern4"'),
-				AssertableDiagnostics.warning(null, 'Duplicate pattern "pattern4"')
+			assertAll(AssertableDiagnostics.warning(BudgetingValidator.DUPLICATE_PATTERNS, 'Duplicate pattern "pattern1"'),
+				AssertableDiagnostics.warning(BudgetingValidator.DUPLICATE_PATTERNS, 'Duplicate pattern "pattern1"'),
+				AssertableDiagnostics.warning(BudgetingValidator.DUPLICATE_PATTERNS, 'Duplicate pattern "pattern4"'),
+				AssertableDiagnostics.warning(BudgetingValidator.DUPLICATE_PATTERNS, 'Duplicate pattern "pattern4"')
 			)
 		]
 	}
