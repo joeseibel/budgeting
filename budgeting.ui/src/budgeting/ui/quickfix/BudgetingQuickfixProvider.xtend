@@ -3,24 +3,22 @@
  */
 package budgeting.ui.quickfix
 
-//import org.eclipse.xtext.ui.editor.quickfix.Fix
-//import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
-//import org.eclipse.xtext.validation.Issue
+import budgeting.BudgetingUtil
+import budgeting.budgeting.ActualTransactionEntry
+import budgeting.validation.BudgetingValidator
+import java.util.ArrayList
+import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider
+import org.eclipse.xtext.ui.editor.quickfix.Fix
+import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor
+import org.eclipse.xtext.validation.Issue
 
-/**
- * Custom quickfixes.
- *
- * See https://www.eclipse.org/Xtext/documentation/304_ide_concepts.html#quick-fixes
- */
-class BudgetingQuickfixProvider extends org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider {
-
-//	@Fix(MyDslValidator::INVALID_NAME)
-//	def capitalizeName(Issue issue, IssueResolutionAcceptor acceptor) {
-//		acceptor.accept(issue, 'Capitalize name', 'Capitalize the name.', 'upcase.png') [
-//			context |
-//			val xtextDocument = context.xtextDocument
-//			val firstLetter = xtextDocument.get(issue.offset, 1)
-//			xtextDocument.replace(issue.offset, 1, firstLetter.toUpperCase)
-//		]
-//	}
+class BudgetingQuickfixProvider extends DefaultQuickfixProvider {
+	@Fix(BudgetingValidator.TRANSACTIONS_OUT_OF_ORDER)
+	def void orderTransactions(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, "Order Transactions", null, null, [element, context | element as ActualTransactionEntry => [
+			val unsorted = new ArrayList(transactions)
+			transactions.clear
+			transactions += unsorted.sortWith(BudgetingUtil.TRANSACTION_COMPARATOR)
+		]])
+	}
 }

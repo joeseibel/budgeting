@@ -26,11 +26,14 @@ import static extension budgeting.BudgetingUtil.calculateAmount
 import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
 class BudgetingValidator extends AbstractBudgetingValidator {
+	val public static String TRANSACTIONS_OUT_OF_ORDER = "TRANSACTIONS_OUT_OF_ORDER"
+	
 	@Inject
 	IValueConverterService converterService
 	@Inject
 	BudgetingGrammarAccess grammarAccess
 	
+	//TODO QuickFix
 	@Check
 	def void checkLibraryName(Library library) {
 		val libName = library.name
@@ -49,6 +52,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		}]
 	}
 	
+	//TODO QuickFix
 	@Check
 	def void checkDuplicatePatterns(ExpenseCategory expense) {
 		val duplicates = expense.patterns.indexed.groupBy[value].filter[pattern, pairs | pairs.size > 1]
@@ -67,6 +71,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]]]
 	}
 	
+	//TODO QuickFix
 	@Check
 	def void checkYearName(Year year) {
 		val yearName = year.name
@@ -93,6 +98,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]
 	}
 	
+	//TODO QuickFix
 	@Check
 	def void checkMonthOrdering(Year year) {
 		if (year.months != year.months.sortBy[name]) {
@@ -177,7 +183,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 			CardTransaction: day
 		}].filterNull.toList
 		if (days != days.sort) {
-			error("Transactions are out of order", BudgetingPackage.eINSTANCE.actualEntry_Category)
+			error("Transactions are out of order", BudgetingPackage.eINSTANCE.actualEntry_Category, TRANSACTIONS_OUT_OF_ORDER)
 		}
 	}
 	

@@ -364,7 +364,7 @@ class ValidatorTest {
 		'''.parse as Year => [
 			tester.validate(months.head.actualEntries.head) => [
 				assertDiagnosticsCount(1)
-				assertError(null, "Transactions are out of order")
+				assertError(BudgetingValidator.TRANSACTIONS_OUT_OF_ORDER, "Transactions are out of order")
 			]
 		]
 	}
