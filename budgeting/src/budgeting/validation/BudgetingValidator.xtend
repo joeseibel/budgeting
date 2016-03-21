@@ -26,6 +26,7 @@ import static extension budgeting.BudgetingUtil.calculateAmount
 import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
 class BudgetingValidator extends AbstractBudgetingValidator {
+	val public static String MONTHS_OUT_OF_ORDER = "MONTHS_OUT_OF_ORDER"
 	val public static String TRANSACTIONS_OUT_OF_ORDER = "TRANSACTIONS_OUT_OF_ORDER"
 	
 	@Inject
@@ -98,11 +99,10 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		]
 	}
 	
-	//TODO QuickFix
 	@Check
 	def void checkMonthOrdering(Year year) {
 		if (year.months != year.months.sortBy[name]) {
-			warning("Month entries are out of order", BudgetingPackage.eINSTANCE.year_Name)
+			warning("Month entries are out of order", BudgetingPackage.eINSTANCE.year_Name, MONTHS_OUT_OF_ORDER)
 		}
 	}
 	

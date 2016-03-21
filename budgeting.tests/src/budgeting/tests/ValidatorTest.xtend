@@ -162,7 +162,7 @@ class ValidatorTest {
 		'''.parse(URI.createURI("2016." + fileExtension), resourceSetProvider.get) => [
 			tester.validate(it) => [
 				assertDiagnosticsCount(1)
-				assertWarning(null, "Month entries are out of order")
+				assertWarning(BudgetingValidator.MONTHS_OUT_OF_ORDER, "Month entries are out of order")
 			]
 		]
 	}
