@@ -8,10 +8,10 @@ import org.eclipse.xtext.junit4.IInjectorProvider;
 import com.google.inject.Injector;
 
 public class BudgetingUiInjectorProvider implements IInjectorProvider {
-	
+
 	@Override
 	public Injector getInjector() {
 		return budgeting.ui.internal.BudgetingActivator.getInstance().getInjector("budgeting.Budgeting");
 	}
-	
+
 }
