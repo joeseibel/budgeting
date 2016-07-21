@@ -1,8 +1,6 @@
 package budgeting.validation
 
-import budgeting.budgeting.ActualAmountEntry
 import budgeting.budgeting.ActualTransactionEntry
-import budgeting.budgeting.BudgetAmountEntry
 import budgeting.budgeting.BudgetFactorEntry
 import budgeting.budgeting.BudgetingPackage
 import budgeting.budgeting.CardTransaction
@@ -16,13 +14,13 @@ import budgeting.services.BudgetingGrammarAccess
 import com.google.inject.Inject
 import java.time.DateTimeException
 import java.time.LocalDate
-import java.util.OptionalLong
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
 import org.eclipse.xtext.conversion.IValueConverterService
 import org.eclipse.xtext.validation.Check
 
-import static extension budgeting.BudgetingUtil.calculateAmount
+import static extension budgeting.BudgetingUtil.getActualSum
+import static extension budgeting.BudgetingUtil.getBudgetSum
 import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 
 class BudgetingValidator extends AbstractBudgetingValidator {
@@ -190,22 +188,9 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		//Don't validate if there are linking errors or if there are duplicate budget entries.
 		val noDuplicates = month.budgetEntries.map[category].toSet.size == month.budgetEntries.size
 		if (month.budgetEntries.forall[!category.eIsProxy] && noDuplicates) {
-			val amounts = month.budgetEntries.map[
-				val entryAmount = switch it {
-					BudgetAmountEntry: OptionalLong.of(amount)
-					BudgetFactorEntry: calculateAmount
-				}
-				if (category instanceof ExpenseCategory && entryAmount.present) {
-					OptionalLong.of(-entryAmount.asLong)
-				} else {
-					entryAmount
-				}
-			]
-			if (!amounts.empty && amounts.forall[present]) {
-				val sum = amounts.map[asLong].sum
-				if (sum != 0L) {
-					error("Sum of budget entries is " + converterService.toString(sum, grammarAccess.dollarRule.name), BudgetingPackage.eINSTANCE.month_Name)
-				}
+			val sum = month.budgetSum
+			if (sum.present && sum.asLong != 0L) {
+				error("Sum of budget entries is " + converterService.toString(sum.asLong, grammarAccess.dollarRule.name), BudgetingPackage.eINSTANCE.month_Name)
 			}
 		}
 	}
@@ -218,18 +203,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 		val inPast = yearName < now.year || (yearName == now.year && month.name < now.month)
 		val noDuplicates = month.actualEntries.map[category].toSet.size == month.actualEntries.size
 		if (!month.actualEntries.empty && inPast && month.actualEntries.forall[!category.eIsProxy] && noDuplicates) {
-			val amounts = month.actualEntries.map[
-				val entryAmount = switch it {
-					ActualAmountEntry: amount
-					ActualTransactionEntry: transactions.map[amount].sum
-				}
-				if (category instanceof ExpenseCategory) {
-					-entryAmount
-				} else {
-					entryAmount
-				}
-			]
-			val sum = amounts.sum
+			val sum = month.actualSum
 			if (sum != 0L) {
 				error("Sum of actual entries in past month is " + converterService.toString(sum, grammarAccess.dollarRule.name), BudgetingPackage.eINSTANCE.month_Name)
 			}
@@ -242,9 +216,5 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 	
 	def private static operator_lessThan(MonthEnum a, java.time.Month b) {
 		a.ordinal < b.ordinal
-	}
-	
-	def private static sum(Iterable<Long> iterable) {
-		iterable.reduce[$0 + $1]
 	}
 }

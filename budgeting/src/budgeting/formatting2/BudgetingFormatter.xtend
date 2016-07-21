@@ -15,7 +15,6 @@ import budgeting.budgeting.Transaction
 import budgeting.budgeting.Year
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
-import org.eclipse.xtext.xbase.formatting2.IndentOnceAutowrapFormatter
 
 import static extension org.eclipse.xtext.EcoreUtil2.getContainerOfType
 

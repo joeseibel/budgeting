@@ -15,6 +15,9 @@ import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode
 import org.eclipse.xtext.util.ITextRegion
 
+import static extension budgeting.BudgetingUtil.getActualSum
+import static extension budgeting.BudgetingUtil.getBudgetSum
+import static extension budgeting.ui.BudgetingUiUtil.toDollar
 import static extension org.eclipse.emf.ecore.util.EcoreUtil.getURI
 import static extension org.eclipse.xtext.nodemodel.util.NodeModelUtils.getNode
 
@@ -69,21 +72,31 @@ class BudgetingOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	private static class BudgetOutlineNode extends MonthSectionOutlineNode {
 		new(IOutlineNode parent, Month month, ILabelProvider labelProvider) {
-			super(parent, month, "budget", month.budgetEntries.empty, labelProvider)
+			super(parent, month, month.budgetLabel, month.budgetEntries.empty, labelProvider)
 		}
 		
 		override protected trimToSection(Iterable<INode> keywords) {
 			keywords.dropWhile[(grammarElement as Keyword).value != "budget"].takeWhile[(grammarElement as Keyword).value != "actual"]
 		}
+		
+		def private static String getBudgetLabel(Month month) {
+			val budgetSum = month.budgetSum
+			'''budget«IF budgetSum.present && budgetSum.asLong != 0L»: «budgetSum.asLong.toDollar»«ENDIF»'''
+		}
 	}
 	
 	private static class ActualOutlineNode extends MonthSectionOutlineNode {
 		new(IOutlineNode parent, Month month, ILabelProvider labelProvider) {
-			super(parent, month, "actual", month.actualEntries.empty, labelProvider)
+			super(parent, month, month.actualLabel, month.actualEntries.empty, labelProvider)
 		}
 		
 		override protected trimToSection(Iterable<INode> keywords) {
 			keywords.dropWhile[(grammarElement as Keyword).value != "actual"]
+		}
+		
+		def private static String getActualLabel(Month month) {
+			val actualSum = month.actualSum
+			'''actual«IF actualSum != 0L»: «actualSum.toDollar»«ENDIF»'''
 		}
 	}
 }

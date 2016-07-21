@@ -8,7 +8,6 @@ import budgeting.budgeting.ExpenseCategory
 import budgeting.budgeting.IncomeCategory
 import budgeting.budgeting.Month
 import budgeting.budgeting.Year
-import budgeting.services.BudgetingGrammarAccess
 import com.google.inject.Inject
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider
 import org.eclipse.jface.viewers.StyledString
@@ -16,22 +15,17 @@ import org.eclipse.jface.viewers.StyledString.Styler
 import org.eclipse.swt.SWT
 import org.eclipse.swt.graphics.RGB
 import org.eclipse.swt.widgets.Display
-import org.eclipse.xtext.conversion.IValueConverterService
 import org.eclipse.xtext.ui.editor.utils.TextStyle
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider
 import org.eclipse.xtext.ui.label.StylerFactory
 
 import static extension budgeting.BudgetingUtil.calculateAmount
+import static extension budgeting.ui.BudgetingUiUtil.toDollar
 
 class BudgetingLabelProvider extends DefaultEObjectLabelProvider {
 	val static Styler RED_STYLER = [foreground = Display.^default.getSystemColor(SWT.COLOR_RED)]
 	
 	val Styler italicRedStyler
-	
-	@Inject
-	IValueConverterService converterService
-	@Inject
-	BudgetingGrammarAccess grammarAccess
 	
 	@Inject
 	new(AdapterFactoryLabelProvider delegate, StylerFactory stylerFactory) {
@@ -82,9 +76,5 @@ class BudgetingLabelProvider extends DefaultEObjectLabelProvider {
 	
 	def StyledString text(ActualTransactionEntry actualTransactionEntry) {
 		new StyledString((actualTransactionEntry.category.name ?: "<unknown>") + ": ").append(actualTransactionEntry.transactions.fold(0L, [$0 + $1.amount]).toDollar, italicRedStyler)
-	}
-	
-	def private toDollar(long amount) {
-		converterService.toString(amount, grammarAccess.dollarRule.name)
 	}
 }
