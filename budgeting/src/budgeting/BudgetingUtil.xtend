@@ -80,7 +80,7 @@ class BudgetingUtil {
 		amounts.sum
 	}
 	
-	def private static long sum(Iterable<Long> iterable) {
+	def static long sum(Iterable<Long> iterable) {
 		iterable.fold(0L, [$0 + $1])
 	}
 	
