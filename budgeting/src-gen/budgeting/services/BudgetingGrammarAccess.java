@@ -564,7 +564,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDECIMALTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//Dollar ecore::ELong:
-		//	DECIMAL
+		//	DECIMAL;
 		@Override public ParserRule getRule() { return rule; }
 
 		//DECIMAL
@@ -578,7 +578,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDECIMALTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Double ecore::EDouble:
-		//	INT | DECIMAL
+		//	INT | DECIMAL;
 		@Override public ParserRule getRule() { return rule; }
 
 		//INT | DECIMAL
@@ -596,7 +596,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cINTTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//OptionalInt ecore::EIntegerObject:
-		//	INT
+		//	INT;
 		@Override public ParserRule getRule() { return rule; }
 
 		//INT
@@ -904,7 +904,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Dollar ecore::ELong:
-	//	DECIMAL
+	//	DECIMAL;
 	public DollarElements getDollarAccess() {
 		return pDollar;
 	}
@@ -914,7 +914,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Double ecore::EDouble:
-	//	INT | DECIMAL
+	//	INT | DECIMAL;
 	public DoubleElements getDoubleAccess() {
 		return pDouble;
 	}
@@ -924,7 +924,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OptionalInt ecore::EIntegerObject:
-	//	INT
+	//	INT;
 	public OptionalIntElements getOptionalIntAccess() {
 		return pOptionalInt;
 	}
@@ -959,7 +959,7 @@ public class BudgetingGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal ML_COMMENT:
-	//	'/ *'->'* /';
+	//	'/*'->'*/';
 	public TerminalRule getML_COMMENTRule() {
 		return gaTerminals.getML_COMMENTRule();
 	} 

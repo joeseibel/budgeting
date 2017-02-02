@@ -95,7 +95,7 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.ACTUAL_AMOUNT_ENTRY__AMOUNT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getActualEntryAccess().getCategoryCategoryIDTerminalRuleCall_0_1_0_1(), semanticObject.getCategory());
+		feeder.accept(grammarAccess.getActualEntryAccess().getCategoryCategoryIDTerminalRuleCall_0_1_0_1(), semanticObject.eGet(BudgetingPackage.Literals.ACTUAL_ENTRY__CATEGORY, false));
 		feeder.accept(grammarAccess.getActualEntryAccess().getAmountDollarParserRuleCall_0_3_0(), semanticObject.getAmount());
 		feeder.finish();
 	}
@@ -128,7 +128,7 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.BUDGET_AMOUNT_ENTRY__AMOUNT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBudgetEntryAccess().getCategoryCategoryIDTerminalRuleCall_0_1_0_1(), semanticObject.getCategory());
+		feeder.accept(grammarAccess.getBudgetEntryAccess().getCategoryCategoryIDTerminalRuleCall_0_1_0_1(), semanticObject.eGet(BudgetingPackage.Literals.BUDGET_ENTRY__CATEGORY, false));
 		feeder.accept(grammarAccess.getBudgetEntryAccess().getAmountDollarParserRuleCall_0_3_0(), semanticObject.getAmount());
 		feeder.finish();
 	}
@@ -151,8 +151,8 @@ public class BudgetingSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, BudgetingPackage.Literals.BUDGET_FACTOR_ENTRY__FACTOR));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBudgetEntryAccess().getCategoryCategoryIDTerminalRuleCall_1_1_0_1(), semanticObject.getCategory());
-		feeder.accept(grammarAccess.getBudgetEntryAccess().getBaseEntryBudgetEntryIDTerminalRuleCall_1_3_0_1(), semanticObject.getBaseEntry());
+		feeder.accept(grammarAccess.getBudgetEntryAccess().getCategoryCategoryIDTerminalRuleCall_1_1_0_1(), semanticObject.eGet(BudgetingPackage.Literals.BUDGET_ENTRY__CATEGORY, false));
+		feeder.accept(grammarAccess.getBudgetEntryAccess().getBaseEntryBudgetEntryIDTerminalRuleCall_1_3_0_1(), semanticObject.eGet(BudgetingPackage.Literals.BUDGET_FACTOR_ENTRY__BASE_ENTRY, false));
 		feeder.accept(grammarAccess.getBudgetEntryAccess().getFactorDoubleParserRuleCall_1_5_0(), semanticObject.getFactor());
 		feeder.finish();
 	}
