@@ -21,7 +21,7 @@ class BudgetingValueConverterService extends DefaultTerminalConverters {
 	def IValueConverter<Long> Dollar() {
 		new IValueConverter<Long> {
 			override toValue(String string, INode node) throws ValueConverterException {
-				if (string == null) {
+				if (string === null) {
 					0L
 				} else {
 					val dotPosition = string.indexOf(DOT)

@@ -22,7 +22,7 @@ class BudgetingUtil {
 				case null: 0
 				default: -1
 			}
-			case bDay == null: 1
+			case bDay === null: 1
 			default: aDay.compareTo(bDay)
 		}
 	]

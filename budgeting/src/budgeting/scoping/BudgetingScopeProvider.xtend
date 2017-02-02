@@ -26,6 +26,6 @@ class BudgetingScopeProvider extends AbstractDeclarativeScopeProvider {
 	}
 	
 	def IScope scope_BudgetFactorEntry_baseEntry(Month context, EReference reference) {
-		new SimpleScope(context.budgetEntries.filter[category.name != null].map[EObjectDescription.create(category.name, it)])
+		new SimpleScope(context.budgetEntries.filter[category.name !== null].map[EObjectDescription.create(category.name, it)])
 	}
 }

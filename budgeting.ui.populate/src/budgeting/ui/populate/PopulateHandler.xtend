@@ -54,7 +54,7 @@ class PopulateHandler extends AbstractPopulateHandler {
 		val fileDialog = new FileDialog(event.activeShell, SWT.OPEN.bitwiseOr(SWT.APPLICATION_MODAL))
 		fileDialog.filterExtensions = #["*.csv"]
 		val fileName = fileDialog.open
-		if (fileName != null) {
+		if (fileName !== null) {
 			try {
 				switch parseResult : selectedOutlineNode.readOnly[parseCardFile(fileName, it as Month, modelInfo.year)] {
 					String: MessageDialog.openError(event.activeShell, "Multiple Matches", parseResult)
@@ -85,7 +85,7 @@ class PopulateHandler extends AbstractPopulateHandler {
 				val entryWithExistingTransaction = selectedMonth.actualEntries.filter(ActualTransactionEntry).findFirst[
 					transactions.filter(CardTransaction).exists[it.day == day && it.from == from && it.amount == amount]
 				]
-				if (entryWithExistingTransaction == null) {
+				if (entryWithExistingTransaction === null) {
 					val expenseCategories = selectedMonth.getContainerOfType(Year).library.categories.filter(ExpenseCategory)
 					val matchingPatterns = new LinkedHashMap(expenseCategories.toInvertedMap[patterns.filter[from.matches(it)].toList].filter[category, patterns | !patterns.empty])
 					if (matchingPatterns.empty) {
@@ -108,7 +108,7 @@ class PopulateHandler extends AbstractPopulateHandler {
 	}
 	
 	def private static populate(List<DialogTransaction> parseResult, EObjectNode selectedOutlineNode) {
-		val transactionsByCategory = parseResult.filter[!alreadyEntered && category.key != null].groupBy[category.key]
+		val transactionsByCategory = parseResult.filter[!alreadyEntered && category.key !== null].groupBy[category.key]
 		selectedOutlineNode.document.modify([XtextResource it |
 			val month = resourceSet.getEObject(selectedOutlineNode.EObjectURI, true) as Month
 			transactionsByCategory.forEach[categoryURI, transactions |

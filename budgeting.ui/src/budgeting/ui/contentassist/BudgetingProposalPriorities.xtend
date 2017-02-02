@@ -9,7 +9,7 @@ class BudgetingProposalPriorities extends ContentProposalPriorities {
 	override adjustKeywordPriority(ICompletionProposal proposal, String prefix) {
 		if (proposal instanceof ConfigurableCompletionProposal) {
 			val month = MonthEnum.get(proposal.displayString)
-			if (month != null) {
+			if (month !== null) {
 				proposal.priority = keywordPriority + MonthEnum.values.length - month.ordinal
 			} else {
 				super.adjustKeywordPriority(proposal, prefix)

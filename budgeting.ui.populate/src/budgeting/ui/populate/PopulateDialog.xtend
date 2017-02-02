@@ -188,9 +188,9 @@ package class PopulateDialog extends TitleAreaDialog {
 	}
 	
 	def private validate() {
-		errorMessage = if (transactions.exists[category == null]) {
+		errorMessage = if (transactions.exists[category === null]) {
 			"Category must be set"
 		}
-		getButton(IDialogConstants.OK_ID).enabled = errorMessage == null
+		getButton(IDialogConstants.OK_ID).enabled = errorMessage === null
 	}
 }

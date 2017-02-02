@@ -147,7 +147,7 @@ class BudgetingValidator extends AbstractBudgetingValidator {
 	
 	@Check
 	def void checkDayRange(CashTransaction transaction) {
-		if (transaction.day != null) {
+		if (transaction.day !== null) {
 			try {
 				LocalDate.of(transaction.getContainerOfType(Year).name, transaction.getContainerOfType(Month).name.ordinal + 1, transaction.day)
 			} catch (DateTimeException e) {
