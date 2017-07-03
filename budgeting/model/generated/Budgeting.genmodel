@@ -4,7 +4,7 @@
     editorDirectory="/budgeting.editor/src" modelPluginID="budgeting" forceOverwrite="true"
     modelName="Budgeting" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="budgeting.edit" editorPluginID="budgeting.editor"
-    runtimeVersion="2.12">
+    runtimeVersion="2.13">
   <genPackages prefix="Budgeting" basePackage="budgeting" disposableProviderFactory="true"
       fileExtensions="budgeting" ecorePackage="Budgeting.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Budgeting.ecore#//MonthEnum">
