@@ -9,12 +9,12 @@ import com.google.inject.Inject
 import com.google.inject.Provider
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.util.ParseHelper
 import org.eclipse.xtext.resource.FileExtensionProvider
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.serializer.ISerializer
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -231,6 +231,6 @@ class SerializerTest {
 	
 	//Copied from ResourceHelper because it is not public
 	def private computeUnusedUri() {
-		(0 .. Integer.MAX_VALUE).map[URI.createURI('''__synthetic«it».«extensionProvider.primaryFileExtension»''')].findFirst[resourceSet.getResource(it, false) == null]
+		(0 .. Integer.MAX_VALUE).map[URI.createURI('''__synthetic«it».«extensionProvider.primaryFileExtension»''')].findFirst[resourceSet.getResource(it, false) === null]
 	}
 }

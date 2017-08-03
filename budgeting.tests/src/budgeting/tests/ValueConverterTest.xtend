@@ -5,8 +5,8 @@ import budgeting.services.BudgetingGrammarAccess
 import com.google.inject.Inject
 import org.eclipse.xtext.conversion.IValueConverterService
 import org.eclipse.xtext.conversion.ValueConverterException
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 

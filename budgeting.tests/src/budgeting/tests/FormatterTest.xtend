@@ -2,9 +2,9 @@ package budgeting.tests
 
 import budgeting.BudgetingInjectorProvider
 import com.google.inject.Inject
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.xtext.junit4.XtextRunner
-import org.eclipse.xtext.junit4.formatter.FormatterTester
+import org.eclipse.xtext.testing.InjectWith
+import org.eclipse.xtext.testing.XtextRunner
+import org.eclipse.xtext.testing.formatter.FormatterTestHelper
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -12,7 +12,7 @@ import org.junit.runner.RunWith
 @InjectWith(BudgetingInjectorProvider)
 class FormatterTest {
 	@Inject
-	extension FormatterTester
+	extension FormatterTestHelper
 	
 	@Test
 	def void testLibrary() {
