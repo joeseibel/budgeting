@@ -18,14 +18,12 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: budgeting,
- budgeting.services,
  budgeting.budgeting,
  budgeting.budgeting.impl,
  budgeting.budgeting.util,
- budgeting.serializer,
  budgeting.parser.antlr,
  budgeting.parser.antlr.internal,
- budgeting.validation,
  budgeting.scoping,
- budgeting.generator,
- budgeting.formatting
+ budgeting.serializer,
+ budgeting.services,
+ budgeting.validation
